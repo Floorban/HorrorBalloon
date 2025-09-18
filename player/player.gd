@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerController
 
 @onready var head: Node3D = %Head
 @onready var eyes: Node3D = %Eyes
