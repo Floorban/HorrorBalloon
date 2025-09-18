@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfauikegolgu3"]
+
+[ext_resource type="Texture2D" uid="uid://408tk8uecdni" path="res://Game/World/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_t7ncp"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Game/Balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="Material" uid="uid://blswqpyuv1uny" path="res://Game/Interactable/interactable_outline.tres" id="2_j8sk2"]
+[ext_resource type="PackedScene" uid="uid://cdn26r2kgqpu4" path="res://Game/Player/player.tscn" id="3_n4swq"]
+[ext_resource type="PackedScene" uid="uid://d2ouh6d4knjm6" path="res://Game/Interactable/interactable.tscn" id="4_n4swq"]
+[ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://Game/World/buckshot.gdshader" id="6_bg8b8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
+shader = ExtResource("6_bg8b8")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg8b8"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1xgor"]
+panorama = ExtResource("1_t7ncp")
+
+[sub_resource type="Sky" id="Sky_gw050"]
+sky_material = SubResource("PanoramaSkyMaterial_1xgor")
+
+[sub_resource type="Environment" id="Environment_mkte3"]
+background_mode = 2
+sky = SubResource("Sky_gw050")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8sk2"]
+size = Vector3(7.1563263, 0.048828125, 3.9892578)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n4swq"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Mask" type="MeshInstance2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_um0r6")
+position = Vector2(960, 540)
+mesh = SubResource("QuadMesh_bg8b8")
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_mkte3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309, 0.6425723, 0.9687132, 0, -0.24818276, 0, 0, 0)
+
+[node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.129847, -0.86764, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
+shape = SubResource("BoxShape3D_j8sk2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/CSGMesh3D"]
+transform = Transform3D(3.5743504, 0, 0, 0, 1, 0, 0, 0, 2.0414488, -0.70807123, 0, 0)
+mesh = SubResource("PlaneMesh_n4swq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4237168)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3479513, 0, -0.45537984)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8671294, 0, 1.0064622)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2546763, 0, -0.19745314)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.912451, 0, 0.67461336)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.940077, 2.3841858e-07, -0.9591963)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5974746, 2.3841858e-07, 1.4379094)
+size = Vector3(0.14355469, 1, 0.123046875)
+material = ExtResource("2_j8sk2")
+
+[node name="Balloon" parent="." instance=ExtResource("2_gw050")]
+
+[node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06570244, 0.2590328, 0)
+
+[node name="Interactable" parent="Balloon" instance=ExtResource("4_n4swq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.29444656, 0.16522944, 0.3371762)

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdn26r2kgqpu4"]
+
+[ext_resource type="Script" uid="uid://k73hv7j6x75t" path="res://Game/Player/player_controller.gd" id="1_s3asc"]
+[ext_resource type="Script" uid="uid://b4sjvte7tb067" path="res://Game/Player/player_camera.gd" id="2_letr6"]
+[ext_resource type="PackedScene" uid="uid://fmdysii1na3u" path="res://Game/Interaction/interaction_controller.tscn" id="3_letr6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s3asc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8qry"]
+radius = 0.076171875
+height = 0.30273438
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_s3asc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_s3asc")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_u8qry")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+top_level = true
+script = ExtResource("2_letr6")
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 60.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -1)
+
+[node name="CamAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+
+[node name="CarryObjMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04129146, -0.12352581)
+
+[node name="InteractionController" parent="." instance=ExtResource("3_letr6")]
+unique_name_in_owner = true
