@@ -24,7 +24,7 @@ _surfaces = [{
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tw14q"]
 
-[node name="Interactable" type="RigidBody3D"]
+[node name="Interactable" type="CharacterBody3D"]
 script = ExtResource("1_tw14q")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

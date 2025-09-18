@@ -41,21 +41,23 @@ mesh = SubResource("BoxMesh_35dws")
 transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.2, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_35dws")
 
-[node name="Col_Bottom" type="CollisionShape3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh"]
+
+[node name="Col_Bottom" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_euxwi")
 
-[node name="Col_Side_1" type="CollisionShape3D" parent="."]
+[node name="Col_Side_1" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.2, 0)
 shape = SubResource("BoxShape3D_35dws")
 
-[node name="Col_Side_2" type="CollisionShape3D" parent="."]
+[node name="Col_Side_2" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.2, 0)
 shape = SubResource("BoxShape3D_35dws")
 
-[node name="Col_Side_3" type="CollisionShape3D" parent="."]
+[node name="Col_Side_3" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, 0.5)
 shape = SubResource("BoxShape3D_35dws")
 
-[node name="Col_Side_4" type="CollisionShape3D" parent="."]
+[node name="Col_Side_4" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, -0.5)
 shape = SubResource("BoxShape3D_35dws")

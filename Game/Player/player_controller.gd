@@ -7,6 +7,7 @@ signal interact_obj
 @onready var carry_obj_marker: Marker3D = $CarryObjMarker
 var carried_obj : Interactable
 
+@onready var camera: Camera3D = $Head/Camera3D
 @onready var camera_controller_anchor: Marker3D = $CamAnchor
 
 func _physics_process(_delta: float) -> void:
@@ -26,7 +27,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interaction") and carried_obj:
-		carried_obj.reparent(get_tree().current_scene)
+		carried_obj.reparent(get_tree().get_first_node_in_group("balloon"))
 		carried_obj = null
 
 func _check_interactable(ray: RayCast3D):
@@ -43,3 +44,7 @@ func pick_up_obj(obj):
 	
 	await get_tree().create_timer(.1).timeout
 	carried_obj = obj
+
+func apply_sway(tilt: Vector3):
+	var sway = Vector3(-tilt.x * 0.7, 0.0, -tilt.z * 0.7)
+	camera.rotation = camera.rotation.lerp(sway, 0.1)
