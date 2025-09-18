@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 	var new_velocity = Vector2.ZERO
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 	if direction:
-		new_velocity = Vector2(direction.x, direction.z) * 0.8
+		new_velocity = Vector2(direction.x, direction.z) * 0.5
 	velocity = Vector3(new_velocity.x, velocity.y, new_velocity.y)
 	move_and_slide()
 

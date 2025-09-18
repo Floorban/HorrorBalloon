@@ -3,7 +3,11 @@ class_name BalloonController
 
 @export var lift_force := 10.0
 @export var down_force := 1.0
-@export var horizontal_force := 0.1
+@export var horizontal_force := 1.0
+
+@onready var mesh: Node3D = $Mesh
+@export var max_tilt_angle := 25.0
+var tilt_tween : Tween
 
 var player : PlayerController
 
@@ -24,9 +28,24 @@ func _player_relative_pos() -> Vector3:
 
 func _apply_horizontal_force():
 	var rel_pos = _player_relative_pos()
-	# move forward/back
-	if abs(rel_pos.x) > 0.3:
-		apply_central_force(Vector3(rel_pos.x, 0, 0).normalized() * horizontal_force)
-	# move left/right
-	if abs(rel_pos.z) > 0.25:
-		apply_central_force(Vector3(0, 0, rel_pos.z).normalized() * horizontal_force)
+
+	# normalize player position into -1..1 range grid
+	var x_dir = clamp(rel_pos.x, -1.0, 1.0)
+	var z_dir = clamp(rel_pos.z, -1.0, 1.0)
+
+	var force_vec = Vector3(x_dir, 0.0, z_dir).normalized()
+	if force_vec.length() > 0.1:
+		apply_central_force(force_vec * horizontal_force)
+
+		var target_x_rot = z_dir * max_tilt_angle
+		var target_z_rot = -x_dir * max_tilt_angle
+		_tilt_to(Vector3(deg_to_rad(target_x_rot), 0.0, deg_to_rad(target_z_rot)))
+	else:
+		_tilt_to(Vector3.ZERO)
+
+func _tilt_to(target_rot: Vector3):
+	if tilt_tween:
+		tilt_tween.kill()
+
+	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tilt_tween.tween_property(mesh, "rotation", target_rot, 0.4)

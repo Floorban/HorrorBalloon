@@ -32,6 +32,15 @@ fov = 60.0
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -1)
 
+[node name="SpotLight" type="Node3D" parent="Head/Camera3D"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D/SpotLight"]
+light_color = Color(0.8364529, 0.73224694, 0.5332368, 1)
+light_energy = 0.5
+light_volumetric_fog_energy = 0.1
+spot_range = 1.0
+spot_angle_attenuation = 2.928171
+
 [node name="CamAnchor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 
