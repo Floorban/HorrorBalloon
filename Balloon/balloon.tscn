@@ -1,12 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=13 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://Balloon/balloon_controller.gd" id="1_35dws"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_35dws"]
+[ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="2_nqb7t"]
+[ext_resource type="Script" uid="uid://dmgk2v6tbjoxf" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="3_fjiwn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_euxwi"]
 size = Vector3(1.0957031, 0.10131836, 1.0947266)
@@ -14,38 +10,36 @@ size = Vector3(1.0957031, 0.10131836, 1.0947266)
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
 size = Vector3(0.099365234, 0.49121094, 1.0966797)
 
+[sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_35dws"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_k8o55"]
+resource_local_to_scene = true
+metadata/creation_stamp = 3086873611496
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nqb7t"]
+resource_local_to_scene = true
+metadata/creation_stamp = 8618120394562
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_fjiwn"]
+resource_local_to_scene = true
+metadata/creation_stamp = 8653319001482
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_cx34w"]
+resource_local_to_scene = true
+metadata/creation_stamp = 8688232386002
+
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3984108, 0.30823803, -0.47116137)
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_35dws")
 
 [node name="Mesh" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3.3475726, 0)
-mesh = SubResource("SphereMesh_2fgap")
-
-[node name="Bottom" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_euxwi")
-skeleton = NodePath("../..")
-
-[node name="Side_1" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0.5, 0.1, 0)
-mesh = SubResource("BoxMesh_35dws")
-metadata/_edit_group_ = true
-
-[node name="Side_2" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 1, -0.5, 0.1, 0)
-mesh = SubResource("BoxMesh_35dws")
-
-[node name="Side_3" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.2, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, 0.5)
-mesh = SubResource("BoxMesh_35dws")
-
-[node name="Side_4" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.2, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, -0.5)
-mesh = SubResource("BoxMesh_35dws")
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh"]
 
@@ -67,3 +61,118 @@ shape = SubResource("BoxShape3D_35dws")
 [node name="Col_Side_4" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, -0.5)
 shape = SubResource("BoxShape3D_35dws")
+
+[node name="Model" type="Node3D" parent="Mesh"]
+
+[node name="Ball" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
+mesh = SubResource("SphereMesh_2fgap")
+skeleton = NodePath("../..")
+
+[node name="Bottom" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_euxwi")
+skeleton = NodePath("../../..")
+
+[node name="Side_1" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0.5, 0.15, 0)
+mesh = SubResource("BoxMesh_35dws")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="Side_2" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, -0.5, 0.15, 0)
+mesh = SubResource("BoxMesh_35dws")
+skeleton = NodePath("../..")
+
+[node name="Side_3" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.15, 0.5)
+mesh = SubResource("BoxMesh_35dws")
+skeleton = NodePath("../..")
+
+[node name="Side_4" type="MeshInstance3D" parent="Mesh/Model"]
+transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.15, -0.5)
+mesh = SubResource("BoxMesh_35dws")
+skeleton = NodePath("../..")
+
+[node name="Corners" type="Node3D" parent="Mesh"]
+
+[node name="Corner_1" type="Node3D" parent="Mesh/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, 0.5)
+
+[node name="Corner_2" type="Node3D" parent="Mesh/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.355, 0.5)
+
+[node name="Corner_3" type="Node3D" parent="Mesh/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.355, -0.5)
+
+[node name="Corner_4" type="Node3D" parent="Mesh/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, -0.5)
+
+[node name="VerletRope_1" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+material_override = ExtResource("2_nqb7t")
+mesh = SubResource("ImmediateMesh_k8o55")
+skeleton = NodePath("../..")
+script = ExtResource("3_fjiwn")
+rope_length = 4.0
+rope_width = 0.08
+simulation_particles = 20
+attach_end = NodePath("../Corners/Corner_1")
+iterations = 5
+preprocess_iterations = 10
+stiffness = 0.5
+wind = Vector3(4.98, 0.62, 2.485)
+wind_scale = 300.0
+metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
+
+[node name="VerletRope_2" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+material_override = ExtResource("2_nqb7t")
+mesh = SubResource("ImmediateMesh_nqb7t")
+skeleton = NodePath("../..")
+script = ExtResource("3_fjiwn")
+rope_length = 4.0
+rope_width = 0.08
+simulation_particles = 20
+attach_end = NodePath("../Corners/Corner_2")
+iterations = 5
+preprocess_iterations = 10
+stiffness = 0.5
+wind = Vector3(4.98, 0.62, 2.485)
+wind_scale = 300.0
+metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
+
+[node name="VerletRope_3" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+material_override = ExtResource("2_nqb7t")
+mesh = SubResource("ImmediateMesh_fjiwn")
+skeleton = NodePath("../..")
+script = ExtResource("3_fjiwn")
+rope_length = 4.0
+rope_width = 0.08
+simulation_particles = 20
+attach_end = NodePath("../Corners/Corner_3")
+iterations = 5
+preprocess_iterations = 10
+stiffness = 0.5
+wind = Vector3(4.98, 0.62, 2.485)
+wind_scale = 300.0
+metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
+
+[node name="VerletRope_4" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+material_override = ExtResource("2_nqb7t")
+mesh = SubResource("ImmediateMesh_cx34w")
+skeleton = NodePath("../..")
+script = ExtResource("3_fjiwn")
+rope_length = 4.0
+rope_width = 0.08
+simulation_particles = 20
+attach_end = NodePath("../Corners/Corner_4")
+iterations = 5
+preprocess_iterations = 10
+stiffness = 0.5
+wind = Vector3(4.98, 0.62, 2.485)
+wind_scale = 300.0
+metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
