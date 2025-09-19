@@ -16,7 +16,7 @@ height = 2.1965332
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
-radius = 3.0
+radius = 3.9829938
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg6s5"]
 
@@ -49,7 +49,6 @@ shape = SubResource("CapsuleShape3D_oul6g")
 target_position = Vector3(0, 2, 0)
 
 [node name="InteractableCheck" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
 shape = SubResource("SphereShape3D_qjkh3")
@@ -74,7 +73,7 @@ target_position = Vector3(0, 0, -2)
 
 [node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="KeepNoteCameraUpdated" type="RemoteTransform3D" parent="Head/Eyes/Camera3D"]
 remote_path = NodePath("../../../SubViewportContainer/SubViewport/NoteCamera")

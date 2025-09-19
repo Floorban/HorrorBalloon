@@ -1,18 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=14 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="2_nqb7t"]
 [ext_resource type="Script" uid="uid://dmgk2v6tbjoxf" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="3_fjiwn"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://objects/oven.tscn" id="4_t01tp"]
-[ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="5_fbxog"]
-[ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="6_uro0l"]
-[ext_resource type="AudioStream" uid="uid://dl50afq2unc1h" path="res://assets/sound_effects/lever_snap.ogg" id="7_rdoix"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_euxwi"]
 size = Vector3(1.0957031, 0.10131836, 1.0947266)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
-size = Vector3(0.099365234, 0.49121094, 1.0966797)
+size = Vector3(0.099365234, 0.27868652, 1.0966797)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
@@ -23,19 +20,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_t01tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43617590793568
+metadata/creation_stamp = 71889447907481
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_5n8ep"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43617607571972
+metadata/creation_stamp = 71889464677033
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2rviv"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43617624348421
+metadata/creation_stamp = 71889481456102
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_cwey4"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43617641122946
+metadata/creation_stamp = 71889498232064
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3984108, 0.30823803, -0.47116137)
@@ -64,7 +61,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_4" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, -0.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.09373781, -0.5)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Model" type="Node3D" parent="Mesh"]
@@ -186,22 +183,4 @@ metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 [node name="Objects" type="Node3D" parent="Mesh"]
 
 [node name="Oven" parent="Mesh/Objects" instance=ExtResource("4_t01tp")]
-transform = Transform3D(0.083333336, 0, 0, 0, 0.083333336, 0, 0, 0, 0.083333336, 0, -0.032836635, 0)
-
-[node name="Switch" parent="Mesh/Objects" instance=ExtResource("5_fbxog")]
-transform = Transform3D(0.15849522, -0.091507226, -0.08065795, 0.09999999, 0.1732051, 0, 0.069851846, -0.040328972, 0.18301448, -0.09816176, 0.332846, -0.06535162)
-
-[node name="Switch" parent="Mesh/Objects/Switch" index="0"]
-transform = Transform3D(1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0, 0.99999994, 0.120729685, -0.06970334, 0)
-
-[node name="MeshInstance3D" parent="Mesh/Objects/Switch/Switch" index="0"]
-transform = Transform3D(0.9999999, 2.2351742e-08, 0, 7.450581e-09, 0.7, 0, 0, 0, 0.99999994, 0.013684392, -0.007900715, 0.035853624)
-
-[node name="CollisionShape3D" parent="Mesh/Objects/Switch/Switch" index="1"]
-transform = Transform3D(1.0000002, -2.9802322e-08, 0, 2.9802322e-08, 1.0000002, 0, 0, 0, 0.99999976, 0, 0, 0)
-
-[node name="InteractionComponent" parent="Mesh/Objects/Switch/Switch" index="2"]
-primary_se = ExtResource("6_uro0l")
-secondary_se = ExtResource("7_rdoix")
-
-[editable path="Mesh/Objects/Switch"]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, -0.032836635, 0)

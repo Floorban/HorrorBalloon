@@ -7,8 +7,10 @@
 albedo_texture = ExtResource("1_3abmj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_gnhs0"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6o44w"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="Cube_5kg" type="RigidBody3D"]
 mass = 5.0

@@ -8,8 +8,10 @@
 albedo_texture = ExtResource("1_jtlcp")
 
 [sub_resource type="BoxMesh" id="BoxMesh_wcp7k"]
+size = Vector3(0.15, 0.15, 0.15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6oqd"]
+size = Vector3(0.15, 0.15, 0.15)
 
 [node name="Cube_1kg" type="RigidBody3D"]
 contact_monitor = true

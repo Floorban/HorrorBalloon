@@ -36,7 +36,7 @@ var door_input_active: bool = false
 var is_front: bool
 var door_opened: bool = false
 var door_creak_velocity_threshold: float = 0.002 # how fast the player has to open the door for the sound to play
-var shut_angle_threshold: float = 0.1            # how far the door is opened to count as "opened"
+var shut_angle_threshold: float = 0.2            # how far the door is opened to count as "opened"
 var shut_snap_range: float = 0.05                # how close to starting_rotation counts as "closed"
 var creak_volume_scale: float = 1000.0           # how fast we get to max volume
 var door_fade_speed: float = 1.0                 # how fast sound fades in/out
@@ -69,7 +69,6 @@ var entered_code: Array[int]
 @export var correct_code: Array[int] = [5,6,7,8,9]
 var max_code_length: int = 5
 var screen_label: Label3D
-
 
 # Signals
 signal item_collected(item: Node)
@@ -327,7 +326,7 @@ func _default_interact() -> void:
 	
 	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
 	if rigid_body_3d:
-		rigid_body_3d.set_linear_velocity((object_distance)*(20/rigid_body_3d.mass))
+		rigid_body_3d.set_linear_velocity((object_distance)*(10/rigid_body_3d.mass))
 	
 ## Alternate Interaction with objects that can be picked up
 func _default_throw() -> void:
@@ -338,7 +337,7 @@ func _default_throw() -> void:
 	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
 	if rigid_body_3d:
 		var throw_direction: Vector3 = -player_hand.global_transform.basis.z.normalized()
-		var throw_strength: float = (20.0/rigid_body_3d.mass)
+		var throw_strength: float = (10.0/rigid_body_3d.mass)
 		rigid_body_3d.set_linear_velocity(throw_direction*throw_strength)
 		
 		can_interact = false

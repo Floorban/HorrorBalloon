@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=13 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://objects/cube_1_kg.tscn" id="4_m1504"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://objects/cube_5_kg.tscn" id="5_ifaiv"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
@@ -111,4 +113,10 @@ size = Vector3(0.14355469, 1, 0.123046875)
 mass = 10.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06570244, 0.3282323, 0)
+transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9699917, 0.3282318, -1.7366116)
+
+[node name="Cube_1kg" parent="Balloon" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
+
+[node name="Cube_5kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342706, 1.3784277, -1.8349178)

@@ -48,6 +48,12 @@ _subresources={
 "save_to_file/fallback_path": "res://oven.res",
 "save_to_file/path": "uid://bfa1g6d87pqpp"
 }
+},
+"nodes": {
+"PATH:Cylinder": {
+"generate/physics": true,
+"physics/physics_material_override": null
+}
 }
 }
 gltf/naming_version=2
