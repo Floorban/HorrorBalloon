@@ -177,8 +177,8 @@ func postInteract() -> void:
 			elif percent > 0.7:
 				switch_target_rotation = maximum_rotation
 				is_switch_snapping = true
-		InteractionType.WHEEL:
-			wheel_kickback = -sign(wheel_rotation) * wheel_kick_intensity
+		# InteractionType.WHEEL:
+		# 	wheel_kickback = -sign(wheel_rotation) * wheel_kick_intensity
 
 func _physics_process(delta: float) -> void:
 	match interaction_type:
@@ -434,6 +434,7 @@ func update_door_sounds(delta: float) -> void:
 			primary_audio_player.stop()
 			print("stop!")
 		door_opened = false
+		notify_nodes(0)
 		
 func update_switch_sounds(delta: float) -> void:
 	# --- Calculate angular speed ---
