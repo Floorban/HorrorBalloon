@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://do7002mkdg3un"]
 
-[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://Balloon/balloon_controller.gd" id="1_35dws"]
+[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="2_nqb7t"]
 [ext_resource type="Script" uid="uid://dmgk2v6tbjoxf" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="3_fjiwn"]
 
@@ -16,21 +16,21 @@ size = Vector3(0.099365234, 0.49121094, 1.0966797)
 
 [sub_resource type="BoxMesh" id="BoxMesh_35dws"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_k8o55"]
-resource_local_to_scene = true
-metadata/creation_stamp = 3086873611496
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nqb7t"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8618120394562
+metadata/creation_stamp = 2361930107880
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_fjiwn"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8653319001482
+metadata/creation_stamp = 2361946885097
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_k8o55"]
+resource_local_to_scene = true
+metadata/creation_stamp = 2361963662314
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_cx34w"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8688232386002
+metadata/creation_stamp = 2361980439531
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3984108, 0.30823803, -0.47116137)
@@ -112,7 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, -0.5)
 [node name="VerletRope_1" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_k8o55")
+mesh = SubResource("ImmediateMesh_nqb7t")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
 rope_length = 4.0
@@ -129,7 +129,7 @@ metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 [node name="VerletRope_2" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_nqb7t")
+mesh = SubResource("ImmediateMesh_fjiwn")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
 rope_length = 4.0
@@ -146,7 +146,7 @@ metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 [node name="VerletRope_3" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_fjiwn")
+mesh = SubResource("ImmediateMesh_k8o55")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
 rope_length = 4.0

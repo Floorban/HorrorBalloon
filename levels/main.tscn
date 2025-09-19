@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dfauikegolgu3"]
 
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/kenney_protoype_textures/PNG/Dark/texture_13.png" id="4_6et1j"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="5_etqu2"]
@@ -132,7 +132,7 @@ material = SubResource("StandardMaterial3D_1fput")
 transform = Transform3D(0.866025, -0.5, -2.34249e-08, 0.5, 0.866025, 8.74228e-08, -2.34249e-08, -8.74228e-08, 1, -0.530396, 0.460983, 0)
 
 [node name="InteractionComponent" parent="Balloon/Podium_Switch/Switch/Switch" index="2" node_paths=PackedStringArray("nodes_to_affect")]
-nodes_to_affect = [NodePath("../../../SpotLight3D"), null]
+nodes_to_affect = [NodePath("../../../SpotLight3D")]
 primary_se = ExtResource("6_jw1n3")
 secondary_se = ExtResource("7_xdh4e")
 

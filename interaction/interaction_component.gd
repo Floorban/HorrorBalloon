@@ -327,7 +327,7 @@ func _default_interact() -> void:
 	
 	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
 	if rigid_body_3d:
-		rigid_body_3d.set_linear_velocity((object_distance)*(5/rigid_body_3d.mass))
+		rigid_body_3d.set_linear_velocity((object_distance)*(20/rigid_body_3d.mass))
 	
 ## Alternate Interaction with objects that can be picked up
 func _default_throw() -> void:
