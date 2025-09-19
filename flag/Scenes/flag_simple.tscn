@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca3tr4nl7n0ak"]
+
+[ext_resource type="PackedScene" uid="uid://crne4o6df867b" path="res://flag/Planes/SimplePlane.gltf" id="1_akmgp"]
+[ext_resource type="Material" uid="uid://bjvvrd01bibb3" path="res://flag/Materials/Flag_Procedural.tres" id="2_ga8u4"]
+
+[node name="FlagSimple" instance=ExtResource("1_akmgp")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_ga8u4")
