@@ -1,18 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://8n8svovtgrsr"]
+[gd_scene load_steps=30 format=3 uid="uid://8n8svovtgrsr"]
 
 [ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/kenney_protoype_textures/PNG/Dark/texture_13.png" id="1_whpuv"]
 [ext_resource type="Texture2D" uid="uid://dv8x0y75pmtma" path="res://assets/kenney_protoype_textures/PNG/Light/texture_13.png" id="2_85hcc"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_85hcc"]
 [ext_resource type="PackedScene" uid="uid://dlyxujkbtsmnm" path="res://objects/Run_Note.tscn" id="3_h3ryc"]
 [ext_resource type="PackedScene" uid="uid://bfxxin08cd2er" path="res://objects/text_note.tscn" id="4_ubtly"]
-[ext_resource type="Texture2D" uid="uid://co5s5y18dhgev" path="res://assets/kenney_protoype_textures/PNG/Purple/texture_01.png" id="6_llpag"]
+[ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://objects/oven.tscn" id="6_e5k14"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="7_tv6ri"]
-[ext_resource type="AudioStream" uid="uid://bvbk4xjx711wx" path="res://assets/sound_effects/DoorCreak.ogg" id="8_gtt2g"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="8_rgshf"]
 [ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://scripts/light.gd" id="9_50mym"]
 [ext_resource type="Script" uid="uid://3b0mfmma4m02" path="res://scripts/bridge.gd" id="9_jpsdj"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://objects/cube_1_kg.tscn" id="10_h8jws"]
-[ext_resource type="AudioStream" uid="uid://dcxprooa8cia3" path="res://assets/sound_effects/DoorClose2.ogg" id="10_hto2u"]
 [ext_resource type="PackedScene" uid="uid://blpg3l8h2pa1u" path="res://objects/item.tscn" id="11_rgshf"]
 [ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="11_smb53"]
 [ext_resource type="AudioStream" uid="uid://dl50afq2unc1h" path="res://assets/sound_effects/lever_snap.ogg" id="12_hk7wi"]
@@ -42,16 +40,6 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gck8l"]
 albedo_texture = ExtResource("2_85hcc")
 uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_4hvcy"]
-size = Vector3(1.6, 2.6, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87mug"]
-albedo_texture = ExtResource("6_llpag")
-uv1_triplanar = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_encw8"]
-size = Vector3(1.6, 2.6, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpsdj"]
 albedo_texture = ExtResource("1_whpuv")
@@ -126,40 +114,9 @@ transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-0
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 3, 0, 0.526254)
 
 [node name="Player" parent="." instance=ExtResource("3_85hcc")]
-transform = Transform3D(0.073029, 0, -0.99733, 0, 1, 0, 0.99733, 0, 0.073029, -3.11333, 1, 0.318248)
+transform = Transform3D(0.073029, 0, -0.99733, 0, 1, 0, 0.99733, 0, 0.073029, -0.11386657, 1, 0.318248)
 
-[node name="Door" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.9732, 1, 4)
-
-[node name="PivotPoint" type="Node3D" parent="Door"]
-
-[node name="Door" type="StaticBody3D" parent="Door/PivotPoint"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Door/PivotPoint/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
-mesh = SubResource("BoxMesh_4hvcy")
-surface_material_override/0 = SubResource("StandardMaterial3D_87mug")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/PivotPoint/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
-shape = SubResource("BoxShape3D_encw8")
-
-[node name="InteractionComponent" parent="Door/PivotPoint/Door" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("7_tv6ri")]
-object_ref = NodePath("..")
-interaction_type = 1
-maximum_rotation = 120.0
-pivot_point = NodePath("../..")
-primary_se = ExtResource("8_gtt2g")
-secondary_se = ExtResource("10_hto2u")
-tertiary_se = ExtResource("10_hto2u")
-
-[node name="Label3D" type="Label3D" parent="Door/PivotPoint/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.772632, 2.25389, 0.0714302)
-text = "FRONT"
-
-[node name="Label3D2" type="Label3D" parent="Door/PivotPoint/Door"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.817836, 2.2115, -0.111188)
-text = "BACK"
+[node name="Oven" parent="." instance=ExtResource("6_e5k14")]
 
 [node name="Podium_Switch" type="CSGBox3D" parent="."]
 transform = Transform3D(0.90977305, 0, -0.415106, 0, 1, 0, 0.415106, 0, 0.90977305, 2.6030269, 2, 2.6335347)
@@ -233,7 +190,7 @@ shape = SubResource("BoxShape3D_7wgt2")
 [node name="InteractionComponent" parent="Podium_Wheel/Wheel/Wheel" node_paths=PackedStringArray("object_ref", "nodes_to_affect") instance=ExtResource("7_tv6ri")]
 object_ref = NodePath("..")
 interaction_type = 3
-maximum_rotation = 1080.0
+maximum_rotation = 270.0
 nodes_to_affect = [NodePath("../../../PivotPoint"), null, null, null]
 primary_se = ExtResource("14_o0b4d")
 secondary_se = ExtResource("15_yn25f")
@@ -243,7 +200,7 @@ transform = Transform3D(1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08,
 script = ExtResource("9_jpsdj")
 
 [node name="Bridge" type="CSGBox3D" parent="Podium_Wheel/PivotPoint"]
-transform = Transform3D(1, 0, -1.6703757e-22, 0, 1, 0, 0, 0, 1, 0.50000024, -0.13427734, -1.1875603)
+transform = Transform3D(1, 0, 0, 0, 1, -1.7763568e-15, 0, 5.3290705e-15, 1, 1.3732829, 0.29308605, -1.3576841)
 use_collision = true
 size = Vector3(2, 0.2685547, 2.375122)
 

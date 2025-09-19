@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=17 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="2_nqb7t"]
 [ext_resource type="Script" uid="uid://dmgk2v6tbjoxf" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="3_fjiwn"]
+[ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://objects/oven.tscn" id="4_t01tp"]
+[ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="5_fbxog"]
+[ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="6_uro0l"]
+[ext_resource type="AudioStream" uid="uid://dl50afq2unc1h" path="res://assets/sound_effects/lever_snap.ogg" id="7_rdoix"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_euxwi"]
 size = Vector3(1.0957031, 0.10131836, 1.0947266)
@@ -15,22 +19,23 @@ size = Vector3(0.099365234, 0.49121094, 1.0966797)
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_35dws"]
+size = Vector3(1, 0.65, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nqb7t"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_t01tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2361930107880
+metadata/creation_stamp = 43617590793568
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_fjiwn"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_5n8ep"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2361946885097
+metadata/creation_stamp = 43617607571972
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_k8o55"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2rviv"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2361963662314
+metadata/creation_stamp = 43617624348421
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_cx34w"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_cwey4"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2361980439531
+metadata/creation_stamp = 43617641122946
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3984108, 0.30823803, -0.47116137)
@@ -39,7 +44,7 @@ lock_rotation = true
 script = ExtResource("1_35dws")
 
 [node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh"]
 
@@ -75,27 +80,28 @@ mesh = SubResource("BoxMesh_euxwi")
 skeleton = NodePath("../../..")
 
 [node name="Side_1" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0.5, 0.15, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0.5, 0.1, 0)
 mesh = SubResource("BoxMesh_35dws")
 skeleton = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Side_2" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, -0.5, 0.15, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, -0.5, 0.1, 0)
 mesh = SubResource("BoxMesh_35dws")
 skeleton = NodePath("../..")
 
 [node name="Side_3" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.15, 0.5)
+transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, 0.5)
 mesh = SubResource("BoxMesh_35dws")
 skeleton = NodePath("../..")
 
 [node name="Side_4" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.15, -0.5)
+transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_35dws")
 skeleton = NodePath("../..")
 
 [node name="Corners" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11672096, 0)
 
 [node name="Corner_1" type="Node3D" parent="Mesh/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, 0.5)
@@ -110,12 +116,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.355, -0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, -0.5)
 
 [node name="VerletRope_1" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000005, 1.6000001, 0.20000002)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_nqb7t")
+mesh = SubResource("ImmediateMesh_t01tp")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
-rope_length = 4.0
+rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
 attach_end = NodePath("../Corners/Corner_1")
@@ -127,12 +133,12 @@ wind_scale = 300.0
 metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 
 [node name="VerletRope_2" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.19999999, 1.6000001, 0.20000002)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_fjiwn")
+mesh = SubResource("ImmediateMesh_5n8ep")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
-rope_length = 4.0
+rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
 attach_end = NodePath("../Corners/Corner_2")
@@ -144,12 +150,12 @@ wind_scale = 300.0
 metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 
 [node name="VerletRope_3" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.19999999, 1.6000001, -0.2)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_k8o55")
+mesh = SubResource("ImmediateMesh_2rviv")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
-rope_length = 4.0
+rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
 attach_end = NodePath("../Corners/Corner_3")
@@ -161,12 +167,12 @@ wind_scale = 300.0
 metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
 
 [node name="VerletRope_4" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.5000001, 0)
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000005, 1.6000001, -0.2)
 material_override = ExtResource("2_nqb7t")
-mesh = SubResource("ImmediateMesh_cx34w")
+mesh = SubResource("ImmediateMesh_cwey4")
 skeleton = NodePath("../..")
 script = ExtResource("3_fjiwn")
-rope_length = 4.0
+rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
 attach_end = NodePath("../Corners/Corner_4")
@@ -176,3 +182,26 @@ stiffness = 0.5
 wind = Vector3(4.98, 0.62, 2.485)
 wind_scale = 300.0
 metadata/_custom_type_script = "uid://dmgk2v6tbjoxf"
+
+[node name="Objects" type="Node3D" parent="Mesh"]
+
+[node name="Oven" parent="Mesh/Objects" instance=ExtResource("4_t01tp")]
+transform = Transform3D(0.083333336, 0, 0, 0, 0.083333336, 0, 0, 0, 0.083333336, 0, -0.032836635, 0)
+
+[node name="Switch" parent="Mesh/Objects" instance=ExtResource("5_fbxog")]
+transform = Transform3D(0.15849522, -0.091507226, -0.08065795, 0.09999999, 0.1732051, 0, 0.069851846, -0.040328972, 0.18301448, -0.09816176, 0.332846, -0.06535162)
+
+[node name="Switch" parent="Mesh/Objects/Switch" index="0"]
+transform = Transform3D(1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0, 0.99999994, 0.120729685, -0.06970334, 0)
+
+[node name="MeshInstance3D" parent="Mesh/Objects/Switch/Switch" index="0"]
+transform = Transform3D(0.9999999, 2.2351742e-08, 0, 7.450581e-09, 0.7, 0, 0, 0, 0.99999994, 0.013684392, -0.007900715, 0.035853624)
+
+[node name="CollisionShape3D" parent="Mesh/Objects/Switch/Switch" index="1"]
+transform = Transform3D(1.0000002, -2.9802322e-08, 0, 2.9802322e-08, 1.0000002, 0, 0, 0, 0.99999976, 0, 0, 0)
+
+[node name="InteractionComponent" parent="Mesh/Objects/Switch/Switch" index="2"]
+primary_se = ExtResource("6_uro0l")
+secondary_se = ExtResource("7_rdoix")
+
+[editable path="Mesh/Objects/Switch"]

@@ -1,13 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=11 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
-[ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/kenney_protoype_textures/PNG/Dark/texture_13.png" id="4_6et1j"]
-[ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="5_etqu2"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
-[ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="6_jw1n3"]
-[ext_resource type="AudioStream" uid="uid://dl50afq2unc1h" path="res://assets/sound_effects/lever_snap.ogg" id="7_xdh4e"]
-[ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://scripts/light.gd" id="8_c7dyn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -55,10 +50,6 @@ adjustment_brightness = 1.2
 size = Vector3(7.1563263, 0.048828125, 3.9892578)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n4swq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fput"]
-albedo_texture = ExtResource("4_6et1j")
-uv1_triplanar = true
 
 [node name="Main" type="Node3D"]
 
@@ -121,24 +112,3 @@ mass = 10.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06570244, 0.3282323, 0)
-
-[node name="Podium_Switch" type="CSGBox3D" parent="Balloon"]
-transform = Transform3D(-0.69976366, 0, 0.018189311, 0, 0.7, 0, -0.018189311, 0, -0.69976366, -1.03385, 1.0934771, 0.60839415)
-use_collision = true
-size = Vector3(1, 2, 1)
-material = SubResource("StandardMaterial3D_1fput")
-
-[node name="Switch" parent="Balloon/Podium_Switch" instance=ExtResource("5_etqu2")]
-transform = Transform3D(0.866025, -0.5, -2.34249e-08, 0.5, 0.866025, 8.74228e-08, -2.34249e-08, -8.74228e-08, 1, -0.530396, 0.460983, 0)
-
-[node name="InteractionComponent" parent="Balloon/Podium_Switch/Switch/Switch" index="2" node_paths=PackedStringArray("nodes_to_affect")]
-nodes_to_affect = [NodePath("../../../SpotLight3D")]
-primary_se = ExtResource("6_jw1n3")
-secondary_se = ExtResource("7_xdh4e")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Balloon/Podium_Switch"]
-transform = Transform3D(1.4285716, 2.4586916e-07, 2.4978e-07, -2.4978e-07, -6.2444855e-08, 1.4285716, 2.4214387e-07, -1.4285716, -6.2444805e-08, -1.2199948, 6.8638234, 0.031711936)
-light_energy = 0.2
-script = ExtResource("8_c7dyn")
-
-[editable path="Balloon/Podium_Switch/Switch"]

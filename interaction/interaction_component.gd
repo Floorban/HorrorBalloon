@@ -35,8 +35,8 @@ var door_smoothing: float = 80.0
 var door_input_active: bool = false
 var is_front: bool
 var door_opened: bool = false
-var door_creak_velocity_threshold: float = 0.005 # how fast the player has to open the door for the sound to play
-var shut_angle_threshold: float = 0.2            # how far the door is opened to count as "opened"
+var door_creak_velocity_threshold: float = 0.002 # how fast the player has to open the door for the sound to play
+var shut_angle_threshold: float = 0.1            # how far the door is opened to count as "opened"
 var shut_snap_range: float = 0.05                # how close to starting_rotation counts as "closed"
 var creak_volume_scale: float = 1000.0           # how fast we get to max volume
 var door_fade_speed: float = 1.0                 # how fast sound fades in/out
