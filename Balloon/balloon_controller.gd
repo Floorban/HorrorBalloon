@@ -6,8 +6,12 @@ class_name BalloonController
 @export var horizontal_force := 2.0
 
 @onready var mesh: Node3D = $Mesh
-@export var max_tilt_angle := 10.0
+@export var max_tilt_angle := 8.0
 var tilt_tween : Tween
+
+var move_threshold := 0.1
+var tilt_threshold := 0.005
+var tilt_damping := 0.5
 
 var player : PlayerController
 var prev_velocity: Vector3 = Vector3.ZERO
@@ -35,12 +39,13 @@ func _apply_horizontal_force():
 	var z_dir = clamp(rel_pos.z, -1.0, 1.0)
 
 	var force_vec = Vector3(x_dir, 0.0, z_dir).normalized()
-	if force_vec.length() > 0.1:
-		apply_central_force(force_vec * horizontal_force)
-
+	if force_vec.length() > tilt_threshold:
 		var target_x_rot = z_dir * max_tilt_angle
 		var target_z_rot = -x_dir * max_tilt_angle
 		_tilt_to(Vector3(deg_to_rad(target_x_rot), 0.0, deg_to_rad(target_z_rot)))
+
+		if force_vec.length() > move_threshold:
+			apply_central_force(force_vec * horizontal_force)
 	else:
 		_tilt_to(Vector3.ZERO)
 
@@ -49,7 +54,7 @@ func _tilt_to(target_rot: Vector3):
 		tilt_tween.kill()
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(mesh, "rotation", target_rot, 0.3)
+	tilt_tween.tween_property(mesh, "rotation", target_rot, tilt_damping)
 
-	# if player:
-	# 	player.apply_sway(target_rot)
+	if player:
+		player.apply_sway(target_rot)

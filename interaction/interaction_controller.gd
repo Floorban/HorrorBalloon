@@ -31,7 +31,12 @@ func _ready() -> void:
 	interacting_reticle.position.x  = get_viewport().size.x / 2 - interacting_reticle.texture.get_size().x / 2
 	interacting_reticle.position.y  = get_viewport().size.y / 2 - interacting_reticle.texture.get_size().y / 2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if not get_parent().can_move:
+		default_reticle.visible = false
+		highlight_reticle.visible = false
+		interacting_reticle.visible = false
+		return
 	# If on the previous frame, we were interacting with and object, lets keep interacting with it
 	if current_object:
 		if interaction_component:

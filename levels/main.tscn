@@ -71,7 +71,7 @@ transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309
 visible = false
 
 [node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.129847, -0.86764, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4424267, -0.86764, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
@@ -82,34 +82,35 @@ transform = Transform3D(3.5743504, 0, 0, 0, 1, 0, 0, 0, 2.0414488, -0.70807123, 
 mesh = SubResource("PlaneMesh_n4swq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4237168)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.8706422, 5.230399, -15.352704)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3479513, 0, -0.45537984)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.744095, -2.8969574, -0.45537984)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8671294, 0, 1.0064622)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.385979, 1.1293879, -7.3013687)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2546763, 0, -0.19745314)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.567256, 1.7426643, 10.42232)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.912451, 0, 0.67461336)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 25.216011, -2.035718, 10.051509)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.940077, 2.3841858e-07, -0.9591963)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.919073, 3.3839562, -15.531366)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5974746, 2.3841858e-07, 1.4379094)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 15.914172, 2.3841858e-07, 1.4379094)
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, 12.46198, -0.47116137)
 mass = 10.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]

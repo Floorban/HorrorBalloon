@@ -20,19 +20,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_t01tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 71889447907481
+metadata/creation_stamp = 4609523407626
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_5n8ep"]
 resource_local_to_scene = true
-metadata/creation_stamp = 71889464677033
+metadata/creation_stamp = 4609540184839
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2rviv"]
 resource_local_to_scene = true
-metadata/creation_stamp = 71889481456102
+metadata/creation_stamp = 4609556962056
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_cwey4"]
 resource_local_to_scene = true
-metadata/creation_stamp = 71889498232064
+metadata/creation_stamp = 4609573739269
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3984108, 0.30823803, -0.47116137)
@@ -49,19 +49,19 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("BoxShape3D_euxwi")
 
 [node name="Col_Side_1" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, 0.2, 0)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_2" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51, 0.2, 0)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_3" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, 0.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, 0.51)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_4" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.09373781, -0.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.094, -0.51)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Model" type="Node3D" parent="Mesh"]

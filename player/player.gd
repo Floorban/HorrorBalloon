@@ -19,12 +19,13 @@ class_name PlayerController
 const walking_speed: float = 2.0
 const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
-const crouching_depth: float = -0.9
+const crouching_depth: float = -0.98
+var can_move := true
 var current_speed: float = 3.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
-var lerp_speed: float = 5.0
+var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
 
@@ -32,8 +33,9 @@ var is_in_air: bool = false
 var base_fov: float = 90.0
 var normal_sensitivity: float = 0.2
 var current_sensitivity: float = normal_sensitivity
-var sensitivity_restore_speed: float = 5.0  # tweak for smoothness
+var sensitivity_restore_speed: float = 4.0  # tweak for smoothness
 var sensitivity_fading_in: bool = false
+var viewing_yaw_origin: float = 0.0
 
 # State Machine
 enum PlayerState {
@@ -42,7 +44,8 @@ enum PlayerState {
 	CROUCHING,
 	WALKING,
 	SPRINTING,
-	AIR
+	AIR,
+	VIEWING
 	}
 var player_state: PlayerState = PlayerState.IDLE_STAND
 
@@ -59,16 +62,13 @@ var head_bobbing_index: float = 0.0
 var last_bob_position_x: float = 0.0                                            # Tracks the previous horizontal head-bob position
 var last_bob_direction: int = 0                                                 # Tracks the previous movement direction of the bob (-1 = left, +1 = right)
 
-# Sanity Vars
-var light_level: float = 0.0
-
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-		
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
+
 	if event is InputEventMouseMotion:
 		if current_sensitivity > 0.01 and not interaction_controller.isCameraLocked():
 			mouse_input = event.relative
@@ -127,13 +127,19 @@ func updatePlayerState() -> void:
 				player_state = PlayerState.IDLE_CROUCH
 			else:
 				player_state = PlayerState.CROUCHING
-		elif !standup_check.is_colliding():
+		elif !standup_check.is_colliding() and player_state != PlayerState.VIEWING:
 			if not moving:
 				player_state = PlayerState.IDLE_STAND
 			elif Input.is_action_pressed("sprint"):
 				player_state = PlayerState.SPRINTING
 			else:
 				player_state = PlayerState.WALKING
+		if Input.is_action_just_pressed("primary"):
+			if player_state != PlayerState.VIEWING:
+				viewing_yaw_origin = rotation_degrees.y
+				player_state = PlayerState.VIEWING
+			else:
+				player_state = PlayerState.IDLE_STAND
 			
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
@@ -147,6 +153,9 @@ func updatePlayerColShape(_player_state: PlayerState) -> void:
 		crouching_collision_shape.disabled = true
 	
 func updatePlayerSpeed(_player_state: PlayerState) -> void:
+	if not can_move: 
+		current_speed = 0
+		return
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
 		current_speed = crouching_speed
 	elif _player_state == PlayerState.WALKING:
@@ -164,6 +173,9 @@ func updateCamera(delta: float) -> void:
 		head_bobbing_current_intensity = head_bobbing_crouching_intensity
 		head_bobbing_index += head_bobbing_crouching_speed * delta
 	elif player_state == PlayerState.IDLE_STAND:
+		can_move = true
+		eyes.position.z = lerp(eyes.position.y, 0.0, delta*lerp_speed)
+
 		head.position.y = lerp(head.position.y, 2.0, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_walking_intensity
@@ -178,6 +190,15 @@ func updateCamera(delta: float) -> void:
 		player_camera.fov = lerp(player_camera.fov, base_fov*1.05, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_sprinting_intensity
 		head_bobbing_index += head_bobbing_sprinting_speed * delta
+	elif player_state == PlayerState.VIEWING:
+		can_move = false
+		current_sensitivity = current_sensitivity / 2.0
+		var local_rot = rotation_degrees
+		local_rot.y = clamp(local_rot.y, viewing_yaw_origin - 50.0, viewing_yaw_origin + 50.0)
+		rotation_degrees = local_rot
+		eyes.position.y = lerp(eyes.position.y, 3.0, delta*lerp_speed/2.0)
+		eyes.position.z = lerp(eyes.position.y, -18.0, delta*lerp_speed/2.0)
+		player_camera.fov = lerp(player_camera.fov, base_fov*0.8, delta*lerp_speed/2.0)
 		
 	head_bobbing_vector.y = sin(head_bobbing_index)
 	head_bobbing_vector.x = (sin(head_bobbing_index/2.0))

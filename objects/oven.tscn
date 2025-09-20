@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dduhus42o4l1a"]
+[gd_scene load_steps=17 format=3 uid="uid://dduhus42o4l1a"]
 
-[ext_resource type="ArrayMesh" uid="uid://beeqs50xwb7m5" path="res://oven.res" id="1_7twr4"]
+[ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://oven.res" id="1_7twr4"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="Texture2D" uid="uid://co5s5y18dhgev" path="res://assets/kenney_protoype_textures/PNG/Purple/texture_01.png" id="2_1gecm"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_jbo3c"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://objects/switch.tscn" id="6_o72q4"]
 [ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="7_0qg0s"]
 [ext_resource type="AudioStream" uid="uid://dl50afq2unc1h" path="res://assets/sound_effects/lever_snap.ogg" id="8_71bfn"]
+[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://flame.tscn" id="10_71bfn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4hvcy"]
 size = Vector3(1, 1, 0.1)
@@ -108,5 +109,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.464735, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31884766, 1.0741577, 0)
 shape = SubResource("BoxShape3D_71bfn")
 debug_color = Color(0.9372549, 0.15686275, 0.50980395, 1)
+
+[node name="Flame" parent="." instance=ExtResource("10_71bfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.331894, 0)
 
 [editable path="Switch"]
