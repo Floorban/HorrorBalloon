@@ -134,7 +134,7 @@ func updatePlayerState() -> void:
 				player_state = PlayerState.SPRINTING
 			else:
 				player_state = PlayerState.WALKING
-		if Input.is_action_just_pressed("primary"):
+		if Input.is_action_just_pressed("secondary"):
 			if player_state != PlayerState.VIEWING:
 				viewing_yaw_origin = rotation_degrees.y
 				player_state = PlayerState.VIEWING
