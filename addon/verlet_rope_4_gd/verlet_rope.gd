@@ -849,5 +849,4 @@ func update_attached_particles() -> void:
 		var particle = _particle_data.particles[index]
 		obj.global_position = particle.position_current
 
-		if rotate_attached_object:
-			_update_object_rotation(obj, particle)
+		_update_object_rotation(obj, particle)

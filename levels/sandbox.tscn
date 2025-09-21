@@ -91,6 +91,7 @@ material = SubResource("StandardMaterial3D_7he1i")
 
 [node name="CrouchCheck" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 3.01, -6)
+visible = false
 use_collision = true
 size = Vector3(8, 2, 1)
 material = SubResource("StandardMaterial3D_gck8l")
