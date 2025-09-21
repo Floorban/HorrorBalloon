@@ -24,19 +24,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_fbxog"]
 resource_local_to_scene = true
-metadata/creation_stamp = 24749782688350
+metadata/creation_stamp = 2381911772256
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_uro0l"]
 resource_local_to_scene = true
-metadata/creation_stamp = 24749799466312
+metadata/creation_stamp = 2381928549473
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 24749816237394
+metadata/creation_stamp = 2381945326690
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 24749833019833
+metadata/creation_stamp = 2381962103907
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)
@@ -116,112 +116,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.355, -0.5)
 [node name="Corner_4" type="Node3D" parent="Mesh/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.355, -0.5)
 
-[node name="Flags" type="Node3D" parent="Mesh" node_paths=PackedStringArray("attached_rope")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.20000023, 1.2201961, 0.14631061)
-script = ExtResource("2_2rviv")
-attached_rope = NodePath("../VerletRope_1")
+[node name="Ropes" type="Node3D" parent="Mesh"]
 
-[node name="Flag_1" parent="Mesh/Flags" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
-
-[node name="Flag_2" parent="Mesh/Flags" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
-
-[node name="Flag_3" parent="Mesh/Flags" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
-
-[node name="Flags2" type="Node3D" parent="Mesh" node_paths=PackedStringArray("attached_rope")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.20000023, 1.2691654, -0.23438723)
-script = ExtResource("2_2rviv")
-attached_rope = NodePath("../VerletRope_2")
-
-[node name="RopeFlag_1" parent="Mesh/Flags2" instance=ExtResource("4_cwey4")]
-transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
-
-[node name="RopeFlag_2" parent="Mesh/Flags2" instance=ExtResource("4_cwey4")]
-transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
-
-[node name="RopeFlag_3" parent="Mesh/Flags2" instance=ExtResource("4_cwey4")]
-transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
-
-[node name="RopeFlag_4" parent="Mesh/Flags2" instance=ExtResource("4_cwey4")]
-transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
-
-[node name="Flags3" type="Node3D" parent="Mesh" node_paths=PackedStringArray("attached_rope")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.26016498, 1.2691654, -0.23438723)
-script = ExtResource("2_2rviv")
-attached_rope = NodePath("../VerletRope_3")
-
-[node name="RopeFlag_1" parent="Mesh/Flags3" instance=ExtResource("5_fbxog")]
-transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
-
-[node name="RopeFlag_2" parent="Mesh/Flags3" instance=ExtResource("5_fbxog")]
-transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
-
-[node name="RopeFlag_3" parent="Mesh/Flags3" instance=ExtResource("5_fbxog")]
-transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
-
-[node name="RopeFlag_4" parent="Mesh/Flags3" instance=ExtResource("5_fbxog")]
-transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
-
-[node name="VerletRope_1" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+[node name="VerletRope_1" type="MeshInstance3D" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, 0.20000002)
 material_override = ExtResource("2_nqb7t")
 mesh = SubResource("ImmediateMesh_fbxog")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 script = ExtResource("3_fjiwn")
 rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
-attach_end = NodePath("../Corners/Corner_1")
+attach_end = NodePath("../../Corners/Corner_1")
 iterations = 5
 preprocess_iterations = 10
 stiffness = 0.5
 wind = Vector3(4.98, 0.62, 2.485)
 wind_scale = 300.0
 
-[node name="VerletRope_2" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+[node name="VerletRope_2" type="MeshInstance3D" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, 0.20000002)
 material_override = ExtResource("2_nqb7t")
 mesh = SubResource("ImmediateMesh_uro0l")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 script = ExtResource("3_fjiwn")
 rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
-attach_end = NodePath("../Corners/Corner_2")
+attach_end = NodePath("../../Corners/Corner_2")
 iterations = 5
 preprocess_iterations = 10
 stiffness = 0.5
 wind = Vector3(4.98, 0.62, 2.485)
 wind_scale = 300.0
 
-[node name="VerletRope_3" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+[node name="VerletRope_3" type="MeshInstance3D" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, -0.2)
 material_override = ExtResource("2_nqb7t")
 mesh = SubResource("ImmediateMesh_rdoix")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 script = ExtResource("3_fjiwn")
 rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
-attach_end = NodePath("../Corners/Corner_3")
+attach_end = NodePath("../../Corners/Corner_3")
 iterations = 5
 preprocess_iterations = 10
 stiffness = 0.5
 wind = Vector3(4.98, 0.62, 2.485)
 wind_scale = 300.0
 
-[node name="VerletRope_4" type="MeshInstance3D" parent="Mesh" node_paths=PackedStringArray("attach_end")]
+[node name="VerletRope_4" type="MeshInstance3D" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, -0.2)
 material_override = ExtResource("2_nqb7t")
 mesh = SubResource("ImmediateMesh_06xpq")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 script = ExtResource("3_fjiwn")
 rope_length = 8.0
 rope_width = 0.08
 simulation_particles = 20
-attach_end = NodePath("../Corners/Corner_4")
+attach_end = NodePath("../../Corners/Corner_4")
 iterations = 5
 preprocess_iterations = 10
 stiffness = 0.5
@@ -232,3 +186,53 @@ wind_scale = 300.0
 
 [node name="Oven" parent="Mesh/Objects" instance=ExtResource("4_t01tp")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, -0.032836635, 0)
+
+[node name="Flags" type="Node3D" parent="Mesh/Objects"]
+
+[node name="Flags1" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0)
+script = ExtResource("2_2rviv")
+attached_rope = NodePath("../../../Ropes/VerletRope_1")
+
+[node name="Flag_1" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
+
+[node name="Flag_2" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
+
+[node name="Flag_3" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
+
+[node name="Flags2" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0)
+script = ExtResource("2_2rviv")
+attached_rope = NodePath("../../../Ropes/VerletRope_2")
+
+[node name="RopeFlag_1" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
+
+[node name="Flags3" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0)
+script = ExtResource("2_2rviv")
+attached_rope = NodePath("../../../Ropes/VerletRope_3")
+
+[node name="RopeFlag_1" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
