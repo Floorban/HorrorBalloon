@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="HorrorBalloon"
-run/main_scene="uid://dfauikegolgu3"
+run/main_scene="uid://8n8svovtgrsr"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,7 +25,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/verlet_rope_4_gd/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 		highlight_reticle.visible = false
 		interacting_reticle.visible = false
 		return
-	# If on the previous frame, we were interacting with and object, lets keep interacting with it
+	# If on the previous frame, keep interacting with it
 	if current_object:
 		if interaction_component:
 			# Update reticle
@@ -67,7 +67,7 @@ func _process(_delta: float) -> void:
 		else:
 			current_object = null 
 			_unfocus()
-	else: #we werent interacting with something, lets see if we can.
+	else:
 		var potential_object: Object = interaction_raycast.get_collider()
 		
 		if potential_object and potential_object is Node:
@@ -88,15 +88,15 @@ func _process(_delta: float) -> void:
 					current_object = potential_object
 					interaction_component.preInteract(hand, current_object)
 					
-					if interaction_component.interaction_type == interaction_component.InteractionType.ITEM:
+					if interaction_component is InteractionCollectable:
 						interaction_component.connect("item_collected", Callable(self, "_on_item_collected"))
 					
-					if interaction_component.interaction_type == interaction_component.InteractionType.NOTE:
+					if interaction_component is InteractionInspect:
 						interaction_component.connect("note_collected", Callable(self, "_on_note_collected"))
 						
-					if interaction_component.interaction_type == interaction_component.InteractionType.DOOR:
+					if interaction_component is InteractionDoor:
 						interaction_component.set_direction(current_object.to_local(interaction_raycast.get_collision_point()))
-			else: # If the object we just looked at cant be interacted with, call unfocus
+			else: # If the object just looked at cant be interacted with, call unfocus
 				current_object = null
 				_unfocus()
 		else:
@@ -139,7 +139,6 @@ func _on_item_collected(item: Node):
 	# TODO: INVENTORY SYSTEM would handle storing this item here.
 	print("Player Collected: ", item)
 	
-	
 func _on_note_collected(note: Node3D):
 	# Reparent Note to the Hand
 	note.get_parent().remove_child(note)
@@ -158,7 +157,7 @@ func _collectible_item_entered_range(body: Node3D) -> void:
 	# TODO: Use Collision layers to ignore collisions with the player
 	if body.name != "Player":
 		var ic = body.get_node_or_null("InteractionComponent")
-		if ic and ic.interaction_type == ic.InteractionType.ITEM:
+		if ic and ic is InteractionCollectable:
 			var mesh: MeshInstance3D = body.find_child("MeshInstance3D", true, false)
 			mesh.material_overlay = outline_material
 
