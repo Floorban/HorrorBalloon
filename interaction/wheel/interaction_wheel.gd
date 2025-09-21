@@ -15,7 +15,6 @@ func _ready() -> void:
 	super._ready()
 	starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
-	camera = get_tree().get_current_scene().find_child("Camera3D", true, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

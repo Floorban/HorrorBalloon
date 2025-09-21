@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=14 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/cube_1_kg.tscn" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="5_ifaiv"]
+[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_5k4jt"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
@@ -123,3 +124,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342706, 1.3784277, -1.8349178)
 contact_monitor = true
 max_contacts_reported = 1
+
+[node name="Log1" parent="." instance=ExtResource("6_5k4jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 16.096296, -2.2662067)

@@ -103,7 +103,7 @@ func update_switch_sounds(delta: float) -> void:
 			switch_moved = false  # reset after playing
 
 func stop_switch_sounds(delta: float) -> void:
-	if primary_audio_player.playing:
+	if primary_audio_player and primary_audio_player.playing:
 		var current_vol = db_to_linear(primary_audio_player.volume_db)
 		var new_vol = lerp(current_vol, 0.0, delta * switch_fade_speed)
 		primary_audio_player.volume_db = linear_to_db(clamp(new_vol, 0.0, 1.0))

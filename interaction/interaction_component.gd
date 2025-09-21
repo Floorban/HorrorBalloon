@@ -34,6 +34,7 @@ var contact_velocity_threshold: float = 1.0
 
 func _ready() -> void:
 	# object_ref = get_prefab_root()
+	camera = get_tree().get_first_node_in_group("player").player_camera
 	# Initialize Audio
 	primary_audio_player = AudioStreamPlayer3D.new()
 	primary_audio_player.stream = primary_se

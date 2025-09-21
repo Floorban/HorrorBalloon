@@ -4,6 +4,7 @@ class_name InteractionBasket
 
 var player: PlayerController
 var is_occupied := false
+
 func _ready() -> void:
 	super._ready()
 	player = get_tree().get_first_node_in_group("player") as PlayerController
