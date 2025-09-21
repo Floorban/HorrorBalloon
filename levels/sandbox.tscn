@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://8n8svovtgrsr"]
+[gd_scene load_steps=22 format=3 uid="uid://8n8svovtgrsr"]
 
 [ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/kenney_protoype_textures/PNG/Dark/texture_13.png" id="1_whpuv"]
 [ext_resource type="Texture2D" uid="uid://dv8x0y75pmtma" path="res://assets/kenney_protoype_textures/PNG/Light/texture_13.png" id="2_85hcc"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_85hcc"]
 [ext_resource type="PackedScene" uid="uid://dlyxujkbtsmnm" path="res://interaction/interaction/note/Run_Note.tscn" id="3_h3ryc"]
 [ext_resource type="PackedScene" uid="uid://bfxxin08cd2er" path="res://interaction/interaction/note/text_note.tscn" id="4_ubtly"]
-[ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://player/objects/oven.tscn" id="6_e5k14"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/interaction/switch/switch.tscn" id="8_rgshf"]
 [ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://scripts/light.gd" id="9_50mym"]
 [ext_resource type="Script" uid="uid://3b0mfmma4m02" path="res://scripts/bridge.gd" id="9_jpsdj"]
@@ -97,9 +96,6 @@ transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-0
 
 [node name="Player" parent="." instance=ExtResource("3_85hcc")]
 transform = Transform3D(0.073029, 0, -0.99733, 0, 1, 0, 0.99733, 0, 0.073029, -0.11386657, 1, 0.318248)
-
-[node name="Oven" parent="." instance=ExtResource("6_e5k14")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.747419, 0, 0)
 
 [node name="Podium_Switch" type="CSGBox3D" parent="."]
 transform = Transform3D(0.90977305, 0, -0.415106, 0, 1, 0, 0.415106, 0, 0.90977305, 2.6030269, 2, 2.6335347)

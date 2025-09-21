@@ -29,7 +29,10 @@ func _physics_process(_delta: float):
 	_apply_horizontal_force()
 
 func _player_relative_pos() -> Vector3:
-	return player.global_position - global_position
+	if not player:
+		return Vector3.ZERO
+	else:
+		return player.global_position - global_position
 
 func _apply_horizontal_force():
 	var rel_pos = _player_relative_pos()

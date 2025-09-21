@@ -134,12 +134,6 @@ func updatePlayerState() -> void:
 				player_state = PlayerState.SPRINTING
 			else:
 				player_state = PlayerState.WALKING
-		if Input.is_action_just_pressed("secondary"):
-			if player_state != PlayerState.VIEWING:
-				viewing_yaw_origin = rotation_degrees.y
-				player_state = PlayerState.VIEWING
-			else:
-				player_state = PlayerState.IDLE_STAND
 			
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
@@ -228,6 +222,14 @@ func note_tilt_and_sway(_input_dir: Vector2, delta: float) -> void:
 func apply_sway(tilt: Vector3):
 	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
+
+func set_viewing_mode() -> void:
+	if not is_on_floor(): return
+	if player_state != PlayerState.VIEWING:
+		viewing_yaw_origin = rotation_degrees.y
+		player_state = PlayerState.VIEWING
+	else:
+		player_state = PlayerState.IDLE_STAND
 
 # func play_footsteps() -> void:
 # 	if moving and is_on_floor():
