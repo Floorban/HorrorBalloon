@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
-	print("execute called on:", self.name)
 	print("objs_to_burn:", objs_to_burn)
 	for obj in objs_to_burn:
 		print("adding fuel!")

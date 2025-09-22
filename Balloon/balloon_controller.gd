@@ -39,8 +39,9 @@ func change_verticle_direction(up : bool) -> void:
 
 func _apply_vertical_force():
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
-	if ground_check.is_colliding(): 
+	if ground_check.is_colliding():
 		is_on_ground = true
+		if verticle_dir < 0: verticle_dir = 0
 	else:
 		is_on_ground = false
 
