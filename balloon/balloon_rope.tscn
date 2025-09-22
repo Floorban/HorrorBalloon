@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4gnly1bihpph"]
+
+[ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="1_re6vc"]
+[ext_resource type="Script" uid="uid://csu7ttil0x0l0" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="2_mnoqc"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_mnoqc"]
+[ext_resource type="Script" uid="uid://b37vbk135cerm" path="res://balloon/objects/interaction_rope.gd" id="4_ivbyg"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_re6vc"]
+resource_local_to_scene = true
+metadata/creation_stamp = 23591802464704
+
+[node name="BalloonRope" type="MeshInstance3D"]
+material_override = ExtResource("1_re6vc")
+mesh = SubResource("ImmediateMesh_re6vc")
+skeleton = NodePath("../../..")
+script = ExtResource("2_mnoqc")
+rope_length = 8.0
+rope_width = 0.08
+simulation_particles = 20
+use_visible_on_screen_notifier = false
+iterations = 5
+preprocess_iterations = 10
+stiffness = 0.5
+wind = Vector3(4.98, 0.62, 2.485)
+wind_scale = 300.0
+rope_collision_type = 1
+dynamic_collision_mask = 1
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("3_mnoqc")]
+script = ExtResource("4_ivbyg")
+object_ref = NodePath("..")
