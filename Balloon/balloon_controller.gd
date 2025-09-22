@@ -14,6 +14,8 @@ var tilt_damping := 0.5
 
 @onready var oven: Oven = $Mesh/Objects/Oven
 var verticle_dir := -1
+@onready var ground_check: RayCast3D = $GroundCheck
+var is_on_ground := false
 
 var player : PlayerController
 var prev_velocity: Vector3 = Vector3.ZERO
@@ -37,14 +39,20 @@ func change_verticle_direction(up : bool) -> void:
 
 func _apply_vertical_force():
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
+	if ground_check.is_colliding(): 
+		is_on_ground = true
+	else:
+		is_on_ground = false
 
 func _player_relative_pos() -> Vector3:
-	if not player:
-		return Vector3.ZERO
-	else:
-		return player.global_position - global_position
+	if not player: return Vector3.ZERO
+	else: return player.global_position - global_position
 
 func _apply_horizontal_force():
+	if is_on_ground:
+		_tilt_to(Vector3.ZERO)
+		return
+	
 	var rel_pos = _player_relative_pos()
 
 	# normalize player position into -1..1 range grid

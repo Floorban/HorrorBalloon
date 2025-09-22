@@ -111,7 +111,7 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 15.914172, 2.3841858e-07, 
 size = Vector3(0.14355469, 1, 0.123046875)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, 12.46198, -0.47116137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, -0.70162964, -0.47116137)
 mass = 10.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]

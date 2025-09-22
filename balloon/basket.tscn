@@ -12,7 +12,7 @@
 size = Vector3(1.0957031, 0.10131836, 1.0947266)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
-size = Vector3(0.099365234, 0.27868652, 1.0966797)
+size = Vector3(0.1, 0.25, 1.1)
 
 [node name="Basket" type="StaticBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_0wdyp")
@@ -21,26 +21,37 @@ physics_material_override = SubResource("PhysicsMaterial_0wdyp")
 shape = SubResource("BoxShape3D_euxwi")
 
 [node name="Col_Side_1" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, 0.11, 0)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51, 0.11, 0)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.2, 0.51)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.11, 0.51)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="Col_Side_4" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.094, -0.51)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.11, -0.51)
 shape = SubResource("BoxShape3D_35dws")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_6sd76")]
 script = ExtResource("2_0wdyp")
-_hold_to_switch = true
-_hold_duration = 0.3
+_hold_to_switch = false
 object_ref = NodePath("..")
 primary_se = ExtResource("3_ylih6")
 secondary_se = ExtResource("4_h2r1e")
 tertiary_se = ExtResource("5_ti08h")
+
+[node name="Exit_1" type="Marker3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7, 0, 0)
+
+[node name="Exit_2" type="Marker3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.7, 0, 0)
+
+[node name="Exit_3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7)
+
+[node name="Exit_4" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.7)

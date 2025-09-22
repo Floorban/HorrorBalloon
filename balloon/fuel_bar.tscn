@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dca55ae8akhka"]
+
+[node name="FuelBar" type="ProgressBar"]
+offset_right = 20.0
+offset_bottom = 150.0
