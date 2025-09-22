@@ -1,13 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://x8gnwdt0yplv"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_72ctw"]
+[gd_scene format=3 uid="uid://x8gnwdt0yplv"]
 
 [node name="AudioManager" type="Node3D"]
 
-[node name="DebugCube" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_72ctw")
-
 [node name="Essential" type="Node3D" parent="."]
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Essential"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="Essential"]
 bank_paths = ["res://sound/banks/Desktop/Master.strings.bank", "res://sound/banks/Desktop/Master.bank", "res://sound/banks/Desktop/Level_1.bank"]
@@ -20,3 +18,4 @@ bank_paths = ["res://sound/banks/Desktop/Master.strings.bank", "res://sound/bank
 event_name = "event:/Ambient/Gnarly"
 event_guid = "{2f0afff7-fd3f-4927-b1b4-336377e72cee}"
 autoplay = true
+auto_release = true

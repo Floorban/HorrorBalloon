@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6wx1n6c10kdb"]
+[gd_scene load_steps=14 format=3 uid="uid://b6wx1n6c10kdb"]
 
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="1_t31ub"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_ckh3t"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/cube_1_kg.tscn" id="4_u5dh0"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="5_ma4g6"]
 [ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_jcfjw"]
-[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/script/Audio_Manager.tscn" id="7_ckh3t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("1_t31ub")
@@ -134,6 +133,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -1.550
 
 [node name="Log3" parent="." instance=ExtResource("6_jcfjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -2.115838)
-
-[node name="AudioManager" parent="." instance=ExtResource("7_ckh3t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.705719, 15.450003, 0.052753925)
