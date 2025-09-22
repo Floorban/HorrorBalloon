@@ -70,10 +70,10 @@ basket_size = Vector3(6.3, 5, 6.3)
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
 transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9699917, 0.3282318, -1.7366116)
 
-[node name="Cube_1kg" parent="Balloon" instance=ExtResource("4_m1504")]
+[node name="Cube_5kg" parent="Balloon" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
 
-[node name="Cube_5kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
+[node name="Cube_10kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
 transform = Transform3D(-0.050558, 0.99872124, 0, -0.99872124, -0.050558, 0, 0, 0, 1, -1.390419, 1.3784277, -1.8349178)
 contact_monitor = true
 max_contacts_reported = 1

@@ -53,7 +53,7 @@ func _update_objects_list() -> void:
 			and abs(rel_pos.z) <= basket_size.z * 0.5:
 				objs_in_balloon.append(obj)
 
-	## Maybe remove switch, door and basket?
+	## Maybe add switch, door and basket if needed?
 	for obj in objs_in_balloon:
 		if "weight" in obj:
 			obj_weights.append(obj.weight)

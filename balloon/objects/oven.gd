@@ -30,7 +30,6 @@ func execute(_percentage: float) -> void:
 		print("adding fuel!")
 		current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
 		obj.get_parent().queue_free()
-		objs_to_burn.erase(obj)
 	objs_to_burn.clear()
 
 func get_fuel_percentage() -> float:

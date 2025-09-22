@@ -15,7 +15,8 @@ size = Vector3(1, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6oqd"]
 size = Vector3(1.0410156, 0.4892578, 0.49414063)
 
-[node name="Cube_1kg" type="RigidBody3D"]
+[node name="Cube_5kg" type="RigidBody3D"]
+mass = 5.0
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -26,9 +27,10 @@ mesh = SubResource("BoxMesh_wcp7k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_h6oqd")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_tfl4h")]
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") groups=["interactable"] instance=ExtResource("2_tfl4h")]
 script = ExtResource("3_v8mh5")
 object_ref = NodePath("..")
+weight = 5.0
 primary_se = ExtResource("4_84vo2")
 secondary_se = ExtResource("5_fpnxu")
 tertiary_se = ExtResource("5_fpnxu")
