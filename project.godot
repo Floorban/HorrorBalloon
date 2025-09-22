@@ -8,12 +8,20 @@
 
 config_version=5
 
+[Fmod]
+
+General/banks_path="res://sound/banks/Desktop"
+
 [application]
 
 config/name="HorrorBalloon"
 run/main_scene="uid://dfauikegolgu3"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+FmodManager="*res://addons/fmod/FmodManager.gd"
 
 [display]
 
@@ -25,7 +33,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 [input]
 

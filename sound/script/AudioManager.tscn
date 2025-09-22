@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://mk53kxcfdkpv"]
+
+[ext_resource type="Script" uid="uid://by5bqj05twlkd" path="res://sound/script/audio_manager.gd" id="1_3lnex"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljcgk"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_3lnex")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://sound/banks/Desktop/Level_1.bank", "res://sound/banks/Desktop/Master.bank", "res://sound/banks/Desktop/Master.strings.bank"]
+
+[node name="FmodEventEmitter3D" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/Ambient/Gnarly"
+event_guid = "{2f0afff7-fd3f-4927-b1b4-336377e72cee}"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FmodEventEmitter3D"]
+mesh = SubResource("BoxMesh_ljcgk")

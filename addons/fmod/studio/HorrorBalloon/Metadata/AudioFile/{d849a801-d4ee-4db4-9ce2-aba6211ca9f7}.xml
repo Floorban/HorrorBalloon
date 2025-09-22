@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{d849a801-d4ee-4db4-9ce2-aba6211ca9f7}">
+		<property name="assetPath">
+			<value>m_DnB_Hazed.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>18</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f07d0426-a1b0-41e5-8c22-5cf9a9a47224}</destination>
+		</relationship>
+	</object>
+</objects>
