@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=16 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="5_ifaiv"]
 [ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_5k4jt"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
+[ext_resource type="PackedScene" uid="uid://ddr71osifigyj" path="res://balloon/lantern.tscn" id="7_qy63d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -26,6 +27,9 @@ shader_parameter/viewport_size_override = Vector2(0, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_bg8b8"]
 size = Vector2(1920, 1080)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6et1j"]
+radius = 0.001
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8sk2"]
 sky_top_color = Color(0.39370683, 0.2105827, 0.13718012, 1)
@@ -95,6 +99,30 @@ transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.5226
 
 [node name="Log6" parent="Balloon" instance=ExtResource("6_5k4jt")]
 transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 1.2316055, 0.76437664, -0.8814025)
+
+[node name="LanternRoot" type="RigidBody3D" parent="Balloon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030879974, 3.9581425, 0.8154589)
+visible = false
+mass = 10.0
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Balloon/LanternRoot"]
+shape = SubResource("SphereShape3D_6et1j")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Balloon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0876465, 0.697196)
+visible = false
+node_a = NodePath("../LanternRoot")
+node_b = NodePath("../Lantern")
+angular_limit_x/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Lantern" parent="Balloon" instance=ExtResource("7_qy63d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.956234, 0.8530419)
+visible = false
+axis_lock_linear_y = true
 
 [node name="Env" type="Node3D" parent="."]
 
