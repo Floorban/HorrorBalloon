@@ -130,6 +130,7 @@ func update_door_sounds(delta: float) -> void:
 		notify_nodes(0)
 
 func stop_door_sounds(delta: float) -> void:
+	if not primary_audio_player: return
 	if primary_audio_player.playing:
 		var current_vol = db_to_linear(primary_audio_player.volume_db)
 		var new_vol = lerp(current_vol, 0.0, delta * door_fade_speed)

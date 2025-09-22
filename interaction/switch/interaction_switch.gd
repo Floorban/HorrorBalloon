@@ -48,7 +48,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		var prev_angle = object_ref.rotation.z
-		object_ref.rotate_z(event.relative.y * .001)
+		object_ref.rotate_z(-event.relative.y * .001)
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
 		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 		
@@ -115,6 +115,12 @@ func stop_switch_sounds(delta: float) -> void:
 func _get_property_list() -> Array[Dictionary]:
 	var ret: Array[Dictionary] = []
 	ret.append({
+		"name": "_pivot_point",
+		"type": TYPE_OBJECT,
+		"hint": PROPERTY_HINT_NODE_TYPE,
+		"hint_string": "Node3D"
+	})
+	ret.append({
 		"name": "_maximum_rotation",
 		"type": TYPE_FLOAT,
 	})
@@ -129,6 +135,8 @@ func _get_property_list() -> Array[Dictionary]:
 func _set(prop_name: StringName, val) -> bool:
 	var retval := true
 	match prop_name:
+		"_pivot_point":
+			pivot_point = val
 		"_maximum_rotation":
 			maximum_rotation = val
 		_:
@@ -138,6 +146,8 @@ func _set(prop_name: StringName, val) -> bool:
 
 func _get(prop_name: StringName):
 	match prop_name:
+		"_pivot_point":
+			return pivot_point
 		"_maximum_rotation":
 			return maximum_rotation
 	return null

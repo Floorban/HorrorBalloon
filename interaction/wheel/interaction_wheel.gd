@@ -109,6 +109,7 @@ func update_wheel_sounds(delta: float) -> void:
 			primary_audio_player.stop()
 
 func stop_wheel_sounds(delta: float) -> void:
+	if not primary_audio_player: return
 	if primary_audio_player.playing:
 		var current_vol = db_to_linear(primary_audio_player.volume_db)
 		var new_vol = lerp(current_vol, 0.0, delta * wheel_fade_speed)
