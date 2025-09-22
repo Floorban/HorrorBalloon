@@ -13,3 +13,8 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# FMOD-specific ignores
+.cache
+.user
+.unsaved
