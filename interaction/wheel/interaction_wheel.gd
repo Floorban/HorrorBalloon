@@ -1,4 +1,3 @@
-@tool
 extends InteractionComponent
 class_name InteractionWheel
 
@@ -120,33 +119,3 @@ func stop_wheel_sounds(delta: float) -> void:
 		# Stop completely once inaudible
 		if new_vol < 0.001:
 			primary_audio_player.stop()
-
-func _get_property_list() -> Array[Dictionary]:
-	var ret: Array[Dictionary] = []
-	ret.append({
-		"name": "_maximum_rotation",
-		"type": TYPE_FLOAT,
-	})
-	ret.append({
-		"name": "nodes_to_affect",
-		"type": TYPE_ARRAY,
-		"hint": PROPERTY_HINT_TYPE_STRING,
-		"hint_string": "Node"
-	})
-	return ret
-
-func _set(prop_name: StringName, val) -> bool:
-	var retval := true
-	match prop_name:
-		"_maximum_rotation":
-			maximum_rotation = val
-		_:
-			retval = false
-	notify_property_list_changed()
-	return retval
-
-func _get(prop_name: StringName):
-	match prop_name:
-		"_maximum_rotation":
-			return maximum_rotation
-	return null

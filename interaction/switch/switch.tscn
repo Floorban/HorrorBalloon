@@ -21,11 +21,10 @@ mesh = SubResource("BoxMesh_rbxwc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Switch"]
 shape = SubResource("BoxShape3D_bd5kx")
 
-[node name="InteractionComponent" parent="Switch" node_paths=PackedStringArray("_pivot_point", "object_ref") instance=ExtResource("1_bd5kx")]
+[node name="InteractionComponent" parent="Switch" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("1_bd5kx")]
 script = ExtResource("2_r437o")
-_pivot_point = NodePath("..")
-_maximum_rotation = 90.0
 object_ref = NodePath("../..")
+pivot_point = NodePath("..")
 primary_se = ExtResource("3_mkcad")
 secondary_se = ExtResource("4_25sgr")
 tertiary_se = ExtResource("3_mkcad")

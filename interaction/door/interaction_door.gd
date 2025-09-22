@@ -1,4 +1,3 @@
-@tool
 extends InteractionComponent
 class_name InteractionDoor
 
@@ -140,38 +139,3 @@ func stop_door_sounds(delta: float) -> void:
 		# Stop completely once inaudible
 		if new_vol < 0.001:
 			primary_audio_player.stop()
-
-func _get_property_list() -> Array[Dictionary]:
-	var ret: Array[Dictionary] = []
-	ret.append({
-		"name": "_pivot_point",
-		"type": TYPE_OBJECT,
-		"hint": PROPERTY_HINT_NODE_TYPE,
-		"hint_string": "Node3D"
-	})
-	ret.append({
-		"name": "_maximum_rotation",
-		"type": TYPE_FLOAT,
-	})
-	return ret
-
-func _set(prop_name: StringName, val) -> bool:
-	var retval := true
-	match prop_name:
-		"_pivot_point":
-			pivot_point = val
-			notify_property_list_changed()
-		"_maximum_rotation":
-			maximum_rotation = val
-			notify_property_list_changed()
-		_:
-			retval = false
-	return retval
-
-func _get(prop_name: StringName):
-	match prop_name:
-		"_pivot_point":
-			return pivot_point
-		"_maximum_rotation":
-			return maximum_rotation
-	return null

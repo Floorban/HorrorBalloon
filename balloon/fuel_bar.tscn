@@ -1,5 +1,35 @@
-[gd_scene format=3 uid="uid://dca55ae8akhka"]
+[gd_scene load_steps=3 format=3 uid="uid://dca55ae8akhka"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwilb"]
+bg_color = Color(0.19434926, 0.19434929, 0.19434917, 1)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.22310287, 0.22310293, 0.22310272, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj1lb"]
+bg_color = Color(0.7440836, 0.17985019, 0.24165395, 1)
+border_width_left = 5
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [node name="FuelBar" type="ProgressBar"]
 offset_right = 20.0
 offset_bottom = 150.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qwilb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_aj1lb")
+value = 50.0
+fill_mode = 3
+show_percentage = false

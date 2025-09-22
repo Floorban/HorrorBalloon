@@ -1,12 +1,11 @@
-@tool
 class_name InteractionComponent
 extends Node
 
 @export var object_ref: Node3D
 @export var nodes_to_affect: Array[Node]
 
-var pivot_point: Node3D
-var maximum_rotation: float = 90
+@export var pivot_point: Node3D
+@export var maximum_rotation: float = 90
 var player : PlayerController
 
 # Common Variables

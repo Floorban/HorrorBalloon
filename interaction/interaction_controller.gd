@@ -24,12 +24,11 @@ var is_note_overlay_display: bool = false
 func _ready() -> void:
 	interactable_check.body_entered.connect(_collectible_item_entered_range)
 	interactable_check.body_exited.connect(_collectible_item_exited_range)
-	default_reticle.position.x  = get_viewport().size.x / 2 - default_reticle.texture.get_size().x / 2
-	default_reticle.position.y  = get_viewport().size.y / 2 - default_reticle.texture.get_size().y / 2
-	highlight_reticle.position.x  = get_viewport().size.x / 2 - highlight_reticle.texture.get_size().x / 2
-	highlight_reticle.position.y  = get_viewport().size.y / 2 - highlight_reticle.texture.get_size().y / 2
-	interacting_reticle.position.x  = get_viewport().size.x / 2 - interacting_reticle.texture.get_size().x / 2
-	interacting_reticle.position.y  = get_viewport().size.y / 2 - interacting_reticle.texture.get_size().y / 2
+
+	var screen_size = get_viewport().get_visible_rect().size
+	default_reticle.position = screen_size / 2 - default_reticle.texture.get_size() / 2
+	highlight_reticle.position = screen_size / 2 - highlight_reticle.texture.get_size() / 2
+	interacting_reticle.position = screen_size / 2 - interacting_reticle.texture.get_size() / 2
 
 func _process(_delta: float) -> void:
 	if not get_parent().can_move:

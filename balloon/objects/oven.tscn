@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dduhus42o4l1a"]
+[gd_scene load_steps=11 format=3 uid="uid://dduhus42o4l1a"]
 
 [ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://oven.res" id="1_7twr4"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]
+[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://flame.tscn" id="10_71bfn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o72q4"]
@@ -16,6 +17,9 @@ size = Vector3(0.31982422, 1.9411621, 2.1201172)
 [sub_resource type="BoxShape3D" id="BoxShape3D_71bfn"]
 size = Vector3(2.7851563, 2.336792, 1.7451172)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_sicut"]
+viewport_path = NodePath("SubViewport")
+
 [node name="OvenMesh" type="MeshInstance3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("1_7twr4")
@@ -26,7 +30,6 @@ script = ExtResource("2_0qg0s")
 transform = Transform3D(-7.212379e-08, 0, -1.65, 0, 1.6500005, 0, 1.65, 0, -7.212379e-08, 1.6799608, 4.7808523, -0.81751883)
 
 [node name="InteractionComponent" parent="DoorSmall/PivotPoint/Door" index="2" node_paths=PackedStringArray("nodes_to_affect")]
-_maximum_rotation = 0.027415567780803774
 nodes_to_affect = [NodePath("../../../..")]
 
 [node name="Switch" parent="." instance=ExtResource("6_o72q4")]
@@ -61,5 +64,16 @@ debug_color = Color(0.9372549, 0.15686275, 0.50980395, 1)
 
 [node name="Flame" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.331894, 0)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(20, 150)
+
+[node name="FuelBar" parent="SubViewport" instance=ExtResource("6_sicut")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 1.7374583, 11.667604, 0.06410785)
+texture_filter = 0
+texture = SubResource("ViewportTexture_sicut")
 
 [editable path="DoorSmall"]

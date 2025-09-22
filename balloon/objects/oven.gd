@@ -4,19 +4,25 @@ class_name Oven
 const MAX_FUEL: float = 100.0
 var current_fuel: float = 0.0
 
-var fule_conversion_rate: float = 0.8
-var burning_rate: float = 5.0
+var fule_conversion_rate: float = 0.9
+var burning_rate: float = 1.0
 
+@onready var fuel_bar: ProgressBar = $SubViewport/FuelBar
 @onready var fuel_area: Area3D = $FuelArea
 var objs_to_burn: Array[InteractionHolddable] = []
 
 func _ready() -> void:
+	if fuel_bar:
+		fuel_bar.max_value = MAX_FUEL
+		fuel_bar.value = current_fuel
 	fuel_area.body_entered.connect(collect_fuel)
 	fuel_area.body_exited.connect(remove_fuel)
 
 func _process(delta: float) -> void:
 	if current_fuel > 0.0:
 		current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+	if fuel_bar:
+		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
 	print("execute called on:", self.name)

@@ -1,4 +1,3 @@
-@tool
 extends InteractionComponent
 class_name InteractionDraggable
 

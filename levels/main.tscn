@@ -121,15 +121,24 @@ transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
 
 [node name="Cube_5kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342706, 1.3784277, -1.8349178)
+transform = Transform3D(-0.050558, 0.99872124, 0, -0.99872124, -0.050558, 0, 0, 0, 1, -1.390419, 1.3784277, -1.8349178)
 contact_monitor = true
 max_contacts_reported = 1
 
-[node name="Log1" parent="." instance=ExtResource("6_5k4jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 14.131884, -2.2662067)
+[node name="Log1" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -2.2241611, 1.2795086, 1.3332355)
 
-[node name="Log2" parent="." instance=ExtResource("6_5k4jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -1.5506699)
+[node name="Log2" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -0.45453835, 1.2795086, 1.3229936)
 
-[node name="Log3" parent="." instance=ExtResource("6_5k4jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -2.115838)
+[node name="Log3" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -0.68006134, 1.2795086, 1.8412161)
+
+[node name="Log4" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 2.2057743, 0.76437664, 0.41985977)
+
+[node name="Log5" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 0.74978256, 0.76437664, -0.586002)
+
+[node name="Log6" parent="Balloon" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 1.2316055, 0.76437664, -0.8814025)

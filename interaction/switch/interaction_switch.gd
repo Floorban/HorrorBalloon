@@ -1,4 +1,3 @@
-@tool
 extends InteractionComponent
 class_name InteractionSwitch
 
@@ -14,6 +13,8 @@ var switch_kickback_triggered: bool = false
 
 func _ready() -> void:
 	super._ready()
+	var balloon : BalloonController = get_tree().get_first_node_in_group("balloon") as BalloonController
+	if balloon: nodes_to_affect.append(balloon)
 	if object_ref: starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 
@@ -110,37 +111,3 @@ func stop_switch_sounds(delta: float) -> void:
 		# Stop completely once inaudible
 		if new_vol < 0.001:
 			primary_audio_player.stop()	
-
-func _get_property_list() -> Array[Dictionary]:
-	var ret: Array[Dictionary] = []
-	ret.append({
-		"name": "_pivot_point",
-		"type": TYPE_OBJECT,
-		"hint": PROPERTY_HINT_NODE_TYPE,
-		"hint_string": "Node3D"
-	})
-	ret.append({
-		"name": "_maximum_rotation",
-		"type": TYPE_FLOAT,
-	})
-	return ret
-
-func _set(prop_name: StringName, val) -> bool:
-	var retval := true
-	match prop_name:
-		"_pivot_point":
-			pivot_point = val
-		"_maximum_rotation":
-			maximum_rotation = val
-		_:
-			retval = false
-	notify_property_list_changed()
-	return retval
-
-func _get(prop_name: StringName):
-	match prop_name:
-		"_pivot_point":
-			return pivot_point
-		"_maximum_rotation":
-			return maximum_rotation
-	return null

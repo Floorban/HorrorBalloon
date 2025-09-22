@@ -35,5 +35,5 @@ shape = SubResource("CylinderShape3D_tms76")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1tegc")]
 script = ExtResource("3_wa4m8")
-fuel_amount = 10.0
+fuel_amount = 50.0
 object_ref = NodePath("..")

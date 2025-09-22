@@ -137,6 +137,7 @@ offset_bottom = 40.0
 
 [node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -145,20 +146,20 @@ stretch_mode = 3
 
 [node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_qjkh3")
-stretch_mode = 3
 
 [node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_g6k8r")
-stretch_mode = 3
 
 [node name="Debug" type="Label" parent="GUI/ReticleLayer/Control"]
 unique_name_in_owner = true

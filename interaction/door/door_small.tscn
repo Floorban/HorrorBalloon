@@ -34,14 +34,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_87mug")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
 shape = SubResource("BoxShape3D_encw8")
 
-[node name="InteractionComponent" parent="PivotPoint/Door" node_paths=PackedStringArray("_pivot_point", "object_ref") instance=ExtResource("2_ewslu")]
+[node name="InteractionComponent" parent="PivotPoint/Door" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("2_ewslu")]
 script = ExtResource("3_vom5i")
 door_smoothing = 80.0
 is_locked = false
-_pivot_point = NodePath("../..")
-_maximum_rotation = 90.0
-_nodes_to_affect = Array[Node]([])
 object_ref = NodePath("../../..")
+pivot_point = NodePath("../..")
 primary_se = ExtResource("4_e4mx4")
 secondary_se = ExtResource("5_nux0q")
 tertiary_se = ExtResource("6_2xoaw")
