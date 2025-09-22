@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6wx1n6c10kdb"]
+
+[ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="1_t31ub"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_ckh3t"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_tvkmm"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/cube_1_kg.tscn" id="4_u5dh0"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="5_ma4g6"]
+[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_jcfjw"]
+[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/script/Audio_Manager.tscn" id="7_ckh3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
+shader = ExtResource("1_t31ub")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg8b8"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8sk2"]
+sky_top_color = Color(0.39370683, 0.2105827, 0.13718012, 1)
+sky_horizon_color = Color(0.35507524, 0.25341445, 0.22689277, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_j8sk2"]
+sky_material = SubResource("ProceduralSkyMaterial_j8sk2")
+
+[sub_resource type="Environment" id="Environment_mkte3"]
+background_mode = 2
+sky = SubResource("Sky_j8sk2")
+tonemap_mode = 3
+sdfgi_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.68307734, 0.6830774, 0.68307734, 1)
+volumetric_fog_emission = Color(0.416584, 0.13301322, 0.17185235, 1)
+volumetric_fog_emission_energy = 0.1
+volumetric_fog_length = 128.0
+adjustment_enabled = true
+adjustment_brightness = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8sk2"]
+size = Vector3(7.1563263, 0.048828125, 3.9892578)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n4swq"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Mask" type="MeshInstance2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_um0r6")
+position = Vector2(960, 540)
+mesh = SubResource("QuadMesh_bg8b8")
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_mkte3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309, 0.6425723, 0.9687132, 0, -0.24818276, 0, 0, 0)
+visible = false
+
+[node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4424267, -0.86764, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
+shape = SubResource("BoxShape3D_j8sk2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/CSGMesh3D"]
+transform = Transform3D(3.5743504, 0, 0, 0, 1, 0, 0, 0, 2.0414488, -0.70807123, 0, 0)
+mesh = SubResource("PlaneMesh_n4swq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.8706422, 5.230399, -15.352704)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.744095, -2.8969574, -0.45537984)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.385979, 1.1293879, -7.3013687)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.567256, 1.7426643, 10.42232)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 25.216011, -2.035718, 10.051509)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.919073, 3.3839562, -15.531366)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Env"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 15.914172, 2.3841858e-07, 1.4379094)
+size = Vector3(0.14355469, 1, 0.123046875)
+
+[node name="Balloon" parent="." instance=ExtResource("2_ckh3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, 12.46198, -0.47116137)
+mass = 10.0
+
+[node name="Player" parent="Balloon" instance=ExtResource("3_tvkmm")]
+transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9694691, 0.34684277, -1.7382042)
+
+[node name="Cube_1kg" parent="Balloon" instance=ExtResource("4_u5dh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
+
+[node name="Cube_5kg" parent="Balloon" instance=ExtResource("5_ma4g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342706, 1.3784277, -1.8349178)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Log1" parent="." instance=ExtResource("6_jcfjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 14.131884, -2.2662067)
+
+[node name="Log2" parent="." instance=ExtResource("6_jcfjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -1.5506699)
+
+[node name="Log3" parent="." instance=ExtResource("6_jcfjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -2.115838)
+
+[node name="AudioManager" parent="." instance=ExtResource("7_ckh3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.705719, 15.450003, 0.052753925)
