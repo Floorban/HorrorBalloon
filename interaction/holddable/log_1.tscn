@@ -21,6 +21,7 @@ height = 0.5
 radius = 0.2
 
 [node name="Log1" type="RigidBody3D"]
+collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_wa4m8")
 freeze_mode = 1
 contact_monitor = true
