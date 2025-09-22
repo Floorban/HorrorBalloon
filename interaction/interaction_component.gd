@@ -6,7 +6,9 @@ extends Node
 
 @export var pivot_point: Node3D
 @export var maximum_rotation: float = 90
+
 var player : PlayerController
+@export var weight: float = 1.0
 
 # Common Variables
 var can_interact: bool = true

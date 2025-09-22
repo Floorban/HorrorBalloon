@@ -62,11 +62,10 @@ material = SubResource("ShaderMaterial_um0r6")
 position = Vector2(960, 540)
 mesh = SubResource("QuadMesh_bg8b8")
 
-[node name="Balloon" parent="." node_paths=PackedStringArray("tilt_objects") instance=ExtResource("2_gw050")]
+[node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, -0.70162964, -0.47116137)
 mass = 10.0
-tilt_objects = [NodePath("Player"), NodePath("Cube_1kg"), NodePath("Cube_5kg"), NodePath("Log1"), NodePath("Log2"), NodePath("Log3"), NodePath("Log4"), NodePath("Log5"), NodePath("Log6")]
-object_weights = Array[float]([5.0, 5.0, 10.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+basket_size = Vector3(6.3, 5, 6.3)
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
 transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9699917, 0.3282318, -1.7366116)
