@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://x8gnwdt0yplv"]
+[gd_scene load_steps=0 format=3 uid="uid://x8gnwdt0yplv"]
 
 [node name="AudioManager" type="Node3D"]
 
