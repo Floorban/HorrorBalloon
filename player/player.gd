@@ -168,7 +168,7 @@ func updateCamera(delta: float) -> void:
 		head_bobbing_index += head_bobbing_crouching_speed * delta
 	elif player_state == PlayerState.IDLE_STAND:
 		can_move = true
-		eyes.position.z = lerp(eyes.position.y, 0.0, delta*lerp_speed)
+		eyes.position.z = lerp(eyes.position.y, 0.0, delta*lerp_speed/2.0)
 
 		head.position.y = lerp(head.position.y, 2.0, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov, delta*lerp_speed)
@@ -188,10 +188,11 @@ func updateCamera(delta: float) -> void:
 		can_move = false
 		current_sensitivity = current_sensitivity / 2.0
 		var local_rot = rotation_degrees
+		# Normalize to -180 to 180 (so the cam doesn't revert to left when all the way right, vice versa)
+		local_rot.y = fposmod(local_rot.y, 180.0)
 		local_rot.y = clamp(local_rot.y, viewing_yaw_origin - 50.0, viewing_yaw_origin + 50.0)
-		rotation_degrees = local_rot
-		eyes.position.y = lerp(eyes.position.y, 3.0, delta*lerp_speed/2.0)
-		eyes.position.z = lerp(eyes.position.y, -18.0, delta*lerp_speed/2.0)
+		eyes.position.y = lerp(eyes.position.y, 3.0, delta*lerp_speed/4.0)
+		eyes.position.z = lerp(eyes.position.y, -18.0, delta*lerp_speed/4.0)
 		player_camera.fov = lerp(player_camera.fov, base_fov*0.8, delta*lerp_speed/2.0)
 		
 	head_bobbing_vector.y = sin(head_bobbing_index)

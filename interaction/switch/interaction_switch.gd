@@ -14,7 +14,7 @@ var switch_kickback_triggered: bool = false
 
 func _ready() -> void:
 	super._ready()
-	starting_rotation = object_ref.rotation.z
+	if object_ref: starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 
 func _process(delta: float) -> void:
@@ -37,9 +37,8 @@ func _process(delta: float) -> void:
 		if abs(object_ref.rotation.z - switch_target_rotation) < 0.01:
 			object_ref.rotation.z = switch_target_rotation
 			is_switch_snapping = false
-
-		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
-		notify_nodes(percentage)
+			var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
+			notify_nodes(percentage)
 	else:
 		switch_kickback_triggered = false
 
@@ -50,12 +49,12 @@ func _input(event):
 		var prev_angle = object_ref.rotation.z
 		object_ref.rotate_z(-event.relative.y * .001)
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
-		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
+		# var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 		
 		if abs(object_ref.rotation.z - prev_angle) > 0.01:
 			switch_moved = true
 			
-		notify_nodes(percentage)
+		# notify_nodes(percentage)
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
@@ -65,10 +64,10 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 func postInteract() -> void:
 	super.postInteract()
 	var percent := (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
-	if percent < 0.3:
+	if percent < 0.5:
 		switch_target_rotation = starting_rotation
 		is_switch_snapping = true
-	elif percent > 0.7:
+	elif percent > 0.5:
 		switch_target_rotation = maximum_rotation
 		is_switch_snapping = true
 
@@ -123,12 +122,6 @@ func _get_property_list() -> Array[Dictionary]:
 	ret.append({
 		"name": "_maximum_rotation",
 		"type": TYPE_FLOAT,
-	})
-	ret.append({
-		"name": "nodes_to_affect",
-		"type": TYPE_ARRAY,
-		"hint": PROPERTY_HINT_TYPE_STRING,
-		"hint_string": "Node"
 	})
 	return ret
 

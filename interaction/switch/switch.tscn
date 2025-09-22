@@ -25,7 +25,6 @@ shape = SubResource("BoxShape3D_bd5kx")
 script = ExtResource("2_r437o")
 _pivot_point = NodePath("..")
 _maximum_rotation = 90.0
-nodes_to_affect = Array[Node]([])
 object_ref = NodePath("../..")
 primary_se = ExtResource("3_mkcad")
 secondary_se = ExtResource("4_25sgr")

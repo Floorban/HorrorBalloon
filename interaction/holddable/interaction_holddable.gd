@@ -2,6 +2,8 @@
 extends InteractionComponent
 class_name InteractionHolddable
 
+@export var fuel_amount := 10.0
+
 var pickup_tween: Tween
 var is_occupied := false
 
@@ -31,6 +33,7 @@ func pickup():
 		object_ref.linear_velocity = Vector3.ZERO
 		object_ref.freeze = true
 		object_ref.set_collision_layer_value(1, false)
+		object_ref.set_collision_mask_value(1, false)
 
 	object_ref.reparent(player_hand.get_parent().get_parent().get_parent())
 
@@ -56,3 +59,4 @@ func release():
 	is_occupied = false
 	object_ref.freeze = false
 	object_ref.set_collision_layer_value(1, true)
+	object_ref.set_collision_mask_value(1, true)

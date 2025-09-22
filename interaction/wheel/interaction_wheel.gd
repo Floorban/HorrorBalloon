@@ -54,6 +54,8 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _input(event):
+	if not is_interacting: return
+
 	if event is InputEventMouseMotion:
 		var mouse_position: Vector2 = event.position
 		if calculate_cross_product(mouse_position) > 0:

@@ -126,4 +126,10 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Log1" parent="." instance=ExtResource("6_5k4jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 16.096296, -2.2662067)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 14.131884, -2.2662067)
+
+[node name="Log2" parent="." instance=ExtResource("6_5k4jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -1.5506699)
+
+[node name="Log3" parent="." instance=ExtResource("6_5k4jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -2.115838)

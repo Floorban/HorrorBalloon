@@ -23,6 +23,7 @@ func _ready():
 	super._ready()
 	starting_rotation = pivot_point.rotation.y
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
+	# nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
 
 func _process(delta):
 	if was_just_unlocked:
@@ -152,12 +153,6 @@ func _get_property_list() -> Array[Dictionary]:
 		"name": "_maximum_rotation",
 		"type": TYPE_FLOAT,
 	})
-	ret.append({
-		"name": "nodes_to_affect",
-		"type": TYPE_ARRAY,
-		"hint": PROPERTY_HINT_TYPE_STRING,
-		"hint_string": "Node"
-	})
 	return ret
 
 func _set(prop_name: StringName, val) -> bool:
@@ -165,11 +160,12 @@ func _set(prop_name: StringName, val) -> bool:
 	match prop_name:
 		"_pivot_point":
 			pivot_point = val
+			notify_property_list_changed()
 		"_maximum_rotation":
 			maximum_rotation = val
+			notify_property_list_changed()
 		_:
 			retval = false
-	notify_property_list_changed()
 	return retval
 
 func _get(prop_name: StringName):

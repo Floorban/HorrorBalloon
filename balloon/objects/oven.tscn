@@ -25,6 +25,9 @@ script = ExtResource("2_0qg0s")
 [node name="DoorSmall" parent="." instance=ExtResource("3_w7bsp")]
 transform = Transform3D(-7.212379e-08, 0, -1.65, 0, 1.6500005, 0, 1.65, 0, -7.212379e-08, 1.6799608, 4.7808523, -0.81751883)
 
+[node name="InteractionComponent" parent="DoorSmall/PivotPoint/Door" index="2" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../../..")]
+
 [node name="Switch" parent="." instance=ExtResource("6_o72q4")]
 transform = Transform3D(2.1576924, -2.0843139, -3.90024e-09, 2.0843143, 2.1576915, 3.1744236e-08, -1.9249804e-08, -2.554119e-08, 3.0000005, 1.7218763, 8.022158, 0.043145612)
 
@@ -46,13 +49,16 @@ shape = SubResource("BoxShape3D_0qg0s")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.6057425, 5.816312, -0.9736639)
 shape = SubResource("BoxShape3D_0qg0s")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="FuelArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.464735, 0)
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FuelArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31884766, 1.0741577, 0)
 shape = SubResource("BoxShape3D_71bfn")
 debug_color = Color(0.9372549, 0.15686275, 0.50980395, 1)
 
 [node name="Flame" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.331894, 0)
+
+[editable path="DoorSmall"]

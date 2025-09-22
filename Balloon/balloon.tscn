@@ -19,19 +19,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_uro0l"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2371157576963
+metadata/creation_stamp = 3305547845261
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2371174354180
+metadata/creation_stamp = 3305564622478
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2371191131397
+metadata/creation_stamp = 3305581399683
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2371207908614
+metadata/creation_stamp = 3305598176911
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)
@@ -163,6 +163,12 @@ wind_scale = 300.0
 [node name="Oven" parent="Mesh/Objects" instance=ExtResource("4_t01tp")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, -0.032836635, 0)
 
+[node name="InteractionComponent" parent="Mesh/Objects/Oven/DoorSmall/PivotPoint/Door" index="2"]
+_maximum_rotation = 1.5707963267948966
+
+[node name="InteractionComponent" parent="Mesh/Objects/Oven/Switch/Switch" index="2" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../../../../..")]
+
 [node name="Flags" type="Node3D" parent="Mesh/Objects"]
 
 [node name="Flags1" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
@@ -212,3 +218,7 @@ transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, 
 
 [node name="RopeFlag_4" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
+
+[editable path="Mesh/Objects/Oven"]
+[editable path="Mesh/Objects/Oven/DoorSmall"]
+[editable path="Mesh/Objects/Oven/Switch"]

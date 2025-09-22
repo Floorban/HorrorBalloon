@@ -743,11 +743,11 @@ func draw_rope_debug_particles() -> void:
 	_mesh.surface_end()
 
 func _on_screen_entered():
-	print("entered screen")
+	# print("entered screen")
 	draw = true
 
 func _on_screen_exited():
-	print("exited screen")
+	# print("exited screen")
 	draw = false
 
 # Attaches a Node3D object to follow the end of the rope

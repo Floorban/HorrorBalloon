@@ -75,6 +75,10 @@ sprint={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="burnable"
+
 [physics]
 
 common/physics_jitter_fix=0.0

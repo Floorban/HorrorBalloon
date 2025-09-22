@@ -1,22 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwnxwpcp74sc"]
+[gd_scene load_steps=8 format=3 uid="uid://bwnxwpcp74sc"]
 
 [ext_resource type="Texture2D" uid="uid://dq8fx86by642v" path="res://assets/kenney_protoype_textures/PNG/Green/texture_01.png" id="1_tms76"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_1tegc"]
 [ext_resource type="Script" uid="uid://bj8bubvwnopj7" path="res://interaction/holddable/interaction_holddable.gd" id="3_wa4m8"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wa4m8"]
+friction = 10.0
+rough = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfl4h"]
 albedo_texture = ExtResource("1_tms76")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tms76"]
-top_radius = 0.3
-bottom_radius = 0.3
-height = 1.0
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tms76"]
-height = 1.0
-radius = 0.3
+height = 0.5
+radius = 0.2
 
 [node name="Log1" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_wa4m8")
 freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
@@ -30,4 +35,5 @@ shape = SubResource("CylinderShape3D_tms76")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1tegc")]
 script = ExtResource("3_wa4m8")
+fuel_amount = 10.0
 object_ref = NodePath("..")

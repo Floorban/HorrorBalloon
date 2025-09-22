@@ -3,9 +3,11 @@ class_name InteractionComponent
 extends Node
 
 @export var object_ref: Node3D
+@export var nodes_to_affect: Array[Node]
+
 var pivot_point: Node3D
 var maximum_rotation: float = 90
-var nodes_to_affect: Array[Node]
+var player : PlayerController
 
 # Common Variables
 var can_interact: bool = true
@@ -34,8 +36,8 @@ var contact_velocity_threshold: float = 1.0
 
 func _ready() -> void:
 	# object_ref = get_prefab_root()
-	var player := get_tree().get_first_node_in_group("player") as PlayerController
-	camera = player.player_camera if player else null
+	player = get_tree().get_first_node_in_group("player")
+	# if player is PlayerController: camera = player.player_camera
 	# Initialize Audio
 	primary_audio_player = AudioStreamPlayer3D.new()
 	primary_audio_player.stream = primary_se
