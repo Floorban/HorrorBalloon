@@ -52,6 +52,7 @@ shape = SubResource("CapsuleShape3D_oul6g")
 target_position = Vector3(0, 2, 0)
 
 [node name="InteractableCheck" type="Area3D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
 shape = SubResource("SphereShape3D_qjkh3")
@@ -76,6 +77,7 @@ fov = 90.0
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
+collision_mask = 4
 
 [node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://depltd622skn8"]
+
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_cpigc"]
+[ext_resource type="Script" uid="uid://b37vbk135cerm" path="res://balloon/objects/interaction_rope.gd" id="2_4uula"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oad2a"]
+radius = 0.023925781
+height = 1.0615234
+
+[node name="RopeInteraction" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9999988, 5.045395e-07, 1.4870953e-07, 2.408524e-07, 0.9999992, -3.5762787e-07, -5.0129287e-08, 5.9604645e-08, 0.99999857, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_oad2a")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_cpigc")]
+script = ExtResource("2_4uula")
+sensitivity = 0.01
+return_speed = 2.0
+object_ref = NodePath("..")

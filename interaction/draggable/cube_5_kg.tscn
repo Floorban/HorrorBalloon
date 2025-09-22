@@ -17,6 +17,7 @@ size = Vector3(0.5, 2, 0.5)
 size = Vector3(0.53515625, 1.998291, 0.51953125)
 
 [node name="Cube_10kg" type="RigidBody3D"]
+collision_layer = 5
 mass = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

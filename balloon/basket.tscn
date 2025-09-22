@@ -15,6 +15,7 @@ size = Vector3(1.0957031, 0.10131836, 1.0947266)
 size = Vector3(0.1, 0.25, 1.1)
 
 [node name="Basket" type="StaticBody3D"]
+collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_0wdyp")
 
 [node name="Col_Bottom" type="CollisionShape3D" parent="."]

@@ -61,10 +61,21 @@ func _update_objects_list() -> void:
 			obj_weights.append(1.0)
 
 func execute(percentage: float) -> void:
+	## For Switch
 	if percentage > 0.99:
 		change_verticle_direction(true)
 	elif percentage < 0.01:
 		change_verticle_direction(false)
+	
+	## For Rope
+	var steer = (percentage - 0.5)
+	var target_rot_y = -steer * deg_to_rad(30.0)
+
+	if tilt_tween:
+		tilt_tween.kill()
+
+	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tilt_tween.tween_property(self, "rotation:y", target_rot_y, 0.5)
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1

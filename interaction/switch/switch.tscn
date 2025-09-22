@@ -14,6 +14,7 @@ size = Vector3(0.1, 0.75, 0.1)
 [node name="Switch" type="Node3D"]
 
 [node name="Switch" type="StaticBody3D" parent="."]
+collision_layer = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Switch"]
 mesh = SubResource("BoxMesh_rbxwc")
