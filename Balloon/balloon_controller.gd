@@ -12,11 +12,13 @@ var move_threshold := 0.1
 var tilt_threshold := 0.005
 var tilt_damping := 0.5
 
-@onready var oven: Oven = $Mesh/Objects/Oven
+@onready var oven: Oven = %Oven
 var verticle_dir := -1
-@onready var ground_check: RayCast3D = $GroundCheck
+@onready var ground_checks := [$GroundCheck_1, $GroundCheck_2, $GroundCheck_3, $GroundCheck_4, $GroundCheck_5]
 var is_on_ground := false
 
+@export var tilt_objects: Array[Node3D] = []
+@export var object_weights: Array[float] = []
 var player : PlayerController
 var prev_velocity: Vector3 = Vector3.ZERO
 
@@ -39,37 +41,54 @@ func change_verticle_direction(up : bool) -> void:
 
 func _apply_vertical_force():
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
-	if ground_check.is_colliding():
-		is_on_ground = true
-		if verticle_dir < 0: verticle_dir = 0
-	else:
-		is_on_ground = false
-
-func _player_relative_pos() -> Vector3:
-	if not player: return Vector3.ZERO
-	else: return player.global_position - global_position
+	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
+	if is_on_ground and verticle_dir < 0:
+		verticle_dir = 0
 
 func _apply_horizontal_force():
 	if is_on_ground:
 		_tilt_to(Vector3.ZERO)
 		return
-	
-	var rel_pos = _player_relative_pos()
 
-	# normalize player position into -1..1 range grid
-	var x_dir = clamp(rel_pos.x, -1.0, 1.0)
-	var z_dir = clamp(rel_pos.z, -1.0, 1.0)
+	var final_tilt = _compute_weighted_tilt()
+	_tilt_to(final_tilt)
 
-	var force_vec = Vector3(x_dir, 0.0, z_dir).normalized()
-	if force_vec.length() > tilt_threshold:
-		var target_x_rot = z_dir * max_tilt_angle
-		var target_z_rot = -x_dir * max_tilt_angle
-		_tilt_to(Vector3(deg_to_rad(target_x_rot), 0.0, deg_to_rad(target_z_rot)))
+	var horizontal_dir = Vector3(final_tilt.z, 0, final_tilt.x).normalized()
+	if horizontal_dir.length() > move_threshold:
+		apply_central_force(horizontal_dir * horizontal_force)
 
-		if force_vec.length() > move_threshold:
-			apply_central_force(force_vec * horizontal_force)
-	else:
-		_tilt_to(Vector3.ZERO)
+	if player: player.apply_sway(final_tilt)
+
+
+func _compute_weighted_tilt() -> Vector3:
+	if tilt_objects.is_empty() or object_weights.is_empty():
+		return Vector3.ZERO
+
+	var total_influence = Vector3.ZERO
+	var total_weight = 0.0
+
+	for i in range(tilt_objects.size()):
+		var obj = tilt_objects[i]
+		if not obj: continue
+		var weight = object_weights[i]
+
+		var rel_pos = obj.global_position - global_position
+
+		# normalize into -1..1 for X/Z
+		var x_dir = clamp(rel_pos.x, -1.0, 1.0)
+		var z_dir = clamp(rel_pos.z, -1.0, 1.0)
+
+		# contribution = weight * relative position
+		total_influence += Vector3(z_dir * weight, 0.0, -x_dir * weight)
+		total_weight += weight
+
+	if total_weight > 0:
+		var avg_influence = total_influence / total_weight
+		var target_x_rot = avg_influence.x * max_tilt_angle
+		var target_z_rot = avg_influence.z * max_tilt_angle
+		return Vector3(deg_to_rad(target_x_rot), 0.0, deg_to_rad(target_z_rot))
+
+	return Vector3.ZERO
 
 func _tilt_to(target_rot: Vector3):
 	if tilt_tween:
@@ -77,6 +96,3 @@ func _tilt_to(target_rot: Vector3):
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(mesh, "rotation", target_rot, tilt_damping)
-
-	if player:
-		player.apply_sway(target_rot)

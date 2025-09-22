@@ -158,62 +158,87 @@ stiffness = 0.5
 wind = Vector3(4.98, 0.62, 2.485)
 wind_scale = 300.0
 
-[node name="Objects" type="Node3D" parent="Mesh"]
+[node name="BalloonObjects" type="Node3D" parent="Mesh"]
 
-[node name="Oven" parent="Mesh/Objects" instance=ExtResource("4_t01tp")]
+[node name="Oven" parent="Mesh/BalloonObjects" instance=ExtResource("4_t01tp")]
+unique_name_in_owner = true
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, -0.032836635, 0)
 
-[node name="Flags" type="Node3D" parent="Mesh/Objects"]
+[node name="Flags" type="Node3D" parent="Mesh/BalloonObjects"]
 
-[node name="Flags1" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags1" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
 transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0)
 script = ExtResource("2_2rviv")
 attached_rope = NodePath("../../../Ropes/VerletRope_1")
 
-[node name="Flag_1" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_1" parent="Mesh/BalloonObjects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
 
-[node name="Flag_2" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_2" parent="Mesh/BalloonObjects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
 
-[node name="Flag_3" parent="Mesh/Objects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_3" parent="Mesh/BalloonObjects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.01736482, 0.09848078, -4.3047317e-09, 0, -4.371139e-09, -0.10000001, -0.09848078, -0.01736482, 7.590404e-10, 0, -0.4323783, 0)
 
-[node name="Flags2" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags2" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
 transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0)
 script = ExtResource("2_2rviv")
 attached_rope = NodePath("../../../Ropes/VerletRope_2")
 
-[node name="RopeFlag_1" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_1" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
 
-[node name="RopeFlag_2" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_2" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
 
-[node name="RopeFlag_3" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_3" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
 
-[node name="RopeFlag_4" parent="Mesh/Objects/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_4" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.09396926, -0.034202017, 1.4950177e-09, 0, -4.371139e-09, -0.1, 0.034202017, -0.09396926, 4.1075268e-09, 0, 0, 0)
 
-[node name="Flags3" type="Node3D" parent="Mesh/Objects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags3" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
 transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0)
 script = ExtResource("2_2rviv")
 attached_rope = NodePath("../../../Ropes/VerletRope_3")
 
-[node name="RopeFlag_1" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_1" parent="Mesh/BalloonObjects/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
 
-[node name="RopeFlag_2" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_2" parent="Mesh/BalloonObjects/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
 
-[node name="RopeFlag_3" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_3" parent="Mesh/BalloonObjects/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
 
-[node name="RopeFlag_4" parent="Mesh/Objects/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_4" parent="Mesh/BalloonObjects/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, -0.15, 2.2649372e-08, -0.15, 6.5567085e-09, 0, 0, 0)
 
-[node name="GroundCheck" type="RayCast3D" parent="."]
+[node name="GroundCheck_1" type="RayCast3D" parent="."]
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_4" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_5" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
