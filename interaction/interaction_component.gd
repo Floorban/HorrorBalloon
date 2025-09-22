@@ -11,6 +11,7 @@ var player : PlayerController
 @export var weight: float = 1.0
 
 # Common Variables
+var is_occupied := false
 var can_interact: bool = true
 var is_interacting: bool = false
 var lock_camera: bool = false

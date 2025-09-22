@@ -89,6 +89,7 @@ sprint={
 
 [layer_names]
 
+3d_physics/layer_1="interactable"
 3d_physics/layer_2="burnable"
 3d_physics/layer_32="ground"
 

@@ -4,7 +4,6 @@ class_name InteractionHolddable
 @export var fuel_amount := 10.0
 
 var pickup_tween: Tween
-var is_occupied := false
 
 func _ready() -> void:
 	super._ready()
