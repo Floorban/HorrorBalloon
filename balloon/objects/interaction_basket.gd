@@ -2,7 +2,6 @@
 extends InteractionComponent
 class_name InteractionBasket
 
-var is_occupied := false
 var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3

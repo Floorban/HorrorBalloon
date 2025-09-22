@@ -15,5 +15,4 @@ func _get_child_flags() -> void:
 func _assign_flags_to_verlets(rope: VerletRope) -> void:
 	var dist = int(rope.simulation_particles / 5.0)
 	for i in my_flags.size():
-		print(i)
 		rope.attach_object_to_particle(dist*(i+1), my_flags[i])

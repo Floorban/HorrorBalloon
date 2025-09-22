@@ -622,7 +622,6 @@ func _ready() -> void:
 			material_override = load(mat_path)
 		else:
 			# Fallback to a basic material if the default isn't found
-			print("Rope material not found at " + mat_path + ", creating default material")
 			var mat = StandardMaterial3D.new()
 			mat.albedo_color = Color(0.5, 0.5, 0.5) # Gray color
 			mat.roughness = 0.8
@@ -634,7 +633,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		if _particle_data == null:
-			print("Creating rope in editor")
 			create_rope()
 		
 		# Update editor attachment (if any)
@@ -679,8 +677,6 @@ func _physics_process(delta: float) -> void:
 
 func create_rope() -> void:
 	var end_location := global_position + Vector3.DOWN * rope_length
-
-	print("Creating rope with ", simulation_particles, " particles")
 
 	if _attach_end != null:
 		end_location = _attach_end.global_position
@@ -756,12 +752,10 @@ func attach_object_to_end(object: Node3D) -> void:
 		return
 		
 	_attached_object = object
-	print("Object attached to rope end: ", object.name)
 
 # Removes the attached object from following the rope end
 func detach_object_from_end() -> void:
 	if _attached_object != null:
-		print("Object detached from rope end: ", _attached_object.name)
 		_attached_object = null
 
 # Updates the position of the object attached to the rope end during gameplay
@@ -842,7 +836,6 @@ func attach_object_to_particle(particle_index: int, object: Node3D) -> void:
 		return
 	
 	_particle_attachments[particle_index] = object
-	print("Attached %s to particle %d" % [object.name, particle_index])
 
 func detach_object_from_particle(particle_index: int) -> void:
 	if _particle_attachments.has(particle_index):
@@ -861,4 +854,4 @@ func update_attached_particles() -> void:
 		var particle = _particle_data.particles[index]
 		obj.global_position = particle.position_current
 
-		_update_object_rotation(obj, particle)
+		# _update_object_rotation(obj, particle)

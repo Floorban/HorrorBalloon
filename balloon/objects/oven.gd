@@ -25,13 +25,11 @@ func _process(delta: float) -> void:
 		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
-	print("objs_to_burn:", objs_to_burn)
-	for obj in objs_to_burn:
-		print("adding fuel!")
-		current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
-		obj.get_parent().queue_free()
-		objs_to_burn.erase(obj)
-	objs_to_burn.clear()
+	if randf() > 0.2: ## Horror feeling lol
+		for obj in objs_to_burn:
+			current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
+			obj.get_parent().queue_free()
+		objs_to_burn.clear()
 
 func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL

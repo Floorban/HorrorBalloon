@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{763bbfef-4b8e-4571-a062-342fd21b999d}">
+		<property name="name">
+			<value>Hatred</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a1c591f4-6c20-45ba-807f-9bda5c6b75c6}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{233930ea-d731-4ed4-8a61-eda519aad7f3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{233930ea-d731-4ed4-8a61-eda519aad7f3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

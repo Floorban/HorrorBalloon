@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{6ba01835-f5ce-4012-8ef0-2340db7e5c7d}">
+		<property name="assetPath">
+			<value>a_Robotic_HF.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>14.053877551020408</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f07d0426-a1b0-41e5-8c22-5cf9a9a47224}</destination>
+		</relationship>
+	</object>
+</objects>

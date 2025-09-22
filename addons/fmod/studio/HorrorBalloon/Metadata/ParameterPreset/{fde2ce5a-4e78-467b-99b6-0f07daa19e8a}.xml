@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{fde2ce5a-4e78-467b-99b6-0f07daa19e8a}">
+		<property name="name">
+			<value>Guilt</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a1c591f4-6c20-45ba-807f-9bda5c6b75c6}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{766a06ad-ebe1-4d50-8577-93c3f6d49235}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{766a06ad-ebe1-4d50-8577-93c3f6d49235}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
