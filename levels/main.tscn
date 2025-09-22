@@ -73,6 +73,7 @@ visible = false
 
 [node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4424267, -0.86764, 0)
+collision_layer = 2147483649
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)

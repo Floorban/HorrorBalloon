@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name BalloonController
 
-@export var verticle_force := 2.0
+@export var verticle_force := 5.0
 @export var horizontal_force := 2.0
 
 @onready var mesh: Node3D = $Mesh

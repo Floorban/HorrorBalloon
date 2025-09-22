@@ -19,19 +19,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_uro0l"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4954479750191
+metadata/creation_stamp = 2374462688411
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4954496527430
+metadata/creation_stamp = 2374479465628
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4954513305304
+metadata/creation_stamp = 2374496242845
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4954530082495
+metadata/creation_stamp = 2374513020062
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)
@@ -215,4 +215,5 @@ transform = Transform3D(-0.15, -2.2649372e-08, 9.900355e-16, 0, -6.5567085e-09, 
 
 [node name="GroundCheck" type="RayCast3D" parent="."]
 target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
 hit_from_inside = true
