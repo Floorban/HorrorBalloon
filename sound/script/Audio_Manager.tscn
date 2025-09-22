@@ -4,13 +4,19 @@
 
 [node name="AudioManager" type="Node3D"]
 
-[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+[node name="DebugCube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_72ctw")
+
+[node name="Essential" type="Node3D" parent="."]
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="Essential"]
 bank_paths = ["res://sound/banks/Desktop/Master.strings.bank", "res://sound/banks/Desktop/Master.bank", "res://sound/banks/Desktop/Level_1.bank"]
 
-[node name="FmodEventEmitter3D" type="FmodEventEmitter3D" parent="."]
+[node name="Sound" type="Node3D" parent="."]
+
+[node name="Ambient" type="Node3D" parent="Sound"]
+
+[node name="Gnarly" type="FmodEventEmitter3D" parent="Sound/Ambient"]
 event_name = "event:/Ambient/Gnarly"
 event_guid = "{2f0afff7-fd3f-4927-b1b4-336377e72cee}"
 autoplay = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_72ctw")
