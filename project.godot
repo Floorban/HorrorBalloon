@@ -99,3 +99,9 @@ sprint={
 common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+
+[rendering]
+
+environment/volumetric_fog/volume_size=128
+environment/volumetric_fog/volume_depth=128
+environment/volumetric_fog/use_filter=0
