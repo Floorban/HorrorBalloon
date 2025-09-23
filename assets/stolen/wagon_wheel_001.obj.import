@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bebonksgwslxv"
+path="res://.godot/imported/wagon_wheel_001.obj-685bb351dc78108b72e135b59de06b61.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wagon_wheel_001.obj-685bb351dc78108b72e135b59de06b61.mesh"]
+
+source_file="res://assets/stolen/wagon_wheel_001.obj"
+dest_files=["res://.godot/imported/wagon_wheel_001.obj-685bb351dc78108b72e135b59de06b61.mesh", "res://.godot/imported/wagon_wheel_001.obj-685bb351dc78108b72e135b59de06b61.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

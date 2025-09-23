@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://7xi260nx1t7p"
+path="res://.godot/imported/bucket.obj-23a2ecfbfce3f6434e751b23b07035ed.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bucket.obj-23a2ecfbfce3f6434e751b23b07035ed.mesh"]
+
+source_file="res://assets/stolen/bucket.obj"
+dest_files=["res://.godot/imported/bucket.obj-23a2ecfbfce3f6434e751b23b07035ed.mesh", "res://.godot/imported/bucket.obj-23a2ecfbfce3f6434e751b23b07035ed.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
