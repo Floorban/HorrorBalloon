@@ -47,6 +47,7 @@ sky = SubResource("Sky_j8sk2")
 tonemap_mode = 3
 sdfgi_enabled = true
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.68307734, 0.6830774, 0.68307734, 1)
 volumetric_fog_emission = Color(0.416584, 0.13301322, 0.17185235, 1)
 volumetric_fog_emission_energy = 0.1
