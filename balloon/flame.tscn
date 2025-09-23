@@ -52,3 +52,8 @@ size = Vector2(2, 2)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_3sicn")
 draw_pass_1 = SubResource("QuadMesh_20xcu")
+
+[node name="SpotLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.9019608, 0.41960785, 0.22352941, 1)
+light_energy = 8.391
+omni_range = 34.171

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blo1ja3oxj50x"
-path="res://.godot/imported/grass.png-7aa2417f0129568fdcf4ebe5f488f2fa.ctex"
+uid="uid://b5k7k7yodrob6"
+path="res://.godot/imported/atlas.png-4e3b22935f92c07195058c19de5b55ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/islands/grass.png"
-dest_files=["res://.godot/imported/grass.png-7aa2417f0129568fdcf4ebe5f488f2fa.ctex"]
+source_file="res://assets/stolen/atlas.png"
+dest_files=["res://.godot/imported/atlas.png-4e3b22935f92c07195058c19de5b55ee.ctex"]
 
 [params]
 

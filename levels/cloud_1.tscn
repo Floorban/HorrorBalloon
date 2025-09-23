@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdhwje3wi24dr"]
+
+[ext_resource type="Shader" uid="uid://dc7dlltb5caw2" path="res://levels/CloudShaderStuff/Clouds.tres" id="1_qfxd1"]
+[ext_resource type="CompressedTexture3D" uid="uid://bgetyrh81jjux" path="res://levels/CloudShaderStuff/3dNoise.png" id="2_ey8yk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sibq8"]
+shader = ExtResource("1_qfxd1")
+shader_parameter/Noise1_Coordinates = Vector4(1, 1, 1, 0.2)
+shader_parameter/WindController = Vector4(1, 1, 0.5, 0.333)
+shader_parameter/CloudGlobalSize = 5.0
+shader_parameter/Noise_3d = ExtResource("2_ey8yk")
+shader_parameter/NoiseDensityModifier = Vector2(1, 0.5)
+shader_parameter/Contrast = 8.0
+shader_parameter/Noise2_Coordinates = Vector4(1, 1, 1, 0.02)
+shader_parameter/Contrast2 = 10.0
+shader_parameter/Cloud1stColor = Color(0.8105386, 0.8501772, 0.87985826, 1)
+shader_parameter/Cloud2ndColor = Color(0.2761058, 0.38248122, 0.4512334, 1)
+
+[node name="Cloud_1" type="FogVolume"]
+size = Vector3(1000, 1000, 1000)
+material = SubResource("ShaderMaterial_sibq8")
