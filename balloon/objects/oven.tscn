@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dduhus42o4l1a"]
 
-[ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://assets/oven.res" id="1_7twr4"]
+[ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://assets/balloon/oven.res" id="1_7twr4"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]

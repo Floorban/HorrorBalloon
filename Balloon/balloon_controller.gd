@@ -69,7 +69,7 @@ func execute(percentage: float) -> void:
 	
 	## For Rope
 	var steer = (percentage - 0.5)
-	var target_rot_y = -steer * deg_to_rad(30.0)
+	var target_rot_y = -steer * deg_to_rad(90.0)
 
 	if tilt_tween:
 		tilt_tween.kill()

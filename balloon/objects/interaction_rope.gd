@@ -18,3 +18,9 @@ func _input(event):
 		current_percentage += event.relative.x * 0.01
 		current_percentage = clamp(current_percentage, 0.0, 1.0)
 		notify_nodes(current_percentage)
+
+func preInteract(hand: Marker3D, target: Node = null) -> void:
+	super.preInteract(hand, target)
+	lock_camera = true
+	# previous_mouse_position = get_viewport().get_mouse_position()
+	# Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
