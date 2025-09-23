@@ -75,7 +75,10 @@ func _input(event: InputEvent) -> void:
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
-	
+
+func reset_player_rotation(target_rot: Vector3) -> void:
+	rotation = Vector3.ZERO
+
 func _physics_process(delta: float) -> void:
 	
 	updatePlayerState()
@@ -208,7 +211,6 @@ func updateCamera(delta: float) -> void:
 	# play_footsteps()
 	
 func set_camera_locked(locked: bool) -> void:
-	
 	if locked:
 		current_sensitivity = 0.0
 		sensitivity_fading_in = false

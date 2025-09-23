@@ -14,6 +14,7 @@ func _ready() -> void:
 	super._ready()
 	starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
+	camera = player.player_camera
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

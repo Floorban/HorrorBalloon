@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=18 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_5k4jt"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="PackedScene" uid="uid://ddr71osifigyj" path="res://balloon/lantern.tscn" id="7_qy63d"]
+[ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="8_6et1j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -56,7 +57,13 @@ adjustment_brightness = 1.2
 [sub_resource type="BoxShape3D" id="BoxShape3D_j8sk2"]
 size = Vector3(7.1563263, 0.048828125, 3.9892578)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etqu2"]
+albedo_texture = ExtResource("8_6et1j")
+normal_scale = 3.25
+uv1_scale = Vector3(50, 50, 50)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_n4swq"]
+size = Vector2(50, 50)
 
 [node name="Main" type="Node3D"]
 
@@ -142,7 +149,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
 shape = SubResource("BoxShape3D_j8sk2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Env/CSGMesh3D"]
-transform = Transform3D(3.5743504, 0, 0, 0, 1, 0, 0, 0, 2.0414488, -0.70807123, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70807123, 0, 0)
+material_override = SubResource("StandardMaterial3D_etqu2")
 mesh = SubResource("PlaneMesh_n4swq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env"]

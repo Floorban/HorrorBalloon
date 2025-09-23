@@ -19,5 +19,5 @@ shape = SubResource("CapsuleShape3D_oad2a")
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_cpigc")]
 script = ExtResource("2_4uula")
 sensitivity = 0.01
-return_speed = 2.0
+max_rotation_deg = 360.0
 object_ref = NodePath("..")

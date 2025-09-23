@@ -19,19 +19,19 @@ size = Vector3(1, 0.65, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_uro0l"]
 resource_local_to_scene = true
-metadata/creation_stamp = 106929871564299
+metadata/creation_stamp = 2392380755497
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 106929905027639
+metadata/creation_stamp = 2392414309931
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 106929938590265
+metadata/creation_stamp = 2392447864365
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 106929972144694
+metadata/creation_stamp = 2392481418799
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)

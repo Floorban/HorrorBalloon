@@ -68,14 +68,13 @@ func execute(percentage: float) -> void:
 		change_verticle_direction(false)
 	
 	## For Rope
-	var steer = (percentage - 0.5)
-	var target_rot_y = -steer * deg_to_rad(90.0)
+	# rotate_y(percentage)
 
 	if tilt_tween:
 		tilt_tween.kill()
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(self, "rotation:y", target_rot_y, 0.5)
+	tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
