@@ -14,6 +14,7 @@ var player_is_out := false
 
 func _ready() -> void:
 	super._ready()
+	can_interact = false
 
 func _input(event):
 	if not is_interacting: return
@@ -127,3 +128,13 @@ func _get(prop_name: StringName):
 		"_hold_duration":
 			return hold_duration
 	return null
+
+
+func _on_player_check_body_entered(body: Node3D) -> void:
+	if body is PlayerController:
+		can_interact = true
+
+func _on_player_check_body_exited(body: Node3D) -> void:
+	if body is PlayerController:
+		can_interact = false
+		if player: player.interaction_controller._unfocus()

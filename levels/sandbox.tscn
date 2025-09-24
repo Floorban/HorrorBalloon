@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="8_rgshf"]
 [ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://scripts/light.gd" id="9_50mym"]
 [ext_resource type="Script" uid="uid://3b0mfmma4m02" path="res://scripts/bridge.gd" id="9_jpsdj"]
-[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/cube_1_kg.tscn" id="10_h8jws"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="10_h8jws"]
 [ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="11_gtt2g"]
 [ext_resource type="PackedScene" uid="uid://blpg3l8h2pa1u" path="res://interaction/collectable/item.tscn" id="11_rgshf"]
 [ext_resource type="PackedScene" uid="uid://dhifhdp582mcf" path="res://interaction/door/door.tscn" id="17_e5k14"]
-[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="17_smb53"]
+[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/plank_1.tscn" id="17_smb53"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="19_hk7wi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0b4d"]

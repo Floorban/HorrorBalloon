@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=40 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
-[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/cube_1_kg.tscn" id="4_m1504"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="5_ifaiv"]
-[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/log_1.tscn" id="6_5k4jt"]
+[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/plank_1.tscn" id="6_5k4jt"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="PackedScene" uid="uid://ddr71osifigyj" path="res://balloon/lantern.tscn" id="7_qy63d"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="8_6et1j"]
@@ -24,6 +24,12 @@
 [ext_resource type="PackedScene" uid="uid://cgpfmr7o14swl" path="res://levels/EnvironmentAssets/industrial_7.tscn" id="22_vpyym"]
 [ext_resource type="PackedScene" uid="uid://5s6va6v8lxnr" path="res://levels/EnvironmentAssets/industrial_8.tscn" id="23_i3naf"]
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
+[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="25_vpyym"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/holddable/log_2.tscn" id="26_i3naf"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/holddable/log_3.tscn" id="27_m6gxc"]
+[ext_resource type="PackedScene" uid="uid://ur8h2dgbckhg" path="res://interaction/holddable/plank_2.tscn" id="28_8a5tp"]
+[ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/holddable/plank_3.tscn" id="29_f1mgo"]
+[ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/holddable/plank_4.tscn" id="30_duofn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -101,10 +107,10 @@ basket_size = Vector3(6.3, 5, 6.3)
 transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9699917, 0.3282318, -1.7366116)
 
 [node name="Cube_5kg" parent="Balloon" instance=ExtResource("4_m1504")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.0698153, 0)
 
 [node name="Cube_10kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.050558, 0.99872124, 0, -0.99872124, -0.050558, 0, 0, 0, 1, -1.390419, 1.3784277, -1.8349178)
+transform = Transform3D(-0.9999906, -0.004363224, 0, 0.004363224, -0.9999906, 0, 0, 0, 1, -1.390419, 1.0911872, -1.8349178)
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -243,3 +249,28 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.275223, 0, 54.707024)
 
 [node name="Industrial_9" parent="Env/Industrial" instance=ExtResource("24_m6gxc")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.05513, 11.060487, -177.62918)
+
+[node name="Resource" type="Node3D" parent="Env"]
+
+[node name="Log1" parent="Env/Resource" instance=ExtResource("25_vpyym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.423711, 0, -4.5114098)
+
+[node name="Log2" parent="Env/Resource" instance=ExtResource("26_i3naf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.594008, 0, -4.5114098)
+collision_layer = 1
+
+[node name="Log3" parent="Env/Resource" instance=ExtResource("27_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.985292, 0, -6.4081163)
+collision_layer = 1
+
+[node name="Plank1" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
+transform = Transform3D(0.5201635, 0.5680592, -0.6377607, -0.35903776, 0.8229877, 0.44020808, 0.77493346, 0, 0.6320428, -13.473865, 0, -5.884888)
+
+[node name="Plank2" parent="Env/Resource" instance=ExtResource("28_8a5tp")]
+transform = Transform3D(0.56091356, 0, -0.82787436, 0.2228823, 0.963078, 0.15101048, 0.7973076, -0.26922238, 0.5402035, -13.36793, 0, -2.4823136)
+
+[node name="Plank3" parent="Env/Resource" instance=ExtResource("29_f1mgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.326497, 0, -7.7092557)
+
+[node name="Plank4" parent="Env/Resource" instance=ExtResource("30_duofn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.920257, 0, -6.2342196)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://djfc1lct4rh4x"]
+
+[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/plank_1.tscn" id="1_3i5ft"]
+[ext_resource type="ArrayMesh" uid="uid://c6i4bu08qcrfy" path="res://assets/stolen/props/plank_008.obj" id="2_3g50k"]
+[ext_resource type="Texture2D" uid="uid://b1xcixtmmwhga" path="res://assets/stolen/psx/Wood_05-512x512.png" id="2_jsacg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xylu0"]
+albedo_texture = ExtResource("2_jsacg")
+uv1_scale = Vector3(5, 5, 5)
+
+[node name="Plank3" instance=ExtResource("1_3i5ft")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_xylu0")
+mesh = ExtResource("2_3g50k")

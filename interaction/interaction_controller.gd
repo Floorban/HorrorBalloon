@@ -1,4 +1,5 @@
 extends Node
+class_name InteractionController
 
 @onready var interaction_controller: Node = %InteractionController
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast

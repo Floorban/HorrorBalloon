@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" path="res://balloon/basket.tscn" id="2_uro0l"]
-[ext_resource type="ArrayMesh" uid="uid://cqc0ko0jdiddb" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
+[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket.tscn" id="2_uro0l"]
+[ext_resource type="ArrayMesh" uid="uid://cucrc6710wjw1" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
 [ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
 [ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
@@ -18,21 +18,21 @@ albedo_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
+resource_local_to_scene = true
+metadata/creation_stamp = 34245166871430
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
+resource_local_to_scene = true
+metadata/creation_stamp = 34245200425859
+
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60842473262927
+metadata/creation_stamp = 34245233980185
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60842506798597
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_my1lc"]
-resource_local_to_scene = true
-metadata/creation_stamp = 60842540353020
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_pos5u"]
-resource_local_to_scene = true
-metadata/creation_stamp = 60842573909821
+metadata/creation_stamp = 34245267509492
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)
@@ -110,30 +110,30 @@ transform = Transform3D(0.5393547, 0.27811563, 0.7948264, 0.09136268, 0.9189868,
 
 [node name="BalloonRope_1" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, 0.20000002)
-mesh = SubResource("ImmediateMesh_mp4s2")
+mesh = SubResource("ImmediateMesh_rdoix")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, 0.20000002)
-mesh = SubResource("ImmediateMesh_q871c")
+mesh = SubResource("ImmediateMesh_06xpq")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, -0.2)
-mesh = SubResource("ImmediateMesh_my1lc")
+mesh = SubResource("ImmediateMesh_mp4s2")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, -0.2)
-mesh = SubResource("ImmediateMesh_pos5u")
+mesh = SubResource("ImmediateMesh_q871c")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="BalloonObjects" type="Node3D" parent="Mesh"]
 
 [node name="Oven" parent="Mesh/BalloonObjects" instance=ExtResource("4_t01tp")]
 unique_name_in_owner = true
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, -0.032836635, 0)
+transform = Transform3D(0.055, 0, 0, 0, 0.055, 0, 0, 0, 0.055, 0, -0.07213718, 0)
 
 [node name="Flags" type="Node3D" parent="Mesh/BalloonObjects"]
 

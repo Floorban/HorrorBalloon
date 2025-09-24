@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7xlkcxxeb83b"]
+
+[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="1_81leq"]
+[ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="2_vd3rc"]
+[ext_resource type="ArrayMesh" uid="uid://ditqfecvyn310" path="res://assets/stolen/props/pole_004.obj" id="2_xl3mg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfcym"]
+albedo_texture = ExtResource("2_vd3rc")
+uv1_scale = Vector3(5, 5, 5)
+
+[node name="Log2" instance=ExtResource("1_81leq")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.29885843, 0.08715574, 0, -0.026146723, 0.9961947, 0, -0.005363375, 0)
+material_override = SubResource("StandardMaterial3D_xfcym")
+mesh = ExtResource("2_xl3mg")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029988885, 0.28883967, 0.0072060972)

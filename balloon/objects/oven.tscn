@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="10_71bfn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o72q4"]
-height = 5.7471924
+height = 4.71756
 radius = 1.7783203
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0qg0s"]
@@ -38,7 +38,7 @@ transform = Transform3D(2.1576924, -2.0843139, -3.90024e-09, 2.0843143, 2.157691
 [node name="Collision" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8735962, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3884125, 0)
 shape = SubResource("CylinderShape3D_o72q4")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision"]

@@ -16,7 +16,7 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 func interact() -> void:
 	if is_occupied and object_ref:
 		object_ref.global_position = player_hand.global_transform.origin
-		object_ref.global_rotation = player_hand.global_transform.basis.get_euler()
+		object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
 
 func auxInteract() -> void:
 	super.auxInteract()
@@ -34,7 +34,8 @@ func pickup():
 		object_ref.set_collision_layer_value(1, false)
 
 	object_ref.reparent(player_hand.get_parent().get_parent().get_parent())
-	object_ref.global_transform = player_hand.global_transform
+	object_ref.global_position = player_hand.global_transform.origin
+	object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
 	is_occupied = true
 
 func drop():
