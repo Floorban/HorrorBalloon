@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=34 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
@@ -8,6 +8,22 @@
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="PackedScene" uid="uid://ddr71osifigyj" path="res://balloon/lantern.tscn" id="7_qy63d"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="8_6et1j"]
+[ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="9_4fc0e"]
+[ext_resource type="PackedScene" uid="uid://ja7nqofkhdo5" path="res://levels/EnvironmentAssets/pole_1.tscn" id="9_6yxbg"]
+[ext_resource type="PackedScene" uid="uid://bbxmp8prsr10v" path="res://levels/EnvironmentAssets/pole_2.tscn" id="10_4fc0e"]
+[ext_resource type="PackedScene" uid="uid://cr5gwsrar7pc3" path="res://levels/EnvironmentAssets/pole_3.tscn" id="11_21ko3"]
+[ext_resource type="PackedScene" uid="uid://dvlnroh21h3eb" path="res://levels/EnvironmentAssets/pole_4.tscn" id="12_s07ge"]
+[ext_resource type="PackedScene" uid="uid://bv6muk2nvcy7s" path="res://levels/EnvironmentAssets/pole_5.tscn" id="13_iwo8l"]
+[ext_resource type="PackedScene" uid="uid://jqjn6eh0vuwh" path="res://levels/EnvironmentAssets/pole_6.tscn" id="14_j7211"]
+[ext_resource type="PackedScene" uid="uid://jrjsxkt4m4xk" path="res://levels/EnvironmentAssets/industrial_1.tscn" id="16_n1xy8"]
+[ext_resource type="PackedScene" uid="uid://3601yq2bat1e" path="res://levels/EnvironmentAssets/industrial_2.tscn" id="17_3yxmn"]
+[ext_resource type="PackedScene" uid="uid://gq750vbw86x4" path="res://levels/EnvironmentAssets/industrial_3.tscn" id="18_iivgo"]
+[ext_resource type="PackedScene" uid="uid://cr1lo7tu5m447" path="res://levels/EnvironmentAssets/industrial_4.tscn" id="19_woytj"]
+[ext_resource type="PackedScene" uid="uid://41ogjqgqcwmw" path="res://levels/EnvironmentAssets/industrial_5.tscn" id="20_o6dmv"]
+[ext_resource type="PackedScene" uid="uid://t80dhf3bjj1g" path="res://levels/EnvironmentAssets/industrial_6.tscn" id="21_wk3pi"]
+[ext_resource type="PackedScene" uid="uid://cgpfmr7o14swl" path="res://levels/EnvironmentAssets/industrial_7.tscn" id="22_vpyym"]
+[ext_resource type="PackedScene" uid="uid://5s6va6v8lxnr" path="res://levels/EnvironmentAssets/industrial_8.tscn" id="23_i3naf"]
+[ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -46,8 +62,11 @@ background_mode = 2
 sky = SubResource("Sky_j8sk2")
 tonemap_mode = 3
 sdfgi_enabled = true
+fog_enabled = true
+fog_light_energy = 0.2
+fog_sky_affect = 0.791
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
+volumetric_fog_density = 0.001
 volumetric_fog_albedo = Color(0.68307734, 0.6830774, 0.68307734, 1)
 volumetric_fog_emission = Color(0.416584, 0.13301322, 0.17185235, 1)
 volumetric_fog_emission_energy = 0.1
@@ -55,8 +74,15 @@ volumetric_fog_length = 128.0
 adjustment_enabled = true
 adjustment_brightness = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j8sk2"]
-size = Vector3(7.1563263, 0.048828125, 3.9892578)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6et1j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21ko3"]
+albedo_texture = ExtResource("9_4fc0e")
+uv1_scale = Vector3(5000, 5000, 5000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6et1j"]
+material = SubResource("StandardMaterial3D_21ko3")
+size = Vector2(9999, 9999)
 
 [node name="Main" type="Node3D"]
 
@@ -134,40 +160,86 @@ environment = SubResource("Environment_mkte3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
 transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309, 0.6425723, 0.9687132, 0, -0.24818276, 0, 0, 0)
-visible = false
+light_color = Color(0.15399858, 0.39109296, 0.42132157, 1)
+light_angular_distance = 30.0
 
-[node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4424267, -0.86764, 0)
+[node name="Ground" type="StaticBody3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4424267, -0.86764, 0)
 collision_layer = 2147483649
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
-shape = SubResource("BoxShape3D_j8sk2")
+shape = SubResource("WorldBoundaryShape3D_6et1j")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.8706422, 5.230399, -15.352704)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Ground"]
+mesh = SubResource("PlaneMesh_6et1j")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.744095, -2.8969574, -0.45537984)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Poles" type="Node3D" parent="Env"]
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.385979, 1.1293879, -7.3013687)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole1" parent="Env/Poles" instance=ExtResource("9_6yxbg")]
+transform = Transform3D(15.6950445, 0, -15.6950445, 0, 22.196144, 0, 15.6950445, 0, 15.6950445, -67.40441, -0.18763302, -89.259636)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.567256, 1.7426643, 10.42232)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole2" parent="Env/Poles" instance=ExtResource("10_4fc0e")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 187.26297, -0.18762453, -11.768115)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 25.216011, -2.035718, 10.051509)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole3" parent="Env/Poles" instance=ExtResource("11_21ko3")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 185.46619, -0.18763302, -119.65103)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.919073, 3.3839562, -15.531366)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole4" parent="Env/Poles" instance=ExtResource("12_s07ge")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -38.49556, -0.18763302, 128.70851)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 15.914172, 2.3841858e-07, 1.4379094)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole5" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 151.37534, -0.18764149, 80.33508)
+
+[node name="Pole6" parent="Env/Poles" instance=ExtResource("14_j7211")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -104.2938, -0.18763302, 74.28118)
+
+[node name="Pole7" parent="Env/Poles" instance=ExtResource("9_6yxbg")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 88.91113, -0.18763302, -71.33954)
+
+[node name="Pole8" parent="Env/Poles" instance=ExtResource("10_4fc0e")]
+transform = Transform3D(13.4878645, 0, -17.628, 0, 22.196144, 0, 17.628, 0, 13.4878645, -8.68972, -0.18763302, -158.35606)
+
+[node name="Pole9" parent="Env/Poles" instance=ExtResource("11_21ko3")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -5.108719, -0.18763302, -92.617256)
+
+[node name="Pole10" parent="Env/Poles" instance=ExtResource("12_s07ge")]
+transform = Transform3D(20.367384, 0, 8.8226185, 0, 22.196144, 0, -8.8226185, 0, 20.367384, 196.49854, -0.18763302, 201.24055)
+
+[node name="Pole11" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 117.19825, 2.0319815, -194.99301)
+
+[node name="Pole13" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 16.32167, 2.0319815, 21.298359)
+
+[node name="Pole12" parent="Env/Poles" instance=ExtResource("14_j7211")]
+transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 21.526653, -0.18763302, 96.40682)
+
+[node name="Industrial" type="Node3D" parent="Env"]
+
+[node name="Industrial_1" parent="Env/Industrial" instance=ExtResource("16_n1xy8")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -223.75444, 0, -60.282127)
+
+[node name="Industrial_2" parent="Env/Industrial" instance=ExtResource("17_3yxmn")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -240.94098, 0, 80.6438)
+
+[node name="Industrial_3" parent="Env/Industrial" instance=ExtResource("18_iivgo")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.41095, 0, 220.02466)
+
+[node name="Industrial_4" parent="Env/Industrial" instance=ExtResource("19_woytj")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -19.57608, -1.5258789e-05, 231.74597)
+
+[node name="Industrial_5" parent="Env/Industrial" instance=ExtResource("20_o6dmv")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -337.1209, 0, 193.26685)
+
+[node name="Industrial_6" parent="Env/Industrial" instance=ExtResource("21_wk3pi")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -408.9798, 0, 4.1075516)
+
+[node name="Industrial_7" parent="Env/Industrial" instance=ExtResource("22_vpyym")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -146.37854, 0, -40.21086)
+
+[node name="Industrial_8" parent="Env/Industrial" instance=ExtResource("23_i3naf")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.275223, 0, 54.707024)
+
+[node name="Industrial_9" parent="Env/Industrial" instance=ExtResource("24_m6gxc")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.05513, 11.060487, -177.62918)

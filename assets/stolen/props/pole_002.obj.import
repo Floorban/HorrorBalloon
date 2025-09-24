@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxemr8xeawf6l"
+path="res://.godot/imported/pole_002.obj-696cc9199187e4d30f4f61b954add15f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pole_002.obj-696cc9199187e4d30f4f61b954add15f.mesh"]
+
+source_file="res://assets/stolen/props/pole_002.obj"
+dest_files=["res://.godot/imported/pole_002.obj-696cc9199187e4d30f4f61b954add15f.mesh", "res://.godot/imported/pole_002.obj-696cc9199187e4d30f4f61b954add15f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

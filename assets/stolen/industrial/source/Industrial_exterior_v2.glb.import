@@ -1,0 +1,293 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bp2cf3qaf33tf"
+path="res://.godot/imported/Industrial_exterior_v2.glb-db67b3acac3e48b27a779ce121c04bc6.scn"
+
+[deps]
+
+source_file="res://assets/stolen/industrial/source/Industrial_exterior_v2.glb"
+dest_files=["res://.godot/imported/Industrial_exterior_v2.glb-db67b3acac3e48b27a779ce121c04bc6.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"meshes": {
+"Industrial_exterior_v2_Alphalt_Floor": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "res://floor.res",
+"save_to_file/path": "uid://861vwm04jaaa"
+},
+"Industrial_exterior_v2_Bridges_1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_1.res",
+"save_to_file/path": "uid://dh5vn1616o803"
+},
+"Industrial_exterior_v2_Bridges_2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_2.res",
+"save_to_file/path": "uid://cvejxd0lhnq4h"
+},
+"Industrial_exterior_v2_Bridges_3": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_3.res",
+"save_to_file/path": "uid://c1qoekmsg11f8"
+},
+"Industrial_exterior_v2_Bridges_end": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_end.res",
+"save_to_file/path": "uid://b68b3dk54mhi1"
+},
+"Industrial_exterior_v2_Bridges_support_1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_stand_2.res",
+"save_to_file/path": "uid://dkf8u20egosug"
+},
+"Industrial_exterior_v2_Bridges_support_2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_stand_3.res",
+"save_to_file/path": "uid://cugmqri5bwayv"
+},
+"Industrial_exterior_v2_Bridges_support_3": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_stand_1.res",
+"save_to_file/path": "uid://cx50jvfpjug00"
+},
+"Industrial_exterior_v2_Cargo_1_close": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/cargo_close.res",
+"save_to_file/path": "uid://cwihsfk5ardr8"
+},
+"Industrial_exterior_v2_Cargo_1_open": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/cargo_open.res",
+"save_to_file/path": "uid://b4x88jpyvqrd1"
+},
+"Industrial_exterior_v2_Cargo_2_empty": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/cargo_empty.res",
+"save_to_file/path": "uid://bj8jlkbt46ll"
+},
+"Industrial_exterior_v2_Cargo_2_full": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/cargo_full.res",
+"save_to_file/path": "uid://c2uk4cfrb8lor"
+},
+"Industrial_exterior_v2_Cooling_tower": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/cooling_tower.res",
+"save_to_file/path": "uid://w0ybk17ce4jq"
+},
+"Industrial_exterior_v2_Fence_long": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/fence.res",
+"save_to_file/path": "uid://cucrc6710wjw1"
+},
+"Industrial_exterior_v2_Liquid_reservoir_1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/liquid_reservoir_1.res",
+"save_to_file/path": "uid://cc223sbpin4vv"
+},
+"Industrial_exterior_v2_Liquid_reservoir_2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/liquic_reservoir_2.res",
+"save_to_file/path": "uid://b71cdr441kxnj"
+},
+"Industrial_exterior_v2_Pipes_arch": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_3.res",
+"save_to_file/path": "uid://bqxqq4d66vc2m"
+},
+"Industrial_exterior_v2_Pipes_horizontal_long": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_1.res",
+"save_to_file/path": "uid://xowde6get0wu"
+},
+"Industrial_exterior_v2_Pipes_horizontal_short": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_2.res",
+"save_to_file/path": "uid://c621truyy4faw"
+},
+"Industrial_exterior_v2_Pipes_horizontal_turn_1": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+},
+"Industrial_exterior_v2_Pipes_horizontal_turn_2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+},
+"Industrial_exterior_v2_Pipes_out_1_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_verticle_1.res",
+"save_to_file/path": "uid://csqhlwucqwn82"
+},
+"Industrial_exterior_v2_Pipes_out_2": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_verticle_3.res",
+"save_to_file/path": "uid://dqgelaijpydxl"
+},
+"Industrial_exterior_v2_Pipes_support": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/bridge_stand_4.res",
+"save_to_file/path": "uid://ceoce7ci5tktd"
+},
+"Industrial_exterior_v2_Pipes_vertical_long": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/stolen/industrial/pipe_verticle_2.res",
+"save_to_file/path": "uid://ceh8pu1ufyso7"
+},
+"Industrial_exterior_v2_Pipes_vertical_short": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+},
+"Industrial_exterior_v2_Pipes_vertical_turn": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:Cooling_tower": {
+"generate/physics": true
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

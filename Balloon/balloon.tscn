@@ -1,37 +1,38 @@
-[gd_scene load_steps=17 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=18 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" uid="uid://dnkfy5o53771" path="res://balloon/basket.tscn" id="2_uro0l"]
+[ext_resource type="PackedScene" path="res://balloon/basket.tscn" id="2_uro0l"]
+[ext_resource type="ArrayMesh" uid="uid://cqc0ko0jdiddb" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
-[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
-[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="4_t01tp"]
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="4_uro0l"]
-[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdoix"]
+albedo_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_35dws"]
-size = Vector3(1, 0.65, 1)
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_uro0l"]
-resource_local_to_scene = true
-metadata/creation_stamp = 2392380755497
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
-resource_local_to_scene = true
-metadata/creation_stamp = 2392414309931
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
-resource_local_to_scene = true
-metadata/creation_stamp = 2392447864365
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2392481418799
+metadata/creation_stamp = 60842473262927
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
+resource_local_to_scene = true
+metadata/creation_stamp = 60842506798597
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_my1lc"]
+resource_local_to_scene = true
+metadata/creation_stamp = 60842540353020
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_pos5u"]
+resource_local_to_scene = true
+metadata/creation_stamp = 60842573909821
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1753211, 0.73615074, -1.0266254)
@@ -53,28 +54,29 @@ skeleton = NodePath("../..")
 
 [node name="Bottom" type="MeshInstance3D" parent="Mesh/Model"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_rdoix")
 mesh = SubResource("BoxMesh_euxwi")
 skeleton = NodePath("../../..")
 
 [node name="Side_1" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0.5, 0.1, 0)
-mesh = SubResource("BoxMesh_35dws")
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.18, 0.5, 0.060029253, 0)
+mesh = ExtResource("3_06xpq")
 skeleton = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="Side_2" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 1, -0.5, 0.1, 0)
-mesh = SubResource("BoxMesh_35dws")
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.18, -0.5, 0.060029253, 0)
+mesh = ExtResource("3_06xpq")
 skeleton = NodePath("../..")
 
 [node name="Side_3" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, 0.5)
-mesh = SubResource("BoxMesh_35dws")
+transform = Transform3D(-4.371139e-09, 0, 0.18, 0, 0.10000001, 0, -0.10000001, 0, -7.868051e-09, 0, 0.060029253, 0.5)
+mesh = ExtResource("3_06xpq")
 skeleton = NodePath("../..")
 
 [node name="Side_4" type="MeshInstance3D" parent="Mesh/Model"]
-transform = Transform3D(-4.371139e-09, 0, 1.1, 0, 0.4, 0, -0.1, 0, -4.8082526e-08, 0, 0.1, -0.5)
-mesh = SubResource("BoxMesh_35dws")
+transform = Transform3D(-4.371139e-09, 0, 0.18, 0, 0.10000001, 0, -0.10000001, 0, -7.868051e-09, 0, 0.060029253, -0.50000006)
+mesh = ExtResource("3_06xpq")
 skeleton = NodePath("../..")
 
 [node name="Corners" type="Node3D" parent="Mesh"]
@@ -108,23 +110,23 @@ transform = Transform3D(0.5393547, 0.27811563, 0.7948264, 0.09136268, 0.9189868,
 
 [node name="BalloonRope_1" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, 0.20000002)
-mesh = SubResource("ImmediateMesh_uro0l")
+mesh = SubResource("ImmediateMesh_mp4s2")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, 0.20000002)
-mesh = SubResource("ImmediateMesh_rdoix")
+mesh = SubResource("ImmediateMesh_q871c")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.2, 1.6000003, -0.2)
-mesh = SubResource("ImmediateMesh_06xpq")
+mesh = SubResource("ImmediateMesh_my1lc")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.20000023, 1.6000003, -0.2)
-mesh = SubResource("ImmediateMesh_mp4s2")
+mesh = SubResource("ImmediateMesh_pos5u")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="BalloonObjects" type="Node3D" parent="Mesh"]

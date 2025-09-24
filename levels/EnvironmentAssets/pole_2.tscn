@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbxmp8prsr10v"]
+
+[ext_resource type="PackedScene" uid="uid://ja7nqofkhdo5" path="res://levels/EnvironmentAssets/pole_1.tscn" id="1_dbkvl"]
+[ext_resource type="ArrayMesh" uid="uid://g5wt5gwjxqw3" path="res://assets/stolen/props/flag_pole_002.obj" id="2_ktpki"]
+
+[node name="Pole2" instance=ExtResource("1_dbkvl")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = ExtResource("2_ktpki")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04855281, 1.8767262, -0.045718968)

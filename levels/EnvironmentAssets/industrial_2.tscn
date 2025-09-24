@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://3601yq2bat1e"]
+
+[ext_resource type="ArrayMesh" uid="uid://c2uk4cfrb8lor" path="res://assets/stolen/industrial/cargo_full.res" id="2_11xv8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1cmou"]
+points = PackedVector3Array(-2.4683611, -0.04668168, -0.8815422, -2.4683611, -0.04668168, 0.8815422, -2.4683611, 1.5664325, -0.8815422, 2.4678786, -0.04668168, -0.8815422, -2.4683611, 1.5664325, 0.8815422, 2.4683616, -0.04668168, 0.8815422, 0.599211, 1.7107648, -0.0024161339, 2.4678786, 1.5664325, -0.8815422, 2.4683616, 1.5664325, 0.8815422)
+
+[node name="Industrial_2" type="MeshInstance3D"]
+mesh = ExtResource("2_11xv8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_1cmou")
