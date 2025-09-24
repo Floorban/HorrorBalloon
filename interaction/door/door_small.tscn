@@ -37,7 +37,7 @@ shape = SubResource("BoxShape3D_encw8")
 
 [node name="InteractionComponent" parent="PivotPoint/Door" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("2_ewslu")]
 script = ExtResource("3_vom5i")
-door_smoothing = 30.0
+door_smoothing = 80.0
 is_locked = false
 object_ref = NodePath("../../..")
 pivot_point = NodePath("../..")

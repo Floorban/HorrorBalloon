@@ -62,7 +62,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		door_input_active = true
-		var delta: float = -event.relative.y * 0.001
+		var delta: float = -event.relative.y * 0.003
 		if not is_front:
 			delta = -delta
 		# Simulate resistance to small motions
