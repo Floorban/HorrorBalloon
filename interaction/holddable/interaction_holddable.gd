@@ -10,7 +10,7 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
 	if not is_occupied: 
-		pickup()
+		#pickup()
 		is_occupied = true
 
 func interact() -> void:
@@ -31,7 +31,7 @@ func pickup():
 	if object_ref is RigidBody3D:
 		object_ref.angular_velocity = Vector3.ZERO
 		object_ref.linear_velocity = Vector3.ZERO
-		object_ref.set_collision_layer_value(1, false)
+		#object_ref.set_collision_layer_value(1, false)
 
 	object_ref.reparent(player_hand.get_parent().get_parent().get_parent())
 	object_ref.global_position = player_hand.global_transform.origin
@@ -40,20 +40,19 @@ func pickup():
 
 func drop():
 	var current_transform = object_ref.global_transform
-	object_ref.reparent(get_tree().get_first_node_in_group("balloon"), true)
 	object_ref.global_transform = current_transform
 
 	is_occupied = false
 	object_ref.angular_velocity = Vector3.ZERO
 	object_ref.linear_velocity = Vector3.ZERO
-	object_ref.set_collision_layer_value(1, true)
+	#object_ref.set_collision_layer_value(1, true)
 
 func _holddable_throw() -> void:
 	drop()
 	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
 	if rigid_body_3d:
 		var throw_direction: Vector3 = -player_hand.global_transform.basis.z.normalized()
-		var throw_strength: float = (10.0/rigid_body_3d.mass)
+		var throw_strength: float = (3.0/rigid_body_3d.mass)
 		rigid_body_3d.set_linear_velocity(throw_direction*throw_strength)
 		
 		can_interact = false

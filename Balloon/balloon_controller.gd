@@ -96,11 +96,18 @@ func _on_body_entered(body: Node) -> void:
 		var interactable : InteractionComponent = body.get_node_or_null("InteractionComponent")
 		if interactable.is_in_group("interactable"):
 			objs_in_balloon[body] = interactable.weight
+		
+	if body.get_parent() != self:
+			body.call_deferred("reparent", self, true)
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node) -> void:
+	var current_scene : Node = get_tree().current_scene
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
+		
+	if body.get_parent() != current_scene:
+		body.call_deferred("reparent", current_scene)
 	total_weight = get_all_weights()
 
 func change_verticle_direction(up: bool) -> void:

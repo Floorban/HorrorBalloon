@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://blpg3l8h2pa1u" path="res://interaction/collectable/item.tscn" id="11_rgshf"]
 [ext_resource type="PackedScene" uid="uid://dhifhdp582mcf" path="res://interaction/door/door.tscn" id="17_e5k14"]
 [ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/plank_1.tscn" id="17_smb53"]
-[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/cube_5_kg.tscn" id="19_hk7wi"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="19_hk7wi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0b4d"]
 sky_top_color = Color(0.280211, 0.337572, 0.417356, 1)

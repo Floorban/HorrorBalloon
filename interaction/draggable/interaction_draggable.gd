@@ -33,7 +33,7 @@ func _draggable_interact() -> void:
 	
 	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
 	if rigid_body_3d:
-		rigid_body_3d.set_linear_velocity((object_distance)*(10/rigid_body_3d.mass))
+		rigid_body_3d.set_linear_velocity((object_distance)*(2/rigid_body_3d.mass))
 
 ## Alternate Interaction with objects that can be dragged around
 func _draggable_throw() -> void:
