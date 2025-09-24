@@ -37,7 +37,7 @@ shader_parameter/rect_width_px = 960.0
 shader_parameter/fade_width_px = 240.0
 shader_parameter/fade_strength = 0.745
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" groups=["interactable", "player"]]
 script = ExtResource("1_oul6g")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]

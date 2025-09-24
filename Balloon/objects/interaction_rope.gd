@@ -15,7 +15,6 @@ func _ready() -> void:
 	super._ready()
 	balloon = get_tree().get_first_node_in_group("balloon")
 	nodes_to_affect.append(balloon)
-	camera = player.player_camera
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)

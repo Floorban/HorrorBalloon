@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name BalloonController
 
 # Balloon objects
-var objs_in_balloon: Array[InteractionComponent] = []
+var objs_in_balloon: Array = []
 var obj_weights: Array[float] = []
 @export var basket_size: Vector3 = Vector3(5, 3, 5)
 
@@ -25,7 +25,7 @@ var tilt_threshold := 0.005
 var is_on_ground := false
 
 var player: PlayerController
-var player_weight := 1.0
+var player_weight := 15.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -38,27 +38,31 @@ func _physics_process(_delta: float) -> void:
 
 func _update_objects_list() -> void:
 	var raw_nodes: Array[Node] = get_tree().get_nodes_in_group("interactable")
-
+	
 	objs_in_balloon.clear()
 	obj_weights.clear()
 
 	for node in raw_nodes:
-		if node is InteractionComponent and node != self:
-			var obj: InteractionComponent = node
-			var rel_pos = obj.object_ref.global_position - global_position
-
+		if node not in objs_in_balloon:
+			var rel_pos : Vector3 = Vector3.ZERO
+			if node is InteractionComponent:
+				rel_pos = node.object_ref.global_position - global_position
+			else:
+				rel_pos = node.global_position - global_position
 			# Check inside bounding box (centered on balloon)
 			if abs(rel_pos.x) <= basket_size.x * 0.5 \
 			and abs(rel_pos.y) <= basket_size.y * 0.5 \
 			and abs(rel_pos.z) <= basket_size.z * 0.5:
-				objs_in_balloon.append(obj)
+				objs_in_balloon.append(node)
 
 	## Maybe add switch, door and basket if needed?
 	for obj in objs_in_balloon:
-		if "weight" in obj:
+		if obj == player:
+			obj_weights.append(player_weight)
+		elif obj.has_method("weight"):
 			obj_weights.append(obj.weight)
 		else:
-			obj_weights.append(1.0)
+			obj_weights.append(1.0)  # default weight
 
 func execute(percentage: float) -> void:
 	## For Switch
@@ -109,11 +113,15 @@ func _compute_weighted_tilt() -> Vector3:
 	var total_weight = 0.0
 
 	for i in range(objs_in_balloon.size()):
-		var obj : InteractionComponent = objs_in_balloon[i]
+		var obj : Node = objs_in_balloon[i]
 		if not obj: continue
 		var weight = obj_weights[i]
 
-		var rel_pos = obj.object_ref.global_position - global_position
+		var rel_pos : Vector3 = Vector3.ZERO
+		if obj is InteractionComponent:
+			rel_pos = obj.object_ref.global_position - global_position
+		else:
+			rel_pos = obj.global_position - global_position
 
 		# normalize into -1..1 for X/Z
 		var x_dir = clamp(rel_pos.x, -1.0, 1.0)
