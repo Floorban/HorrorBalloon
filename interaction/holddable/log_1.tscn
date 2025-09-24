@@ -11,7 +11,7 @@ albedo_texture = ExtResource("1_wa4m8")
 height = 0.6
 radius = 0.1
 
-[node name="Log1" type="RigidBody3D" groups=["interactable"]]
+[node name="Log1" type="RigidBody3D"]
 collision_layer = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

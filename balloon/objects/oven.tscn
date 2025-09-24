@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dduhus42o4l1a"]
+[gd_scene load_steps=12 format=3 uid="uid://dduhus42o4l1a"]
 
 [ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://assets/balloon/oven.res" id="1_7twr4"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
@@ -9,71 +9,100 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o72q4"]
 height = 4.71756
-radius = 1.7783203
+radius = 1.77832
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0qg0s"]
-size = Vector3(0.31982422, 1.9411621, 2.1201172)
+size = Vector3(0.319824, 1.94116, 2.12012)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71bfn"]
-size = Vector3(2.7851563, 2.336792, 1.7451172)
+size = Vector3(2.78516, 2.33679, 1.74512)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sicut"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("FuelUI/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6mct1"]
+viewport_path = NodePath("WeightUI/SubViewport")
 
 [node name="OvenMesh" type="MeshInstance3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = ExtResource("1_7twr4")
 skeleton = NodePath("../..")
 script = ExtResource("2_0qg0s")
 
 [node name="DoorSmall" parent="." instance=ExtResource("3_w7bsp")]
-transform = Transform3D(-7.212379e-08, 0, -1.65, 0, 1.6500005, 0, 1.65, 0, -7.212379e-08, 1.6799608, 4.7808523, -0.81751883)
+transform = Transform3D(-7.21238e-08, 0, -1.65, 0, 1.65, 0, 1.65, 0, -7.21238e-08, 1.67996, 4.78085, -0.817519)
 
 [node name="InteractionComponent" parent="DoorSmall/PivotPoint/Door" index="2" node_paths=PackedStringArray("nodes_to_affect")]
 nodes_to_affect = [NodePath("../../../..")]
 
 [node name="Switch" parent="." instance=ExtResource("6_o72q4")]
-transform = Transform3D(2.1576924, -2.0843139, -3.90024e-09, 2.0843143, 2.1576915, 3.1744236e-08, -1.9249804e-08, -2.554119e-08, 3.0000005, 1.7218763, 8.022158, 0.043145612)
+transform = Transform3D(2.15769, -2.08431, -3.90024e-09, 2.08431, 2.15769, 3.17442e-08, -1.92498e-08, -2.55412e-08, 3, 1.72188, 8.02216, 0.0431456)
 
 [node name="Collision" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3884125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38841, 0)
 shape = SubResource("CylinderShape3D_o72q4")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1040041, 5.816312, -4.8257554e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.104, 5.81631, -4.82576e-08)
 shape = SubResource("BoxShape3D_0qg0s")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.6057424, 5.816312, 0.97524583)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.605742, 5.81631, 0.975246)
 shape = SubResource("BoxShape3D_0qg0s")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.6057425, 5.816312, -0.9736639)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.605743, 5.81631, -0.973664)
 shape = SubResource("BoxShape3D_0qg0s")
 
 [node name="FuelArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.464735, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46474, 0)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FuelArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31884766, 1.0741577, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318848, 1.07416, 0)
 shape = SubResource("BoxShape3D_71bfn")
-debug_color = Color(0.9372549, 0.15686275, 0.50980395, 1)
+debug_color = Color(0.937255, 0.156863, 0.509804, 1)
 
 [node name="Flame" parent="." instance=ExtResource("10_71bfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.331894, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3319, 0)
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="FuelUI" type="Sprite3D" parent="."]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 1.73746, 11.6676, 0.0641079)
+texture_filter = 0
+texture = SubResource("ViewportTexture_sicut")
+
+[node name="SubViewport" type="SubViewport" parent="FuelUI"]
 transparent_bg = true
 size = Vector2i(20, 150)
 
-[node name="FuelBar" parent="SubViewport" instance=ExtResource("6_sicut")]
+[node name="FuelBar" parent="FuelUI/SubViewport" instance=ExtResource("6_sicut")]
+unique_name_in_owner = true
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 1.7374583, 11.667604, 0.06410785)
+[node name="WeightUI" type="Sprite3D" parent="."]
+transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711392e-08, 1.73746, 3.3474877, -0.0067618997)
 texture_filter = 0
-texture = SubResource("ViewportTexture_sicut")
+texture = SubResource("ViewportTexture_6mct1")
+
+[node name="SubViewport" type="SubViewport" parent="WeightUI"]
+size = Vector2i(170, 150)
+
+[node name="WeightLabel" type="Label" parent="WeightUI/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -33.5
+offset_right = 67.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="DoorSmall"]

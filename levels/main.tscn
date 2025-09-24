@@ -55,8 +55,8 @@ size = Vector2(1920, 1080)
 radius = 0.001
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8sk2"]
-sky_top_color = Color(0.39370683, 0.2105827, 0.13718012, 1)
-sky_horizon_color = Color(0.35507524, 0.25341445, 0.22689277, 1)
+sky_top_color = Color(0.393707, 0.210583, 0.13718, 1)
+sky_horizon_color = Color(0.355075, 0.253414, 0.226893, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
 
@@ -73,8 +73,8 @@ fog_light_energy = 0.2
 fog_sky_affect = 0.791
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
-volumetric_fog_albedo = Color(0.68307734, 0.6830774, 0.68307734, 1)
-volumetric_fog_emission = Color(0.416584, 0.13301322, 0.17185235, 1)
+volumetric_fog_albedo = Color(0.683077, 0.683077, 0.683077, 1)
+volumetric_fog_emission = Color(0.416584, 0.133013, 0.171852, 1)
 volumetric_fog_emission_energy = 0.1
 volumetric_fog_length = 128.0
 adjustment_enabled = true
@@ -99,41 +99,41 @@ position = Vector2(960, 540)
 mesh = SubResource("QuadMesh_bg8b8")
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, -0.70162964, -0.47116137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4106, -0.70163, -0.471161)
 mass = 10.0
 basket_size = Vector3(6.3, 5, 6.3)
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9699917, 0.3282318, -1.7366116)
+transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, 1.96999, 0.328232, -1.73661)
 
 [node name="Cube_5kg" parent="Balloon" instance=ExtResource("4_m1504")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.0698153, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17802, 1.06982, 0)
 
 [node name="Cube_10kg" parent="Balloon" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.9999906, -0.004363224, 0, 0.004363224, -0.9999906, 0, 0, 0, 1, -1.390419, 1.0911872, -1.8349178)
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -1.39042, 1.09119, -1.83492)
 contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Log1" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -2.2241611, 1.2795086, 1.3332355)
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -2.22416, 1.27951, 1.33324)
 
 [node name="Log2" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -0.45453835, 1.2795086, 1.3229936)
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -0.454538, 1.27951, 1.32299)
 
 [node name="Log3" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(-0.9169348, 0, 0.3990371, 0, 1, 0, -0.3990371, 0, -0.9169348, -0.68006134, 1.2795086, 1.8412161)
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -0.680061, 1.27951, 1.84122)
 
 [node name="Log4" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 2.2057743, 0.76437664, 0.41985977)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 2.20577, 0.764377, 0.41986)
 
 [node name="Log5" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 0.74978256, 0.76437664, -0.586002)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 0.749783, 0.764377, -0.586002)
 
 [node name="Log6" parent="Balloon" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.52267706, 0, -0.8525307, 0, 1, 0, 0.8525307, 0, 0.52267706, 1.2316055, 0.76437664, -0.8814025)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 1.23161, 0.764377, -0.881402)
 
 [node name="LanternRoot" type="RigidBody3D" parent="Balloon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030879974, 3.9581425, 0.8154589)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003088, 3.95814, 0.815459)
 visible = false
 mass = 10.0
 gravity_scale = 0.0
@@ -144,7 +144,7 @@ freeze_mode = 1
 shape = SubResource("SphereShape3D_6et1j")
 
 [node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Balloon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0876465, 0.697196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08765, 0.697196)
 visible = false
 node_a = NodePath("../LanternRoot")
 node_b = NodePath("../Lantern")
@@ -152,7 +152,7 @@ angular_limit_x/enabled = false
 angular_limit_z/enabled = false
 
 [node name="Lantern" parent="Balloon" instance=ExtResource("7_qy63d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.956234, 0.8530419)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95623, 0.853042)
 visible = false
 axis_lock_linear_y = true
 
@@ -165,16 +165,16 @@ size = Vector3(100, 100, 100)
 environment = SubResource("Environment_mkte3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309, 0.6425723, 0.9687132, 0, -0.24818276, 0, 0, 0)
-light_color = Color(0.15399858, 0.39109296, 0.42132157, 1)
+transform = Transform3D(-0.185723, 0.663326, -0.724918, 0.164626, 0.748331, 0.642572, 0.968713, 0, -0.248183, 0, 0, 0)
+light_color = Color(0.153999, 0.391093, 0.421322, 1)
 light_angular_distance = 30.0
 
 [node name="Ground" type="StaticBody3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4424267, -0.86764, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44243, -0.86764, 0)
 collision_layer = 2147483649
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.703087, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_6et1j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Ground"]
@@ -183,94 +183,94 @@ mesh = SubResource("PlaneMesh_6et1j")
 [node name="Poles" type="Node3D" parent="Env"]
 
 [node name="Pole1" parent="Env/Poles" instance=ExtResource("9_6yxbg")]
-transform = Transform3D(15.6950445, 0, -15.6950445, 0, 22.196144, 0, 15.6950445, 0, 15.6950445, -67.40441, -0.18763302, -89.259636)
+transform = Transform3D(15.695, 0, -15.695, 0, 22.1961, 0, 15.695, 0, 15.695, -67.4044, -0.187633, -89.2596)
 
 [node name="Pole2" parent="Env/Poles" instance=ExtResource("10_4fc0e")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 187.26297, -0.18762453, -11.768115)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 187.263, -0.187625, -11.7681)
 
 [node name="Pole3" parent="Env/Poles" instance=ExtResource("11_21ko3")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 185.46619, -0.18763302, -119.65103)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 185.466, -0.187633, -119.651)
 
 [node name="Pole4" parent="Env/Poles" instance=ExtResource("12_s07ge")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -38.49556, -0.18763302, 128.70851)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -38.4956, -0.187633, 128.709)
 
 [node name="Pole5" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 151.37534, -0.18764149, 80.33508)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 151.375, -0.187641, 80.3351)
 
 [node name="Pole6" parent="Env/Poles" instance=ExtResource("14_j7211")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -104.2938, -0.18763302, 74.28118)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -104.294, -0.187633, 74.2812)
 
 [node name="Pole7" parent="Env/Poles" instance=ExtResource("9_6yxbg")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 88.91113, -0.18763302, -71.33954)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 88.9111, -0.187633, -71.3395)
 
 [node name="Pole8" parent="Env/Poles" instance=ExtResource("10_4fc0e")]
-transform = Transform3D(13.4878645, 0, -17.628, 0, 22.196144, 0, 17.628, 0, 13.4878645, -8.68972, -0.18763302, -158.35606)
+transform = Transform3D(13.4879, 0, -17.628, 0, 22.1961, 0, 17.628, 0, 13.4879, -8.68972, -0.187633, -158.356)
 
 [node name="Pole9" parent="Env/Poles" instance=ExtResource("11_21ko3")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, -5.108719, -0.18763302, -92.617256)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -5.10872, -0.187633, -92.6173)
 
 [node name="Pole10" parent="Env/Poles" instance=ExtResource("12_s07ge")]
-transform = Transform3D(20.367384, 0, 8.8226185, 0, 22.196144, 0, -8.8226185, 0, 20.367384, 196.49854, -0.18763302, 201.24055)
+transform = Transform3D(20.3674, 0, 8.82262, 0, 22.1961, 0, -8.82262, 0, 20.3674, 196.499, -0.187633, 201.241)
 
 [node name="Pole11" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 117.19825, 2.0319815, -194.99301)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 117.198, 2.03198, -194.993)
 
 [node name="Pole13" parent="Env/Poles" instance=ExtResource("13_iwo8l")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 16.32167, 2.0319815, 21.298359)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 16.3217, 2.03198, 21.2984)
 
 [node name="Pole12" parent="Env/Poles" instance=ExtResource("14_j7211")]
-transform = Transform3D(22.196144, 0, 0, 0, 22.196144, 0, 0, 0, 22.196144, 21.526653, -0.18763302, 96.40682)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 21.5267, -0.187633, 96.4068)
 
 [node name="Industrial" type="Node3D" parent="Env"]
 
 [node name="Industrial_1" parent="Env/Industrial" instance=ExtResource("16_n1xy8")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -223.75444, 0, -60.282127)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -223.754, 0, -60.2821)
 
 [node name="Industrial_2" parent="Env/Industrial" instance=ExtResource("17_3yxmn")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -240.94098, 0, 80.6438)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -240.941, 0, 80.6438)
 
 [node name="Industrial_3" parent="Env/Industrial" instance=ExtResource("18_iivgo")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.41095, 0, 220.02466)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.411, 0, 220.025)
 
 [node name="Industrial_4" parent="Env/Industrial" instance=ExtResource("19_woytj")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -19.57608, -1.5258789e-05, 231.74597)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -19.5761, -1.52588e-05, 231.746)
 
 [node name="Industrial_5" parent="Env/Industrial" instance=ExtResource("20_o6dmv")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -337.1209, 0, 193.26685)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -337.121, 0, 193.267)
 
 [node name="Industrial_6" parent="Env/Industrial" instance=ExtResource("21_wk3pi")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -408.9798, 0, 4.1075516)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -408.98, 0, 4.10755)
 
 [node name="Industrial_7" parent="Env/Industrial" instance=ExtResource("22_vpyym")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -146.37854, 0, -40.21086)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -146.379, 0, -40.2109)
 
 [node name="Industrial_8" parent="Env/Industrial" instance=ExtResource("23_i3naf")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.275223, 0, 54.707024)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2752, 0, 54.707)
 
 [node name="Industrial_9" parent="Env/Industrial" instance=ExtResource("24_m6gxc")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.05513, 11.060487, -177.62918)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.055, 11.0605, -177.629)
 
 [node name="Resource" type="Node3D" parent="Env"]
 
 [node name="Log1" parent="Env/Resource" instance=ExtResource("25_vpyym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.423711, 0, -4.5114098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4237, 0, -4.51141)
 
 [node name="Log2" parent="Env/Resource" instance=ExtResource("26_i3naf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.594008, 0, -4.5114098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.594, 0, -4.51141)
 collision_layer = 1
 
 [node name="Log3" parent="Env/Resource" instance=ExtResource("27_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.985292, 0, -6.4081163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9853, 0, -6.40812)
 collision_layer = 1
 
 [node name="Plank1" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.5201635, 0.5680592, -0.6377607, -0.35903776, 0.8229877, 0.44020808, 0.77493346, 0, 0.6320428, -13.473865, 0, -5.884888)
+transform = Transform3D(0.520163, 0.568059, -0.637761, -0.359038, 0.822988, 0.440208, 0.774933, 0, 0.632043, -13.4739, 0, -5.88489)
 
 [node name="Plank2" parent="Env/Resource" instance=ExtResource("28_8a5tp")]
-transform = Transform3D(0.56091356, 0, -0.82787436, 0.2228823, 0.963078, 0.15101048, 0.7973076, -0.26922238, 0.5402035, -13.36793, 0, -2.4823136)
+transform = Transform3D(0.560914, 0, -0.827874, 0.222882, 0.963078, 0.15101, 0.797308, -0.269222, 0.540204, -13.3679, 0, -2.48231)
 
 [node name="Plank3" parent="Env/Resource" instance=ExtResource("29_f1mgo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.326497, 0, -7.7092557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3265, 0, -7.70926)
 
 [node name="Plank4" parent="Env/Resource" instance=ExtResource("30_duofn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.920257, 0, -6.2342196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9203, 0, -6.23422)
