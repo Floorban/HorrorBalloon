@@ -66,7 +66,7 @@ func execute(percentage: float) -> void:
 		tilt_tween.kill()
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
+	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
 
 var _is_reparenting := false
 
