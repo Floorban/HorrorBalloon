@@ -104,33 +104,36 @@ func execute(percentage: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body == player:
 		objs_in_balloon[body] = player_weight
-
+		call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
-		if body.get_parent() != self and body.is_inside_tree():
-			call_deferred("_deferred_attach", body)
-			
-		var obj = body.get_node_or_null("InteractableComponent")
-		if obj and obj.has_method("weight"):
+		#if body.get_parent() != self:
+			#call_deferred("_deferred_attach", body)
+		var obj = body.get_node_or_null("InteractionComponent")
+		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
-	if body.is_in_group("interactable"):
-		if body.get_parent() == self and body.is_inside_tree():
-			call_deferred("_deferred_deattach",body)
-			
+	#if body.is_in_group("interactable"):
+		#if body.get_parent() == self:
+			#call_deferred("_deferred_deattach", body)
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
-	total_weight = get_all_weights()
+		if body == player:
+			call_deferred("_deferred_deattach", player)
+		total_weight = get_all_weights()
 
-func _deferred_attach(body: RigidBody3D):
-	body.get_parent().remove_child(body)
-	add_child(body)
+func _deferred_attach(body: Node3D):
+	var parent : Node = body.get_parent()
+	if body.get_parent() != parent:
+		parent.remove_child(body)
+		self.add_child(body)
 
-func _deferred_deattach(body: RigidBody3D):
+func _deferred_deattach(body: Node3D):
 	var current_scene : Node = get_tree().current_scene
-	body.get_parent().remove_child(body)
-	current_scene.add_child(body)
+	if body.get_parent() != current_scene:
+		self.remove_child(body)
+		current_scene.add_child(body)
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
