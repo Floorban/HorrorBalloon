@@ -13,7 +13,11 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 		#pickup()
 		is_occupied = true
 
-func interact() -> void:
+func _input(event: InputEvent) -> void:
+	if is_occupied and event.is_action_pressed("secondary"):
+		drop()
+
+func _physics_process(_delta: float) -> void:
 	if is_occupied and object_ref:
 		object_ref.global_position = player_hand.global_transform.origin
 		object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
@@ -22,10 +26,10 @@ func auxInteract() -> void:
 	super.auxInteract()
 	_holddable_throw()
 
-func postInteract() -> void:
-	super.postInteract()
-	drop()
-	is_occupied = false
+#func postInteract() -> void:
+	#super.postInteract()
+	#drop()
+	#is_occupied = false
 
 func pickup():
 	if object_ref is RigidBody3D:
@@ -39,8 +43,8 @@ func pickup():
 	is_occupied = true
 
 func drop():
-	var current_transform = object_ref.global_transform
-	object_ref.global_transform = current_transform
+	#var current_transform = object_ref.global_transform
+	#object_ref.global_transform = current_transform
 
 	is_occupied = false
 	object_ref.angular_velocity = Vector3.ZERO

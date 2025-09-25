@@ -315,5 +315,8 @@ hit_from_inside = true
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ObjInBalloonArea"]
+process_mode = 3
+physics_interpolation_mode = 1
+auto_translate_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3034668, 0)
 shape = SubResource("BoxShape3D_rdoix")
