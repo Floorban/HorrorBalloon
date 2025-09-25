@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c71j68mfq7ibg" path="res://assets/sound_effects/keypad_failure.ogg" id="5_ti08h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_csh10"]
-size = Vector3(0.90405273, 0.072265625, 0.9003906)
+size = Vector3(0.9416504, 0.072265625, 0.93847656)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
 size = Vector3(0.1, 0.2, 1.1)
@@ -16,7 +16,7 @@ size = Vector3(0.1, 0.2, 1.1)
 size = Vector3(0.20703125, 0.24121094, 0.8967285)
 
 [node name="Basket" type="CharacterBody3D"]
-collision_layer = 5
+collision_layer = 2147483653
 collision_mask = 2147483653
 slide_on_ceiling = false
 

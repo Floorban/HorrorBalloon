@@ -39,7 +39,7 @@ shader_parameter/fade_strength = 0.745
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2147483649
-floor_constant_speed = true
+platform_on_leave = 2
 script = ExtResource("1_oul6g")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]

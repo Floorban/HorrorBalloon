@@ -6,11 +6,11 @@ var objs_in_balloon: Dictionary = {}
 @export var basket_size: Vector3 = Vector3(5, 3, 5)
 
 # Forces
-const GRAVITY = 0.1
+const GRAVITY = 0.0
 @onready var oven: Oven = %Oven
 var verticle_dir := -1
 var total_weight : float
-@export var verticle_base_force := 5.0
+@export var verticle_base_force := 10.0
 var verticle_force : float
 @export var horizontal_force := 2.0
 var move_threshold := 0.1
@@ -29,7 +29,7 @@ var can_land := false
 var is_on_ground := false
 
 var player: PlayerController
-var player_weight := 10.0
+var player_weight := 3.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -38,20 +38,20 @@ func _ready() -> void:
 	obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(_delta: float) -> void:
-	can_land = land_checks.any(func(gc): return gc.is_colliding())
+	_apply_vertical_force()
+	_apply_horizontal_force()
+	# can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
 	if is_on_ground:
 		if verticle_dir <= 0:
 			verticle_dir = 0
-			gravity_scale = 0.0
-			self.sleeping = true
-			return
-	else:
-		gravity_scale = GRAVITY
-		self.sleeping = false
+	# 		gravity_scale = 0.0
+	# 		self.sleeping = true
+	# 		return
+	# else:
+	# 	gravity_scale = GRAVITY
+	# 	self.sleeping = false
 
-	_apply_vertical_force()
-	_apply_horizontal_force()
 
 func execute(percentage: float) -> void:
 	## For Switch
@@ -80,18 +80,20 @@ func _on_body_entered(body: Node3D) -> void:
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
+			_is_reparenting = true
+			call_deferred("_deferred_attach", body)
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
 	if _is_reparenting:
 		return
-
+	if body == player or body.is_in_group("interactable"):
+		_is_reparenting = true
+		call_deferred("_deferred_deattach", player)
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
-		if body == player:
-			_is_reparenting = true
-			call_deferred("_deferred_deattach", player)
-		total_weight = get_all_weights()
+
+	total_weight = get_all_weights()
 
 func _deferred_attach(body: Node3D):
 	if not body:
@@ -142,7 +144,7 @@ func change_verticle_direction(up: bool) -> void:
 func _apply_vertical_force() -> void:
 	if can_land:
 		linear_velocity.lerp(Vector3.ZERO, 0.5)
-	verticle_force = verticle_base_force - total_weight / 10.0
+	verticle_force = verticle_base_force
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
 
 func _apply_horizontal_force() -> void:

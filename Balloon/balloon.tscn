@@ -20,19 +20,19 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2511029227719
+metadata/creation_stamp = 4985920246749
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2511062782153
+metadata/creation_stamp = 4985953801183
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2511096336587
+metadata/creation_stamp = 4985987355627
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2511129891021
+metadata/creation_stamp = 4986020910051
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -318,6 +318,7 @@ unique_name_in_owner = true
 disable_mode = 2
 collision_layer = 0
 collision_mask = 5
+monitorable = false
 gravity_point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ObjInBalloonArea"]
