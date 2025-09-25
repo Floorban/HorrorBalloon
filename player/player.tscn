@@ -37,7 +37,7 @@ shader_parameter/rect_width_px = 960.0
 shader_parameter/fade_width_px = 240.0
 shader_parameter/fade_strength = 0.745
 
-[node name="Player" type="CharacterBody3D" groups=["interactable", "player"]]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2147483649
 collision_mask = 2147483649
 floor_stop_on_slope = false
@@ -55,7 +55,7 @@ shape = SubResource("CapsuleShape3D_oul6g")
 target_position = Vector3(0, 2, 0)
 
 [node name="InteractableCheck" type="Area3D" parent="."]
-collision_mask = 2147483653
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
 shape = SubResource("SphereShape3D_qjkh3")
@@ -81,6 +81,7 @@ fov = 90.0
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
@@ -96,6 +97,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
 transparent_bg = true

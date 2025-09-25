@@ -23,7 +23,7 @@ var tilt_velocity := Vector3.ZERO
 var tilt_damping := 0.5
 var tilt_threshold := 0.005
 
-@onready var ground_checks := [$GroundCheck_1, $GroundCheck_2, $GroundCheck_3, $GroundCheck_4, $GroundCheck_5]
+@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
 var is_on_ground := false
 
 var player: PlayerController
@@ -93,37 +93,40 @@ func execute(percentage: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		if body.get_parent() != self:
-			var gtf : Transform3D = body.global_transform
+		#if body.get_parent() != self:
+			#body.get_parent().remove_child(body)
+			#call_deferred("_deferred_attach",body)
+	if body.is_in_group("interactable"):
+		if body.get_parent() != self and not body.is_inside_tree():
 			body.get_parent().remove_child(body)
-			add_child(body)
-			body.global_transform = gtf
-	elif body.is_in_group("interactable"):
+			call_deferred("_deferred_attach",body)
+			
 		var obj = body.get_node_or_null("InteractableComponent")
 		if obj and obj.has_method("weight"):
 			objs_in_balloon[body] = obj.weight
-		if body.get_parent() != self:
-			var gtf : Transform3D = body.global_transform
-			body.get_parent().remove_child(body)
-			add_child(body)
-			body.global_transform = gtf
-
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
-	var current_scene : Node = get_tree().current_scene
+	if body.is_in_group("interactable"):
+		if body.get_parent() == self and not body.is_inside_tree():
+			body.get_parent().remove_child(body)
+			call_deferred("_deferred_deattach",body)
+			
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
-		
-	if body == player or body.is_in_group("interactable"):
-		if body.get_parent() == self:
-			var gtf : Transform3D = body.global_transform
-			body.get_parent().remove_child(body)
-			current_scene.add_child(body)
-			body.global_transform = gtf
-			#body.call_deferred("reparent",current_scene)
-		
 	total_weight = get_all_weights()
+
+func _deferred_attach(body: RigidBody3D):
+	if body.is_inside_tree(): return
+	var gtf : Transform3D = body.global_transform
+	add_child(body)
+	body.global_transform = gtf
+
+func _deferred_deattach(body: RigidBody3D):
+	var current_scene : Node = get_tree().current_scene
+	var gtf : Transform3D = body.global_transform
+	current_scene.add_child(body)
+	body.global_transform = gtf
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1

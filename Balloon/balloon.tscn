@@ -1,21 +1,21 @@
 [gd_scene load_steps=21 format=3 uid="uid://do7002mkdg3un"]
 
-[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
-[ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket.tscn" id="2_uro0l"]
+[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://Balloon/balloon_controller.gd" id="1_35dws"]
+[ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://Balloon/flags.gd" id="2_2rviv"]
+[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://Balloon/basket.tscn" id="2_uro0l"]
 [ext_resource type="ArrayMesh" uid="uid://cucrc6710wjw1" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
-[ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
-[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
-[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
-[ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="4_t01tp"]
-[ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="4_uro0l"]
-[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
+[ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://Balloon/balloon_rope.tscn" id="3_rdoix"]
+[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
+[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
+[ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://Balloon/objects/oven.tscn" id="4_t01tp"]
+[ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://Balloon/rope_interaction.tscn" id="4_uro0l"]
+[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_06xpq"]
 size = Vector3(6.0117188, 0.57788086, 5.995117)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
-size = Vector3(0.60180664, 0.70214844, 0.5800781)
+size = Vector3(1.032959, 0.70214844, 1.0371094)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
@@ -24,21 +24,21 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_r02kb"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10300204098623
+metadata/creation_stamp = 2428451770428
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o518v"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10300237651480
+metadata/creation_stamp = 2428485324862
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w6fh3"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10300271205690
+metadata/creation_stamp = 2428518879296
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_lte6v"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10300304761529
+metadata/creation_stamp = 2428552433730
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -129,23 +129,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_rdoix")
+mesh = SubResource("ImmediateMesh_r02kb")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_06xpq")
+mesh = SubResource("ImmediateMesh_o518v")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_mp4s2")
+mesh = SubResource("ImmediateMesh_w6fh3")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_q871c")
+mesh = SubResource("ImmediateMesh_lte6v")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="BalloonObjects" type="Node3D" parent="Mesh"]
@@ -253,31 +253,37 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GroundCheck_1" type="RayCast3D" parent="."]
+[node name="GroundCheck_1" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
-[node name="GroundCheck_2" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+[node name="GroundCheck_2" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, 0.5)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
-[node name="GroundCheck_3" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+[node name="GroundCheck_3" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, 0.5)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
-[node name="GroundCheck_4" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+[node name="GroundCheck_4" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, -0.5)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
-[node name="GroundCheck_5" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+[node name="GroundCheck_5" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, -0.5)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true

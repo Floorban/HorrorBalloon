@@ -129,7 +129,6 @@ func _get(prop_name: StringName):
 			return hold_duration
 	return null
 
-
 func _on_player_check_body_entered(body: Node3D) -> void:
 	if body is PlayerController:
 		can_interact = true
