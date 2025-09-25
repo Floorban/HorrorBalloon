@@ -101,10 +101,14 @@ func execute(percentage: float) -> void:
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
 
+var has_player : = false
+
 func _on_body_entered(body: Node3D) -> void:
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		call_deferred("_deferred_attach", player)
+		if not has_player:
+			has_player = true
+			call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		#if body.get_parent() != self:
 			#call_deferred("_deferred_attach", body)
@@ -120,20 +124,23 @@ func _on_body_exited(body: Node3D) -> void:
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
 		if body == player:
+			has_player = false
 			call_deferred("_deferred_deattach", player)
 		total_weight = get_all_weights()
 
 func _deferred_attach(body: Node3D):
 	var parent : Node = body.get_parent()
-	if body.get_parent() != parent:
+	if parent != self:
 		parent.remove_child(body)
-		self.add_child(body)
+		add_child(body)
+		print("111")
 
 func _deferred_deattach(body: Node3D):
 	var current_scene : Node = get_tree().current_scene
 	if body.get_parent() != current_scene:
-		self.remove_child(body)
+		body.get_parent().remove_child(body)
 		current_scene.add_child(body)
+		print("2")
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1

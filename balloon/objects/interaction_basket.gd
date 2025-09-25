@@ -78,6 +78,7 @@ func get_out() -> void:
 	if not player: return
 
 	player.global_transform.origin = get_closest_exit().global_transform.origin
+	#player.global_translate(get_closest_exit().global_transform.origin)
 	hold_edge()
 	is_interacting = false
 	is_occupied = false
@@ -89,8 +90,8 @@ func get_in() -> void:
 	var center : Vector3 = get_parent().global_transform.origin
 	var closest_exit_pos := get_closest_exit().global_transform.origin
 
-	var enter : Vector3 = center.lerp(closest_exit_pos, 0.5)
-	player.global_transform.origin = enter
+	#var enter : Vector3 = center.lerp(closest_exit_pos, 0.5)
+	player.global_transform.origin = center.lerp(closest_exit_pos, 0.5)
 	
 	is_interacting = false
 	is_occupied = false

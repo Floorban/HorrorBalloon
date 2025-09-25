@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://co0nvehy30mhm"
-path="res://.godot/imported/DetailPlane.blend-bb82a7a9061494efaae5fe089eb8ea59.scn"
+valid=false
 
 [deps]
 
 source_file="res://flag/Planes/DetailPlane.blend"
-dest_files=["res://.godot/imported/DetailPlane.blend-bb82a7a9061494efaae5fe089eb8ea59.scn"]
 
 [params]
 
