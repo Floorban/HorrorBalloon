@@ -125,7 +125,6 @@ func update_door_sounds(_delta: float) -> void:
 			#primary_audio_player.stop()
 			#print("stop!")
 		door_opened = false
-		print("A")
 		notify_nodes(0)
 
 #func stop_door_sounds(delta: float) -> void:

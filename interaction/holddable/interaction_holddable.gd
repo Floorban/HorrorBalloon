@@ -10,7 +10,7 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
 	if not is_occupied: 
-		#pickup()
+		pickup()
 		is_occupied = true
 
 func interact() -> void:
@@ -31,21 +31,15 @@ func pickup():
 	if object_ref is RigidBody3D:
 		object_ref.angular_velocity = Vector3.ZERO
 		object_ref.linear_velocity = Vector3.ZERO
-		#object_ref.set_collision_layer_value(1, false)
 
-	#object_ref.reparent(player_hand.get_parent().get_parent().get_parent())
 	object_ref.global_position = player_hand.global_transform.origin
 	object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
 	is_occupied = true
 
 func drop():
-	var current_transform = object_ref.global_transform
-	object_ref.global_transform = current_transform
-
 	is_occupied = false
 	object_ref.angular_velocity = Vector3.ZERO
 	object_ref.linear_velocity = Vector3.ZERO
-	#object_ref.set_collision_layer_value(1, true)
 
 func _holddable_throw() -> void:
 	drop()
