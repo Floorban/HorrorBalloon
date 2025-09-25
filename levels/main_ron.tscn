@@ -1,14 +1,36 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6wx1n6c10kdb"]
+[gd_scene load_steps=37 format=3 uid="uid://b6wx1n6c10kdb"]
 
-[ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="1_t31ub"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_ckh3t"]
-[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_tvkmm"]
-[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="4_u5dh0"]
-[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="5_ma4g6"]
-[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="6_jcfjw"]
+[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="1_hlesg"]
+[ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="2_aoj1o"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_tfcfr"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="4_wgpd5"]
+[ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="5_au4jy"]
+[ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="6_vpipd"]
+[ext_resource type="PackedScene" uid="uid://ja7nqofkhdo5" path="res://levels/EnvironmentAssets/pole_1.tscn" id="7_f7ruo"]
+[ext_resource type="PackedScene" uid="uid://bbxmp8prsr10v" path="res://levels/EnvironmentAssets/pole_2.tscn" id="8_c3jnk"]
+[ext_resource type="PackedScene" uid="uid://cr5gwsrar7pc3" path="res://levels/EnvironmentAssets/pole_3.tscn" id="9_xm6ay"]
+[ext_resource type="PackedScene" uid="uid://dvlnroh21h3eb" path="res://levels/EnvironmentAssets/pole_4.tscn" id="10_pu6eq"]
+[ext_resource type="PackedScene" uid="uid://bv6muk2nvcy7s" path="res://levels/EnvironmentAssets/pole_5.tscn" id="11_mc61m"]
+[ext_resource type="PackedScene" uid="uid://jqjn6eh0vuwh" path="res://levels/EnvironmentAssets/pole_6.tscn" id="12_v4s63"]
+[ext_resource type="PackedScene" uid="uid://jrjsxkt4m4xk" path="res://levels/EnvironmentAssets/industrial_1.tscn" id="13_ecir8"]
+[ext_resource type="PackedScene" uid="uid://3601yq2bat1e" path="res://levels/EnvironmentAssets/industrial_2.tscn" id="14_ciatu"]
+[ext_resource type="PackedScene" uid="uid://gq750vbw86x4" path="res://levels/EnvironmentAssets/industrial_3.tscn" id="15_240ji"]
+[ext_resource type="PackedScene" uid="uid://cr1lo7tu5m447" path="res://levels/EnvironmentAssets/industrial_4.tscn" id="16_3l4jd"]
+[ext_resource type="PackedScene" uid="uid://41ogjqgqcwmw" path="res://levels/EnvironmentAssets/industrial_5.tscn" id="17_q0oy2"]
+[ext_resource type="PackedScene" uid="uid://t80dhf3bjj1g" path="res://levels/EnvironmentAssets/industrial_6.tscn" id="18_jdchi"]
+[ext_resource type="PackedScene" uid="uid://cgpfmr7o14swl" path="res://levels/EnvironmentAssets/industrial_7.tscn" id="19_7jg8m"]
+[ext_resource type="PackedScene" uid="uid://5s6va6v8lxnr" path="res://levels/EnvironmentAssets/industrial_8.tscn" id="20_3d0jy"]
+[ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="21_f26yt"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="22_dgvi8"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="23_nxhe4"]
+[ext_resource type="PackedScene" uid="uid://dlai6gguviarl" path="res://interaction/holddable/plank_1.tscn" id="24_2lpkk"]
+[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="25_t4fu4"]
+[ext_resource type="PackedScene" uid="uid://ur8h2dgbckhg" path="res://interaction/holddable/plank_2.tscn" id="26_seb3f"]
+[ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/holddable/plank_3.tscn" id="27_ktsq1"]
+[ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/holddable/plank_4.tscn" id="28_ninoy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
-shader = ExtResource("1_t31ub")
+shader = ExtResource("5_au4jy")
 shader_parameter/exposure = 1.0
 shader_parameter/contrast = 1.05
 shader_parameter/saturation = 0.9
@@ -28,8 +50,8 @@ shader_parameter/viewport_size_override = Vector2(0, 0)
 size = Vector2(1920, 1080)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8sk2"]
-sky_top_color = Color(0.39370683, 0.2105827, 0.13718012, 1)
-sky_horizon_color = Color(0.35507524, 0.25341445, 0.22689277, 1)
+sky_top_color = Color(0.393707, 0.210583, 0.13718, 1)
+sky_horizon_color = Color(0.355075, 0.253414, 0.226893, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
 
@@ -41,20 +63,45 @@ background_mode = 2
 sky = SubResource("Sky_j8sk2")
 tonemap_mode = 3
 sdfgi_enabled = true
+fog_enabled = true
+fog_light_energy = 0.2
+fog_sky_affect = 0.791
 volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.68307734, 0.6830774, 0.68307734, 1)
-volumetric_fog_emission = Color(0.416584, 0.13301322, 0.17185235, 1)
+volumetric_fog_density = 0.001
+volumetric_fog_albedo = Color(0.683077, 0.683077, 0.683077, 1)
+volumetric_fog_emission = Color(0.416584, 0.133013, 0.171852, 1)
 volumetric_fog_emission_energy = 0.1
 volumetric_fog_length = 128.0
 adjustment_enabled = true
 adjustment_brightness = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j8sk2"]
-size = Vector3(7.1563263, 0.048828125, 3.9892578)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6et1j"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_n4swq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21ko3"]
+albedo_texture = ExtResource("6_vpipd")
+uv1_scale = Vector3(5000, 5000, 5000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6et1j"]
+material = SubResource("StandardMaterial3D_21ko3")
+size = Vector2(9999, 9999)
 
 [node name="Main" type="Node3D"]
+
+[node name="AudioManager" parent="." instance=ExtResource("1_hlesg")]
+
+[node name="Cloud_1" parent="." instance=ExtResource("2_aoj1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
+size = Vector3(100, 100, 100)
+
+[node name="Player" parent="." instance=ExtResource("3_tfcfr")]
+transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -2.114375, 0.44170666, -1.1060312)
+
+[node name="Balloon" parent="." instance=ExtResource("4_wgpd5")]
+transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.95265615, 4.450685, 0, -3.308285)
+collision_layer = 2147483649
+collision_mask = 2147483649
+basket_size = Vector3(6.3, 5, 6.3)
+verticle_base_force = 8.0
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -68,68 +115,162 @@ mesh = SubResource("QuadMesh_bg8b8")
 environment = SubResource("Environment_mkte3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
-transform = Transform3D(-0.18572283, 0.6633256, -0.724918, 0.16462597, 0.7483309, 0.6425723, 0.9687132, 0, -0.24818276, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.185723, 0.663326, -0.724918, 0.164626, 0.748331, 0.642572, 0.968713, 0, -0.248183, 0, 0, 0)
+light_color = Color(0.153999, 0.391093, 0.421322, 1)
+light_angular_distance = 30.0
 
-[node name="CSGMesh3D" type="StaticBody3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.4424267, -0.86764, 0)
+[node name="Ground" type="StaticBody3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44243, -0.86764, 0)
+collision_layer = 2147483649
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
-shape = SubResource("BoxShape3D_j8sk2")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Ground"]
+shape = SubResource("WorldBoundaryShape3D_6et1j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/CSGMesh3D"]
-transform = Transform3D(3.5743504, 0, 0, 0, 1, 0, 0, 0, 2.0414488, -0.70807123, 0, 0)
-mesh = SubResource("PlaneMesh_n4swq")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Ground"]
+mesh = SubResource("PlaneMesh_6et1j")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.8706422, 5.230399, -15.352704)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Poles" type="Node3D" parent="Env"]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -7.744095, -2.8969574, -0.45537984)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole1" parent="Env/Poles" instance=ExtResource("7_f7ruo")]
+transform = Transform3D(15.695, 0, -15.695, 0, 22.1961, 0, 15.695, 0, 15.695, -67.4044, -0.187633, -89.2596)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 10.385979, 1.1293879, -7.3013687)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole2" parent="Env/Poles" instance=ExtResource("8_c3jnk")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 187.263, -0.187625, -11.7681)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 7.567256, 1.7426643, 10.42232)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole3" parent="Env/Poles" instance=ExtResource("9_xm6ay")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 185.466, -0.187633, -119.651)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 25.216011, -2.035718, 10.051509)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole4" parent="Env/Poles" instance=ExtResource("10_pu6eq")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -38.4956, -0.187633, 128.709)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 18.919073, 3.3839562, -15.531366)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole5" parent="Env/Poles" instance=ExtResource("11_mc61m")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 151.375, -0.187641, 80.3351)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Env"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 15.914172, 2.3841858e-07, 1.4379094)
-size = Vector3(0.14355469, 1, 0.123046875)
+[node name="Pole6" parent="Env/Poles" instance=ExtResource("12_v4s63")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -104.294, -0.187633, 74.2812)
 
-[node name="Balloon" parent="." instance=ExtResource("2_ckh3t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.41064, 12.46198, -0.47116137)
-mass = 10.0
+[node name="Pole7" parent="Env/Poles" instance=ExtResource("7_f7ruo")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 88.9111, -0.187633, -71.3395)
 
-[node name="Player" parent="Balloon" instance=ExtResource("3_tvkmm")]
-transform = Transform3D(-0.86661816, 0, 0.49897182, 0, 1, 0, -0.49897182, 0, -0.86661816, 1.9694691, 0.34684277, -1.7382042)
+[node name="Pole8" parent="Env/Poles" instance=ExtResource("8_c3jnk")]
+transform = Transform3D(13.4879, 0, -17.628, 0, 22.1961, 0, 17.628, 0, 13.4879, -8.68972, -0.187633, -158.356)
 
-[node name="Cube_1kg" parent="Balloon" instance=ExtResource("4_u5dh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1780186, 1.7767951, 0)
+[node name="Pole9" parent="Env/Poles" instance=ExtResource("9_xm6ay")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, -5.10872, -0.187633, -92.6173)
 
-[node name="Cube_5kg" parent="Balloon" instance=ExtResource("5_ma4g6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342706, 1.3784277, -1.8349178)
+[node name="Pole10" parent="Env/Poles" instance=ExtResource("10_pu6eq")]
+transform = Transform3D(20.3674, 0, 8.82262, 0, 22.1961, 0, -8.82262, 0, 20.3674, 196.499, -0.187633, 201.241)
+
+[node name="Pole11" parent="Env/Poles" instance=ExtResource("11_mc61m")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 117.198, 2.03198, -194.993)
+
+[node name="Pole13" parent="Env/Poles" instance=ExtResource("11_mc61m")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 16.3217, 2.03198, 21.2984)
+
+[node name="Pole12" parent="Env/Poles" instance=ExtResource("12_v4s63")]
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 21.5267, -0.187633, 96.4068)
+
+[node name="Industrial" type="Node3D" parent="Env"]
+
+[node name="Industrial_1" parent="Env/Industrial" instance=ExtResource("13_ecir8")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -223.754, 0, -60.2821)
+
+[node name="Industrial_2" parent="Env/Industrial" instance=ExtResource("14_ciatu")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -240.941, 0, 80.6438)
+
+[node name="Industrial_3" parent="Env/Industrial" instance=ExtResource("15_240ji")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -187.411, 0, 220.025)
+
+[node name="Industrial_4" parent="Env/Industrial" instance=ExtResource("16_3l4jd")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -19.5761, -1.52588e-05, 231.746)
+
+[node name="Industrial_5" parent="Env/Industrial" instance=ExtResource("17_q0oy2")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -337.121, 0, 193.267)
+
+[node name="Industrial_6" parent="Env/Industrial" instance=ExtResource("18_jdchi")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -408.98, 0, 4.10755)
+
+[node name="Industrial_7" parent="Env/Industrial" instance=ExtResource("19_7jg8m")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -146.379, 0, -40.2109)
+
+[node name="Industrial_8" parent="Env/Industrial" instance=ExtResource("20_3d0jy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2752, 0, 54.707)
+
+[node name="Industrial_9" parent="Env/Industrial" instance=ExtResource("21_f26yt")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.055, 11.0605, -177.629)
+
+[node name="Resource" type="Node3D" parent="Env"]
+
+[node name="Cube_5kg" parent="Env/Resource" instance=ExtResource("22_dgvi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.471161)
+
+[node name="Cube_5kg2" parent="Env/Resource" instance=ExtResource("22_dgvi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, -4.7508335)
+
+[node name="Cube_5kg3" parent="Env/Resource" instance=ExtResource("22_dgvi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, 0.6485305)
+
+[node name="Cube_10kg" parent="Env/Resource" instance=ExtResource("23_nxhe4")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -7.0405912, 1.0022688, -5.0152836)
 contact_monitor = true
 max_contacts_reported = 1
 
-[node name="Log1" parent="." instance=ExtResource("6_jcfjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4512, 14.131884, -2.2662067)
+[node name="Cube_10kg2" parent="Env/Resource" instance=ExtResource("23_nxhe4")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -3.471321, 1.0022688, 0.7975464)
+contact_monitor = true
+max_contacts_reported = 1
 
-[node name="Log2" parent="." instance=ExtResource("6_jcfjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -1.5506699)
+[node name="Cube_10kg3" parent="Env/Resource" instance=ExtResource("23_nxhe4")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 4.897442, 1.0022688, -3.5964394)
+contact_monitor = true
+max_contacts_reported = 1
 
-[node name="Log3" parent="." instance=ExtResource("6_jcfjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.069742, 14.131884, -2.115838)
+[node name="Cube_10kg4" parent="Env/Resource" instance=ExtResource("23_nxhe4")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 6.6900043, 6.012529, -3.5964394)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Log1" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -15.4760895, -0.46390438, 0.862079)
+
+[node name="Log2" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -13.7064705, -0.46390438, 0.85182893)
+
+[node name="Log3" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -13.931992, -0.46390438, 1.370059)
+
+[node name="Log4" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -11.04616, -0.5815468, -0.051301003)
+
+[node name="Log5" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -12.502148, -0.5815468, -1.057163)
+
+[node name="Log6" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -12.020321, -0.5815468, -1.352563)
+
+[node name="Log7" parent="Env/Resource" instance=ExtResource("25_t4fu4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153419, 2.9294996, -4.51141)
+
+[node name="Plank1" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.520163, 0.568059, -0.637761, -0.359038, 0.822988, 0.440208, 0.774933, 0, 0.632043, -4.2036185, 0.8698592, -5.88489)
+
+[node name="Plank2" parent="Env/Resource" instance=ExtResource("26_seb3f")]
+transform = Transform3D(0.560914, 0, -0.827874, 0.222882, 0.963078, 0.15101, 0.797308, -0.269222, 0.540204, -4.0976176, 0.8698592, -2.48231)
+
+[node name="Plank3" parent="Env/Resource" instance=ExtResource("27_ktsq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.056218, 0.8698592, -7.70926)
+
+[node name="Plank4" parent="Env/Resource" instance=ExtResource("28_ninoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6500182, 0.8698592, -6.23422)
+
+[node name="Log8" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, 4.2687483, 5.8727055, 1.370059)
+
+[node name="Log9" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 7.154582, 5.755063, -0.051301003)
+
+[node name="Log10" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.6764776, -0.720673, 0.9785596, 0, -0.2059654, 5.289296, 4.6932335, -1.0571632)
+
+[node name="Log11" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 6.180419, 4.6932335, -1.3525629)

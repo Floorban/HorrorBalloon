@@ -28,11 +28,24 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	listener.global_transform = player.global_transform
 
-func play(event_name: String, source_transform : Transform3D = global_transform):
-	var event: FmodEvent = FmodServer.create_event_instance(event_name)
-	if event.is_valid():
+func play(sound: String, source_transform : Transform3D = global_transform):
+	var event: FmodEvent = FmodServer.create_event_instance(sound)
+	if event.is_valid(): 
 		if source_transform == global_transform : event.set_3d_attributes(source_transform)
 		event.start()
 		event.release()
-	else: print(event_name + " not found, check for spelling mistakes!")
-	pass
+	else: print(sound + " not found, check for spelling mistakes!")
+
+
+func play_instance(sound: String, source_transform : Transform3D = global_transform) -> FmodEvent:
+	var event: FmodEvent = FmodServer.create_event_instance(sound)
+	if event.is_valid():
+		if source_transform == global_transform : event.set_3d_attributes(source_transform)
+		event.start()
+		return event
+	else: print(sound + " not found, check for spelling mistakes!")
+	return
+
+#func clear_instance(instance: FmodEvent):
+	#instance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+	#instance.release()

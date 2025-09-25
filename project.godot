@@ -38,6 +38,7 @@ enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/verlet_r
 [global_group]
 
 interactable=""
+audio=""
 
 [input]
 

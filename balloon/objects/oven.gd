@@ -13,7 +13,16 @@ var objs_to_burn: Array[InteractionHolddable] = []
 @onready var weight_label: Label = %WeightLabel
 var total_weight : float
 
+var i_flame: FmodEventEmitter3D
+var i_flame_is_playing: bool
+
+@onready var flame: GPUParticles3D
+
 func _ready() -> void:
+	i_flame = get_node("Flame/SFX_Flame")
+	i_flame.play()
+	i_flame.paused = true
+	flame = get_node("Flame")
 	if fuel_bar:
 		fuel_bar.max_value = MAX_FUEL
 		fuel_bar.value = current_fuel
@@ -22,9 +31,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if current_fuel > 0.0:
-		current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+			flame.emitting = true
+			if !i_flame_is_playing:
+				i_flame.paused = false
+				i_flame_is_playing = true
+			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+	else:
+		flame.emitting = false
+		i_flame_is_playing = false
+		i_flame.paused = true
+	
 	if fuel_bar:
 		fuel_bar.value = current_fuel
+
+func perform_once_action():
+	print("hi")
 
 func execute(_percentage: float) -> void:
 	if randf() > 0.1: ## Horror feeling lol
