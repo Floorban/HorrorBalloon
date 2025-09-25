@@ -93,10 +93,9 @@ size = Vector3(100, 100, 100)
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 collision_mask = 2147483648
 basket_size = Vector3(6.3, 5, 6.3)
-verticle_base_force = 8.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -0.5789995, 0.78996325, 1.3769393)
+transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, 0, 0, 0)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1

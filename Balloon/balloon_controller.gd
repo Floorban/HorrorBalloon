@@ -38,7 +38,6 @@ func _ready() -> void:
 	obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(_delta: float) -> void:
-	#_update_objects_list()
 	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
 	if is_on_ground:
@@ -49,43 +48,10 @@ func _physics_process(_delta: float) -> void:
 			return
 	else:
 		gravity_scale = GRAVITY
+		self.sleeping = false
 
 	_apply_vertical_force()
 	_apply_horizontal_force()
-
-#func _update_objects_list() -> void:
-	#var raw_nodes: Array[Node] = get_tree().get_nodes_in_group("interactable")
-	#objs_in_balloon.clear()
-#
-	#for node in raw_nodes:
-		#var rel_pos : Vector3 = Vector3.ZERO
-		#if node is InteractionComponent:
-			#rel_pos = node.object_ref.global_position - global_position
-		#else:
-			#rel_pos = node.global_position - global_position
-#
-		## Check inside bounding box (centered on balloon)
-		#if abs(rel_pos.x) <= basket_size.x * 0.5 \
-		#and abs(rel_pos.y) <= basket_size.y * 0.5 \
-		#and abs(rel_pos.z) <= basket_size.z * 0.5:
-			#var weight := 1.0
-			#if node == player:
-				#weight = player_weight
-			#elif node.has_method("weight"):
-				#weight = node.weight
-			#objs_in_balloon[node] = weight
-#
-#func execute(percentage: float) -> void:
-	#if percentage > 0.99:
-		#change_verticle_direction(true)
-	#elif percentage < 0.01:
-		#change_verticle_direction(false)
-#
-	#if tilt_tween:
-		#tilt_tween.kill()
-#
-	#tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	#tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
 
 func execute(percentage: float) -> void:
 	## For Switch
@@ -101,46 +67,74 @@ func execute(percentage: float) -> void:
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
 
-var has_player : = false
+var _is_reparenting := false
 
 func _on_body_entered(body: Node3D) -> void:
+	if _is_reparenting:
+		return
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		if not has_player:
-			has_player = true
-			call_deferred("_deferred_attach", player)
+		_is_reparenting = true
+		call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
-		#if body.get_parent() != self:
-			#call_deferred("_deferred_attach", body)
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
-	#if body.is_in_group("interactable"):
-		#if body.get_parent() == self:
-			#call_deferred("_deferred_deattach", body)
+	if _is_reparenting:
+		return
+
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
 		if body == player:
-			has_player = false
+			_is_reparenting = true
 			call_deferred("_deferred_deattach", player)
 		total_weight = get_all_weights()
 
 func _deferred_attach(body: Node3D):
+	if not body:
+		_is_reparenting = false
+		return
 	var parent : Node = body.get_parent()
-	if parent != self:
+	if parent == self:
+		_is_reparenting = false
+		return
+
+	if obj_in_balloon_area:
+		obj_in_balloon_area.monitoring = false
+
+	if parent:
 		parent.remove_child(body)
-		add_child(body)
-		print("111")
+	add_child(body)
+	print("attached")
+
+	if obj_in_balloon_area:
+		obj_in_balloon_area.monitoring = true
+	_is_reparenting = false
 
 func _deferred_deattach(body: Node3D):
+	if not body:
+		_is_reparenting = false
+		return
 	var current_scene : Node = get_tree().current_scene
-	if body.get_parent() != current_scene:
-		body.get_parent().remove_child(body)
-		current_scene.add_child(body)
-		print("2")
+	var parent = body.get_parent()
+	if parent == current_scene:
+		_is_reparenting = false
+		return
+
+	if obj_in_balloon_area:
+		obj_in_balloon_area.monitoring = false
+
+	if parent:
+		parent.remove_child(body)
+	current_scene.add_child(body)
+	print("detached")
+
+	if obj_in_balloon_area:
+		obj_in_balloon_area.monitoring = true
+	_is_reparenting = false
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
