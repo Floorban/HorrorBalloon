@@ -1,11 +1,12 @@
 extends RigidBody3D
 class_name BalloonController
 
-@onready var obj_in_balloon_area: Area3D = $ObjInBalloonArea
+@onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
 var objs_in_balloon: Dictionary = {}
 @export var basket_size: Vector3 = Vector3(5, 3, 5)
 
 # Forces
+const GRAVITY = 0.1
 @onready var oven: Oven = %Oven
 var verticle_dir := -1
 var total_weight : float
@@ -15,7 +16,6 @@ var verticle_force : float
 var move_threshold := 0.1
 
 # Tilt
-@onready var col_bottom: CollisionShape3D = $CollisionShape3D
 @onready var mesh: Node3D = $Mesh
 @export var max_tilt_angle := 8.0
 var tilt_tween : Tween
@@ -23,7 +23,9 @@ var tilt_velocity := Vector3.ZERO
 var tilt_damping := 0.5
 var tilt_threshold := 0.005
 
+@onready var land_checks: = [%GroundCheck_6, %GroundCheck_7, %GroundCheck_8, %GroundCheck_9, %GroundCheck_10]
 @onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
+var can_land := false
 var is_on_ground := false
 
 var player: PlayerController
@@ -37,6 +39,17 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	#_update_objects_list()
+	can_land = land_checks.any(func(gc): return gc.is_colliding())
+	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
+	if is_on_ground:
+		if verticle_dir <= 0:
+			verticle_dir = 0
+			gravity_scale = 0.0
+			self.sleeping = true
+			return
+	else:
+		gravity_scale = GRAVITY
+
 	_apply_vertical_force()
 	_apply_horizontal_force()
 
@@ -82,8 +95,6 @@ func execute(percentage: float) -> void:
 		change_verticle_direction(false)
 	
 	## For Rope
-	# rotate_y(percentage)
-
 	if tilt_tween:
 		tilt_tween.kill()
 
@@ -93,11 +104,11 @@ func execute(percentage: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		#if body.get_parent() != self:
+		#if body.get_parent() != self and body.is_inside_tree():
 			#body.get_parent().remove_child(body)
 			#call_deferred("_deferred_attach",body)
 	if body.is_in_group("interactable"):
-		if body.get_parent() != self and not body.is_inside_tree():
+		if body.get_parent() != self and body.is_inside_tree():
 			body.get_parent().remove_child(body)
 			call_deferred("_deferred_attach",body)
 			
@@ -108,7 +119,7 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
-		if body.get_parent() == self and not body.is_inside_tree():
+		if body.get_parent() == self and body.is_inside_tree():
 			body.get_parent().remove_child(body)
 			call_deferred("_deferred_deattach",body)
 			
@@ -118,33 +129,32 @@ func _on_body_exited(body: Node3D) -> void:
 
 func _deferred_attach(body: RigidBody3D):
 	if body.is_inside_tree(): return
-	var gtf : Transform3D = body.global_transform
+	var gtf : Transform3D = body.global_basis
 	add_child(body)
-	body.global_transform = gtf
+	set_global_transform(gtf)
 
 func _deferred_deattach(body: RigidBody3D):
 	var current_scene : Node = get_tree().current_scene
 	var gtf : Transform3D = body.global_transform
 	current_scene.add_child(body)
-	body.global_transform = gtf
+	set_global_transform(gtf)
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
 
 func _apply_vertical_force() -> void:
+	if can_land:
+		linear_velocity.lerp(Vector3.ZERO, 0.5)
 	verticle_force = verticle_base_force - total_weight / 10.0
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
-	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
-	if is_on_ground and verticle_dir < 0:
-		verticle_dir = 0
 
 func _apply_horizontal_force() -> void:
-	if is_on_ground:
-		_tilt_to(Vector3.ZERO)
+	if is_on_ground or can_land:
+		_tilt_to(Vector3.ZERO, tilt_damping * 2.0)
 		return
 
 	var final_tilt = _compute_weighted_tilt()
-	_tilt_to(final_tilt)
+	_tilt_to(final_tilt, tilt_damping)
 
 	var horizontal_dir = Vector3(final_tilt.z, 0, final_tilt.x).normalized()
 	if horizontal_dir.length() > move_threshold:
@@ -188,10 +198,9 @@ func _compute_weighted_tilt() -> Vector3:
 
 	return Vector3.ZERO
 
-func _tilt_to(target_rot: Vector3):
+func _tilt_to(target_rot: Vector3, damping: float):
 	if tilt_tween:
 		tilt_tween.kill()
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(mesh, "rotation", target_rot, tilt_damping)
-	tilt_tween.tween_property(col_bottom, "rotation", target_rot, tilt_damping)
+	tilt_tween.tween_property(mesh, "rotation", target_rot, damping)

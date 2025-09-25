@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://dduhus42o4l1a"]
 
 [ext_resource type="ArrayMesh" uid="uid://bfa1g6d87pqpp" path="res://assets/balloon/oven.res" id="1_7twr4"]
-[ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
+[ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://Balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]
-[ext_resource type="PackedScene" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
-[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="10_71bfn"]
+[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
+[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://Balloon/flame.tscn" id="10_71bfn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o72q4"]
 height = 4.71756

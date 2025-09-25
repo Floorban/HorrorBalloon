@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=20 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://Balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://Balloon/flags.gd" id="2_2rviv"]
@@ -11,12 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://Balloon/rope_interaction.tscn" id="4_uro0l"]
 [ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_06xpq"]
-size = Vector3(6.0117188, 0.57788086, 5.995117)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
-size = Vector3(1.032959, 0.70214844, 1.0371094)
-
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdoix"]
@@ -26,38 +20,32 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_r02kb"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2428451770428
+metadata/creation_stamp = 28207667588070
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o518v"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2428485324862
+metadata/creation_stamp = 28207701142504
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w6fh3"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2428518879296
+metadata/creation_stamp = 28207734696938
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_lte6v"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2428552433730
+metadata/creation_stamp = 28207768251372
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
+size = Vector3(1.032959, 0.70214844, 1.0371094)
+
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
-collision_layer = 2147483649
-gravity_scale = 0.1
+gravity_scale = 0.0
 lock_rotation = true
+linear_damp = 0.5
 script = ExtResource("1_35dws")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_06xpq")
-
-[node name="ObjInBalloonArea" type="Area3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjInBalloonArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3034668, 0)
-shape = SubResource("BoxShape3D_rdoix")
+max_tilt_angle = 6.0
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -256,34 +244,76 @@ vertical_alignment = 1
 [node name="GroundCheck_1" type="RayCast3D" parent="Mesh"]
 unique_name_in_owner = true
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -0.5, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
 [node name="GroundCheck_2" type="RayCast3D" parent="Mesh"]
 unique_name_in_owner = true
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, 0.5)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -0.5, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
 [node name="GroundCheck_3" type="RayCast3D" parent="Mesh"]
 unique_name_in_owner = true
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, 0.5)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -0.5, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
 [node name="GroundCheck_4" type="RayCast3D" parent="Mesh"]
 unique_name_in_owner = true
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, -0.5)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -0.5, 0)
 collision_mask = 2147483648
 hit_from_inside = true
 
 [node name="GroundCheck_5" type="RayCast3D" parent="Mesh"]
 unique_name_in_owner = true
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, -0.5)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_6" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 2147483648
 hit_from_inside = true
+
+[node name="GroundCheck_7" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_8" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_9" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="GroundCheck_10" type="RayCast3D" parent="Mesh"]
+unique_name_in_owner = true
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="ObjInBalloonArea" type="Area3D" parent="Mesh"]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ObjInBalloonArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3034668, 0)
+shape = SubResource("BoxShape3D_rdoix")
