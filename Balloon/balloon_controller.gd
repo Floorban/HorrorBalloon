@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name BalloonController
 
-@onready var obj_in_balloon_area: Area3D = $Mesh/ObjInBalloonArea
+@onready var obj_in_balloon_area: Area3D = $ObjInBalloonArea
 var objs_in_balloon: Dictionary = {}
 @export var basket_size: Vector3 = Vector3(5, 3, 5)
 
@@ -15,6 +15,7 @@ var verticle_force : float
 var move_threshold := 0.1
 
 # Tilt
+@onready var col_bottom: CollisionShape3D = $CollisionShape3D
 @onready var mesh: Node3D = $Mesh
 @export var max_tilt_angle := 8.0
 var tilt_tween : Tween
@@ -26,7 +27,7 @@ var tilt_threshold := 0.005
 var is_on_ground := false
 
 var player: PlayerController
-var player_weight := 15.0
+var player_weight := 10.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -89,25 +90,39 @@ func execute(percentage: float) -> void:
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 1.0)
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	if body == player:
 		objs_in_balloon[body] = player_weight
-	elif body.get_node_or_null("InteractionComponent"):
-		var interactable : InteractionComponent = body.get_node_or_null("InteractionComponent")
-		if interactable.is_in_group("interactable"):
-			objs_in_balloon[body] = interactable.weight
-		
-	if body.get_parent() != self:
-			body.call_deferred("reparent", self, true)
+		if body.get_parent() != self:
+			var gtf : Transform3D = body.global_transform
+			body.get_parent().remove_child(body)
+			add_child(body)
+			body.global_transform = gtf
+	elif body.is_in_group("interactable"):
+		var obj = body.get_node_or_null("InteractableComponent")
+		if obj and obj.has_method("weight"):
+			objs_in_balloon[body] = obj.weight
+		if body.get_parent() != self:
+			var gtf : Transform3D = body.global_transform
+			body.get_parent().remove_child(body)
+			add_child(body)
+			body.global_transform = gtf
+
 	total_weight = get_all_weights()
 
-func _on_body_exited(body: Node) -> void:
+func _on_body_exited(body: Node3D) -> void:
 	var current_scene : Node = get_tree().current_scene
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
 		
-	if body.get_parent() != current_scene:
-		body.call_deferred("reparent", current_scene)
+	if body == player or body.is_in_group("interactable"):
+		if body.get_parent() == self:
+			var gtf : Transform3D = body.global_transform
+			body.get_parent().remove_child(body)
+			current_scene.add_child(body)
+			body.global_transform = gtf
+			#body.call_deferred("reparent",current_scene)
+		
 	total_weight = get_all_weights()
 
 func change_verticle_direction(up: bool) -> void:
@@ -176,3 +191,4 @@ func _tilt_to(target_rot: Vector3):
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(mesh, "rotation", target_rot, tilt_damping)
+	tilt_tween.tween_property(col_bottom, "rotation", target_rot, tilt_damping)

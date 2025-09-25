@@ -19,7 +19,7 @@ class_name PlayerController
 const walking_speed: float = 2.0
 const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
-const crouching_depth: float = -0.98
+const crouching_depth: float = -0.95
 var can_move := true
 var current_speed: float = 3.0
 var moving: bool = false
@@ -233,8 +233,10 @@ func set_viewing_mode() -> void:
 	if player_state != PlayerState.VIEWING:
 		viewing_yaw_origin = rotation_degrees.y
 		player_state = PlayerState.VIEWING
+		print("vi")
 	else:
 		player_state = PlayerState.IDLE_STAND
+		print("oooo")
 
 # func play_footsteps() -> void:
 # 	if moving and is_on_floor():

@@ -46,7 +46,7 @@ points = PackedVector3Array(0.15106857, 0.000960093, -0.04598614, 0.006568253, 0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hgdww"]
 points = PackedVector3Array(-0.17077461, 0.046927586, -0.0131390765, -0.013151936, 0.046927586, -0.17077461, -0.013151936, 0.05349841, -0.17077461, 0.006568253, 0.03379236, 0, -0.006572753, -0.012177698, -0.16420507, -0.16417807, -0.012177698, 0, -0.0022824, -0.0089, -0.008522851, -0.11202328, -0.0065506366, -0.11259244, 0.014472003, 0.056425437, -0.13545492, -0.11935099, 0.049314458, -0.114035234, -0.13135159, 0.05349841, 0, -0.17077461, 0.05349841, -0.0131390765, -0.059136793, 0.04035676, -0.15106599, -0.15103707, 0.0009639524, -0.04598678, -0.0022824, -0.0089, -0.15633796, -0.15103707, 0.04035676, -0.059142575, 0.001804317, 0.05173416, -0.16618711, -0.17077461, 0.027221536, 0, -0.045978423, 0.0009639524, -0.15106599, -0.16417807, -0.012177698, -0.006569542, -0.11343532, 0.049155533, -0.11957706, -0.006572753, 0.027221536, -0.17077461)
 
-[node name="Bucket_1kg" type="RigidBody3D"]
+[node name="Bucket_1kg" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
 contact_monitor = true
 max_contacts_reported = 1
@@ -104,7 +104,7 @@ shape = SubResource("ConvexPolygonShape3D_ethfg")
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.26142612, 0)
 shape = SubResource("ConvexPolygonShape3D_hgdww")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") groups=["interactable"] instance=ExtResource("2_tfl4h")]
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_tfl4h")]
 script = ExtResource("3_v8mh5")
 object_ref = NodePath("..")
 primary_se = ExtResource("4_84vo2")

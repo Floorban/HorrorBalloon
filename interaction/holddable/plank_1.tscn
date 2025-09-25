@@ -12,7 +12,7 @@ uv1_scale = Vector3(2, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b7m3b"]
 size = Vector3(0.2, 0.05, 1)
 
-[node name="Plank1" type="RigidBody3D"]
+[node name="Plank1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
 freeze_mode = 1
 contact_monitor = true
@@ -26,7 +26,7 @@ mesh = ExtResource("2_kfpjg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026201814, 0)
 shape = SubResource("BoxShape3D_b7m3b")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") groups=["interactable"] instance=ExtResource("2_1tegc")]
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1tegc")]
 script = ExtResource("3_wa4m8")
 fuel_amount = 50.0
 object_ref = NodePath("..")

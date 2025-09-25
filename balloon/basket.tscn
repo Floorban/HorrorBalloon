@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt6tmy1fu5xa2"]
+[gd_scene load_steps=9 format=3 uid="uid://bt6tmy1fu5xa2"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_6sd76"]
 [ext_resource type="Script" uid="uid://dgcxtwslmyvk" path="res://balloon/objects/interaction_basket.gd" id="2_0wdyp"]
@@ -8,9 +8,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0wdyp"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_euxwi"]
-size = Vector3(1.0957031, 0.10131836, 1.0947266)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
 size = Vector3(0.1, 0.2, 1.1)
 
@@ -18,11 +15,7 @@ size = Vector3(0.1, 0.2, 1.1)
 size = Vector3(0.20703125, 0.24121094, 0.8967285)
 
 [node name="Basket" type="StaticBody3D"]
-collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_0wdyp")
-
-[node name="Col_Bottom" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_euxwi")
 
 [node name="Col_Side_1" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, 0.100722656, 0)
