@@ -91,8 +91,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
 size = Vector3(100, 100, 100)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.450685, 0, -3.308285)
 collision_mask = 2147483648
 basket_size = Vector3(6.3, 5, 6.3)
+max_tilt_angle = 10.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
 transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, 1.8530097, 0.44170666, -1.1060312)
@@ -116,10 +118,8 @@ light_angular_distance = 30.0
 [node name="Ground" type="StaticBody3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44243, -0.86764, 0)
 collision_layer = 2147483649
-collision_mask = 2147483653
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70308685, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_6et1j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Ground"]
@@ -200,8 +200,29 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.055, 11.0605, -177.629)
 [node name="Cube_5kg" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.471161)
 
+[node name="Cube_5kg2" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, -4.7508335)
+
+[node name="Cube_5kg3" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, 0.6485305)
+
 [node name="Cube_10kg" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -7.0405912, 7.065646, -5.0152836)
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -7.0405912, 1.0022688, -5.0152836)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Cube_10kg2" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -3.471321, 1.0022688, 0.7975464)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Cube_10kg3" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 4.897442, 1.0022688, -3.5964394)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Cube_10kg4" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 6.6900043, 6.012529, -3.5964394)
 contact_monitor = true
 max_contacts_reported = 1
 

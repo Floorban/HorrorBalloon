@@ -6,7 +6,7 @@ var objs_in_balloon: Dictionary = {}
 @export var basket_size: Vector3 = Vector3(5, 3, 5)
 
 # Forces
-const GRAVITY = 0.0
+const GRAVITY = 0.1
 @onready var oven: Oven = %Oven
 var verticle_dir := -1
 var total_weight : float
@@ -29,7 +29,7 @@ var can_land := false
 var is_on_ground := false
 
 var player: PlayerController
-var player_weight := 3.0
+var player_weight := 20.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -43,15 +43,12 @@ func _physics_process(_delta: float) -> void:
 	# can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
 	if is_on_ground:
-		if verticle_dir <= 0:
+		if verticle_dir < 0:
 			verticle_dir = 0
 	# 		gravity_scale = 0.0
-	# 		self.sleeping = true
 	# 		return
 	# else:
 	# 	gravity_scale = GRAVITY
-	# 	self.sleeping = false
-
 
 func execute(percentage: float) -> void:
 	## For Switch
@@ -104,17 +101,22 @@ func _deferred_attach(body: Node3D):
 		_is_reparenting = false
 		return
 
+	var old_transform: Transform3D = body.global_transform
+
 	if obj_in_balloon_area:
 		obj_in_balloon_area.monitoring = false
 
 	if parent:
 		parent.remove_child(body)
 	add_child(body)
+
+	body.global_transform = old_transform
 	print("attached")
 
 	if obj_in_balloon_area:
 		obj_in_balloon_area.monitoring = true
 	_is_reparenting = false
+
 
 func _deferred_deattach(body: Node3D):
 	if not body:
@@ -126,12 +128,16 @@ func _deferred_deattach(body: Node3D):
 		_is_reparenting = false
 		return
 
+	var old_transform: Transform3D = body.global_transform
+
 	if obj_in_balloon_area:
 		obj_in_balloon_area.monitoring = false
 
 	if parent:
 		parent.remove_child(body)
 	current_scene.add_child(body)
+
+	body.global_transform = old_transform
 	print("detached")
 
 	if obj_in_balloon_area:
@@ -144,7 +150,7 @@ func change_verticle_direction(up: bool) -> void:
 func _apply_vertical_force() -> void:
 	if can_land:
 		linear_velocity.lerp(Vector3.ZERO, 0.5)
-	verticle_force = verticle_base_force
+	verticle_force = verticle_base_force - get_all_weights() / 10.0
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
 
 func _apply_horizontal_force() -> void:

@@ -20,19 +20,19 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4985920246749
+metadata/creation_stamp = 6838192001708
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4985953801183
+metadata/creation_stamp = 6838225557118
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4985987355627
+metadata/creation_stamp = 6838259110833
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4986020910051
+metadata/creation_stamp = 6838292664902
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -243,76 +243,6 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GroundCheck_1" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0)
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_2" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, 0.5)
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_3" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, 0.5)
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_4" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, -0.5)
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_5" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, -0.5)
-target_position = Vector3(0, -0.5, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_6" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_7" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, 0.5)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_8" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, 0.5)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_9" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5, 0, -0.5)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
-[node name="GroundCheck_10" type="RayCast3D" parent="Mesh"]
-unique_name_in_owner = true
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5, 0, -0.5)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483648
-hit_from_inside = true
-
 [node name="ObjInBalloonArea" type="Area3D" parent="Mesh"]
 unique_name_in_owner = true
 disable_mode = 2
@@ -327,3 +257,56 @@ physics_interpolation_mode = 1
 auto_translate_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17370605, 0)
 shape = SubResource("BoxShape3D_rdoix")
+
+[node name="GroundCheck_1" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+collision_mask = 2147483648
+
+[node name="GroundCheck_2" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+collision_mask = 2147483648
+
+[node name="GroundCheck_3" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+collision_mask = 2147483648
+
+[node name="GroundCheck_4" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+collision_mask = 2147483648
+
+[node name="GroundCheck_5" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+collision_mask = 2147483648
+
+[node name="GroundCheck_6" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_7" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_8" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_9" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_10" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2147483648
