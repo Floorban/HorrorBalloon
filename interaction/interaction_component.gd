@@ -26,9 +26,6 @@ var previous_mouse_position: Vector2
 #var tertiary_audio_player: AudioStreamPlayer3D
 var last_velocity: Vector3 = Vector3.ZERO
 var contact_velocity_threshold: float = 1.0
-#@export var primary_se: AudioStreamOggVorbis
-#@export var secondary_se: AudioStreamOggVorbis
-#@export var tertiary_se: AudioStreamOggVorbis
 
 # func get_prefab_root() -> Node:
 # 	var node := self

@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhifhdp582mcf"]
+[gd_scene load_steps=7 format=3 uid="uid://dhifhdp582mcf"]
 
 [ext_resource type="Texture2D" uid="uid://co5s5y18dhgev" path="res://assets/kenney_protoype_textures/PNG/Purple/texture_01.png" id="1_j7xx1"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_khffo"]
 [ext_resource type="Script" uid="uid://cd5r32b01sm8a" path="res://interaction/door/interaction_door.gd" id="3_sm51m"]
-[ext_resource type="AudioStream" uid="uid://dcxprooa8cia3" path="res://assets/sound_effects/DoorClose2.ogg" id="4_mpjp8"]
-[ext_resource type="AudioStream" uid="uid://c71j68mfq7ibg" path="res://assets/sound_effects/keypad_failure.ogg" id="5_0nmew"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4hvcy"]
 size = Vector3(1.6, 2.6, 0.1)
@@ -38,9 +36,6 @@ script = ExtResource("3_sm51m")
 door_smoothing = 80.0
 is_locked = false
 object_ref = NodePath("../../..")
-primary_se = ExtResource("4_mpjp8")
-secondary_se = ExtResource("5_0nmew")
-tertiary_se = ExtResource("5_0nmew")
 
 [node name="Label3D" type="Label3D" parent="PivotPoint/Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.772632, 2.25389, 0.0714302)

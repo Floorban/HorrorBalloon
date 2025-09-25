@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt6tmy1fu5xa2"]
+[gd_scene load_steps=6 format=3 uid="uid://bt6tmy1fu5xa2"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_6sd76"]
 [ext_resource type="Script" uid="uid://dgcxtwslmyvk" path="res://balloon/objects/interaction_basket.gd" id="2_0wdyp"]
-[ext_resource type="AudioStream" uid="uid://dcxprooa8cia3" path="res://assets/sound_effects/DoorClose2.ogg" id="3_ylih6"]
-[ext_resource type="AudioStream" uid="uid://d2cs8q0fvfc47" path="res://assets/sound_effects/lever_pull.ogg" id="4_h2r1e"]
-[ext_resource type="AudioStream" uid="uid://c71j68mfq7ibg" path="res://assets/sound_effects/keypad_failure.ogg" id="5_ti08h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_csh10"]
 size = Vector3(0.9416504, 0.072265625, 0.93847656)
@@ -63,9 +60,6 @@ shape = SubResource("BoxShape3D_ylih6")
 [node name="InteractionComponent" parent="." instance=ExtResource("1_6sd76")]
 script = ExtResource("2_0wdyp")
 _hold_to_switch = false
-primary_se = ExtResource("3_ylih6")
-secondary_se = ExtResource("4_h2r1e")
-tertiary_se = ExtResource("5_ti08h")
 
 [node name="Exit_1" type="Marker3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7, 0, 0)

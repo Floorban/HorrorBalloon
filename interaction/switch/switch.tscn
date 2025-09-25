@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cprcy3ipbbl73"]
+[gd_scene load_steps=5 format=3 uid="uid://cprcy3ipbbl73"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_bd5kx"]
 [ext_resource type="Script" uid="uid://cnlu27fc4vjhy" path="res://interaction/switch/interaction_switch.gd" id="2_r437o"]
-[ext_resource type="AudioStream" uid="uid://dcxprooa8cia3" path="res://assets/sound_effects/DoorClose2.ogg" id="3_mkcad"]
-[ext_resource type="AudioStream" uid="uid://bs4ibc7hslmnh" path="res://assets/sound_effects/keypad_press.ogg" id="4_25sgr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rbxwc"]
 size = Vector3(0.1, 0.75, 0.1)
@@ -26,6 +24,3 @@ shape = SubResource("BoxShape3D_bd5kx")
 script = ExtResource("2_r437o")
 object_ref = NodePath("../..")
 pivot_point = NodePath("..")
-primary_se = ExtResource("3_mkcad")
-secondary_se = ExtResource("4_25sgr")
-tertiary_se = ExtResource("3_mkcad")

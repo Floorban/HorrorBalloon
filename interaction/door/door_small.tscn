@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d147nb65gyp54"]
+[gd_scene load_steps=7 format=3 uid="uid://d147nb65gyp54"]
 
 [ext_resource type="Texture2D" uid="uid://b856i8o5uq2ob" path="res://assets/stolen/props/tex_pirate_scenery.png" id="1_vom5i"]
 [ext_resource type="ArrayMesh" uid="uid://ce4f05oxlc07m" path="res://assets/stolen/props/window_005.obj" id="2_e4mx4"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_ewslu"]
 [ext_resource type="Script" uid="uid://cd5r32b01sm8a" path="res://interaction/door/interaction_door.gd" id="3_vom5i"]
-[ext_resource type="AudioStream" uid="uid://b3ge80vub6p6p" path="res://assets/sound_effects/DoorClose.ogg" id="4_e4mx4"]
-[ext_resource type="AudioStream" uid="uid://dcxprooa8cia3" path="res://assets/sound_effects/DoorClose2.ogg" id="5_nux0q"]
-[ext_resource type="AudioStream" uid="uid://bvbk4xjx711wx" path="res://assets/sound_effects/DoorCreak.ogg" id="6_2xoaw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nux0q"]
 shading_mode = 0
@@ -40,9 +37,6 @@ door_smoothing = 80.0
 is_locked = false
 object_ref = NodePath("../../..")
 pivot_point = NodePath("../..")
-primary_se = ExtResource("4_e4mx4")
-secondary_se = ExtResource("5_nux0q")
-tertiary_se = ExtResource("6_2xoaw")
 
 [node name="Label3D" type="Label3D" parent="PivotPoint/Door"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0.78947955, 1.6616669, 0.08786863)
