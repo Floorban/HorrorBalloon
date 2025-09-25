@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=36 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
@@ -24,8 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://5s6va6v8lxnr" path="res://levels/EnvironmentAssets/industrial_8.tscn" id="23_i3naf"]
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="25_vpyym"]
-[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/holddable/log_2.tscn" id="26_i3naf"]
-[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/holddable/log_3.tscn" id="27_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://ur8h2dgbckhg" path="res://interaction/holddable/plank_2.tscn" id="28_8a5tp"]
 [ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/holddable/plank_3.tscn" id="29_f1mgo"]
 [ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/holddable/plank_4.tscn" id="30_duofn"]
@@ -93,14 +91,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
 size = Vector3(100, 100, 100)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.160536, 5.961635, -0.471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.736012, 4.239387, -4.521721)
 collision_mask = 2147483648
 basket_size = Vector3(6.3, 5, 6.3)
 verticle_base_force = 8.0
 max_tilt_angle = 8.0
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -0.5789995, 0.789963, 1.3769393)
+transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -0.5789995, 0.78996325, 1.3769393)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -206,7 +204,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.055, 11.0605, -177.629)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.80506, -0.6735945, -0.471161)
 
 [node name="Cube_10kg" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -35.017464, -0.65222454, -2.306081)
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -27.415703, 7.065646, -5.0152836)
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -220,33 +218,25 @@ transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935
 transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, -34.307102, -0.46390438, 1.370059)
 
 [node name="Log4" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -31.42127, -0.9790373, -0.051301003)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -31.42127, -0.5815468, -0.051301003)
 
 [node name="Log5" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -32.87726, -0.9790373, -1.057163)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -32.87726, -0.5815468, -1.057163)
 
 [node name="Log6" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -32.39543, -0.9790373, -1.352563)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, -32.39543, -0.5815468, -1.352563)
 
 [node name="Log7" parent="Env/Resource" instance=ExtResource("25_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.52853, 2.9294996, -4.51141)
 
-[node name="Log8" parent="Env/Resource" instance=ExtResource("26_i3naf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.69883, 2.9294996, -4.51141)
-collision_layer = 1
-
-[node name="Log9" parent="Env/Resource" instance=ExtResource("27_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.09013, 2.9294996, -6.40812)
-collision_layer = 1
-
 [node name="Plank1" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.520163, 0.568059, -0.637761, -0.359038, 0.822988, 0.440208, 0.774933, 0, 0.632043, -24.57873, 2.9294996, -5.88489)
+transform = Transform3D(0.520163, 0.568059, -0.637761, -0.359038, 0.822988, 0.440208, 0.774933, 0, 0.632043, -24.57873, 0.8698592, -5.88489)
 
 [node name="Plank2" parent="Env/Resource" instance=ExtResource("28_8a5tp")]
-transform = Transform3D(0.560914, 0, -0.827874, 0.222882, 0.963078, 0.15101, 0.797308, -0.269222, 0.540204, -24.472729, 2.9294996, -2.48231)
+transform = Transform3D(0.560914, 0, -0.827874, 0.222882, 0.963078, 0.15101, 0.797308, -0.269222, 0.540204, -24.472729, 0.8698592, -2.48231)
 
 [node name="Plank3" parent="Env/Resource" instance=ExtResource("29_f1mgo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.43133, 2.9294996, -7.70926)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.43133, 0.8698592, -7.70926)
 
 [node name="Plank4" parent="Env/Resource" instance=ExtResource("30_duofn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.02513, 2.9294996, -6.23422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.02513, 0.8698592, -6.23422)
