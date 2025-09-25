@@ -38,17 +38,21 @@ func _ready() -> void:
 	obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(_delta: float) -> void:
-	_apply_vertical_force()
-	_apply_horizontal_force()
-	# can_land = land_checks.any(func(gc): return gc.is_colliding())
+	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
-	if is_on_ground:
+	if can_land and verticle_dir <= 0:
+		linear_velocity = Vector3.ZERO
+
+	if is_on_ground or can_land:
 		if verticle_dir < 0:
 			verticle_dir = 0
-	# 		gravity_scale = 0.0
-	# 		return
-	# else:
-	# 	gravity_scale = GRAVITY
+			gravity_scale = 0.0
+			return
+	else:
+		gravity_scale = GRAVITY
+
+	_apply_vertical_force()
+	_apply_horizontal_force()
 
 func execute(percentage: float) -> void:
 	## For Switch
@@ -111,7 +115,6 @@ func _deferred_attach(body: Node3D):
 	add_child(body)
 
 	body.global_transform = old_transform
-	print("attached")
 
 	if obj_in_balloon_area:
 		obj_in_balloon_area.monitoring = true
@@ -138,7 +141,6 @@ func _deferred_deattach(body: Node3D):
 	current_scene.add_child(body)
 
 	body.global_transform = old_transform
-	print("detached")
 
 	if obj_in_balloon_area:
 		obj_in_balloon_area.monitoring = true
@@ -148,8 +150,6 @@ func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
 
 func _apply_vertical_force() -> void:
-	if can_land:
-		linear_velocity.lerp(Vector3.ZERO, 0.5)
 	verticle_force = verticle_base_force - get_all_weights() / 10.0
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
 
@@ -192,7 +192,7 @@ func _compute_weighted_tilt() -> Vector3:
 		var x_dir = clamp(rel_pos.x, -1.0, 1.0)
 		var z_dir = clamp(rel_pos.z, -1.0, 1.0)
 		
-		total_influence += Vector3(z_dir * weight, 0.0, -x_dir * weight)
+		total_influence += Vector3(-z_dir * weight, 0.0, x_dir * weight)
 		weight_sum += weight
 		
 	if weight_sum > 0:
