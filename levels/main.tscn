@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=39 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://ur8h2dgbckhg" path="res://interaction/holddable/plank_2.tscn" id="28_8a5tp"]
 [ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/holddable/plank_3.tscn" id="29_f1mgo"]
 [ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/holddable/plank_4.tscn" id="30_duofn"]
+[ext_resource type="PackedScene" uid="uid://cld3ovnn1jt28" path="res://enemy/monster.tscn" id="30_vpyym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -276,3 +277,16 @@ transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.67
 
 [node name="Log11" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
 transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 8.082444, 4.6932335, 0.12145305)
+
+[node name="Monster" parent="." instance=ExtResource("30_vpyym")]
+transform = Transform3D(0.2680547, 0.45279258, 0.85036784, -0.13612725, 0.89161575, -0.43184552, -0.9537379, -1.5798856e-08, 0.30063924, -142.20926, -100.18521, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Monster"]
+transform = Transform3D(-0.9997015, -0.024432193, -5.9604645e-08, -0.024030827, 0.9832779, -0.18051921, 0.0044104755, -0.18046528, -0.98357147, 13.277525, 145.72632, 42.121162)
+light_energy = 100.0
+spot_range = 100.0
+spot_angle = 27.39
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Monster"]
+transform = Transform3D(0.97468317, 0, 0.22359036, 0, 1, 0, -0.22359036, 0, 0.97468317, 3.0467753, 154.72536, 41.142548)
+omni_range = 46.623
