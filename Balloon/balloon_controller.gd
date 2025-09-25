@@ -109,7 +109,10 @@ func _on_body_entered(body: Node3D) -> void:
 			#call_deferred("_deferred_attach",body)
 	if body.is_in_group("interactable"):
 		if body.get_parent() != self and body.is_inside_tree():
+			body.linear_velocity.lerp(Vector3.ZERO, 0.1)
+			var pos : Vector3 = body.global_position
 			body.get_parent().remove_child(body)
+			body.global_position = pos
 			call_deferred("_deferred_attach",body)
 			
 		var obj = body.get_node_or_null("InteractableComponent")
@@ -128,16 +131,17 @@ func _on_body_exited(body: Node3D) -> void:
 	total_weight = get_all_weights()
 
 func _deferred_attach(body: RigidBody3D):
-	if body.is_inside_tree(): return
-	var gtf : Transform3D = body.global_basis
+	var gtf : Basis = body.global_basis
 	add_child(body)
-	set_global_transform(gtf)
+	set_global_basis(gtf)
 
 func _deferred_deattach(body: RigidBody3D):
 	var current_scene : Node = get_tree().current_scene
-	var gtf : Transform3D = body.global_transform
+	var pos : Vector3 = body.global_position
+	var gtf : Basis = body.global_basis
 	current_scene.add_child(body)
-	set_global_transform(gtf)
+	set_global_basis(gtf)
+	body.global_position = pos
 
 func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1 if up else -1
