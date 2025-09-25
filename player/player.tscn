@@ -40,7 +40,7 @@ shader_parameter/fade_strength = 0.745
 [node name="Player" type="CharacterBody3D" groups=["interactable", "player"]]
 collision_layer = 2147483649
 collision_mask = 2147483649
-motion_mode = 1
+floor_stop_on_slope = false
 script = ExtResource("1_oul6g")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
