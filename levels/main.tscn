@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=37 format=3 uid="uid://dfauikegolgu3"]
 
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="1_o6dmv"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="5_ifaiv"]
@@ -85,6 +86,8 @@ material = SubResource("StandardMaterial3D_21ko3")
 size = Vector2(9999, 9999)
 
 [node name="Main" type="Node3D"]
+
+[node name="AudioManager" parent="." instance=ExtResource("1_o6dmv")]
 
 [node name="Cloud_1" parent="." instance=ExtResource("8_6et1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
