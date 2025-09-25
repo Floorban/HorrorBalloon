@@ -22,7 +22,7 @@ func _ready():
 	super._ready()
 	starting_rotation = pivot_point.rotation.y
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
-	# nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
+	nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
 
 func _process(delta):
 	if was_just_unlocked:
@@ -50,10 +50,8 @@ func _process(delta):
 			pivot_point.rotation.y = door_angle
 			door_input_active = false
 
-			#if prev_door_angle == door_angle:
-				#stop_door_sounds(delta)
-			#else:
-				#update_door_sounds(delta)
+			if prev_door_angle != door_angle:
+				update_door_sounds(delta)
 			
 		prev_door_angle = door_angle
 
@@ -92,7 +90,7 @@ func unlock() -> void:
 	pivot_point.rotation.y = starting_rotation
 
 ## Fires when the player is interacting with a door
-#func update_door_sounds(delta: float) -> void:
+func update_door_sounds(_delta: float) -> void:
 	# Get the velocity of the door movement in this given frame.
 	# The volume should be relative to how fast/slow the playeris moving the door
 	#var velocity_amount: float = abs(door_velocity)
@@ -127,6 +125,7 @@ func unlock() -> void:
 			#primary_audio_player.stop()
 			#print("stop!")
 		door_opened = false
+		print("A")
 		notify_nodes(0)
 
 #func stop_door_sounds(delta: float) -> void:

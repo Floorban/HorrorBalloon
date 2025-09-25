@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
-	if randf() > 0.2: ## Horror feeling lol
+	if randf() > 0.1: ## Horror feeling lol
 		for obj in objs_to_burn:
 			current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
 			obj.get_parent().call_deferred("queue_free")

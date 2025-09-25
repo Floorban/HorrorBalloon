@@ -6,7 +6,7 @@ var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
 
-var player_is_out := false
+var player_is_out := true
 @onready var exit_1: Marker3D = $"../Exit_1"
 @onready var exit_2: Marker3D = $"../Exit_2"
 @onready var exit_3: Marker3D = $"../Exit_3"

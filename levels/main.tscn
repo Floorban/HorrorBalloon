@@ -90,14 +90,14 @@ size = Vector2(9999, 9999)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
 size = Vector3(100, 100, 100)
 
+[node name="Player" parent="." instance=ExtResource("3_n4swq")]
+transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -2.114375, 0.44170666, -1.1060312)
+
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.450685, 0, -3.308285)
 collision_mask = 2147483648
 basket_size = Vector3(6.3, 5, 6.3)
 max_tilt_angle = 10.0
-
-[node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, 1.8530097, 0.44170666, -1.1060312)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
