@@ -41,7 +41,7 @@ func postInteract() -> void:
 	super.postInteract()
 
 	balloon_end_rotation = balloon.global_rotation
-	var end_rot : Vector3 = player_start_rotation
+	var _end_rot : Vector3 = player_start_rotation
 	var diff_rot : Vector3 = balloon_end_rotation - balloon_start_rotation
-	end_rot = player_start_rotation + diff_rot
+	_end_rot = player_start_rotation + diff_rot
 	player.reset_player_rotation(diff_rot)

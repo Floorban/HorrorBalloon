@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{2f0afff7-fd3f-4927-b1b4-336377e72cee}">
 		<property name="name">
-			<value>Environment</value>
+			<value>Euphoria</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{c387656a-bea1-4fe7-85f7-c2de7ede4424}</destination>
+			<destination>{92c2bb81-04b1-4f53-a5d9-ccbfa8614b18}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{156b3949-5fa5-4f78-a0da-b03e6f0161c9}</destination>
@@ -35,7 +35,7 @@
 			<destination>{5d726739-1fdc-450b-a246-e02508ea6a91}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{00d2e805-4f58-43bd-88bd-1bd9fe537de2}</destination>
+			<destination>{c327f8c8-3a69-40d2-87fb-f8223a622cd5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{156b3949-5fa5-4f78-a0da-b03e6f0161c9}">
@@ -56,7 +56,7 @@
 			<destination>{0f764db2-db83-47e4-a6a7-4a3dabbfac0e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{a0f3faae-5985-4b73-b58b-f6912fa13ce2}</destination>
+			<destination>{bf3ff6bd-17e6-4e4c-8d79-a2d8c6a3f86d}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{67b1c502-7d74-4748-b6ee-6a24f9176944}">

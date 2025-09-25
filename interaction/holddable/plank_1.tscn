@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwnxwpcp74sc"]
+[gd_scene load_steps=7 format=3 uid="uid://dlai6gguviarl"]
 
 [ext_resource type="Texture2D" uid="uid://c4n8og476v1vi" path="res://assets/stolen/psx/Wood_07-512x512.png" id="1_b7m3b"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_1tegc"]

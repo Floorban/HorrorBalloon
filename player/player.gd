@@ -8,7 +8,7 @@ class_name PlayerController
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
 @onready var standup_check: RayCast3D = $StandupCheck
 @onready var interaction_controller: InteractionController = %InteractionController
-@onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
+#@onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
 @onready var note_camera: Camera3D = %NoteCamera
 
 # Note sway variables
@@ -78,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
-func reset_player_rotation(target_rot: Vector3) -> void:
+func reset_player_rotation(_target_rot: Vector3) -> void:
 	rotation = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:

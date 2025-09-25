@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="5_ifaiv"]
-[ext_resource type="PackedScene" uid="uid://bwnxwpcp74sc" path="res://interaction/holddable/plank_1.tscn" id="6_5k4jt"]
+[ext_resource type="PackedScene" uid="uid://dlai6gguviarl" path="res://interaction/holddable/plank_1.tscn" id="6_5k4jt"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="8_6et1j"]
 [ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="9_4fc0e"]

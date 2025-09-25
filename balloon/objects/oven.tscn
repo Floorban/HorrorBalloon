@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://Balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]
-[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
+[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://Balloon/fuel_bar.tscn" id="6_sicut"]
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://Balloon/flame.tscn" id="10_71bfn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o72q4"]
@@ -104,5 +104,11 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FmodEventEmitter3D" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/Ambient/Environment/Fire"
+event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
+autoplay = true
+auto_release = true
 
 [editable path="DoorSmall"]
