@@ -8,7 +8,7 @@ var objs_in_balloon: Dictionary = {}
 # Forces
 const GRAVITY = 0.1
 @onready var oven: Oven = %Oven
-var verticle_dir := -1
+var verticle_dir := -1.0
 var total_weight : float
 @export var verticle_base_force := 10.0
 var verticle_force : float
@@ -40,12 +40,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
-	if can_land and verticle_dir <= 0:
+	if can_land and linear_velocity.y <= 0.0:
 		linear_velocity = Vector3.ZERO
 
 	if is_on_ground or can_land:
-		if verticle_dir < 0:
-			verticle_dir = 0
+		if verticle_dir < 0.0:
+			verticle_dir = 0.0
 			gravity_scale = 0.0
 			return
 	else:
@@ -147,7 +147,7 @@ func _deferred_deattach(body: Node3D):
 	_is_reparenting = false
 
 func change_verticle_direction(up: bool) -> void:
-	verticle_dir = 1 if up else -1
+	verticle_dir = 1.0 if up else -0.2
 
 func _apply_vertical_force() -> void:
 	verticle_force = verticle_base_force - get_all_weights() / 10.0

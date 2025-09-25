@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cld3ovnn1jt28"]
+
+[ext_resource type="PackedScene" uid="uid://dhk70j6vlvamp" path="res://assets/stolen/Eye_Monster/scene.gltf" id="1_e21hl"]
+
+[node name="Monster" instance=ExtResource("1_e21hl")]

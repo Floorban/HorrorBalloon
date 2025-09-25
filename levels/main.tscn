@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=38 format=3 uid="uid://dfauikegolgu3"]
 
-[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="1_o6dmv"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="2_wk3pi"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket_1_kg.tscn" id="4_m1504"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box_3_kg.tscn" id="5_ifaiv"]
@@ -86,8 +87,9 @@ material = SubResource("StandardMaterial3D_21ko3")
 size = Vector2(9999, 9999)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_o6dmv")
 
-[node name="AudioManager" parent="." instance=ExtResource("1_o6dmv")]
+[node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
 
 [node name="Cloud_1" parent="." instance=ExtResource("8_6et1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
@@ -101,7 +103,7 @@ transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.
 collision_layer = 2147483649
 collision_mask = 2147483649
 basket_size = Vector3(6.3, 5, 6.3)
-verticle_base_force = 8.0
+verticle_base_force = 7.0
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -221,12 +223,12 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Cube_10kg3" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 4.897442, 1.0022688, -3.5964394)
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 4.897442, 1.0022688, -10.886214)
 contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Cube_10kg4" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 6.6900043, 6.012529, -3.5964394)
+transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 6.6900043, 6.012529, -9.851397)
 contact_monitor = true
 max_contacts_reported = 1
 
@@ -264,13 +266,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.056218, 0.8698592, -7.7092
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6500182, 0.8698592, -6.23422)
 
 [node name="Log8" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, 4.2687483, 5.8727055, 1.370059)
+transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, 6.1707735, 5.8727055, 2.844075)
 
 [node name="Log9" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 7.154582, 5.755063, -0.051301003)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 9.056607, 5.755063, 1.422715)
 
 [node name="Log10" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.6764776, -0.720673, 0.9785596, 0, -0.2059654, 5.289296, 4.6932335, -1.0571632)
+transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.6764776, -0.720673, 0.9785596, 0, -0.2059654, 7.1913214, 4.6932335, 0.4168527)
 
 [node name="Log11" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
-transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 6.180419, 4.6932335, -1.3525629)
+transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 8.082444, 4.6932335, 0.12145305)
