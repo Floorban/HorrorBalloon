@@ -244,6 +244,7 @@
 			<destination>{f91e6fa6-4acd-409a-b979-1069d584080e}</destination>
 			<destination>{4ff284a9-fe12-45aa-8e85-040a63e14127}</destination>
 			<destination>{96847151-4296-4803-af19-4e962031c133}</destination>
+			<destination>{668e77a3-d231-493e-b7f5-e4a3a19b2526}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{04b986d2-834b-4188-82e9-6408b829e63d}" />
@@ -311,6 +312,7 @@
 	<object class="MixerBusFader" id="{f91e6fa6-4acd-409a-b979-1069d584080e}" />
 	<object class="GainEffect" id="{4ff284a9-fe12-45aa-8e85-040a63e14127}" />
 	<object class="SpectrumAnalyzer" id="{96847151-4296-4803-af19-4e962031c133}" />
+	<object class="ObjectSpatialiserEffect" id="{668e77a3-d231-493e-b7f5-e4a3a19b2526}" />
 	<object class="AutomationPoint" id="{a7162202-406c-41dd-807b-61d8e04e8a18}">
 		<property name="position">
 			<value>0</value>

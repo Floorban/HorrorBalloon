@@ -18,3 +18,4 @@ mono_crash.*.json
 .cache
 .user
 .unsaved
+addons/fmod/libs/windows/~libGodotFmod.windows.editor.x86_64.dll

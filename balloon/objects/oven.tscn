@@ -68,6 +68,13 @@ debug_color = Color(0.937255, 0.156863, 0.509804, 1)
 [node name="Flame" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3319, 0)
 
+[node name="FlameSound" type="FmodEventEmitter3D" parent="Flame"]
+event_name = "event:/Ambient/Environment/Fire"
+event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
+autoplay = true
+auto_release = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.3319, 0)
+
 [node name="FuelUI" type="Sprite3D" parent="."]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 1.73746, 11.6676, 0.0641079)
 texture_filter = 0
@@ -104,11 +111,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="FmodEventEmitter3D" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/Ambient/Environment/Fire"
-event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
-autoplay = true
-auto_release = true
 
 [editable path="DoorSmall"]

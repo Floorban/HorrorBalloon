@@ -18,10 +18,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if is_interacting:
-		update_wheel_sounds(delta)
-	else:
-		stop_wheel_sounds(delta)
+	#if is_interacting:
+		#update_wheel_sounds(delta)
+	#else:
+		#stop_wheel_sounds(delta)
 		
 	if abs(wheel_kickback) > 0.001:
 		wheel_rotation += wheel_kickback
@@ -39,10 +39,10 @@ func _process(delta: float) -> void:
 		if not is_interacting and not wheel_kickback_triggered and abs(wheel_kickback) > 0.01:
 			wheel_kickback_triggered = true
 
-			if secondary_se:
-				secondary_audio_player.stop()   # reset to avoid overlap
-				secondary_audio_player.volume_db = -0.0
-				secondary_audio_player.play()
+			#if secondary_se:
+				#secondary_audio_player.stop()   # reset to avoid overlap
+				#secondary_audio_player.volume_db = -0.0
+				#secondary_audio_player.play()
 	else:
 		wheel_kickback_triggered = false
 
@@ -90,33 +90,33 @@ func update_wheel_sounds(delta: float) -> void:
 	last_wheel_angle = object_ref.rotation.z
 
 	# --- Determine target volume only if above threshold ---
-	var target_volume: float = 0.0
+	#var target_volume: float = 0.0
 	if angular_speed > wheel_creak_velocity_threshold:
 		pass
 		# target_volume = clamp((angular_speed - wheel_creak_velocity_threshold) * creak_volume_scale, 0.0, 1.0)
 
 	# --- Start looping creak if not playing and needed ---
-	if not primary_audio_player.playing and primary_se and target_volume > 0:
-		primary_audio_player.volume_db = -15.0
-		primary_audio_player.play()
+	#if not primary_audio_player.playing and primary_se and target_volume > 0:
+		#primary_audio_player.volume_db = -15.0
+		#primary_audio_player.play()
 
 	# --- Smooth fade in/out ---
-	if primary_audio_player.playing:
-		var current_vol = db_to_linear(primary_audio_player.volume_db)
-		var new_vol = lerp(current_vol, target_volume, delta * wheel_fade_speed)
-		primary_audio_player.volume_db = linear_to_db(clamp(new_vol, 0.0, 1.0))
+	#if primary_audio_player.playing:
+		#var current_vol = db_to_linear(primary_audio_player.volume_db)
+		#var new_vol = lerp(current_vol, target_volume, delta * wheel_fade_speed)
+		#primary_audio_player.volume_db = linear_to_db(clamp(new_vol, 0.0, 1.0))
 
 		# Stop sound if it has faded out completely
-		if new_vol < 0.001 and target_volume == 0.0:
-			primary_audio_player.stop()
+		#if new_vol < 0.001 and target_volume == 0.0:
+			#primary_audio_player.stop()
 
-func stop_wheel_sounds(delta: float) -> void:
-	if not primary_audio_player: return
-	if primary_audio_player.playing:
-		var current_vol = db_to_linear(primary_audio_player.volume_db)
-		var new_vol = lerp(current_vol, 0.0, delta * wheel_fade_speed)
-		primary_audio_player.volume_db = linear_to_db(clamp(new_vol, 0.0, 1.0))
-
-		# Stop completely once inaudible
-		if new_vol < 0.001:
-			primary_audio_player.stop()
+#func stop_wheel_sounds(delta: float) -> void:
+	#if not primary_audio_player: return
+	#if primary_audio_player.playing:
+		#var current_vol = db_to_linear(primary_audio_player.volume_db)
+		#var new_vol = lerp(current_vol, 0.0, delta * wheel_fade_speed)
+		#primary_audio_player.volume_db = linear_to_db(clamp(new_vol, 0.0, 1.0))
+#
+		## Stop completely once inaudible
+		#if new_vol < 0.001:
+			#primary_audio_player.stop()
