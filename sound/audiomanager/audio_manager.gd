@@ -28,6 +28,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	listener.global_transform = player.global_transform
 
+func cache(emitter: FmodEventEmitter3D) -> FmodEventEmitter3D:
+	emitter.allow_fadeout = true
+	emitter.attached = true
+	emitter.autoplay = true
+	emitter.auto_release = true
+	emitter.play()
+	emitter.paused = true
+	return emitter
+
 func play(sound: String, source_transform : Transform3D = global_transform):
 	var event: FmodEvent = FmodServer.create_event_instance(sound)
 	if event.is_valid(): 
@@ -35,7 +44,6 @@ func play(sound: String, source_transform : Transform3D = global_transform):
 		event.start()
 		event.release()
 	else: print(sound + " not found, check for spelling mistakes!")
-
 
 func play_instance(sound: String, source_transform : Transform3D = global_transform) -> FmodEvent:
 	var event: FmodEvent = FmodServer.create_event_instance(sound)
@@ -45,7 +53,3 @@ func play_instance(sound: String, source_transform : Transform3D = global_transf
 		return event
 	else: print(sound + " not found, check for spelling mistakes!")
 	return
-
-#func clear_instance(instance: FmodEvent):
-	#instance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
-	#instance.release()
