@@ -8,7 +8,6 @@ class_name PlayerController
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
 @onready var standup_check: RayCast3D = $StandupCheck
 @onready var interaction_controller: InteractionController = %InteractionController
-#@onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
 @onready var note_camera: Camera3D = %NoteCamera
 
 # Note sway variables
@@ -66,14 +65,14 @@ var last_bob_direction: int = 0                                                 
 var is_dead := false
 
 # Audio Settings
-var audio: AudioManager
-var e_sprinting: FmodEventEmitter3D
-var e_walking: FmodEventEmitter3D
+var e_right_step: FmodEventEmitter3D
+var e_left_step: FmodEventEmitter3D
+var step_is_playing: bool = false
 
 func _ready() -> void:
-	audio = get_tree().get_first_node_in_group("audio")
-	e_sprinting = audio.initiate(get_node("Sprinting"))
-	e_walking = audio.initiate(get_node("Walking"))
+	e_right_step = get_node("Audio/RightStep")
+	e_left_step = get_node("Audio/LeftStep")
+	
 	base_head_y = head.position.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -140,28 +139,19 @@ func updatePlayerState() -> void:
 		if Input.is_action_pressed("crouch"):
 			if not moving:
 				player_state = PlayerState.IDLE_CROUCH
-				e_sprinting.paused = true
-				e_walking.paused = true
 			else:
 				player_state = PlayerState.CROUCHING
-				e_sprinting.paused = true
-				e_walking.paused = true
 		elif !standup_check.is_colliding() and player_state != PlayerState.VIEWING:
 			if not moving:
 				player_state = PlayerState.IDLE_STAND
-				e_sprinting.paused = true
-				e_walking.paused = true
 			elif Input.is_action_pressed("sprint"):
 				player_state = PlayerState.SPRINTING
-				e_sprinting.paused = false
-				e_walking.paused = true
 			else:
 				player_state = PlayerState.WALKING
-				e_sprinting.paused = true
-				e_walking.paused = false
-			
+
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
+	updatePlayerSound(player_state)
 	
 func updatePlayerColShape(_player_state: PlayerState) -> void:
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
@@ -230,7 +220,6 @@ func updateCamera(delta: float) -> void:
 		eyes.position.x = lerp(eyes.position.x , 0.0 ,delta*lerp_speed)
 	
 	note_camera.fov = player_camera.fov
-	# play_footsteps()
 	
 func set_camera_locked(locked: bool) -> void:
 	if locked:
@@ -257,8 +246,8 @@ func set_viewing_mode() -> void:
 		player_state = PlayerState.IDLE_STAND
 
 func play_death_animation(target_pos: Vector3) -> void:
-	e_sprinting.paused = true
-	e_walking.paused = true
+	e_right_step.volume = 0
+	e_left_step.volume = 0
 	is_dead = true
 	
 	global_position = (target_pos)
@@ -266,6 +255,31 @@ func play_death_animation(target_pos: Vector3) -> void:
 	player_camera.rotation = Vector3.ZERO
 	set_camera_locked(true)
 
+func updatePlayerSound(_player_state: PlayerState) -> void:
+	match _player_state:
+		PlayerState.IDLE_STAND, PlayerState.IDLE_CROUCH, PlayerState.CROUCHING, PlayerState.AIR, PlayerState.VIEWING:
+			return
+	
+	var step_gap: float
+	
+	# for specific sound stuff
+	match _player_state:
+		PlayerState.WALKING: step_gap = 0.5
+		PlayerState.SPRINTING: step_gap = 0.35
+	
+	if step_is_playing: return
+	step_is_playing = true
+	
+	e_right_step.play()
+	#print("Right step")
+	await get_tree().create_timer(step_gap).timeout
+	
+	e_left_step.play()
+	#print("Left step")
+	await get_tree().create_timer(step_gap).timeout
+	step_is_playing = false
+
 func _exit_tree():
-	e_sprinting.paused = true
-	e_walking.paused = true
+	e_right_step.stop()
+	e_left_step.stop()
+	pass

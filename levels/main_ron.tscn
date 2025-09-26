@@ -95,6 +95,7 @@ size = Vector3(100, 100, 100)
 
 [node name="Player" parent="." instance=ExtResource("3_tfcfr")]
 transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -2.114375, 0.44170666, -1.1060312)
+note_sway_amount = null
 
 [node name="Balloon" parent="." instance=ExtResource("4_wgpd5")]
 transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.95265615, 4.450685, 0, -3.308285)

@@ -222,12 +222,20 @@ vertical_alignment = 1
 [node name="InteractionController" parent="." instance=ExtResource("2_rkbax")]
 unique_name_in_owner = true
 
-[node name="Sprinting" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/Girl/Step/Sprint"
-event_guid = "{2296ca66-e00c-4c98-bc81-235be0b8aaa9}"
-auto_release = true
+[node name="Audio" type="Node3D" parent="."]
 
-[node name="Walking" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/Girl/Step/Walk"
-event_guid = "{b7de2e58-9f4a-4fee-a9ab-5b8de05e4f2c}"
-auto_release = true
+[node name="RightStep" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Step/Right"
+event_guid = "{8d099386-de64-44bf-b26e-df64952781fb}"
+fmod_parameters/terrain/id = 5162296383277836654
+fmod_parameters/terrain = "grass"
+fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
+fmod_parameters/terrain/variant_type = 4
+
+[node name="LeftStep" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Step/Left"
+event_guid = "{f2e4e7b5-c9ad-4ba7-a0f8-5ad3f234e9ad}"
+fmod_parameters/terrain/id = 5162296383277836654
+fmod_parameters/terrain = "grass"
+fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
+fmod_parameters/terrain/variant_type = 4
