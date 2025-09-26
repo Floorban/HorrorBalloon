@@ -1,17 +1,138 @@
-[gd_scene load_steps=4 format=3 uid="uid://cac1cel2o5gmi"]
+[gd_scene load_steps=8 format=3 uid="uid://d5y5qpf5rhd8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_scxef"]
+[ext_resource type="PackedScene" uid="uid://dc8aica257weg" path="res://enemy/Eye_Monster/scene.gltf" id="1_1wwld"]
+[ext_resource type="Script" uid="uid://rjjcaejd33x4" path="res://enemy/enemy.gd" id="1_5anih"]
+[ext_resource type="Script" uid="uid://dkc1man884b1s" path="res://enemy/state_machine/state_machine.gd" id="2_1h0du"]
+[ext_resource type="Script" uid="uid://bun1hc2m6hugd" path="res://enemy/states/state_roaming.gd" id="4_s81n7"]
+[ext_resource type="Script" uid="uid://4illq10xs5wy" path="res://enemy/states/state_chasing.gd" id="5_gc7sf"]
+[ext_resource type="Script" uid="uid://8p0w6bh31y7f" path="res://enemy/states/state_searching.gd" id="7_2fq87"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scxef"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m5fee"]
+height = 6.2753906
+radius = 2.911621
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2mvqj"]
+[node name="Enemy" node_paths=PackedStringArray("animation_player") groups=["enemy"] instance=ExtResource("1_1wwld")]
+script = ExtResource("1_5anih")
+animation_player = NodePath("AnimationPlayer")
 
-[node name="Enemy" type="StaticBody3D" groups=["enemy"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21775484, 3.0905104, -0.1547885)
+shape = SubResource("CylinderShape3D_m5fee")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_scxef")
-surface_material_override/0 = SubResource("StandardMaterial3D_scxef")
+[node name="Sketchfab_model" parent="." index="1"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_2mvqj")
+[node name="8b449b56c497489fb376d797a1511cd3_fbx" parent="Sketchfab_model" index="0"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Sketchfab_model/8b449b56c497489fb376d797a1511cd3_fbx/Object_2/RootNode/Object_4" index="0"]
+bones/2/position = Vector3(0, 253.69177, 0)
+bones/2/rotation = Quaternion(-0.07845916, 0, 0, 0.9969174)
+bones/2/scale = Vector3(0.9910878, 1.0166267, 1.0000002)
+bones/3/position = Vector3(-405.93973, -229.03137, 240.41382)
+bones/3/rotation = Quaternion(0.24885072, -0.45214847, 0.14732838, 0.8437592)
+bones/4/position = Vector3(-39.4207, 47.766724, 197.81683)
+bones/4/rotation = Quaternion(-0.29616505, 0.29349762, -0.15211417, 0.8961065)
+bones/4/scale = Vector3(1.008146, 0.99007374, 1.0022026)
+bones/5/position = Vector3(49.662598, -17.831703, 172.93848)
+bones/5/rotation = Quaternion(0.11864465, 0.78450227, 0.051072676, 0.606524)
+bones/5/scale = Vector3(1.0006362, 1.0090237, 0.9902564)
+bones/6/position = Vector3(-31.332031, 4.578306, 167.18268)
+bones/6/rotation = Quaternion(-0.02230759, 0.45591956, 0.017721491, 0.8895649)
+bones/6/scale = Vector3(1.0008621, 1.0001545, 0.9990657)
+bones/7/position = Vector3(-355.79266, -236.87909, -199.26216)
+bones/7/rotation = Quaternion(0.07041518, 0.954404, -0.05541016, -0.28475323)
+bones/8/position = Vector3(65.74609, 22.475962, 131.3865)
+bones/8/rotation = Quaternion(-0.25168407, 0.10777044, -0.025875205, 0.96144223)
+bones/8/scale = Vector3(0.99911904, 0.9996693, 1.001334)
+bones/9/position = Vector3(-8.023666, -3.539032, 135.694)
+bones/9/rotation = Quaternion(0.1279937, -0.3620242, -0.05442497, 0.9217343)
+bones/9/scale = Vector3(1.002884, 0.99638075, 1.0009809)
+bones/10/position = Vector3(21.442139, 61.420967, 123.42062)
+bones/10/rotation = Quaternion(-0.01610654, -0.43261197, -0.080631025, 0.897823)
+bones/10/scale = Vector3(0.99537367, 1.0048501, 0.99967235)
+bones/11/position = Vector3(13.737106, -248.04016, -315.71338)
+bones/11/rotation = Quaternion(-0.019453527, 0.9913787, -0.07956185, 0.10227315)
+bones/12/position = Vector3(-3.5068932, 44.790836, 185.18634)
+bones/12/rotation = Quaternion(-0.342258, 0.3744185, -0.06721629, 0.8591579)
+bones/12/scale = Vector3(1.0021576, 0.99704885, 1.000811)
+bones/13/position = Vector3(-41.32184, -18.799057, 154.35764)
+bones/13/rotation = Quaternion(0.0007812069, 0.3212123, 0.11698411, 0.9397536)
+bones/13/scale = Vector3(0.9949124, 1.0000563, 1.0054502)
+bones/14/position = Vector3(30.442627, 16.220116, 166.4939)
+bones/14/rotation = Quaternion(0.039358176, 0.5711511, 0.15943553, 0.8042498)
+bones/14/scale = Vector3(0.9950507, 1.0026661, 1.0022547)
+bones/15/position = Vector3(336.2741, -229.03137, 186.74756)
+bones/15/rotation = Quaternion(0.25813034, 0.48736468, -0.1267255, 0.8244908)
+bones/16/position = Vector3(34.361656, 2.4028778, 121.668304)
+bones/16/rotation = Quaternion(-0.40512928, -0.18986355, 0.09182078, 0.8896016)
+bones/16/scale = Vector3(1.0043502, 0.98982966, 1.0062467)
+bones/17/position = Vector3(-9.202316, -2.20961, 94.53131)
+bones/17/rotation = Quaternion(0.087228574, -0.75769585, -0.080661766, 0.64170223)
+bones/17/scale = Vector3(0.9972835, 1.0079467, 0.99479324)
+bones/18/position = Vector3(16.423706, -1.5485268, 80.907974)
+bones/18/rotation = Quaternion(-0.019007444, -0.3214436, -0.09585352, 0.941873)
+bones/18/scale = Vector3(0.99889183, 1.003004, 0.9980847)
+bones/19/position = Vector3(357.13632, -236.87906, -170.09404)
+bones/19/rotation = Quaternion(-0.07458968, 0.9267811, -0.11260092, 0.35047698)
+bones/20/position = Vector3(-87.802216, 14.002552, 114.31369)
+bones/20/rotation = Quaternion(-0.24115351, -0.2394148, 0.102724336, 0.9348654)
+bones/20/scale = Vector3(0.9991645, 0.9974078, 1.0035967)
+bones/21/position = Vector3(-20.79987, -1.259964, 129.42056)
+bones/21/rotation = Quaternion(0.14079325, 0.41558823, 0.064397775, 0.8962794)
+bones/21/scale = Vector3(1.0015728, 0.9984771, 1.0001744)
+bones/22/position = Vector3(-43.414, 59.746765, 104.05194)
+bones/22/rotation = Quaternion(-0.027719395, 0.4209015, 0.057165023, 0.9048789)
+bones/22/scale = Vector3(0.998129, 1.0053408, 0.99642605)
+bones/23/position = Vector3(0, 53.440292, 66.75151)
+bones/23/rotation = Quaternion(0.1360216, 0.24754259, 0.060483463, 0.9573727)
+bones/23/scale = Vector3(0.9999999, 0.9999997, 0.99999976)
+bones/24/position = Vector3(0, 53.40822, 66.80003)
+bones/24/rotation = Quaternion(0.26013842, 0.15510036, 0.044403177, 0.95199805)
+bones/24/scale = Vector3(0.9999997, 0.99999976, 0.9999998)
+bones/25/position = Vector3(0, 53.40822, 66.80003)
+bones/25/rotation = Quaternion(0.067852445, 0.1781173, 0.012633482, 0.98158586)
+bones/25/scale = Vector3(0.99999976, 0.9999997, 0.9999998)
+
+[node name="Object_6" parent="Sketchfab_model/8b449b56c497489fb376d797a1511cd3_fbx/Object_2/RootNode/Object_4" index="1"]
+transform = Transform3D(99.99999, 0, 0, 0, 99.99999, 0, 0, 0, 99.99999, 0, 0, 0)
+
+[node name="eye_monster" parent="Sketchfab_model/8b449b56c497489fb376d797a1511cd3_fbx/Object_2/RootNode/Object_4" index="2"]
+transform = Transform3D(99.99999, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="2"]
+speed_scale = 0.5
+
+[node name="Eye" type="Node3D" parent="." index="3"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 1.5)
+
+[node name="EyeRayCast" type="RayCast3D" parent="Eye" index="0"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4"]
+unique_name_in_owner = true
+path_desired_distance = 0.3
+target_desired_distance = 0.6
+debug_enabled = true
+
+[node name="StateMachine" type="Node" parent="." index="5"]
+script = ExtResource("2_1h0du")
+metadata/_custom_type_script = "uid://dkc1man884b1s"
+
+[node name="Roaming" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("4_s81n7")
+
+[node name="Chasing" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("5_gc7sf")
+chase_max_time = 10.0
+_chasing_speed = 4.0
+_catching_distance = 10.0
+
+[node name="Searching" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("7_2fq87")
+_searching_speed = 3.0
+_search_radius = 20.0
+
+[connection signal="current_animation_changed" from="AnimationPlayer" to="StateMachine/Chasing" method="_on_animation_player_current_animation_changed"]

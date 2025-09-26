@@ -6,7 +6,11 @@ extends Node3D
 @export var island_scenes: Array[PackedScene] = []
 @export var island_spawn_points: Array[Node3D] = []
 
+@onready var enemy : Enemy = get_tree().get_first_node_in_group("enemy")
+@onready var player : PlayerController = get_tree().get_first_node_in_group("player")
+
 func _ready() -> void:
+	enemy.reached_player.connect(Callable(game_over))
 	generate_resource()
 	generate_islands()
 
@@ -29,3 +33,6 @@ func generate_islands():
 			var instance = scene_to_spawn.instantiate()
 			instance.global_transform = point.global_transform
 			add_child(instance)
+
+func game_over():
+	print("game over")
