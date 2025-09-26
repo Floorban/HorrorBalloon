@@ -63,6 +63,8 @@ var head_bobbing_index: float = 0.0
 var last_bob_position_x: float = 0.0                                            # Tracks the previous horizontal head-bob position
 var last_bob_direction: int = 0                                                 # Tracks the previous movement direction of the bob (-1 = left, +1 = right)
 
+var is_dead := false
+
 func _ready() -> void:
 	base_head_y = head.position.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -79,6 +81,7 @@ func _input(event: InputEvent) -> void:
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-70), deg_to_rad(70))
 
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	
 	updatePlayerState()
 	updateCamera(delta)
@@ -110,6 +113,8 @@ func _physics_process(delta: float) -> void:
 	note_tilt_and_sway(input_dir, delta)
 
 func _process(delta: float) -> void:
+	if is_dead: return
+
 	# slowly bring sensitivity back to normal levels when just unlocked camera
 	if sensitivity_fading_in:
 		current_sensitivity = lerp(current_sensitivity, normal_sensitivity, delta * sensitivity_restore_speed)
@@ -233,17 +238,9 @@ func set_viewing_mode() -> void:
 	else:
 		player_state = PlayerState.IDLE_STAND
 
-# func play_footsteps() -> void:
-# 	if moving and is_on_floor():
-# 		var bob_position_x = head_bobbing_vector.x
-# 		var bob_direction = sign(bob_position_x - last_bob_position_x)  # +1 = moving right, -1 = moving left
-
-# 		# A direction change means we just reached a peak in the bobbing cycle
-# 		if bob_direction != 0 and bob_direction != last_bob_direction and last_bob_direction != 0:
-# 			footsteps_se.play()
-
-# 		last_bob_direction = bob_direction
-# 		last_bob_position_x = bob_position_x
-# 	else:
-# 		last_bob_direction = 0
-# 		last_bob_position_x = head_bobbing_vector.x
+func play_death_animation(target_pos: Vector3) -> void:
+	is_dead = true
+	global_position = (target_pos)
+	rotation = Vector3(0,deg_to_rad(-165),0)
+	player_camera.rotation = Vector3.ZERO
+	set_camera_locked(true)

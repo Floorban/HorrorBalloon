@@ -11,9 +11,10 @@
 height = 6.2753906
 radius = 2.911621
 
-[node name="Enemy" node_paths=PackedStringArray("animation_player") groups=["enemy"] instance=ExtResource("1_1wwld")]
+[node name="Enemy" groups=["enemy"] instance=ExtResource("1_1wwld")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_5anih")
-animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21775484, 3.0905104, -0.1547885)
@@ -101,15 +102,16 @@ transform = Transform3D(99.99999, 0, 0, 0, 99.99999, 0, 0, 0, 99.99999, 0, 0, 0)
 transform = Transform3D(99.99999, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
 speed_scale = 0.5
 
 [node name="Eye" type="Node3D" parent="." index="3"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5)
 
 [node name="EyeRayCast" type="RayCast3D" parent="Eye" index="0"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -5)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4"]
 unique_name_in_owner = true
@@ -128,7 +130,7 @@ script = ExtResource("4_s81n7")
 script = ExtResource("5_gc7sf")
 chase_max_time = 10.0
 _chasing_speed = 4.0
-_catching_distance = 10.0
+_catching_distance = 3.0
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")

@@ -8,11 +8,12 @@ signal reached_player
 var _current_speed := 0.0
 
 @onready var navigation_agent: NavigationAgent3D = %NavigationAgent3D
-@export var animation_player: AnimationPlayer
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var player: PlayerController = get_tree().get_first_node_in_group("player")
 @onready var _eye: Node3D = %Eye
 @onready var _eye_ray_cast: RayCast3D = %EyeRayCast
 
+var found_target := false
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -20,6 +21,8 @@ func _ready() -> void:
 	set_physics_process(true)
 
 func _physics_process(_delta: float) -> void:
+	if found_target: return
+
 	if navigation_agent.is_navigation_finished():
 		animation_player.play("IDLE", 0.2)
 		return
@@ -38,12 +41,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func travel_to_position(wanted_position: Vector3, speed: float, play_run_anim := false) -> void:
+	if found_target: return
+
 	navigation_agent.target_position = wanted_position
 	_current_speed = speed
 	if play_run_anim:
-		animation_player.play("HIT", 0.2)
+		animation_player.play("HIT")
 	else:
-		animation_player.play("RUN", 0.2)
+		animation_player.play("RUN")
 
 func is_player_in_view() -> bool:
 	var vec_to_player := (player.global_position - global_position)
@@ -61,3 +66,8 @@ func is_line_of_sight_broken() -> bool:
 	_eye_ray_cast.target_position = _eye_ray_cast.to_local(player.global_position)
 	_eye_ray_cast.force_raycast_update()
 	return _eye_ray_cast.is_colliding()
+
+func reached_target():
+	found_target = true
+	reached_player.emit()
+	animation_player.play("ATK")

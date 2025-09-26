@@ -25,5 +25,5 @@ func physics_update(_delta: float) -> void:
 	if not _enemy.is_line_of_sight_broken():
 		_chase_timer = chase_max_time
 	if _enemy.global_position.distance_to(_enemy.player.global_position) <= _catching_distance:
-		_enemy.reached_player.emit()
-		# _chasing_speed = 0.0
+		_enemy.reached_target()
+		_chasing_speed = 0.0
