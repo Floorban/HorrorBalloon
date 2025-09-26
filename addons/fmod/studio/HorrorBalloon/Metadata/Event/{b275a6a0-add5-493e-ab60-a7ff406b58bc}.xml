@@ -45,7 +45,7 @@
 			<destination>{0a1c6992-0572-4624-8141-1a0db6d48c75}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{00d2e805-4f58-43bd-88bd-1bd9fe537de2}</destination>
+			<destination>{c327f8c8-3a69-40d2-87fb-f8223a622cd5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{dc1bc6c7-e953-4218-bf95-95fb274fb94e}">
@@ -439,9 +439,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d09a07d1-4be5-4dcf-ab90-f357d4f97de3}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
 			<value>Distorted</value>
 		</property>
@@ -511,9 +508,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{dddd11d1-21c1-4674-aefb-82c149233f35}">
-		<property name="volume">
-			<value>10</value>
-		</property>
 		<property name="name">
 			<value>Freak</value>
 		</property>
@@ -584,7 +578,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{31812ad4-1da2-407e-8cdd-d7b2669b2c83}">
 		<property name="volume">
-			<value>10</value>
+			<value>-80</value>
 		</property>
 		<property name="name">
 			<value>Hazed</value>
@@ -686,7 +680,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{f5c466e4-d2ed-4e75-9521-275f8d7f6f76}">
 		<property name="volume">
-			<value>10</value>
+			<value>-80</value>
 		</property>
 		<property name="name">
 			<value>Skeleton</value>
