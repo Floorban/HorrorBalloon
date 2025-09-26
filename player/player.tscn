@@ -221,3 +221,13 @@ vertical_alignment = 1
 
 [node name="InteractionController" parent="." instance=ExtResource("2_rkbax")]
 unique_name_in_owner = true
+
+[node name="Sprinting" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/Girl/Step/Sprint"
+event_guid = "{2296ca66-e00c-4c98-bc81-235be0b8aaa9}"
+auto_release = true
+
+[node name="Walking" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/Girl/Step/Walk"
+event_guid = "{b7de2e58-9f4a-4fee-a9ab-5b8de05e4f2c}"
+auto_release = true

@@ -77,3 +77,6 @@ func remove_fuel(body: Node3D) -> void:
 			else:
 				total_weight -= interaction_component.weight
 				weight_label.text = "weights: " + str(total_weight)
+
+func _exit_tree() -> void:
+	e_flame.queue_free()

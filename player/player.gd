@@ -65,10 +65,18 @@ var last_bob_direction: int = 0                                                 
 
 var is_dead := false
 
+# Audio Settings
+var audio: AudioManager
+var e_sprinting: FmodEventEmitter3D
+var e_walking: FmodEventEmitter3D
+
 func _ready() -> void:
+	audio = get_tree().get_first_node_in_group("audio")
+	e_sprinting = audio.initiate(get_node("Sprinting"))
+	e_walking = audio.initiate(get_node("Walking"))
 	base_head_y = head.position.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
@@ -132,15 +140,25 @@ func updatePlayerState() -> void:
 		if Input.is_action_pressed("crouch"):
 			if not moving:
 				player_state = PlayerState.IDLE_CROUCH
+				e_sprinting.paused = true
+				e_walking.paused = true
 			else:
 				player_state = PlayerState.CROUCHING
+				e_sprinting.paused = true
+				e_walking.paused = true
 		elif !standup_check.is_colliding() and player_state != PlayerState.VIEWING:
 			if not moving:
 				player_state = PlayerState.IDLE_STAND
+				e_sprinting.paused = true
+				e_walking.paused = true
 			elif Input.is_action_pressed("sprint"):
 				player_state = PlayerState.SPRINTING
+				e_sprinting.paused = false
+				e_walking.paused = true
 			else:
 				player_state = PlayerState.WALKING
+				e_sprinting.paused = true
+				e_walking.paused = false
 			
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
@@ -239,8 +257,15 @@ func set_viewing_mode() -> void:
 		player_state = PlayerState.IDLE_STAND
 
 func play_death_animation(target_pos: Vector3) -> void:
+	e_sprinting.paused = true
+	e_walking.paused = true
 	is_dead = true
+	
 	global_position = (target_pos)
 	rotation = Vector3(0,deg_to_rad(-165),0)
 	player_camera.rotation = Vector3.ZERO
 	set_camera_locked(true)
+
+func _exit_tree():
+	e_sprinting.paused = true
+	e_walking.paused = true

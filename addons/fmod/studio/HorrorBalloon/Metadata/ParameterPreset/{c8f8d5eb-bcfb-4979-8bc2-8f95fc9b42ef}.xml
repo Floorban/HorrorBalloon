@@ -20,11 +20,11 @@
 		</property>
 		<property name="enumerationLabels">
 			<value>idle</value>
-			<value>sprinting</value>
-			<value>walking</value>
+			<value>sprint</value>
+			<value>walk</value>
 		</property>
 		<property name="initialValue">
-			<value>2</value>
+			<value>0</value>
 		</property>
 	</object>
 </objects>
