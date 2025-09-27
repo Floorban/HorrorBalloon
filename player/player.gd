@@ -20,13 +20,17 @@ const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
 const crouching_depth: float = -0.95
 var can_move := true
-var current_speed: float = 3.0
+var current_speed: float
+var max_speed: float
+var acceleration := 3.0
+# var deceleration := 20.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
+
 
 # Player Settings
 var base_head_y : float
@@ -108,13 +112,17 @@ func _physics_process(delta: float) -> void:
 			
 	# Movement Logic
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
-	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta*10.0)
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else: # player wants to stop moving
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
+	var target_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = lerp(direction, target_dir, delta * 10.0)
+
+	if direction.length() > 0.1:
+		# Accelerate towards max speed
+		current_speed = move_toward(current_speed, max_speed, acceleration * delta)
+	else:
+		current_speed = move_toward(current_speed, 0, current_speed)
+
+	velocity.x = direction.x * current_speed
+	velocity.z = direction.z * current_speed * 0.8
 			
 	move_and_slide()
 	note_tilt_and_sway(input_dir, delta)
@@ -164,13 +172,17 @@ func updatePlayerColShape(_player_state: PlayerState) -> void:
 func updatePlayerSpeed(_player_state: PlayerState) -> void:
 	if not can_move: 
 		current_speed = 0
+		max_speed = 0
 		return
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
-		current_speed = crouching_speed
+		# current_speed = crouching_speed
+		max_speed = crouching_speed
 	elif _player_state == PlayerState.WALKING:
-		current_speed = walking_speed
+		# current_speed = walking_speed
+		max_speed = walking_speed
 	elif _player_state == PlayerState.SPRINTING:
-		current_speed = sprinting_speed
+		# current_speed = sprinting_speed
+		max_speed = sprinting_speed
 
 func updateCamera(delta: float) -> void:
 	if player_state == PlayerState.AIR:

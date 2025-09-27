@@ -2,19 +2,11 @@ extends Node
 class_name ResourceSpawner
 
 @export var resource_spawn_data: Array[ResourceSpawnData] = []
-@export var resource_spawn_points: Array[Node3D] = []
-@export var spawn_point_data: Array[SpawnPointData] = []
+@export var resource_spawn_points: Array[SpawnPoint] = []
 
 func spawn_resources() -> void:
 	randomize()
-	init_spawn_point_data()
 	generate_resources()
-
-func init_spawn_point_data() -> void:
-	while spawn_point_data.size() < resource_spawn_points.size():
-		spawn_point_data.append(SpawnPointData.new())
-	if spawn_point_data.size() > resource_spawn_points.size():
-		spawn_point_data.resize(resource_spawn_points.size())
 
 func _available_indices(remaining: Array) -> Array:
 	var arr: Array = []
@@ -47,9 +39,9 @@ func generate_resources() -> void:
 
 	for i in range(resource_spawn_points.size()):
 		var point = resource_spawn_points[i]
-		var config = spawn_point_data[i]
-		var count = config.spawn_count
-		var radius = config.spawn_radius
+		var point_data = point.spawn_point_data
+		var count = point_data.spawn_count
+		var radius = point_data.spawn_radius
 
 		for j in range(count):
 			var available = _available_indices(remaining)
@@ -65,7 +57,7 @@ func generate_resources() -> void:
 				continue
 
 			var instance = data.scenes.pick_random().instantiate()
-			add_child(instance)
+			point.add_child(instance)
 
 			instance.global_position = point.global_position + Vector3(
 				randf_range(-radius, radius),

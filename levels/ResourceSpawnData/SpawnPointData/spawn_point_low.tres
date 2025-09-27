@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_3rc6a")
+spawn_count = 20
 metadata/_custom_type_script = "uid://b6pybvw21txbb"
