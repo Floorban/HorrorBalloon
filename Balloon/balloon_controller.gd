@@ -150,7 +150,7 @@ func change_verticle_direction(up: bool) -> void:
 	verticle_dir = 1.0 if up else -0.2
 
 func _apply_vertical_force() -> void:
-	verticle_force = verticle_base_force - get_all_weights() / 10.0
+	verticle_force = verticle_base_force - get_all_weights() / 20.0
 	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
 
 func _apply_horizontal_force() -> void:

@@ -8,7 +8,7 @@ class_name InteractionDraggable
 @export var drag_step: float = 0.5
 @export var max_drag_distance: float = 1.0
 @export var min_drag_distance: float = 0.0
-@export var drag_smoothness: float = 0.05
+@export var drag_smoothness: float = 0.1
 
 func _ready() -> void:
 	super._ready()
@@ -22,8 +22,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if object_ref:
 		last_velocity = object_ref.linear_velocity
-		if is_interacting:
-			_draggable_interact()
 
 func _input(event) -> void:
 	if not is_interacting: return
@@ -41,11 +39,6 @@ func interact() -> void:
 	super.interact()
 	_draggable_interact()
 
-func postInteract() -> void:
-	super.postInteract()
-	if object_ref:
-		object_ref.linear_velocity = Vector3.ZERO
-
 func auxInteract() -> void:
 	super.auxInteract()
 	_draggable_throw()
@@ -54,12 +47,11 @@ func _draggable_interact() -> void:
 	if not object_ref or not player_hand:
 		return
 
-	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
-	if rigid_body_3d:
+	if object_ref is RigidBody3D:
 		var target_position: Vector3 = player_hand.global_transform.origin - player_hand.global_transform.basis.z * drag_distance
-		var object_distance: Vector3 = target_position - rigid_body_3d.global_transform.origin
-		var target_velocity: Vector3 = object_distance * (15.0 / rigid_body_3d.mass)
-		rigid_body_3d.linear_velocity = rigid_body_3d.linear_velocity.lerp(target_velocity, drag_smoothness)
+		var object_distance: Vector3 = target_position - object_ref.global_transform.origin
+		var target_velocity: Vector3 = object_distance * (40.0 / object_ref.mass)
+		object_ref.set_linear_velocity(object_ref.linear_velocity.lerp(target_velocity, drag_smoothness))
 
 func _draggable_throw() -> void:
 	if not object_ref or not player_hand:
@@ -73,5 +65,5 @@ func _draggable_throw() -> void:
 		
 		can_interact = false
 		is_interacting = false
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		can_interact = true
