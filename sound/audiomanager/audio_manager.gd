@@ -24,8 +24,6 @@ func _ready() -> void:
 	# references
 	player = get_tree().get_first_node_in_group("player")
 	listener = get_node("Essentials/FmodListener3D")
-	var test_emitter: FmodEventEmitter3D = $FmodEventEmitter3D
-	test_emitter.global_position = player.global_position
 
 func _physics_process(_delta: float) -> void:
 	listener.global_transform = player.global_transform
