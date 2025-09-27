@@ -185,14 +185,15 @@ func _compute_weighted_tilt() -> Vector3:
 			continue
 		var weight: float = objs_in_balloon[obj]
 		
-		var rel_pos : Vector3 = obj.global_position - global_position
+		var rel_pos_local = to_local(obj.global_transform.origin)
+
 		if obj is InteractionComponent:
-			rel_pos = obj.object_ref.global_position - global_position
+			rel_pos_local = obj.object_ref.global_position - global_position
 		
-		var x_dir = clamp(rel_pos.x, -1.0, 1.0)
-		var z_dir = clamp(rel_pos.z, -1.0, 1.0)
+		var x_dir = clamp(rel_pos_local.x, -1.0, 1.0)
+		var z_dir = clamp(rel_pos_local.z, -1.0, 1.0)
 		
-		total_influence += Vector3(-z_dir * weight, 0.0, x_dir * weight)
+		total_influence += Vector3(z_dir * weight, 0.0, -x_dir * weight)
 		weight_sum += weight
 		
 	if weight_sum > 0:
@@ -206,6 +207,10 @@ func _compute_weighted_tilt() -> Vector3:
 func _tilt_to(target_rot: Vector3, damping: float):
 	if tilt_tween:
 		tilt_tween.kill()
+		
+	var new_rot = mesh.rotation
+	new_rot.x = target_rot.x
+	new_rot.z = target_rot.z
 
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(mesh, "rotation", target_rot, damping)
+	tilt_tween.tween_property(mesh, "rotation", new_rot, damping)
