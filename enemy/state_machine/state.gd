@@ -3,7 +3,7 @@ class_name State extends Node
 signal requested_transition_to_other_state(next_state_name: String, data: Dictionary)
 
 
-func enter(previous_state_name: String, data := {}) -> void:
+func enter(_previous_state_name: String, _data := {}) -> void:
 	pass
 
 

@@ -98,21 +98,20 @@ script = ExtResource("1_o6dmv")
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
 
 [node name="Cloud_1" parent="." instance=ExtResource("8_6et1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 5, -0.471)
-size = Vector3(100, 100, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
+size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
 transform = Transform3D(-0.866618, 0, 0.498972, 0, 1, 0, -0.498972, 0, -0.866618, -2.114375, 0.44170666, -1.1060312)
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.995634, -0.5220251, 11.07895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.995634, -0.5220251, 72.61095)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.95265615, 4.450685, 0, -3.308285)
 collision_layer = 2147483649
 collision_mask = 2147483649
 basket_size = Vector3(6.3, 5, 6.3)
-verticle_base_force = 7.0
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -183,7 +182,7 @@ transform = Transform3D(20.3674, 0, 8.82262, 0, 22.1961, 0, -8.82262, 0, 20.3674
 transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 117.198, 2.03198, -194.993)
 
 [node name="Pole13" parent="Env/NavigationRegion3D/Poles" instance=ExtResource("13_iwo8l")]
-transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 16.3217, 2.03198, 21.2984)
+transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 16.326916, 2.03198, 21.27708)
 
 [node name="Pole12" parent="Env/NavigationRegion3D/Poles" instance=ExtResource("14_j7211")]
 transform = Transform3D(22.1961, 0, 0, 0, 22.1961, 0, 0, 0, 22.1961, 21.5267, -0.187633, 96.4068)
@@ -224,6 +223,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.47
 
 [node name="Cube_5kg2" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, -4.7508335)
+
+[node name="Cube_5kg4" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, -4.7508335)
+
+[node name="Cube_5kg5" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, -1.9820843)
+
+[node name="Cube_5kg6" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, 2.9897394)
 
 [node name="Cube_5kg3" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, 0.6485305)

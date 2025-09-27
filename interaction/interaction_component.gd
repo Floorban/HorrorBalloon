@@ -8,7 +8,6 @@ extends Node
 @export var maximum_rotation: float = 90
 
 var player : PlayerController
-@export var weight: float = 1.0
 
 # Common Variables
 var is_occupied := false

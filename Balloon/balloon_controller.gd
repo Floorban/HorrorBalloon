@@ -81,8 +81,8 @@ func _on_body_entered(body: Node3D) -> void:
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
-			_is_reparenting = true
-			call_deferred("_deferred_attach", body)
+			# _is_reparenting = true
+			# call_deferred("_deferred_attach", body)
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
@@ -161,7 +161,7 @@ func _apply_horizontal_force() -> void:
 	var final_tilt = _compute_weighted_tilt()
 	_tilt_to(final_tilt, tilt_damping)
 
-	var horizontal_dir = Vector3(final_tilt.z, 0, final_tilt.x).normalized()
+	var horizontal_dir = Vector3(final_tilt.z, 0, -final_tilt.x).normalized()
 	if horizontal_dir.length() > move_threshold:
 		apply_central_force(horizontal_dir * horizontal_force)
 

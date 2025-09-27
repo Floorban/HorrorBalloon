@@ -2,9 +2,11 @@ extends InteractionComponent
 class_name InteractionHolddable
 
 @export var fuel_amount := 10.0
+@export var weight: float = 1.0
 
 func _ready() -> void:
 	super._ready()
+	weight = object_ref.mass
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
@@ -38,8 +40,8 @@ func pickup():
 
 func drop():
 	is_occupied = false
-	object_ref.angular_velocity = Vector3.ZERO
-	object_ref.linear_velocity = Vector3.ZERO
+	# object_ref.angular_velocity = Vector3.ZERO
+	# object_ref.linear_velocity = Vector3.ZERO
 
 func _holddable_throw() -> void:
 	drop()

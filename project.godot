@@ -103,6 +103,4 @@ common/physics_interpolation=true
 
 [rendering]
 
-environment/volumetric_fog/volume_size=128
-environment/volumetric_fog/volume_depth=128
 environment/volumetric_fog/use_filter=0

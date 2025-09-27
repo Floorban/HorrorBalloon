@@ -3,7 +3,6 @@ extends EnemyState
 @export var _roaming_speed := 2.0
 
 var _map_synchronized := false
-var _target_position: Vector3
 var _nav_map: RID
 
 func _ready() -> void:

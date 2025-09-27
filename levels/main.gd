@@ -38,4 +38,5 @@ func game_over():
 	print("game over")
 	player.play_death_animation(enemy._eye.global_position)
 	await get_tree().create_timer(1.2).timeout
-	get_tree().reload_current_scene()
+	if get_tree().current_scene:
+		get_tree().reload_current_scene()

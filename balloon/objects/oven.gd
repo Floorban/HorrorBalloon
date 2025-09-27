@@ -9,7 +9,7 @@ var burning_rate: float = 1.0
 
 @onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea
-var objs_to_burn: Array[InteractionHolddable] = []
+var objs_to_burn: Array[InteractionComponent] = []
 @onready var weight_label: Label = %WeightLabel
 var total_weight : float
 
@@ -59,15 +59,15 @@ func get_fuel_percentage() -> float:
 
 func collect_fuel(body: Node3D) -> void:
 	if body:
-		var interaction_component = body.get_node_or_null("InteractionComponent") as InteractionHolddable
-		if interaction_component and interaction_component not in objs_to_burn:
+		var interaction_component = body.get_node_or_null("InteractionComponent")
+		if interaction_component and "weight" in interaction_component and interaction_component not in objs_to_burn:
 			objs_to_burn.append(interaction_component)
 			total_weight += interaction_component.weight
 			weight_label.text = "weights: " + str(total_weight)
 
 func remove_fuel(body: Node3D) -> void:
 	if body:
-		var interaction_component = body.get_node_or_null("InteractionComponent") as InteractionHolddable
+		var interaction_component = body.get_node_or_null("InteractionComponent")
 		if interaction_component and interaction_component in objs_to_burn:
 			objs_to_burn.erase(interaction_component)
 			

@@ -1,9 +1,12 @@
 extends InteractionComponent
 class_name InteractionDraggable
 
+@export var fuel_amount := 50.0
+@export var weight: float = 1.0
+
 func _ready() -> void:
 	super._ready()
-
+	weight = object_ref.mass
 	if object_ref.has_signal("body_entered"):
 		object_ref.connect("body_entered", Callable(self, "_fire_default_collision"))
 		object_ref.contact_monitor = true
@@ -20,6 +23,12 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 func interact() -> void:
 	super.interact()
 	_draggable_interact()
+
+func postInteract() -> void:
+	super.postInteract()
+	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
+	if rigid_body_3d:
+		rigid_body_3d.set_linear_velocity(Vector3.ZERO)
 
 func auxInteract() -> void:
 	super.auxInteract()

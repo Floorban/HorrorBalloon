@@ -107,7 +107,7 @@ speed_scale = 0.5
 
 [node name="Eye" type="Node3D" parent="." index="3"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53469276, -3.9423008)
 
 [node name="EyeRayCast" type="RayCast3D" parent="Eye" index="0"]
 unique_name_in_owner = true
