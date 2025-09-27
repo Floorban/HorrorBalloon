@@ -162,9 +162,9 @@
 		<relationship name="effects">
 			<destination>{e70c89c6-c48f-4d8f-a31d-8937318b4bab}</destination>
 			<destination>{845e55a8-ceff-41dc-a6e9-4b0e9ccf5dcc}</destination>
+			<destination>{06496825-92d3-4257-8b84-fc79ec1f0b97}</destination>
 			<destination>{f4c70bd5-9c5b-4b0d-80c9-5c3a2c2cee30}</destination>
 			<destination>{f54fd19b-3103-4bea-9d85-cfb6f3ae8ebb}</destination>
-			<destination>{25f9ee2c-2208-428c-b569-19f735cc4083}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5106d4aa-d18b-4c6d-8d64-e7c56aff0d80}" />
@@ -222,6 +222,11 @@
 			<value>10</value>
 		</property>
 	</object>
+	<object class="GainEffect" id="{06496825-92d3-4257-8b84-fc79ec1f0b97}">
+		<property name="gain">
+			<value>10</value>
+		</property>
+	</object>
 	<object class="GainEffect" id="{f4c70bd5-9c5b-4b0d-80c9-5c3a2c2cee30}">
 		<property name="gain">
 			<value>10</value>
@@ -241,7 +246,6 @@
 			<destination>{4f5c5b82-012f-4a69-82ff-25b1d27f43a7}</destination>
 		</relationship>
 	</object>
-	<object class="SpectrumAnalyzer" id="{25f9ee2c-2208-428c-b569-19f735cc4083}" />
 	<object class="MixerBusFader" id="{8a5e8272-92a0-4991-acf8-87f83f0275e5}" />
 	<object class="PannerEffect" id="{e2e59f5d-66c4-4820-ad5d-b21b3e2f550a}">
 		<property name="stereoPan">
