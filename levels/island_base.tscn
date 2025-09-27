@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgil2vtb0asbc"]
+
+[ext_resource type="ArrayMesh" uid="uid://pgpsym4egjas" path="res://assets/Islands/floating_island.res" id="1_xdtdb"]
+[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/Islands/Rock.png" id="2_ivhod"]
+[ext_resource type="PackedScene" uid="uid://0ymhl8o7lb8y" path="res://levels/lighthouse.tscn" id="3_xx8mk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te0wa"]
+albedo_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+albedo_texture = ExtResource("2_ivhod")
+
+[node name="Island" type="StaticBody3D"]
+collision_layer = 2147483649
+collision_mask = 2147483649
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = ExtResource("1_xdtdb")
+surface_material_override/0 = SubResource("StandardMaterial3D_te0wa")
+
+[node name="Lighthouse" parent="." instance=ExtResource("3_xx8mk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.309841, -21.236267)

@@ -25,5 +25,6 @@ shape = SubResource("CylinderShape3D_55hvx")
 
 [node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
 script = ExtResource("3_j6m3c")
+fuel_amount = 15.0
 object_ref = NodePath("..")
 metadata/_custom_type_script = "uid://dl7lykc4qndpo"

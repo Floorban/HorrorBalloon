@@ -23,14 +23,13 @@ var can_move := true
 var current_speed: float
 var max_speed: float
 var acceleration := 3.0
-# var deceleration := 20.0
+var hold_back_speed := 0.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
-
 
 # Player Settings
 var base_head_y : float
@@ -176,13 +175,13 @@ func updatePlayerSpeed(_player_state: PlayerState) -> void:
 		return
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
 		# current_speed = crouching_speed
-		max_speed = crouching_speed
+		max_speed = crouching_speed + hold_back_speed
 	elif _player_state == PlayerState.WALKING:
 		# current_speed = walking_speed
-		max_speed = walking_speed
+		max_speed = walking_speed + hold_back_speed
 	elif _player_state == PlayerState.SPRINTING:
 		# current_speed = sprinting_speed
-		max_speed = sprinting_speed
+		max_speed = sprinting_speed + hold_back_speed
 
 func updateCamera(delta: float) -> void:
 	if player_state == PlayerState.AIR:

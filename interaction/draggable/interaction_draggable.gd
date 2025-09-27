@@ -4,16 +4,16 @@ class_name InteractionDraggable
 @export var fuel_amount: float = 50.0
 @export var weight: float = 1.0
 
-@export var drag_distance: float = 0.3
+@export var drag_distance: float
 @export var drag_step: float = 0.5
-@export var max_drag_distance: float = 1.0
-@export var min_drag_distance: float = 0.0
-@export var drag_smoothness: float = 0.1
+@export var max_drag_distance: float = 0.8
+@export var min_drag_distance: float = -0.1
+@export var drag_smoothness: float = 0.3
 
 func _ready() -> void:
 	super._ready()
 	weight = object_ref.mass if object_ref else weight
-	
+	drag_distance = 0.0
 	if object_ref and object_ref.has_signal("body_entered"):
 		object_ref.connect("body_entered", Callable(self, "_fire_default_collision"))
 		object_ref.contact_monitor = true
@@ -34,10 +34,15 @@ func _input(event) -> void:
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
+	player.hold_back_speed = -object_ref.mass / 5.0
 
 func interact() -> void:
 	super.interact()
 	_draggable_interact()
+
+func postInteract() -> void:
+	super.postInteract()
+	player.hold_back_speed = 0.0
 
 func auxInteract() -> void:
 	super.auxInteract()
@@ -50,20 +55,20 @@ func _draggable_interact() -> void:
 	if object_ref is RigidBody3D:
 		var target_position: Vector3 = player_hand.global_transform.origin - player_hand.global_transform.basis.z * drag_distance
 		var object_distance: Vector3 = target_position - object_ref.global_transform.origin
-		var target_velocity: Vector3 = object_distance * (40.0 / object_ref.mass)
+		var target_velocity: Vector3 = object_distance * (30.0 / object_ref.mass)
 		object_ref.set_linear_velocity(object_ref.linear_velocity.lerp(target_velocity, drag_smoothness))
 
 func _draggable_throw() -> void:
 	if not object_ref or not player_hand:
 		return
 
-	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
-	if rigid_body_3d:
+	if object_ref is RigidBody3D:
 		var throw_direction: Vector3 = -player_hand.global_transform.basis.z.normalized()
-		var throw_strength: float = (10.0/rigid_body_3d.mass)
-		rigid_body_3d.set_linear_velocity(throw_direction*throw_strength)
+		var throw_strength: float = (10.0/object_ref.mass)
+		object_ref.set_linear_velocity(throw_direction*throw_strength)
 		
 		can_interact = false
 		is_interacting = false
+		player.hold_back_speed = 0.0
 		await get_tree().create_timer(1.0).timeout
 		can_interact = true

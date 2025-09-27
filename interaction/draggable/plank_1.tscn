@@ -29,12 +29,11 @@ shape = SubResource("BoxShape3D_b7m3b")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1tegc")]
 script = ExtResource("4_ah7yw")
-fuel_amount = 50.0
+fuel_amount = 30.0
 weight = 1.0
 drag_distance = 0.3
 drag_step = 0.5
 max_drag_distance = 1.0
 min_drag_distance = 0.0
 drag_smoothness = 0.05
-throw_strength = 15.0
 object_ref = NodePath("..")

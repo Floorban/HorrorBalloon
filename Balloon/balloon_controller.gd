@@ -42,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
 	if can_land and linear_velocity.y <= 0.0:
 		linear_velocity = Vector3.ZERO
+		gravity_scale = 0.0
 
 	if is_on_ground or can_land:
 		if verticle_dir < 0.0:

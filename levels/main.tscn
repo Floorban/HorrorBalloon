@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=48 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
@@ -35,6 +35,9 @@
 [ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/draggable/plank_3.tscn" id="29_f1mgo"]
 [ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/draggable/plank_4.tscn" id="30_duofn"]
 [ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="30_vpyym"]
+[ext_resource type="PackedScene" uid="uid://be5sqvxsn6fv2" path="res://levels/island_1.tscn" id="36_egc1g"]
+[ext_resource type="PackedScene" uid="uid://c21jsefsehe" path="res://levels/island_2.tscn" id="37_y60h0"]
+[ext_resource type="PackedScene" uid="uid://c8qvb4yhay683" path="res://levels/island_3.tscn" id="38_05fi1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -334,3 +337,12 @@ transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.67
 
 [node name="Log11" parent="Env/Resource" instance=ExtResource("6_5k4jt")]
 transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 8.082444, 4.6932335, 0.12145305)
+
+[node name="Island1" parent="." instance=ExtResource("36_egc1g")]
+transform = Transform3D(0.7780787, 0, 0.6281668, 0, 1, 0, -0.6281668, 0, 0.7780787, -123.79122, 154.20192, 7.8527527)
+
+[node name="Island2" parent="." instance=ExtResource("37_y60h0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.424286, 113.54164, 127.7738)
+
+[node name="Island3" parent="." instance=ExtResource("38_05fi1")]
+transform = Transform3D(-0.1301109, 0, 0.9914995, 0, 1, 0, -0.9914995, 0, -0.1301109, 81.59975, 99.36429, -62.503265)
