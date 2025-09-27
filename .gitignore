@@ -13,3 +13,5 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+addons/fmod/libs/windows/fmodL.dll
+addons/fmod/libs/windows/fmodstudioL.dll
