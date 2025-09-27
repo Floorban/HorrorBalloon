@@ -1,18 +1,22 @@
 extends RigidBody3D
 
-@export var sfx_impact: String = "event:/SFX/Interactables/Impact/Can"
+@onready var e_impact: FmodEventEmitter3D = $Impact
 @export var impact_parameter: String = "impact_strength"
 
-var i_impact: FmodEvent
+var disabled: bool = false
 var has_collided: bool = false
+var cooldown: float = 0.5
+var last_play_time: float = -10.0
 
 func _ready() -> void:
-	if sfx_impact != "":
-		i_impact = FmodServer.create_event_instance(sfx_impact)
-		pass
+	last_play_time = -cooldown
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	if state.get_contact_count() > 0 and not has_collided:
+	if disabled: return 
+
+	var current_time: float = Time.get_ticks_msec() / 1000.0
+
+	if state.get_contact_count() > 0:
 		var max_intensity: float = 0.0
 
 		for i in state.get_contact_count():
@@ -25,14 +29,18 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 			max_intensity = max(max_intensity, intensity)
 
-		if max_intensity <= 0.05: return
-		if i_impact:
-			i_impact.set_3d_attributes(global_transform)
-			i_impact.set_parameter_by_name(impact_parameter, max_intensity)
-			i_impact.start()
-			i_impact.release()
+		# Plays sound only if collision intensity is strong enough and no cooldown
+		if max_intensity > 0.05 and current_time - last_play_time >= cooldown:
+			e_impact.set_parameter(impact_parameter, max_intensity)
+			e_impact.play()
+			last_play_time = current_time
+			print("Impact intensity:", max_intensity)
 
-		print(max_intensity)
+		has_collided = true
 
-	elif state.get_contact_count() == 0:
+	else:
 		has_collided = false
+
+func _physics_process(_delta: float) -> void:
+	if disabled:
+		return
