@@ -76,6 +76,8 @@ func _ready() -> void:
 	e_right_step = get_node("Audio/RightStep")
 	e_left_step = get_node("Audio/LeftStep")
 	
+	original_position = player_camera.position
+	original_rotation = player_camera.rotation_degrees
 	base_head_y = head.position.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -89,6 +91,9 @@ func _input(event: InputEvent) -> void:
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-65), deg_to_rad(85))
+	
+	if event.is_action_pressed("wheel_down"):
+		trauma = 1.0
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return
@@ -129,6 +134,13 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if is_dead: return
 
+	if trauma > 0.0:
+		trauma = max(trauma - decay * delta, 0.0)
+		cam_shake()
+	else:
+		player_camera.position = original_position
+		player_camera.rotation_degrees = original_rotation
+
 	# slowly bring sensitivity back to normal levels when just unlocked camera
 	if sensitivity_fading_in:
 		current_sensitivity = lerp(current_sensitivity, normal_sensitivity, delta * sensitivity_restore_speed)
@@ -137,7 +149,33 @@ func _process(delta: float) -> void:
 			sensitivity_fading_in = false
 			
 	set_camera_locked(interaction_controller.isCameraLocked())
+
+## cam shake
+@export var decay: = 0.8
+@export var max_offset: = Vector3(0.5, 0.5, 0.5)
+@export var max_rotation: = Vector3(1.0, 1.0, 1.0) # degrees
+var trauma: = 0.0
+var trauma_power: = 2
+
+var original_position: Vector3
+var original_rotation: Vector3
+
+func cam_shake() -> void:
+	var amount = pow(trauma, trauma_power)
+	var _offset = Vector3(
+		max_offset.x * amount * randf_range(-1.0, 1.0),
+		max_offset.y * amount * randf_range(-1.0, 1.0),
+		max_offset.z * amount * randf_range(-1.0, 1.0)
+	)
+	var _rotation = Vector3(
+		max_rotation.x * amount * randf_range(-1.0, 1.0),
+		max_rotation.y * amount * randf_range(-1.0, 1.0),
+		max_rotation.z * amount * randf_range(-1.0, 1.0)
+	)
 	
+	player_camera.position = original_position + _offset
+	player_camera.rotation_degrees = original_rotation + _rotation
+
 func updatePlayerState() -> void:
 	moving = (input_dir != Vector2.ZERO)
 	if not is_on_floor():
@@ -290,11 +328,9 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	step_is_playing = true
 	
 	e_right_step.play()
-	print("Right step")
 	await get_tree().create_timer(step_gap).timeout
 
 	e_left_step.play()
-	print("Left step")
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
 
