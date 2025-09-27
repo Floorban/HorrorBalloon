@@ -285,7 +285,7 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 			step_gap = 0.35
 			e_right_step.volume = 1
 			e_left_step.volume = 1
-	
+
 	if step_is_playing: return
 	step_is_playing = true
 	

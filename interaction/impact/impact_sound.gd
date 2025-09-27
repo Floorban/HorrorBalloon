@@ -3,18 +3,17 @@ extends RigidBody3D
 @onready var e_impact: FmodEventEmitter3D = $Impact
 @export var impact_parameter: String = "impact_strength"
 
+var can_play: bool = false
 var disabled: bool = false
 var has_collided: bool = false
 var cooldown: float = 0.5
 var last_play_time: float = -10.0
 
-func _ready() -> void:
-	last_play_time = -cooldown
+func _ready() -> void: last_play_time -= cooldown
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	if disabled: return 
-
 	var current_time: float = Time.get_ticks_msec() / 1000.0
+	if current_time <= 5.0: return
 
 	if state.get_contact_count() > 0:
 		var max_intensity: float = 0.0
@@ -25,7 +24,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 			var mass_factor: float = mass * 0.01
 			var intensity: float = impact_velocity * mass_factor
-			intensity = clamp(intensity, 0.0, 1.0)
+			intensity = clamp(intensity, 0.0, 0.3)
 
 			max_intensity = max(max_intensity, intensity)
 
@@ -40,7 +39,3 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	else:
 		has_collided = false
-
-func _physics_process(_delta: float) -> void:
-	if disabled:
-		return
