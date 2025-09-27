@@ -258,24 +258,32 @@ func play_death_animation(target_pos: Vector3) -> void:
 func updatePlayerSound(_player_state: PlayerState) -> void:
 	match _player_state:
 		PlayerState.IDLE_STAND, PlayerState.IDLE_CROUCH, PlayerState.CROUCHING, PlayerState.AIR, PlayerState.VIEWING:
+			e_right_step.volume = lerp(e_right_step.volume, 0.0, 0.1)
+			e_left_step.volume = lerp(e_left_step.volume, 0.0, 0.1)
 			return
 	
 	var step_gap: float
 	
 	# for specific sound stuff
 	match _player_state:
-		PlayerState.WALKING: step_gap = 0.5
-		PlayerState.SPRINTING: step_gap = 0.35
+		PlayerState.WALKING: 
+			step_gap = 0.5
+			e_right_step.volume = 0.5
+			e_left_step.volume = 0.5
+		PlayerState.SPRINTING: 
+			step_gap = 0.35
+			e_right_step.volume = 1
+			e_left_step.volume = 1
 	
 	if step_is_playing: return
 	step_is_playing = true
 	
 	e_right_step.play()
-	#print("Right step")
+	print("Right step")
 	await get_tree().create_timer(step_gap).timeout
-	
+
 	e_left_step.play()
-	#print("Left step")
+	print("Left step")
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
 
