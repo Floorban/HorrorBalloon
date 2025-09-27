@@ -49,6 +49,8 @@ collision_layer = 5
 mass = 3.0
 contact_monitor = true
 max_contacts_reported = 1
+linear_damp = 2.0
+angular_damp = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26142612, 0)
@@ -108,8 +110,8 @@ script = ExtResource("3_v8mh5")
 fuel_amount = 20.0
 weight = 1.0
 drag_distance = 0.0
-drag_step = 0.5
-max_drag_distance = 1.0
-min_drag_distance = -0.3
+drag_step = 0.3
+max_drag_distance = 0.5
+min_drag_distance = -0.2
 drag_smoothness = 0.05
 object_ref = NodePath("..")

@@ -1,48 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlai6gguviarl"]
+[gd_scene load_steps=6 format=3 uid="uid://f78nh2t5kjye"]
 
-[ext_resource type="Texture2D" uid="uid://c4n8og476v1vi" path="res://assets/stolen/psx/Wood_07-512x512.png" id="1_b7m3b"]
-[ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://interaction/impact/impact_sound.gd" id="1_ki6kt"]
-[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_1tegc"]
-[ext_resource type="ArrayMesh" uid="uid://b7aqbuq7ty2xy" path="res://assets/stolen/props/plank_006.obj" id="2_kfpjg"]
-[ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="4_ah7yw"]
+[ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_uw3nf"]
+[ext_resource type="ArrayMesh" uid="uid://dv2tocwgxoo7c" path="res://assets/stolen/props/plank_001.obj" id="2_uw3nf"]
+[ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_w4y3j"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nts7"]
-albedo_texture = ExtResource("1_b7m3b")
-uv1_scale = Vector3(2, 2, 2)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hvx"]
+albedo_texture = ExtResource("1_uw3nf")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b7m3b"]
-size = Vector3(0.2, 0.05, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_uw3nf"]
+size = Vector3(0.15722656, 0.70202637, 0.04260254)
 
 [node name="Plank1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
-mass = 2.0
-freeze_mode = 1
-contact_monitor = true
-max_contacts_reported = 1
-script = ExtResource("1_ki6kt")
+linear_damp = 2.0
+angular_damp = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_2nts7")
-mesh = ExtResource("2_kfpjg")
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.35, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_55hvx")
+mesh = ExtResource("2_uw3nf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026201814, 0)
-shape = SubResource("BoxShape3D_b7m3b")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.019157715, 0.0014038064)
+shape = SubResource("BoxShape3D_uw3nf")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1tegc")]
-script = ExtResource("4_ah7yw")
-fuel_amount = 30.0
-weight = 1.0
-drag_distance = 0.3
-drag_step = 0.5
-max_drag_distance = 1.0
-min_drag_distance = 0.0
-drag_smoothness = 0.05
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
+script = ExtResource("3_w4y3j")
+fuel_amount = 35.0
 object_ref = NodePath("..")
-
-[node name="Impact" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/Interactables/Impact/Can"
-event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
-fmod_parameters/impact_strength/id = 8864240675834785146
-fmod_parameters/impact_strength = 0.0
-fmod_parameters/impact_strength/variant_type = 3
+metadata/_custom_type_script = "uid://dl7lykc4qndpo"

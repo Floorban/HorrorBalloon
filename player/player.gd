@@ -88,7 +88,7 @@ func _input(event: InputEvent) -> void:
 			mouse_input = event.relative
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
-			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-60), deg_to_rad(85))
+			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-65), deg_to_rad(85))
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return

@@ -5,15 +5,15 @@ class_name InteractionDraggable
 @export var weight: float = 1.0
 
 @export var drag_distance: float
-@export var drag_step: float = 0.5
-@export var max_drag_distance: float = 0.8
-@export var min_drag_distance: float = -0.1
-@export var drag_smoothness: float = 0.3
+@export var drag_step: float = 0.3
+@export var max_drag_distance: float = 0.2
+@export var min_drag_distance: float = -0.2
+@export var drag_smoothness: float = 1.0
 
 func _ready() -> void:
 	super._ready()
 	weight = object_ref.mass if object_ref else weight
-	drag_distance = 0.0
+	drag_distance = -0.2
 	if object_ref and object_ref.has_signal("body_entered"):
 		object_ref.connect("body_entered", Callable(self, "_fire_default_collision"))
 		object_ref.contact_monitor = true
