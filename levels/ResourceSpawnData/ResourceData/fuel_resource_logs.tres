@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ResourceSpawnData" load_steps=5 format=3 uid="uid://b4m53elchbkk"]
 
-[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="1_vqx4s"]
-[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/holddable/log_2.tscn" id="2_pkpa2"]
-[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/holddable/log_3.tscn" id="3_d78m0"]
+[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/draggable/log_1.tscn" id="1_vqx4s"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="2_pkpa2"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="3_d78m0"]
 [ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://levels/ResourceSpawnData/ResourceData/ResourceSpawnData.gd" id="4_uy57p"]
 
 [resource]

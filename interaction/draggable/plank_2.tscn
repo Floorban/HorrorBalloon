@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ur8h2dgbckhg"]
 
-[ext_resource type="PackedScene" uid="uid://dlai6gguviarl" path="res://interaction/holddable/plank_1.tscn" id="1_mi7ah"]
+[ext_resource type="PackedScene" uid="uid://dlai6gguviarl" path="res://interaction/draggable/plank_1.tscn" id="1_mi7ah"]
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="2_aa1m8"]
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="2_vse1j"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjoaycqnn5tys"]
 
-[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/holddable/log_1.tscn" id="1_aqryw"]
+[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/draggable/log_1.tscn" id="1_aqryw"]
 [ext_resource type="ArrayMesh" uid="uid://cxemr8xeawf6l" path="res://assets/stolen/props/pole_002.obj" id="2_5ecpi"]
 [ext_resource type="Texture2D" uid="uid://l4o13xiskein" path="res://assets/stolen/psx/Wood_09-512x512.png" id="2_218mc"]
 

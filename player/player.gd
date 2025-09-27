@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 	var target_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction = lerp(direction, target_dir, delta * 10.0)
 
-	if direction.length() > 0.1:
+	if direction.length() > 0.01:
 		# Accelerate towards max speed
 		current_speed = move_toward(current_speed, max_speed, acceleration * delta)
 	else:
