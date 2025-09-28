@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=14 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/reticles/white_reticle.png" id="2_g1dw6"]
@@ -33,6 +33,9 @@ shader = ExtResource("5_boad6")
 shader_parameter/rect_width_px = 960.0
 shader_parameter/fade_width_px = 240.0
 shader_parameter/fade_strength = 0.745
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
+radius = 0.15
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
@@ -247,3 +250,8 @@ fmod_parameters/terrain/id = 5162296383277836654
 fmod_parameters/terrain = "grass"
 fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
 fmod_parameters/terrain/variant_type = 4
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
+shape = SubResource("SphereShape3D_g6k8r")
+target_position = Vector3(0, 0, 0)

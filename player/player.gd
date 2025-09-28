@@ -30,6 +30,7 @@ var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
+@onready var shape_cast: ShapeCast3D = $ShapeCast3D
 
 # Player Settings
 var base_head_y : float
@@ -92,6 +93,13 @@ func _input(event: InputEvent) -> void:
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
+func get_movement_dir() -> Vector3:
+	input_dir = Input.get_vector("left", "right", "forward", "backward")
+	return (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+func get_local_movement_dir() -> Vector3:
+	return get_movement_dir().rotated(Vector3.UP, -rotation.y)
+
 func _physics_process(delta: float) -> void:
 	if is_dead: return
 	
@@ -112,9 +120,7 @@ func _physics_process(delta: float) -> void:
 			is_in_air = false
 			
 	# Movement Logic
-	input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var target_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = lerp(direction, target_dir, delta * 10.0)
+	direction = lerp(direction, get_movement_dir(), delta * 10.0)
 
 	if direction.length() > 0.01:
 		# Accelerate towards max speed
@@ -124,7 +130,8 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed * 0.8
-			
+
+	apply_push_forces(shape_cast)
 	move_and_slide()
 	note_tilt_and_sway(input_dir, delta)
 
@@ -282,6 +289,24 @@ func note_tilt_and_sway(_input_dir: Vector2, delta: float) -> void:
 func apply_sway(tilt: Vector3):
 	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
+
+var player_weight := 10.0
+var player_to_obj_strength := 20.0
+
+func apply_push_forces(push_shape: ShapeCast3D):
+	push_shape.target_position = get_local_movement_dir() * 0.2
+	for i in push_shape.get_collision_count():
+		var collider = push_shape.get_collider(i)
+		if collider is RigidBody3D:
+			var mass_ratio : float = collider.mass / player_weight
+			mass_ratio = max(0.5, mass_ratio)
+
+			var push_dir : Vector3 = (collider.global_position - global_position).normalized()
+			var push_strength : float = max(velocity.length(), player_to_obj_strength) / mass_ratio
+			var push_force : Vector3 = Vector3((push_dir * push_strength).x, 0.0, (push_dir * push_strength).z)
+			
+			var col_contact : Vector3 = push_shape.get_collision_point(i) - collider.global_position
+			collider.apply_force(push_force, col_contact)
 
 func set_viewing_mode() -> void:
 	if not is_on_floor(): return
