@@ -15,10 +15,25 @@ var _current_speed := 0.0
 
 var found_target := false
 
+## Sound Settings
+var audio: AudioManager
+@onready var e_screech: FmodEventEmitter3D = $Screech
+var anxiety: String = "Anxiety"
+var guilt: String = "Guilt"
+var hatred: String = "Hatred"
+var terror: String = "Terror"
+@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().physics_frame
 	set_physics_process(true)
+	audio = get_tree().get_first_node_in_group("audio")
+	audio.cache(e_screech)
+	e_screech.set_parameter(anxiety, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(guilt, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(hatred, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(terror, rng.randf_range(0.0, 100.0))
 
 func _physics_process(_delta: float) -> void:
 	if found_target: return
@@ -63,6 +78,7 @@ func is_player_in_view() -> bool:
 	return false
 
 func is_line_of_sight_broken() -> bool:
+	e_screech.stop()
 	_eye_ray_cast.target_position = _eye_ray_cast.to_local(player.global_position)
 	_eye_ray_cast.force_raycast_update()
 	return _eye_ray_cast.is_colliding()

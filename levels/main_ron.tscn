@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="1_hlesg"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="2_aoj1o"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_tfcfr"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="4_wgpd5"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="4_wgpd5"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="5_au4jy"]
 [ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="6_vpipd"]
 [ext_resource type="PackedScene" uid="uid://ja7nqofkhdo5" path="res://levels/EnvironmentAssets/pole_1.tscn" id="7_f7ruo"]
@@ -23,11 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="21_f26yt"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket.tscn" id="22_dgvi8"]
 [ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box.tscn" id="23_nxhe4"]
-[ext_resource type="PackedScene" uid="uid://dlai6gguviarl" path="res://interaction/draggable/plank_1.tscn" id="24_2lpkk"]
+[ext_resource type="PackedScene" uid="uid://f78nh2t5kjye" path="res://interaction/draggable/plank_1.tscn" id="24_2lpkk"]
 [ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/draggable/log_1.tscn" id="25_t4fu4"]
-[ext_resource type="PackedScene" uid="uid://ur8h2dgbckhg" path="res://interaction/draggable/plank_2.tscn" id="26_seb3f"]
-[ext_resource type="PackedScene" uid="uid://djfc1lct4rh4x" path="res://interaction/draggable/plank_3.tscn" id="27_ktsq1"]
-[ext_resource type="PackedScene" uid="uid://cqk430138qiv" path="res://interaction/draggable/plank_4.tscn" id="28_ninoy"]
+[ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="26_seb3f"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="27_ktsq1"]
+[ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="28_hlesg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("5_au4jy")
@@ -261,9 +261,6 @@ transform = Transform3D(0.560914, 0, -0.827874, 0.222882, 0.963078, 0.15101, 0.7
 [node name="Plank3" parent="Env/Resource" instance=ExtResource("27_ktsq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.056218, 0.8698592, -7.70926)
 
-[node name="Plank4" parent="Env/Resource" instance=ExtResource("28_ninoy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6500182, 0.8698592, -6.23422)
-
 [node name="Log8" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
 transform = Transform3D(-0.916935, 0, 0.399037, 0, 1, 0, -0.399037, 0, -0.916935, 4.2687483, 5.8727055, 1.370059)
 
@@ -275,3 +272,6 @@ transform = Transform3D(-0.13933097, -0.73646325, -0.66197366, -0.15168591, 0.67
 
 [node name="Log11" parent="Env/Resource" instance=ExtResource("24_2lpkk")]
 transform = Transform3D(0.522677, 0, -0.852531, 0, 1, 0, 0.852531, 0, 0.522677, 6.180419, 4.6932335, -1.3525629)
+
+[node name="Enemy" parent="." instance=ExtResource("28_hlesg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.221806, 0, 25.906364)
