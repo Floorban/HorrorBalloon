@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dx3g6sjqrj2at"]
+[gd_scene load_steps=19 format=3 uid="uid://dxo43pwgdu1p5"]
 
+[ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://interaction/impact/impact_sound.gd" id="1_bmvda"]
 [ext_resource type="Texture2D" uid="uid://b856i8o5uq2ob" path="res://assets/stolen/props/tex_pirate_scenery.png" id="1_nhvc5"]
 [ext_resource type="ArrayMesh" uid="uid://7xi260nx1t7p" path="res://assets/stolen/props/bucket.obj" id="2_pp6w7"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_tfl4h"]
@@ -51,6 +52,7 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 2.0
 angular_damp = 1.0
+script = ExtResource("1_bmvda")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26142612, 0)
@@ -115,3 +117,10 @@ max_drag_distance = 0.5
 min_drag_distance = -0.2
 drag_smoothness = 0.05
 object_ref = NodePath("..")
+
+[node name="Impact" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/Interactables/Impact/Can"
+event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
+fmod_parameters/impact_strength/id = 8864240675834785146
+fmod_parameters/impact_strength = 0.0
+fmod_parameters/impact_strength/variant_type = 3
