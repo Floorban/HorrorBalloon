@@ -303,7 +303,7 @@ var player_weight := 10.0
 var player_to_obj_strength := 20.0
 
 func apply_push_forces(push_shape: ShapeCast3D):
-	push_shape.target_position = get_local_movement_dir() * 0.2
+	push_shape.target_position = get_local_movement_dir() * 0.15
 	for i in push_shape.get_collision_count():
 		var collider = push_shape.get_collider(i)
 		if collider is RigidBody3D:
