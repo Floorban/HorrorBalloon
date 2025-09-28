@@ -4,8 +4,8 @@ class_name Oven
 const MAX_FUEL: float = 100.0
 var current_fuel: float = 0.0
 
-var fule_conversion_rate: float = 0.9
-var burning_rate: float = 1.0
+var fule_conversion_rate: float = 1.0
+var burning_rate: float = 0.5
 
 @onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea

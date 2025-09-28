@@ -3,7 +3,6 @@ class_name BalloonController
 
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
 var objs_in_balloon: Dictionary = {}
-@export var basket_size: Vector3 = Vector3(5, 3, 5)
 
 # Forces
 const GRAVITY = 0.1

@@ -14,7 +14,7 @@ radius = 0.1
 
 [node name="Log1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
-linear_damp = 2.0
+linear_damp = 5.0
 angular_damp = 1.0
 script = ExtResource("1_fgl1q")
 

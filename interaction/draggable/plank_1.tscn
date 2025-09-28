@@ -13,7 +13,7 @@ size = Vector3(0.15722656, 0.70202637, 0.04260254)
 
 [node name="Plank1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
-linear_damp = 2.0
+linear_damp = 10.0
 angular_damp = 1.0
 script = ExtResource("1_ah7yw")
 
