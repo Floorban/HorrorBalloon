@@ -23,7 +23,7 @@ var e_flame_is_playing: bool
 func _ready() -> void:
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Flame/SFX_Flame"))
-	
+	current_fuel = MAX_FUEL
 	flame = get_node("Flame")
 	flame2 = get_node("Flame2")
 

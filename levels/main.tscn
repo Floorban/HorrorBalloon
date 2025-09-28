@@ -1,15 +1,15 @@
 [gd_scene load_steps=44 format=3 uid="uid://dfauikegolgu3"]
 
-[ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
+[ext_resource type="Script" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://levels/ResourceSpawnData/resource_spawner.tscn" id="2_i3naf"]
 [ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="2_wk3pi"]
 [ext_resource type="PackedScene" uid="uid://bo580gbwr80n2" path="res://levels/ResourceSpawnData/resource_spawn_point.tscn" id="3_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="Resource" uid="uid://cfw4dmxpqaw21" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_low.tres" id="4_8a5tp"]
-[ext_resource type="PackedScene" path="res://interaction/draggable/bucket.tscn" id="4_m1504"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket.tscn" id="4_m1504"]
 [ext_resource type="Resource" uid="uid://b400rwpv001ve" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_mid.tres" id="5_f1mgo"]
-[ext_resource type="PackedScene" path="res://interaction/draggable/box.tscn" id="5_ifaiv"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box.tscn" id="5_ifaiv"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="Resource" uid="uid://jyil1s2usta" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_high.tres" id="6_duofn"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="8_6et1j"]
@@ -31,9 +31,9 @@
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/draggable/log_1.tscn" id="25_vpyym"]
 [ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="30_vpyym"]
-[ext_resource type="PackedScene" path="res://levels/island_1.tscn" id="36_egc1g"]
-[ext_resource type="PackedScene" path="res://levels/island_2.tscn" id="37_y60h0"]
-[ext_resource type="PackedScene" path="res://levels/island_3.tscn" id="38_05fi1"]
+[ext_resource type="PackedScene" uid="uid://be5sqvxsn6fv2" path="res://levels/island_1.tscn" id="36_egc1g"]
+[ext_resource type="PackedScene" uid="uid://c21jsefsehe" path="res://levels/island_2.tscn" id="37_y60h0"]
+[ext_resource type="PackedScene" uid="uid://c8qvb4yhay683" path="res://levels/island_3.tscn" id="38_05fi1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -132,7 +132,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
 size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.44455725, 0, -0.89575034, 0, 1, 0, 0.89575034, 0, -0.44455725, -1.0786729, 0.084714174, -5.565015)
+transform = Transform3D(-0.44455725, 0, -0.89575034, 0, 1, 0, 0.89575034, 0, -0.44455725, 2.014004, 0.084713936, -2.824366)
+top_level = true
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61095)
@@ -141,9 +142,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61
 transform = Transform3D(0.705587, 0, 0.7086232, 0, 1, 0, -0.7086232, 0, 0.705587, 4.450685, 0, -3.308285)
 collision_layer = 2147483649
 collision_mask = 2147483649
-mass = 10.0
 basket_size = Vector3(6.3, 5, 6.3)
-verticle_base_force = 50.0
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1

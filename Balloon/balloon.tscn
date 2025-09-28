@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" uid="uid://cuod7rc8fgyl2" path="res://balloon/air_release.tscn" id="2_06xpq"]
+[ext_resource type="PackedScene" uid="uid://br43fcieepooc" path="res://balloon/air_release.tscn" id="2_06xpq"]
 [ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket.tscn" id="2_uro0l"]
 [ext_resource type="ArrayMesh" uid="uid://cucrc6710wjw1" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
@@ -21,19 +21,19 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 6405826370072
+metadata/creation_stamp = 5175838349610
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 6405859924505
+metadata/creation_stamp = 5175871904038
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 6405893478896
+metadata/creation_stamp = 5175905458473
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_my1lc"]
 resource_local_to_scene = true
-metadata/creation_stamp = 6405927032573
+metadata/creation_stamp = 5175938995261
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -42,7 +42,7 @@ viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
 size = Vector3(1.001709, 0.2619629, 1.0114746)
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
-mass = 10.0
+mass = 20.0
 gravity_scale = 0.0
 lock_rotation = true
 continuous_cd = true
@@ -50,7 +50,8 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("1_35dws")
-horizontal_force = 3.0
+verticle_base_force = 50.0
+horizontal_force = 30.0
 
 [node name="AirRelease" parent="." instance=ExtResource("2_06xpq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6201258, 0.970592, 0)
@@ -152,8 +153,9 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.064734146, 0)
 
 [node name="Flags" type="Node3D" parent="Mesh/BalloonObjects"]
 
-[node name="Flags1" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags1" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../../..")
 attached_rope = NodePath("../../../Ropes/BalloonRope_1")
 
 [node name="Flag_1" parent="Mesh/BalloonObjects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
@@ -165,8 +167,9 @@ transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0
 [node name="Flag_3" parent="Mesh/BalloonObjects/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
 
-[node name="Flags2" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags2" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../../..")
 attached_rope = NodePath("../../../Ropes/BalloonRope_2")
 
 [node name="RopeFlag_1" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
@@ -181,8 +184,9 @@ transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.
 [node name="RopeFlag_4" parent="Mesh/BalloonObjects/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="Flags3" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags3" type="Node3D" parent="Mesh/BalloonObjects/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../../..")
 attached_rope = NodePath("../../../Ropes/BalloonRope_3")
 
 [node name="RopeFlag_1" parent="Mesh/BalloonObjects/Flags/Flags3" instance=ExtResource("5_fbxog")]
