@@ -21,19 +21,19 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2457308582449
+metadata/creation_stamp = 6405826370072
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2457342136883
+metadata/creation_stamp = 6405859924505
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2457375691317
+metadata/creation_stamp = 6405893478896
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_my1lc"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2457409245751
+metadata/creation_stamp = 6405927032573
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -50,6 +50,8 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("1_35dws")
+verticle_base_force = 15.0
+horizontal_force = 8.0
 
 [node name="AirRelease" parent="." instance=ExtResource("2_06xpq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6201258, 0.970592, 0)
