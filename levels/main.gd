@@ -28,6 +28,7 @@ func generate_islands() -> void:
 func game_over() -> void:
 	print("game over")
 	if player and enemy:
+		player.trauma = 2.0
 		player.play_death_animation(enemy._eye.global_position)
 	await get_tree().create_timer(1.2).timeout
 	get_tree().reload_current_scene()

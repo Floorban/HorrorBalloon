@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuod7rc8fgyl2"]
+
+[ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="1_oh415"]
+[ext_resource type="Script" uid="uid://csu7ttil0x0l0" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="2_7f24t"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_i6xuh"]
+[ext_resource type="Script" uid="uid://cq3lud7qp1dnr" path="res://interaction/interaction_airrelease.gd" id="4_i6xuh"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_i6xuh"]
+resource_local_to_scene = true
+metadata/creation_stamp = 8304000603191
+
+[sub_resource type="SphereMesh" id="SphereMesh_oh415"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7f24t"]
+radius = 0.25
+
+[node name="AirRelease" type="Node3D"]
+
+[node name="VerletRope" type="MeshInstance3D" parent="." node_paths=PackedStringArray("attach_end")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+material_override = ExtResource("1_oh415")
+mesh = SubResource("ImmediateMesh_i6xuh")
+script = ExtResource("2_7f24t")
+rope_length = 3.0
+rope_width = 0.05
+simulation_particles = 30
+attach_end = NodePath("")
+iterations = 5
+preprocess_iterations = 10
+metadata/_custom_type_script = "uid://csu7ttil0x0l0"
+
+[node name="Baller" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.5809097, 0)
+collision_layer = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Baller"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_oh415")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Baller"]
+shape = SubResource("SphereShape3D_7f24t")
+
+[node name="InteractionComponent" parent="Baller" node_paths=PackedStringArray("object_ref") instance=ExtResource("3_i6xuh")]
+script = ExtResource("4_i6xuh")
+object_ref = NodePath("..")

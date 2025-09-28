@@ -30,6 +30,7 @@ var is_on_ground := false
 
 var player: PlayerController
 var player_weight := 20.0
+var is_just_land: = false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -46,11 +47,15 @@ func _physics_process(_delta: float) -> void:
 
 	if is_on_ground or can_land:
 		if verticle_dir < 0.0:
+			if not is_just_land and linear_velocity.y <= 0.0:
+				player.trauma = 0.5
+				is_just_land = true
 			verticle_dir = 0.0
 			gravity_scale = 0.0
 			return
 	else:
 		gravity_scale = GRAVITY
+		is_just_land = false
 
 	_apply_vertical_force()
 	_apply_horizontal_force()
@@ -82,8 +87,8 @@ func _on_body_entered(body: Node3D) -> void:
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
-			_is_reparenting = true
-			call_deferred("_deferred_attach", body)
+			# _is_reparenting = true
+			# call_deferred("_deferred_attach", body)
 	total_weight = get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
