@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxo43pwgdu1p5"]
+[gd_scene load_steps=18 format=3 uid="uid://dx3g6sjqrj2at"]
 
 [ext_resource type="Texture2D" uid="uid://b856i8o5uq2ob" path="res://assets/stolen/props/tex_pirate_scenery.png" id="1_nhvc5"]
 [ext_resource type="ArrayMesh" uid="uid://7xi260nx1t7p" path="res://assets/stolen/props/bucket.obj" id="2_pp6w7"]

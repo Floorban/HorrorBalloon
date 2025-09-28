@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://nv6su48cqvpq"]
+[gd_scene load_steps=7 format=3 uid="uid://buyfwj4k4g0va"]
 
 [ext_resource type="Texture2D" uid="uid://b856i8o5uq2ob" path="res://assets/stolen/props/tex_pirate_scenery.png" id="1_htija"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_4wi47"]
@@ -14,6 +14,8 @@ size = Vector3(0.82128906, 0.36499023, 0.51953125)
 [node name="Box" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
 mass = 5.0
+linear_damp = 2.0
+angular_damp = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r38gl")
