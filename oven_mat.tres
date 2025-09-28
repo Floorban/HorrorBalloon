@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://3mejcn3t4kjf"]
+
+[ext_resource type="Texture2D" uid="uid://c08i2kkewikdn" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_AlbedoTransparency.png" id="1_8722u"]
+[ext_resource type="Texture2D" uid="uid://cqsgvpwd3jbqj" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_MetallicSmoothness.png" id="2_765qv"]
+[ext_resource type="Texture2D" uid="uid://6unn6m0mkdem" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Height.png" id="3_18to2"]
+[ext_resource type="Texture2D" uid="uid://e8gollmgyvq6" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Normal.png" id="4_4gnv5"]
+
+[resource]
+resource_name = "TT_checker_512x512_UV_GRID"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_8722u")
+metallic = 1.0
+metallic_texture = ExtResource("2_765qv")
+roughness_texture = ExtResource("2_765qv")
+roughness_texture_channel = 3
+emission_enabled = true
+normal_enabled = true
+normal_texture = ExtResource("4_4gnv5")
+ao_enabled = true
+ao_texture = ExtResource("2_765qv")
+ao_texture_channel = 1
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("3_18to2")

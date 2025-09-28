@@ -15,9 +15,9 @@ shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj1lb"]
 bg_color = Color(0.7440836, 0.17985019, 0.24165395, 1)
-border_width_left = 5
+border_width_left = 2
 border_width_top = 2
-border_width_right = 5
+border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 corner_radius_top_left = 1
@@ -26,8 +26,8 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="FuelBar" type="ProgressBar"]
-offset_right = 20.0
-offset_bottom = 150.0
+offset_right = 10.0
+offset_bottom = 80.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qwilb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_aj1lb")
 value = 50.0

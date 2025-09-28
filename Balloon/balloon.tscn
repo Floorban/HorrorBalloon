@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket.tscn" id="2_uro0l"]
+[ext_resource type="PackedScene" uid="uid://dnkfy5o53771" path="res://balloon/basket.tscn" id="2_uro0l"]
 [ext_resource type="ArrayMesh" uid="uid://cucrc6710wjw1" path="res://assets/stolen/industrial/fence.res" id="3_06xpq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
@@ -22,21 +22,21 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_my1lc"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18360196747635
+metadata/creation_stamp = 50723630958871
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_pos5u"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18360230303325
+metadata/creation_stamp = 50723664516583
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18360263856519
+metadata/creation_stamp = 50723698090188
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nfn1q"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18360297410949
+metadata/creation_stamp = 50723731574517
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg23p"]
 albedo_texture = ExtResource("7_my1lc")
@@ -133,23 +133,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_exksr")
+mesh = SubResource("ImmediateMesh_my1lc")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_x3kbh")
+mesh = SubResource("ImmediateMesh_pos5u")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_nwaq6")
+mesh = SubResource("ImmediateMesh_q3h3j")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_nfn1q")
+mesh = SubResource("ImmediateMesh_snxhu")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="BalloonObjects" type="Node3D" parent="Mesh"]
