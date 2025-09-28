@@ -20,19 +20,19 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2554951979470
+metadata/creation_stamp = 8227362282212
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2554985533904
+metadata/creation_stamp = 8227395836646
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2555019088338
+metadata/creation_stamp = 8227429391080
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2555052642772
+metadata/creation_stamp = 8227462945393
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -142,7 +142,7 @@ attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Oven" parent="Mesh/BalloonObjects" instance=ExtResource("4_t01tp")]
 unique_name_in_owner = true
-transform = Transform3D(0.055, 0, 0, 0, 0.055, 0, 0, 0, 0.055, 0, -0.0721372, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.06473414, 0)
 
 [node name="Flags" type="Node3D" parent="Mesh/BalloonObjects"]
 

@@ -1,17 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://d147nb65gyp54"]
+[gd_scene load_steps=10 format=3 uid="uid://d147nb65gyp54"]
 
-[ext_resource type="Texture2D" uid="uid://b856i8o5uq2ob" path="res://assets/stolen/props/tex_pirate_scenery.png" id="1_vom5i"]
-[ext_resource type="ArrayMesh" uid="uid://ce4f05oxlc07m" path="res://assets/stolen/props/window_005.obj" id="2_e4mx4"]
+[ext_resource type="Texture2D" uid="uid://c08i2kkewikdn" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_AlbedoTransparency.png" id="1_ewslu"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_ewslu"]
-[ext_resource type="Script" uid="uid://cd5r32b01sm8a" path="res://interaction/door/interaction_door.gd" id="3_vom5i"]
+[ext_resource type="ArrayMesh" uid="uid://kghb2wanjyub" path="res://assets/balloon/Oven/OvenDoor.res" id="2_mah8p"]
+[ext_resource type="Texture2D" uid="uid://6unn6m0mkdem" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Height.png" id="2_vom5i"]
+[ext_resource type="Texture2D" uid="uid://cqsgvpwd3jbqj" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_MetallicSmoothness.png" id="3_e4mx4"]
+[ext_resource type="Texture2D" uid="uid://e8gollmgyvq6" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Normal.png" id="4_nux0q"]
+[ext_resource type="Script" uid="uid://bac6m77yxa603" path="res://interaction/door/interaction_window.gd" id="7_ewslu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nux0q"]
-shading_mode = 0
-albedo_color = Color(0.556953, 0.556953, 0.556953, 1)
-albedo_texture = ExtResource("1_vom5i")
+albedo_texture = ExtResource("1_ewslu")
+metallic = 1.0
+metallic_texture = ExtResource("3_e4mx4")
+normal_enabled = true
+normal_texture = ExtResource("4_nux0q")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_vom5i")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_encw8"]
-size = Vector3(1, 1, 0.1)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ryho"]
+points = PackedVector3Array(-0.0001026392, 0.62778157, -0.011006143, 0.1357125, 0.61863756, 0.0034021176, -0.0001026392, 0.62778157, -0.041355453, -0.13581511, 0.61863756, 0.0034021176, 0.1357125, 0.61863756, -0.026975064, 0.26208317, 0.591904, 0.04261376, -0.0001026392, 0.60765207, -0.05230796, -0.13068226, 0.59907955, -0.03898659, -0.13581511, 0.61863756, -0.026975064, 0.13057965, 0.59907955, -0.03898659, -0.26228845, 0.591904, 0.04261376, 0.26208317, 0.591904, 0.01223658, 0.25192016, 0.5739335, -0.002784796, 0.37069422, 0.5494224, 0.096010715, 0.08356273, -4.4491142e-05, -0.04690138, -0.0001026392, -4.4491142e-05, -0.05233583, -0.0836654, -4.4491142e-05, -0.04690138, -0.16722813, -4.4491142e-05, -0.03059803, -0.24093583, 0.55431193, -0.006379891, -0.25202277, 0.5739335, -0.002784796, -0.26228845, 0.591904, 0.01223658, 0.24083316, 0.55431193, -0.006379891, 0.16712552, -4.4491142e-05, -0.03059803, -0.37079686, 0.5494224, 0.096010715, 0.37069422, 0.5494224, 0.065633535, 0.35570627, 0.53424585, 0.04665476, 0.334251, -4.4491142e-05, 0.034615368, 0.31515682, 0.026117574, 0.02564156, 0.25068825, -4.4491142e-05, -0.0034257807, 0.23631626, 0.026117574, -0.008163504, 0.4540516, 0.49398676, 0.15233392, 0.08376807, -0.020936046, -0.035893135, -0.0001026392, -0.020936046, -0.041355453, -0.08387071, -0.020936046, -0.035893135, -0.16774142, -0.020936046, -0.01947831, -0.2507909, -4.4491142e-05, -0.0034257807, -0.2364189, 0.026117574, -0.008163504, -0.31525946, 0.026117574, 0.02564156, -0.33435363, -4.4491142e-05, 0.034615368, -0.3558089, 0.53424585, 0.04665476, -0.37079686, 0.5494224, 0.065633535, 0.16763878, -0.020936046, -0.01947831, -0.45415428, 0.49398676, 0.15233392, 0.4540516, 0.49398676, 0.1219846, 0.4348548, 0.48287424, 0.09899269, 0.41781372, -4.4491142e-05, 0.08352542, 0.39389467, 0.026117574, 0.069145024, 0.3353802, -0.020936046, 0.046180993, 0.2515095, -0.020936046, 0.007889021, 0.50640666, 0.4295341, 0.20082593, -0.25161216, -0.020936046, 0.007889021, -0.33548287, -0.020936046, 0.046180993, -0.4179164, -4.4491142e-05, 0.08352542, -0.3939973, 0.026117574, 0.069145024, -0.43495744, 0.48287424, 0.09899269, -0.45415428, 0.49398676, 0.1219846, -0.5065093, 0.4295341, 0.20082593, 0.50640666, 0.4295341, 0.17044874, 0.48433542, 0.4235016, 0.14375027, 0.5013765, -4.4491142e-05, 0.14330436, 0.47273523, 0.026117574, 0.12226328, 0.41925097, -0.020936046, 0.09542547, 0.524269, 0.36025545, 0.23234573, -0.41935357, -0.020936046, 0.09542547, -0.50147915, -4.4491142e-05, 0.14330436, -0.47283784, 0.026117574, 0.12226328, -0.48443806, 0.4235016, 0.14375027, -0.5065093, 0.4295341, 0.17044874, -0.5243716, 0.36025545, 0.23234573, 0.524269, 0.36025545, 0.20199642, 0.524269, 0.0002730079, 0.17267826, 0.5031216, -0.020936046, 0.15562245, 0.524269, 0.0002730079, 0.20305544, -0.5032243, -0.020936046, 0.15562245, -0.5243716, 0.0002730079, 0.17267826, -0.5243716, 0.36025545, 0.20199642, -0.5243716, 0.0002730079, 0.20305544, 0.5031216, -0.020936046, 0.18599963, -0.5032243, -0.020936046, 0.18599963)
 
 [node name="DoorSmall" type="Node3D"]
 transform = Transform3D(-7.212379e-08, 0, -1.65, 0, 1.6500005, 0, 1.65, 0, -7.212379e-08, 0, 0, 0)
@@ -19,26 +26,22 @@ transform = Transform3D(-7.212379e-08, 0, -1.65, 0, 1.6500005, 0, 1.65, 0, -7.21
 [node name="PivotPoint" type="Node3D" parent="."]
 
 [node name="Door" type="StaticBody3D" parent="PivotPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.8, -0.05)
+transform = Transform3D(1, 0, -1.4210855e-14, 0, 0.99999976, 0, 1.4210855e-14, 0, 1, -0.7694717, -1.1442034, -0.049999982)
 collision_layer = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PivotPoint/Door"]
-transform = Transform3D(1.3000001, 0, -1.4210855e-14, 0, 1.2999997, 0, 1.4210855e-14, 0, 1.3000001, 0.7990209, 1.2071574, 0.03390597)
+transform = Transform3D(1.3000001, 0, -1.7763568e-14, 0, 1.2999997, 0, 1.7763568e-14, 0, 1.3000001, 0.7990209, 1.2071573, 0.033905968)
 material_override = SubResource("StandardMaterial3D_nux0q")
-mesh = ExtResource("2_e4mx4")
+mesh = ExtResource("2_mah8p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PivotPoint/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.3, 0)
-shape = SubResource("BoxShape3D_encw8")
+transform = Transform3D(1.3000001, 0, -1.7763568e-14, 0, 1.2999997, 0, 1.7763568e-14, 0, 1.3000001, 0.7990209, 1.2071573, 0.033905968)
+shape = SubResource("ConvexPolygonShape3D_5ryho")
 
 [node name="InteractionComponent" parent="PivotPoint/Door" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("2_ewslu")]
-script = ExtResource("3_vom5i")
-door_smoothing = 80.0
+script = ExtResource("7_ewslu")
+window_smoothing = 80.0
+max_height_offset = 0.1
 is_locked = false
 object_ref = NodePath("../../..")
 pivot_point = NodePath("../..")
-
-[node name="Label3D" type="Label3D" parent="PivotPoint/Door"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0.78947955, 1.6616669, 0.08786863)
-text = "OWEN IS GAY"
-font_size = 28
