@@ -251,6 +251,22 @@ fmod_parameters/terrain = "grass"
 fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
 fmod_parameters/terrain/variant_type = 4
 
+[node name="Stand" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Crouch"
+event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
+fmod_parameters/stance/id = 4732078636444294086
+fmod_parameters/stance = "stand"
+fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
+fmod_parameters/stance/variant_type = 4
+
+[node name="Crouch" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Crouch"
+event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
+fmod_parameters/stance/id = 4732078636444294086
+fmod_parameters/stance = "crouch"
+fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
+fmod_parameters/stance/variant_type = 4
+
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
 shape = SubResource("SphereShape3D_g6k8r")

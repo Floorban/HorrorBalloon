@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://f78nh2t5kjye"]
+[gd_scene load_steps=7 format=3 uid="uid://f78nh2t5kjye"]
 
+[ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://interaction/impact/impact_sound.gd" id="1_ah7yw"]
 [ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_uw3nf"]
 [ext_resource type="ArrayMesh" uid="uid://dv2tocwgxoo7c" path="res://assets/stolen/props/plank_001.obj" id="2_uw3nf"]
 [ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_w4y3j"]
@@ -14,6 +15,7 @@ size = Vector3(0.15722656, 0.70202637, 0.04260254)
 collision_layer = 5
 linear_damp = 2.0
 angular_damp = 1.0
+script = ExtResource("1_ah7yw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.35, 0, 0, 0)
@@ -29,3 +31,10 @@ script = ExtResource("3_w4y3j")
 fuel_amount = 35.0
 object_ref = NodePath("..")
 metadata/_custom_type_script = "uid://dl7lykc4qndpo"
+
+[node name="Impact" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/Interactables/Impact/Can"
+event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
+fmod_parameters/impact_strength/id = 8864240675834785146
+fmod_parameters/impact_strength = 0.0
+fmod_parameters/impact_strength/variant_type = 3

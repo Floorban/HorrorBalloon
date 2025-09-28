@@ -71,11 +71,17 @@ var is_dead := false
 # Audio Settings
 var e_right_step: FmodEventEmitter3D
 var e_left_step: FmodEventEmitter3D
+var e_crouch: FmodEventEmitter3D
+var e_stand: FmodEventEmitter3D
 var step_is_playing: bool = false
+var is_crouching: bool = false
+var is_standing: bool = false
 
 func _ready() -> void:
 	e_right_step = get_node("Audio/RightStep")
 	e_left_step = get_node("Audio/LeftStep")
+	e_crouch = get_node("Audio/Crouch")
+	e_stand = get_node("Audio/Stand")
 	
 	original_position = player_camera.position
 	original_rotation = player_camera.rotation_degrees
@@ -197,6 +203,9 @@ func updatePlayerState() -> void:
 				player_state = PlayerState.SPRINTING
 			else:
 				player_state = PlayerState.WALKING
+
+		if Input.is_action_just_pressed("crouch"): play_crouch_sound()
+		if Input.is_action_just_released("crouch"): play_stand_sound()
 
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
@@ -355,6 +364,20 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	e_left_step.play()
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
+	
+func play_crouch_sound():
+	if is_crouching: return
+	is_crouching = true
+	e_crouch.play()
+	await get_tree().create_timer(0.3).timeout
+	is_crouching = false
+
+func play_stand_sound():
+	if is_standing: return
+	is_standing = true
+	e_stand.play()
+	await get_tree().create_timer(0.3).timeout
+	is_standing = false
 
 func _exit_tree():
 	e_right_step.stop()
