@@ -35,6 +35,7 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
 	player.hold_back_speed = -object_ref.mass / 5.0
+	object_ref.set_collision_layer_value(1, false)
 
 func interact() -> void:
 	super.interact()
@@ -43,6 +44,7 @@ func interact() -> void:
 func postInteract() -> void:
 	super.postInteract()
 	player.hold_back_speed = 0.0
+	object_ref.set_collision_layer_value(1, true)
 
 func auxInteract() -> void:
 	super.auxInteract()
@@ -70,5 +72,6 @@ func _draggable_throw() -> void:
 		can_interact = false
 		is_interacting = false
 		player.hold_back_speed = 0.0
+		object_ref.set_collision_layer_value(1, true)
 		await get_tree().create_timer(1.0).timeout
 		can_interact = true

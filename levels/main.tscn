@@ -132,10 +132,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
 size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.8724791, 0, 0.48865134, 0, 1, 0, -0.48865134, 0, 0.8724791, 6.5508914, 0.62604856, -2.0603616)
+transform = Transform3D(0.8724791, 0, 0.48865134, 0, 1, 0, -0.48865134, 0, 0.8724791, -3.18431, 0.084714174, -7.3355665)
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.995634, -0.5220251, 72.61095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61095)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.95265615, 4.450685, 0, -3.308285)

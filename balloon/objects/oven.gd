@@ -58,7 +58,7 @@ func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL
 
 func collect_fuel(body: Node3D) -> void:
-	if body:
+	if body is RigidBody3D:
 		var interaction_component = body.get_node_or_null("InteractionComponent")
 		if interaction_component and "weight" in interaction_component and interaction_component not in objs_to_burn:
 			objs_to_burn.append(interaction_component)

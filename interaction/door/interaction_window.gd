@@ -10,12 +10,12 @@ var is_front: bool
 var window_opened: bool = false
 
 # Movement thresholds
-@export var max_height_offset: float = 0.5
+@export var max_height_offset: float = 0.6
 var window_creak_velocity_threshold: float = 0.002
 var open_height_threshold: float = 0.2
 var close_snap_range: float = 0.05
 var creak_volume_scale: float = 1000.0
-var window_fade_speed: float = 1.0
+var window_fade_speed: float = 0.5
 var prev_window_height: float = 0.0
 
 @export var is_locked: bool = false
@@ -66,7 +66,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		window_input_active = true
-		var delta_move: float = event.relative.y * 0.003
+		var delta_move: float = event.relative.y * 0.001
 		if not is_front:
 			delta_move = -delta_move
 		

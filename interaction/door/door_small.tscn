@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c08i2kkewikdn" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_AlbedoTransparency.png" id="1_ewslu"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_ewslu"]
-[ext_resource type="ArrayMesh" uid="uid://kghb2wanjyub" path="res://assets/balloon/Oven/OvenDoor.res" id="2_mah8p"]
+[ext_resource type="ArrayMesh" uid="uid://b0xpskrqeocg4" path="res://assets/balloon/Oven/OvenDoor.res" id="2_mah8p"]
 [ext_resource type="Texture2D" uid="uid://6unn6m0mkdem" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Height.png" id="2_vom5i"]
 [ext_resource type="Texture2D" uid="uid://cqsgvpwd3jbqj" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_MetallicSmoothness.png" id="3_e4mx4"]
 [ext_resource type="Texture2D" uid="uid://e8gollmgyvq6" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Normal.png" id="4_nux0q"]
@@ -15,6 +15,7 @@ metallic_texture = ExtResource("3_e4mx4")
 normal_enabled = true
 normal_texture = ExtResource("4_nux0q")
 heightmap_enabled = true
+heightmap_scale = 1.0
 heightmap_texture = ExtResource("2_vom5i")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ryho"]
@@ -41,7 +42,7 @@ shape = SubResource("ConvexPolygonShape3D_5ryho")
 [node name="InteractionComponent" parent="PivotPoint/Door" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("2_ewslu")]
 script = ExtResource("7_ewslu")
 window_smoothing = 80.0
-max_height_offset = 0.1
+max_height_offset = 0.6
 is_locked = false
 object_ref = NodePath("../../..")
 pivot_point = NodePath("../..")

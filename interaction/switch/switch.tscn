@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://cnlu27fc4vjhy" path="res://interaction/switch/interaction_switch.gd" id="2_r437o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rbxwc"]
-size = Vector3(0.1, 0.75, 0.1)
+size = Vector3(0.2, 0.65, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bd5kx"]
-size = Vector3(0.1, 0.75, 0.1)
+size = Vector3(0.20507813, 0.6611328, 0.20727539)
 
 [node name="Switch" type="Node3D"]
 

@@ -48,7 +48,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		var prev_angle = object_ref.rotation.z
-		object_ref.rotate_z(-event.relative.y * .001)
+		object_ref.rotate_z(event.relative.y * .001)
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
 		# var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 		
