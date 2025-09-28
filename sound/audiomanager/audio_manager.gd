@@ -28,7 +28,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	listener.global_transform = player.global_transform
 
-func cache(emitter: FmodEventEmitter3D) -> FmodEventEmitter3D:
+func cache(emitter: FmodEventEmitter3D, emit_position: Vector3) -> FmodEventEmitter3D:
+	emitter.global_position = emit_position
 	emitter.allow_fadeout = true
 	emitter.attached = true
 	emitter.auto_release = false

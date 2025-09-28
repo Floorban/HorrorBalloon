@@ -22,6 +22,7 @@ var anxiety: String = "Anxiety"
 var guilt: String = "Guilt"
 var hatred: String = "Hatred"
 var terror: String = "Terror"
+var screech_is_playing = false
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
@@ -29,7 +30,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	set_physics_process(true)
 	audio = get_tree().get_first_node_in_group("audio")
-	audio.cache(e_screech)
+	audio.cache(e_screech, global_position)
 	e_screech.set_parameter(anxiety, rng.randf_range(0.0, 100.0))
 	e_screech.set_parameter(guilt, rng.randf_range(0.0, 100.0))
 	e_screech.set_parameter(hatred, rng.randf_range(0.0, 100.0))
@@ -66,6 +67,8 @@ func travel_to_position(wanted_position: Vector3, speed: float, play_run_anim :=
 		animation_player.play("RUN")
 
 func is_player_in_view() -> bool:
+	if !screech_is_playing: e_screech.paused = false
+	screech_is_playing = true
 	var vec_to_player := (player.global_position - global_position)
 	
 	if vec_to_player.length() > max_spotting_distance:
@@ -78,7 +81,6 @@ func is_player_in_view() -> bool:
 	return false
 
 func is_line_of_sight_broken() -> bool:
-	e_screech.stop()
 	_eye_ray_cast.target_position = _eye_ray_cast.to_local(player.global_position)
 	_eye_ray_cast.force_raycast_update()
 	return _eye_ray_cast.is_colliding()
@@ -87,3 +89,6 @@ func reached_target():
 	found_target = true
 	reached_player.emit()
 	animation_player.play("ATK")
+
+func _exit_tree() -> void:
+	e_screech.stop()
