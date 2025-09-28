@@ -89,6 +89,9 @@
 		<property name="volume">
 			<value>10</value>
 		</property>
+		<property name="pitch">
+			<value>2.79999995</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{d11ac0e0-c4f1-4be8-a9ce-44bbdb1024f7}</destination>
 		</relationship>
@@ -216,28 +219,20 @@
 	</object>
 	<object class="MixerBusPanner" id="{780e58dc-e1eb-434b-9559-f88f800ea10d}" />
 	<object class="MixerBusFader" id="{9a4e6bd9-e534-4a30-b374-d44efe4d61e9}" />
-	<object class="GainEffect" id="{36a5a94e-8a69-43f9-8367-d673c282d217}">
-		<property name="gain">
-			<value>10</value>
-		</property>
-	</object>
-	<object class="GainEffect" id="{62b38315-188a-4cd8-a3ce-e033a00d5dcc}">
-		<property name="gain">
-			<value>10</value>
-		</property>
-	</object>
+	<object class="GainEffect" id="{36a5a94e-8a69-43f9-8367-d673c282d217}" />
+	<object class="GainEffect" id="{62b38315-188a-4cd8-a3ce-e033a00d5dcc}" />
 	<object class="ThreeEQEffect" id="{457da9e3-8f3f-4a94-ad1d-97bafb509524}">
 		<property name="lowGain">
-			<value>-11</value>
+			<value>-37</value>
 		</property>
 		<property name="midGain">
-			<value>-8.5</value>
+			<value>-11.5</value>
 		</property>
 		<property name="highGain">
 			<value>10</value>
 		</property>
 		<relationship name="modulators">
-			<destination>{c68f2b9d-7f90-4412-9f7c-9049772bd695}</destination>
+			<destination>{a8bcd71e-19ae-43db-b4cd-6c3acca1b570}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{fb656a9b-1be6-4589-b8cf-45215d3adf9c}" />
@@ -263,24 +258,12 @@
 			<destination>{2ccc1cde-935b-498a-b491-f63bcf076406}</destination>
 		</relationship>
 	</object>
-	<object class="LFOModulator" id="{c68f2b9d-7f90-4412-9f7c-9049772bd695}">
+	<object class="RandomizerModulator" id="{a8bcd71e-19ae-43db-b4cd-6c3acca1b570}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>midGain</value>
 		</property>
-		<property name="shape">
-			<value>6</value>
-		</property>
-		<property name="isTempoSync">
-			<value>true</value>
-		</property>
-		<property name="beats">
-			<value>0.0899999961</value>
-		</property>
-		<property name="depth">
-			<value>31.5</value>
-		</property>
-		<property name="direction">
-			<value>-100</value>
+		<property name="amount">
+			<value>35</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{2ccc1cde-935b-498a-b491-f63bcf076406}">
