@@ -86,6 +86,18 @@ event_name = "event:/Ambient/Environment/Fire"
 event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
 auto_release = true
 
+[node name="Flame2" parent="." instance=ExtResource("10_71bfn")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.6185933e-08, 0.8934559, -0.10840249)
+
+[node name="SpotLight3D" parent="Flame2" index="0"]
+transform = Transform3D(10, 0, 2.842171e-14, 0, 10, 0, -2.842171e-14, 0, 10, -2.5033785e-08, 0, 0.57270646)
+visible = false
+
+[node name="SFX_Flame" type="FmodEventEmitter3D" parent="Flame2"]
+event_name = "event:/Ambient/Environment/Fire"
+event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
+auto_release = true
+
 [node name="FuelUI" type="Sprite3D" parent="."]
 transform = Transform3D(-3, 0, -2.6226832e-07, 0, 3, 0, 2.6226832e-07, 0, -3, -0.03386189, 3.3722892, -0.47793537)
 texture_filter = 0
@@ -124,3 +136,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [editable path="DoorSmall"]
+[editable path="Flame2"]

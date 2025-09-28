@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=25 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="4_t01tp"]
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="4_uro0l"]
 [ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
+[ext_resource type="Texture2D" uid="uid://c08i2kkewikdn" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_AlbedoTransparency.png" id="7_my1lc"]
+[ext_resource type="Texture2D" uid="uid://6unn6m0mkdem" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Height.png" id="8_pos5u"]
+[ext_resource type="Texture2D" uid="uid://cqsgvpwd3jbqj" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_MetallicSmoothness.png" id="9_q3h3j"]
+[ext_resource type="Texture2D" uid="uid://e8gollmgyvq6" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Normal.png" id="10_snxhu"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
@@ -18,21 +22,31 @@ albedo_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euxwi"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_rdoix"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8227362282212
+metadata/creation_stamp = 18360196747635
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_06xpq"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8227395836646
+metadata/creation_stamp = 18360230303325
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mp4s2"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8227429391080
+metadata/creation_stamp = 18360263856519
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_q871c"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nfn1q"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8227462945393
+metadata/creation_stamp = 18360297410949
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg23p"]
+albedo_texture = ExtResource("7_my1lc")
+metallic = 0.5
+metallic_texture = ExtResource("9_q3h3j")
+normal_enabled = true
+normal_texture = ExtResource("10_snxhu")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("8_pos5u")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Mesh/MaxLoadUI/SubViewport")
@@ -119,30 +133,31 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_rdoix")
+mesh = SubResource("ImmediateMesh_exksr")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_06xpq")
+mesh = SubResource("ImmediateMesh_x3kbh")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_mp4s2")
+mesh = SubResource("ImmediateMesh_nwaq6")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Mesh/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.20000003)
-mesh = SubResource("ImmediateMesh_q871c")
+mesh = SubResource("ImmediateMesh_nfn1q")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="BalloonObjects" type="Node3D" parent="Mesh"]
 
 [node name="Oven" parent="Mesh/BalloonObjects" instance=ExtResource("4_t01tp")]
 unique_name_in_owner = true
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.06473414, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.064734146, 0)
+material_override = SubResource("StandardMaterial3D_kg23p")
 
 [node name="Flags" type="Node3D" parent="Mesh/BalloonObjects"]
 
@@ -248,7 +263,6 @@ unique_name_in_owner = true
 disable_mode = 2
 collision_layer = 0
 collision_mask = 5
-monitorable = false
 gravity_point = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/ObjInBalloonArea"]

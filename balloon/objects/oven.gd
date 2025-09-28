@@ -18,12 +18,15 @@ var e_flame: FmodEventEmitter3D
 var e_flame_is_playing: bool
 
 @onready var flame: GPUParticles3D
+@onready var flame2: GPUParticles3D
 
 func _ready() -> void:
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Flame/SFX_Flame"))
 	
 	flame = get_node("Flame")
+	flame2 = get_node("Flame2")
+
 	if fuel_bar:
 		fuel_bar.max_value = MAX_FUEL
 		fuel_bar.value = current_fuel
@@ -33,12 +36,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_fuel > 0.0:
 			flame.emitting = true
+			flame2.emitting = true
 			if !e_flame_is_playing:
 				e_flame.paused = false
 				e_flame_is_playing = true
 			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
 	else:
 		flame.emitting = false
+		flame2.emitting = false
 		e_flame_is_playing = false
 		e_flame.paused = true
 	

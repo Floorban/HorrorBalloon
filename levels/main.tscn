@@ -132,13 +132,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
 size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.8724791, 0, 0.48865134, 0, 1, 0, -0.48865134, 0, 0.8724791, -3.18431, 0.084714174, -7.3355665)
+transform = Transform3D(-0.44455725, 0, -0.89575034, 0, 1, 0, 0.89575034, 0, -0.44455725, -3.18431, 0.084714174, -7.3355665)
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61095)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(-0.95265615, 0, -0.30404973, 0, 1, 0, 0.30404973, 0, -0.95265615, 4.450685, 0, -3.308285)
+transform = Transform3D(0.705587, 0, 0.7086232, 0, 1, 0, -0.7086232, 0, 0.705587, 4.450685, 0, -3.308285)
 collision_layer = 2147483649
 collision_mask = 2147483649
 basket_size = Vector3(6.3, 5, 6.3)
