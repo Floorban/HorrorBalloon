@@ -133,7 +133,6 @@ size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
 transform = Transform3D(-0.44455725, 0, -0.89575034, 0, 1, 0, 0.89575034, 0, -0.44455725, 2.014004, 0.084713936, -2.824366)
-top_level = true
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61095)
@@ -291,10 +290,10 @@ max_contacts_reported = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153419, 2.9294996, -4.51141)
 
 [node name="Island1" parent="." instance=ExtResource("36_egc1g")]
-transform = Transform3D(0.7780787, 0, 0.6281668, 0, 1, 0, -0.6281668, 0, 0.7780787, -123.79122, 154.20192, 7.8527527)
+transform = Transform3D(0.7780787, 0, 0.6281668, 0, 1, 0, -0.6281668, 0, 0.7780787, -91.19835, 85.393265, -21.778564)
 
 [node name="Island2" parent="." instance=ExtResource("37_y60h0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.424286, 113.54164, 127.7738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.700684, 67.76727, 84.63267)
 
 [node name="Island3" parent="." instance=ExtResource("38_05fi1")]
-transform = Transform3D(-0.1301109, 0, 0.9914995, 0, 1, 0, -0.9914995, 0, -0.1301109, 81.59975, 99.36429, -62.503265)
+transform = Transform3D(-0.1301109, 0, 0.9914995, 0, 1, 0, -0.9914995, 0, -0.1301109, 81.59975, 53.58992, -62.503265)

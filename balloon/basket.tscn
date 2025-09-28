@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dgcxtwslmyvk" path="res://balloon/objects/interaction_basket.gd" id="2_0wdyp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_csh10"]
-size = Vector3(0.9416504, 0.072265625, 0.93847656)
+size = Vector3(1.1486816, 0.072265625, 1.0976563)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_35dws"]
 size = Vector3(0.1, 0.2, 1.1)
@@ -19,6 +19,7 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024597764, 0)
 shape = SubResource("BoxShape3D_csh10")
+debug_color = Color(0, 0, 0, 0.41960785)
 
 [node name="Col_Side_1" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51, 0.100722656, 0)
