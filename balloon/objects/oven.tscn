@@ -1,24 +1,35 @@
 [gd_scene load_steps=16 format=3 uid="uid://dduhus42o4l1a"]
 
 [ext_resource type="Texture2D" uid="uid://c08i2kkewikdn" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_AlbedoTransparency.png" id="1_3kkdw"]
-[ext_resource type="ArrayMesh" uid="uid://d3yagddlj6d8r" path="res://assets/balloon/Oven/Oven.res" id="1_sicut"]
-[ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
+[ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="1_sicut"]
+[ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://Balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="Texture2D" uid="uid://6unn6m0mkdem" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Height.png" id="2_aagg8"]
 [ext_resource type="Texture2D" uid="uid://cqsgvpwd3jbqj" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_MetallicSmoothness.png" id="3_c5173"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
 [ext_resource type="Texture2D" uid="uid://e8gollmgyvq6" path="res://assets/balloon/Oven/Texture/Oven_Lp_OvenTexture_Normal.png" id="4_dns3t"]
 [ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]
-[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
-[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="10_71bfn"]
+[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://Balloon/fuel_bar.tscn" id="6_sicut"]
+[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://Balloon/flame.tscn" id="10_71bfn"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg23p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36e35"]
+resource_name = "TT_checker_512x512_UV_GRID"
+transparency = 2
+alpha_scissor_threshold = 0.01
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_3kkdw")
-metallic = 0.5
+metallic = 1.0
 metallic_texture = ExtResource("3_c5173")
+roughness_texture = ExtResource("3_c5173")
+roughness_texture_channel = 3
+emission_enabled = true
 normal_enabled = true
 normal_texture = ExtResource("4_dns3t")
+ao_enabled = true
+ao_texture = ExtResource("3_c5173")
+ao_texture_channel = 1
 heightmap_enabled = true
-heightmap_scale = 1.0
+heightmap_scale = 0.5
 heightmap_texture = ExtResource("2_aagg8")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sicut"]
@@ -35,13 +46,16 @@ viewport_path = NodePath("WeightUI/SubViewport")
 
 [node name="OvenMesh" type="MeshInstance3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_kg23p")
 mesh = ExtResource("1_sicut")
 skeleton = NodePath("../..")
 script = ExtResource("2_0qg0s")
 
 [node name="DoorSmall" parent="." instance=ExtResource("3_w7bsp")]
 transform = Transform3D(0.8, 0, 0, 0, 0.79728585, -0.06584303, 0, 0.06584303, 0.79728585, -0.03246221, 0.7783848, -0.47443908)
+
+[node name="MeshInstance3D" parent="DoorSmall/PivotPoint/Door" index="0"]
+transform = Transform3D(1.1700002, 5.4514526e-09, -1.8751933e-10, -4.8675237e-09, 1.2940105, 0.12464469, 6.3837646e-10, -0.12464468, 1.294011, 0.7990207, 1.2035501, -0.009773076)
+material_override = SubResource("StandardMaterial3D_36e35")
 
 [node name="InteractionComponent" parent="DoorSmall/PivotPoint/Door" index="2" node_paths=PackedStringArray("nodes_to_affect")]
 max_height_offset = 0.5
@@ -108,9 +122,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.034694, 0)
-light_energy = 2.0
 
 [editable path="DoorSmall"]

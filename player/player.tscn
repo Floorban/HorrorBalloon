@@ -70,6 +70,14 @@ cull_mask = 524285
 current = true
 fov = 90.0
 
+[node name="Flashlight" type="SpotLight3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
+light_color = Color(0.96, 0.92416, 0.8928, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 1.5
+light_size = 0.05
+light_bake_mode = 0
+
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
