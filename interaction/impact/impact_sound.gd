@@ -1,4 +1,4 @@
-#extends RigidBody3D
+extends RigidBody3D
 #
 #@onready var e_impact: FmodEventEmitter3D = $Impact
 #@export var impact_parameter: String = "impact_strength"
@@ -12,6 +12,7 @@
 #func _ready() -> void: last_play_time -= cooldown
 #
 #func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	##TODO: Sleep object if inactive for long but wakes up after being grabbed
 	#var current_time: float = Time.get_ticks_msec() / 1000.0
 	#if current_time <= 5.0: return
 #
@@ -19,10 +20,9 @@
 		#var max_intensity: float = 0.0
 #
 		#for i in state.get_contact_count():
-			#if state.get_contact_collider()
+			##TODO: Respond to player signal to ignore collision
 			#var contact_velocity = state.get_contact_local_velocity_at_position(i)
 			#var impact_velocity: float = contact_velocity.length()
-#
 			#var mass_factor: float = mass * 0.01
 			#var intensity: float = impact_velocity * mass_factor
 			#intensity = clamp(intensity, 0.0, 0.3)
