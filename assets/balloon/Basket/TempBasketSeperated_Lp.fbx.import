@@ -1,0 +1,101 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dms4pwl2vdw84"
+path="res://.godot/imported/TempBasketSeperated_Lp.fbx-effbdb80c1451e2cb2bafa47495a72ee.scn"
+
+[deps]
+
+source_file="res://assets/balloon/Basket/TempBasketSeperated_Lp.fbx"
+dest_files=["res://.godot/imported/TempBasketSeperated_Lp.fbx-effbdb80c1451e2cb2bafa47495a72ee.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"meshes": {
+"Cube": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/Basket.res",
+"save_to_file/path": "uid://bvgjihav87y6j"
+},
+"Cube_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/BigPlank.res",
+"save_to_file/path": "uid://c2bvqtxmapshk"
+},
+"Cube_010": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/BasketDoor.res",
+"save_to_file/path": "uid://bhuro663tj2p7"
+},
+"Cube_014": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/SmallestPlanks.res",
+"save_to_file/path": "uid://dr5i8jyoobmk2"
+},
+"Cube_024": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/SmallPlanks.res",
+"save_to_file/path": "uid://dvxdcey46abg8"
+},
+"Plane_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/balloon/Basket/Meshes/CorrugatedMetal.res",
+"save_to_file/path": "uid://d1xm44d34t0mf"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2
