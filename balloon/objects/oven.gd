@@ -18,13 +18,13 @@ var total_weight : float
 var audio: AudioManager
 var e_flame: FmodEventEmitter3D
 var e_flame_is_playing: bool
-
+@onready var e_release: FmodEventEmitter3D = $Audio/SFX_ReleaseGas
 @onready var flame: GPUParticles3D
 @onready var flame2: GPUParticles3D
 
 func _ready() -> void:
 	audio = get_tree().get_first_node_in_group("audio")
-	e_flame = audio.cache(get_node("Flame/SFX_Flame"), global_position)
+	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
 	flame = get_node("Flame")
 	flame2 = get_node("Flame2")
 
@@ -57,7 +57,8 @@ func execute(_percentage: float) -> void:
 	## for cooling
 	if _percentage >= 0.99:
 		burning_rate = cooling_rate
-		## satisfying steam burst sound and particle here
+		e_release.play()
+		# satisfying particle here
 	else:
 		burning_rate = defualt_burning_rate
 		if _percentage <= 0.0 and randf() > 0.1: ## Horror feeling lol
