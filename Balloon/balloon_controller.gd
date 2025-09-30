@@ -15,15 +15,15 @@ var move_threshold := 0.1
 
 # Tilt
 var horizontal_dir: Vector3
-@onready var mesh: Node3D = $Mesh
+@onready var mesh: Node3D = $Body
 @export var max_tilt_angle := 8.0
 var tilt_tween : Tween
 var tilt_velocity := Vector3.ZERO
 var tilt_damping := 0.5
 var tilt_threshold := 0.005
 
-@onready var land_checks: = [%GroundCheck_6, %GroundCheck_7, %GroundCheck_8, %GroundCheck_9, %GroundCheck_10]
-@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
+@onready var land_checks: = [%LandCheck_1, %LandCheck_2, %LandCheck_3, %LandCheck_4, %LandCheck_5]
+@onready var ground_checks := [%GroundCheck_1, %GroundCheck_1, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
 var can_land := false
 var is_on_ground := false
 
@@ -40,19 +40,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
-	if can_land and linear_velocity.y < 0.0:
-		linear_velocity = Vector3.ZERO
-		gravity_scale = 0.0
 
-	if is_on_ground or can_land:
-		if not is_just_land and linear_velocity.y < 0.0:
-			player.trauma = 0.5
-			is_just_land = true
-		gravity_scale = 0.0
-	else:
-		gravity_scale = GRAVITY
-		is_just_land = false
-
+	if is_on_ground and not is_just_land:
+		player.trauma = 0.5
+		is_just_land = true
+		freeze = true
+		
 	_apply_vertical_force()
 	_apply_horizontal_force()
 
@@ -143,6 +136,7 @@ func _deferred_deattach(body: Node3D):
 	_is_reparenting = false
 
 func _apply_vertical_force() -> void:
+	if is_just_land: return
 	verticle_force = verticle_base_force # - get_all_weights() / 20.0
 	if oven: apply_central_force(Vector3.UP * verticle_force * oven.get_fuel_percentage())
 

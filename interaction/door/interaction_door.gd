@@ -20,7 +20,7 @@ var was_just_unlocked: bool = false
 
 func _ready():
 	super._ready()
-	starting_rotation = pivot_point.rotation.y
+	starting_rotation = pivot_point.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 	nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
 
@@ -29,7 +29,7 @@ func _process(delta):
 		door_velocity = 0.0
 		door_input_active = false
 		door_angle = starting_rotation
-		pivot_point.rotation.y = starting_rotation
+		pivot_point.rotation.z = starting_rotation
 		was_just_unlocked = false
 	else:
 		if not door_input_active:
@@ -40,14 +40,14 @@ func _process(delta):
 		if is_locked:
 			var lock_wiggle: float = 0.02
 			door_angle = clamp(door_angle, starting_rotation, starting_rotation+lock_wiggle)
-			pivot_point.rotation.y = door_angle
+			pivot_point.rotation.z = door_angle
 			
 			if door_input_active and not prev_door_angle == door_angle:
 				#tertiary_audio_player.play()
 				door_input_active = false
 		else:
 			door_angle = clamp(door_angle, starting_rotation, maximum_rotation)
-			pivot_point.rotation.y = door_angle
+			pivot_point.rotation.z = door_angle
 			door_input_active = false
 
 			if prev_door_angle != door_angle:
@@ -60,7 +60,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		door_input_active = true
-		var delta: float = -event.relative.y * 0.003
+		var delta: float = event.relative.y * 0.003
 		if not is_front:
 			delta = -delta
 		# Simulate resistance to small motions
@@ -87,7 +87,7 @@ func unlock() -> void:
 	door_velocity = 0.0
 	door_input_active = false
 	door_angle = starting_rotation
-	pivot_point.rotation.y = starting_rotation
+	pivot_point.rotation.z = starting_rotation
 
 ## Fires when the player is interacting with a door
 func update_door_sounds(_delta: float) -> void:
