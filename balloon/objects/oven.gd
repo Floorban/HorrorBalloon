@@ -23,6 +23,7 @@ var e_flame_is_playing: bool
 @onready var flame2: GPUParticles3D
 
 func _ready() -> void:
+	# current_fuel = MAX_FUEL
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
 	flame = get_node("Flame")

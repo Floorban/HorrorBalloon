@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
-[ext_resource type="PackedScene" path="res://balloon/basket_door.tscn" id="2_q3h3j"]
-[ext_resource type="PackedScene" path="res://balloon/basket_sides.tscn" id="2_uro0l"]
+[ext_resource type="PackedScene" uid="uid://bn7oxoa3un034" path="res://balloon/basket_door.tscn" id="2_q3h3j"]
+[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_uro0l"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
 [ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
@@ -18,201 +18,190 @@
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
-size = Vector3(0.95581055, 0.041557312, 0.96191406)
+size = Vector3(4.0322266, 0.3309668, 3.8613281)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 158176901183329
+metadata/creation_stamp = 45183844569824
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 158176934711837
+metadata/creation_stamp = 45183878147745
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 158176968289485
+metadata/creation_stamp = 45183911701825
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 158177001846841
+metadata/creation_stamp = 45183945254003
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(1.0183105, 0.45910645, 1.017456)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
-viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
-collision_layer = 2147483649
-mass = 20.0
-gravity_scale = 0.0
-lock_rotation = true
-continuous_cd = true
-contact_monitor = true
-max_contacts_reported = 1
-linear_damp = 0.5
+mass = 10.0
 script = ExtResource("1_35dws")
-verticle_base_force = 100.0
-horizontal_force = 30.0
+vertical_base_force = 5.0
 
-[node name="Body" type="Node3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
-
-[node name="Bottom" type="StaticBody3D" parent="Body"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03126526, 0.03410721, 0.022949219)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21459341, 0.17029373, 0.09869385)
 shape = SubResource("BoxShape3D_q3h3j")
 
-[node name="BasketSides" parent="Body" instance=ExtResource("2_uro0l")]
+[node name="Body" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.21459341, -0.17029373, -0.09869385)
 
-[node name="BasketDoor" parent="Body" instance=ExtResource("2_q3h3j")]
+[node name="BasketSides" parent="CollisionShape3D/Body" instance=ExtResource("2_uro0l")]
+
+[node name="BasketDoor" parent="CollisionShape3D/Body" instance=ExtResource("2_q3h3j")]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0.5049014, 0.05708955, 0.02389434)
 
-[node name="Oven" parent="Body" instance=ExtResource("4_t01tp")]
+[node name="Oven" parent="CollisionShape3D/Body" instance=ExtResource("4_t01tp")]
 unique_name_in_owner = true
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.064734146, 0)
 skeleton = NodePath("..")
 
-[node name="Model" type="Node3D" parent="Body"]
+[node name="Model" type="Node3D" parent="CollisionShape3D/Body"]
 
-[node name="Basket" type="MeshInstance3D" parent="Body/Model"]
+[node name="Basket" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.033377808, 0.02243486, 0.022525966)
 mesh = ExtResource("12_p5sb2")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="BigPlank" type="MeshInstance3D" parent="Body/Model"]
+[node name="BigPlank" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.4124157, 0.12484461, 0.44872102)
 material_override = ExtResource("15_0hh8o")
 mesh = ExtResource("16_i26vf")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="CorrugatedMetal" type="MeshInstance3D" parent="Body/Model"]
+[node name="CorrugatedMetal" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.096544385, 0.11614712, -0.47550187)
 material_override = ExtResource("15_0hh8o")
 mesh = ExtResource("17_kawdg")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="SmallestPlanks" type="MeshInstance3D" parent="Body/Model"]
+[node name="SmallestPlanks" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.49263746, 0.13070904, 0.45981723)
 material_override = ExtResource("15_0hh8o")
 mesh = ExtResource("18_2pii6")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="SmallPlanks" type="MeshInstance3D" parent="Body/Model"]
+[node name="SmallPlanks" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.5346992, 0.11948236, -0.08732039)
 material_override = ExtResource("15_0hh8o")
 mesh = ExtResource("19_hex2p")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="Ball" type="MeshInstance3D" parent="Body/Model"]
+[node name="Ball" type="MeshInstance3D" parent="CollisionShape3D/Body/Model"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
 mesh = SubResource("SphereMesh_2fgap")
 skeleton = NodePath("../..")
 
-[node name="Corners" type="Node3D" parent="Body"]
+[node name="Corners" type="Node3D" parent="CollisionShape3D/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116721, 0)
 
-[node name="Corner_1" type="Node3D" parent="Body/Corners"]
+[node name="Corner_1" type="Node3D" parent="CollisionShape3D/Body/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42473024, 0.355, 0.49315727)
 
-[node name="RopeInteraction" parent="Body/Corners/Corner_1" instance=ExtResource("4_uro0l")]
+[node name="RopeInteraction" parent="CollisionShape3D/Body/Corners/Corner_1" instance=ExtResource("4_uro0l")]
 transform = Transform3D(0.541043, 0.316137, 0.779314, -0.39235, 0.914518, -0.098592, -0.743865, -0.252421, 0.61883, 0, 0, 0)
 
-[node name="Corner_2" type="Node3D" parent="Body/Corners"]
+[node name="Corner_2" type="Node3D" parent="CollisionShape3D/Body/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4954381, 0.355, 0.48631462)
 
-[node name="RopeInteraction" parent="Body/Corners/Corner_2" instance=ExtResource("4_uro0l")]
+[node name="RopeInteraction" parent="CollisionShape3D/Body/Corners/Corner_2" instance=ExtResource("4_uro0l")]
 transform = Transform3D(0.668143, -0.30282, 0.679621, -0.0178129, 0.906657, 0.421493, -0.743819, -0.293724, 0.600382, 0, 0, 0)
 
-[node name="Corner_3" type="Node3D" parent="Body/Corners"]
+[node name="Corner_3" type="Node3D" parent="CollisionShape3D/Body/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5045618, 0.355, -0.44069657)
 
-[node name="RopeInteraction" parent="Body/Corners/Corner_3" instance=ExtResource("4_uro0l")]
+[node name="RopeInteraction" parent="CollisionShape3D/Body/Corners/Corner_3" instance=ExtResource("4_uro0l")]
 transform = Transform3D(0.756661, -0.296234, 0.582846, 0.408164, 0.910436, -0.0671516, -0.510751, 0.288708, 0.809803, 0, 0, 0)
 
-[node name="Corner_4" type="Node3D" parent="Body/Corners"]
+[node name="Corner_4" type="Node3D" parent="CollisionShape3D/Body/Corners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42929205, 0.355, -0.4429774)
 
-[node name="RopeInteraction" parent="Body/Corners/Corner_4" instance=ExtResource("4_uro0l")]
+[node name="RopeInteraction" parent="CollisionShape3D/Body/Corners/Corner_4" instance=ExtResource("4_uro0l")]
 transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.383558, -0.837108, 0.279491, 0.47025, 0, 0, 0)
 
-[node name="Ropes" type="Node3D" parent="Body"]
+[node name="Ropes" type="Node3D" parent="CollisionShape3D/Body"]
 
-[node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
+[node name="BalloonRope_1" parent="CollisionShape3D/Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
 mesh = SubResource("ImmediateMesh_q3h3j")
+skeleton = NodePath("../../../..")
 attach_end = NodePath("../../Corners/Corner_1")
 
-[node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
+[node name="BalloonRope_2" parent="CollisionShape3D/Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
 mesh = SubResource("ImmediateMesh_snxhu")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
-[node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.20000003)
+[node name="BalloonRope_3" parent="CollisionShape3D/Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
 mesh = SubResource("ImmediateMesh_exksr")
+skeleton = NodePath("../../../..")
 attach_end = NodePath("../../Corners/Corner_3")
 
-[node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.20000003)
+[node name="BalloonRope_4" parent="CollisionShape3D/Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
 mesh = SubResource("ImmediateMesh_x3kbh")
+skeleton = NodePath("../../../..")
 attach_end = NodePath("../../Corners/Corner_4")
 
-[node name="Flags" type="Node3D" parent="Body"]
+[node name="Flags" type="Node3D" parent="CollisionShape3D/Body"]
 
-[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags1" type="Node3D" parent="CollisionShape3D/Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_1")
 
-[node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_1" parent="CollisionShape3D/Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
 
-[node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_2" parent="CollisionShape3D/Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
 
-[node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
+[node name="Flag_3" parent="CollisionShape3D/Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
 
-[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags2" type="Node3D" parent="CollisionShape3D/Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_2")
 
-[node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_1" parent="CollisionShape3D/Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="RopeFlag_2" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_2" parent="CollisionShape3D/Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="RopeFlag_3" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_3" parent="CollisionShape3D/Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
+[node name="RopeFlag_4" parent="CollisionShape3D/Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags3" type="Node3D" parent="CollisionShape3D/Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_3")
 
-[node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_1" parent="CollisionShape3D/Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
 
-[node name="RopeFlag_2" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_2" parent="CollisionShape3D/Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
 
-[node name="RopeFlag_3" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_3" parent="CollisionShape3D/Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
 
-[node name="RopeFlag_4" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
+[node name="RopeFlag_4" parent="CollisionShape3D/Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
 transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
 
-[node name="ObjInBalloonArea" type="Area3D" parent="Body"]
+[node name="ObjInBalloonArea" type="Area3D" parent="CollisionShape3D/Body"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02864655, 0, 0.019694507)
 disable_mode = 2
@@ -220,25 +209,25 @@ collision_layer = 0
 collision_mask = 5
 gravity_point = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/ObjInBalloonArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Body/ObjInBalloonArea"]
 process_mode = 3
 physics_interpolation_mode = 1
 auto_translate_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008300783, 0.2546997, 0.0029907227)
 shape = SubResource("BoxShape3D_rdoix")
 
-[node name="UI" type="Node3D" parent="Body"]
+[node name="UI" type="Node3D" parent="CollisionShape3D/Body"]
 visible = false
 
-[node name="MaxLoadUI" type="Sprite3D" parent="Body/UI"]
+[node name="MaxLoadUI" type="Sprite3D" parent="CollisionShape3D/Body/UI"]
 transform = Transform3D(0.16666667, 0, 0, 0, -7.2852315e-09, 0.16666667, 0, -0.16666667, -7.2852315e-09, -0.19468498, 0.05225321, 0.33993506)
 texture = SubResource("ViewportTexture_rdoix")
 
-[node name="SubViewport" type="SubViewport" parent="Body/UI/MaxLoadUI"]
+[node name="SubViewport" type="SubViewport" parent="CollisionShape3D/Body/UI/MaxLoadUI"]
 transparent_bg = true
 size = Vector2i(512, 100)
 
-[node name="MaxLoadLabel" type="Label" parent="Body/UI/MaxLoadUI/SubViewport"]
+[node name="MaxLoadLabel" type="Label" parent="CollisionShape3D/Body/UI/MaxLoadUI/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -256,15 +245,15 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaxLoadUI2" type="Sprite3D" parent="Body/UI"]
+[node name="MaxLoadUI2" type="Sprite3D" parent="CollisionShape3D/Body/UI"]
 transform = Transform3D(0.16666667, 0, 0, 0, -7.2852315e-09, 0.16666667, 0, -0.16666667, -7.2852315e-09, 0.23599426, 0.05225321, -0.39043412)
 texture = SubResource("ViewportTexture_rdoix")
 
-[node name="SubViewport" type="SubViewport" parent="Body/UI/MaxLoadUI2"]
+[node name="SubViewport" type="SubViewport" parent="CollisionShape3D/Body/UI/MaxLoadUI2"]
 transparent_bg = true
 size = Vector2i(512, 100)
 
-[node name="MaxLoadLabel" type="Label" parent="Body/UI/MaxLoadUI2/SubViewport"]
+[node name="MaxLoadLabel" type="Label" parent="CollisionShape3D/Body/UI/MaxLoadUI2/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -282,66 +271,30 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LandCheck" type="Node3D" parent="."]
+[node name="GroundCheck" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21459341, -0.17029373, -0.09869385)
 
-[node name="LandCheck_1" type="RayCast3D" parent="LandCheck"]
+[node name="GroundCheck_1" type="RayCast3D" parent="CollisionShape3D/GroundCheck"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16100788, 0)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483649
+collision_mask = 0
 
-[node name="LandCheck_2" type="RayCast3D" parent="LandCheck"]
+[node name="GroundCheck_2" type="RayCast3D" parent="CollisionShape3D/GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.16100788, 3)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483649
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700848, 0.16100788, 2.9441404)
+collision_mask = 2147483648
 
-[node name="LandCheck_3" type="RayCast3D" parent="LandCheck"]
+[node name="GroundCheck_3" type="RayCast3D" parent="CollisionShape3D/GroundCheck"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.16100788, 3)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483649
+collision_mask = 2147483648
 
-[node name="LandCheck_4" type="RayCast3D" parent="LandCheck"]
+[node name="GroundCheck_4" type="RayCast3D" parent="CollisionShape3D/GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.16100788, -3)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483649
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0342343, 0.16100788, -2.666778)
+collision_mask = 2147483648
 
-[node name="LandCheck_5" type="RayCast3D" parent="LandCheck"]
+[node name="GroundCheck_5" type="RayCast3D" parent="CollisionShape3D/GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.16100788, -3)
-target_position = Vector3(0, -2, 0)
-collision_mask = 2147483649
-
-[node name="GroundCheck" type="Node3D" parent="."]
-
-[node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16100788, 0)
-target_position = Vector3(0, -0.35, 0)
-collision_mask = 2147483649
-
-[node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.16100788, 3)
-target_position = Vector3(0, -0.35, 0)
-collision_mask = 2147483649
-
-[node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.16100788, 3)
-target_position = Vector3(0, -0.35, 0)
-collision_mask = 2147483649
-
-[node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.16100788, -3)
-target_position = Vector3(0, -0.35, 0)
-collision_mask = 2147483649
-
-[node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.16100788, -3)
-target_position = Vector3(0, -0.35, 0)
-collision_mask = 2147483649
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6551423, 0.16100788, -2.7046866)
+collision_mask = 2147483648
