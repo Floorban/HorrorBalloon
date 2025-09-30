@@ -8,7 +8,7 @@ class_name BalloonController
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
 var _is_reparenting := false
 @onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
-var is_on_ground := false
+var is_grounded := false
 
 # weight / objects in balloon
 var objs_in_balloon: Dictionary = {}
@@ -16,7 +16,7 @@ var total_weight: float = 0.0
 var player_weight: float = 10.0
 
 # vertical
-const GRAVITY := 1.0
+const GRAVITY := 6.0
 @export var vertical_base_force: float = 10.0
 var vertical_force: float = 0.0
 var locked_vertical := false
@@ -39,24 +39,13 @@ func _ready() -> void:
 		obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(_delta: float) -> void:
-	# is_on_ground = ground_checks.any(func(gc): return gc and gc.is_colliding())
+	if not is_grounded:
+		apply_central_force(Vector3.DOWN * GRAVITY)
 	
-	# # landing
-	# if is_on_ground:
-	# 	if not is_just_land:
-	# 		player.trauma = 0.8
-	# 		is_just_land = true
-	# 		locked_vertical = true
-	# else:
-	# 	is_just_land = false
-
-	# # takeoff condition
-	# if is_on_ground and is_just_land and oven.get_fuel_percentage() > 0.5:
-	# 	player.trauma = 0.5
-	# 	is_just_land = false
-	# 	locked_vertical = false
-	# 	# impulse to break ground contact
-	# 	apply_central_impulse(Vector3.UP * 2.0)
+	if not is_grounded and _check_ground_contacts() and linear_velocity.y <= 0.1:
+		_on_land()
+	if is_grounded and oven.get_fuel_percentage() > 0.5:
+		_on_takeoff()
 
 	_apply_vertical_force()
 	_apply_horizontal_force()
@@ -71,7 +60,7 @@ func _apply_vertical_force() -> void:
 
 func _apply_horizontal_force() -> void:
 	# Stop horizontal motion if grounded
-	if is_on_ground:
+	if is_grounded:
 		_tilt_to(Vector3.ZERO, tilt_damping * 2.0)
 		horizontal_dir = Vector3.ZERO
 		return
@@ -88,6 +77,31 @@ func _apply_horizontal_force() -> void:
 	if player and player.has_method("apply_sway"):
 		player.apply_sway(final_tilt)
 
+func _on_land() -> void:
+	is_grounded = true
+	linear_velocity = Vector3.ZERO
+	sleeping = true
+	player.trauma = 0.8
+	print("Balloon landed")
+
+func _on_takeoff() -> void:
+	is_grounded = false
+	sleeping = false
+	linear_velocity.y = vertical_base_force * 0.5
+	player.trauma = 0.5
+	print("Balloon taking off")
+
+func _check_ground_contacts() -> bool:
+	for i in ground_checks.size():
+		var gc = ground_checks[i]
+		if not gc:
+			continue
+		gc.force_raycast_update()
+		if gc.is_colliding():
+			var col = gc.get_collider()
+			if col and col != self:
+				return true
+	return false
 func _get_all_weights() -> float:
 	var sum: float = 0.0
 	for val in objs_in_balloon.values():
