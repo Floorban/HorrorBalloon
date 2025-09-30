@@ -7,7 +7,6 @@ var objs_in_balloon: Dictionary = {}
 # Forces
 const GRAVITY = 0.1
 @onready var oven: Oven = %Oven
-var verticle_dir := -1.0
 var total_weight : float
 @export var verticle_base_force := 10.0
 var verticle_force : float
@@ -41,18 +40,15 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
-	if can_land and linear_velocity.y <= 0.0:
+	if can_land and linear_velocity.y < 0.0:
 		linear_velocity = Vector3.ZERO
 		gravity_scale = 0.0
 
 	if is_on_ground or can_land:
-		if verticle_dir < 0.0:
-			if not is_just_land and linear_velocity.y <= 0.0:
-				player.trauma = 0.5
-				is_just_land = true
-			verticle_dir = 0.0
-			gravity_scale = 0.0
-			return
+		if not is_just_land and linear_velocity.y < 0.0:
+			player.trauma = 0.5
+			is_just_land = true
+		gravity_scale = 0.0
 	else:
 		gravity_scale = GRAVITY
 		is_just_land = false
@@ -61,12 +57,6 @@ func _physics_process(_delta: float) -> void:
 	_apply_horizontal_force()
 
 func execute(percentage: float) -> void:
-	## For Switch
-	if percentage > 0.99:
-		change_verticle_direction(true)
-	elif percentage < 0.01:
-		change_verticle_direction(false)
-	
 	## For Rope
 	if tilt_tween:
 		tilt_tween.kill()
@@ -152,12 +142,9 @@ func _deferred_deattach(body: Node3D):
 		obj_in_balloon_area.monitoring = true
 	_is_reparenting = false
 
-func change_verticle_direction(up: bool) -> void:
-	verticle_dir = 1.0 if up else -0.2
-
 func _apply_vertical_force() -> void:
 	verticle_force = verticle_base_force # - get_all_weights() / 20.0
-	if oven: apply_central_force(Vector3.UP * verticle_dir * verticle_force * oven.get_fuel_percentage())
+	if oven: apply_central_force(Vector3.UP * verticle_force * oven.get_fuel_percentage())
 
 func _apply_horizontal_force() -> void:
 	if is_on_ground or can_land:

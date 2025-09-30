@@ -5,7 +5,9 @@ const MAX_FUEL: float = 100.0
 var current_fuel: float = 0.0
 
 var fule_conversion_rate: float = 1.0
-var burning_rate: float = 0.5
+var burning_rate : float
+var defualt_burning_rate := 0.5
+var cooling_rate := 10.0
 
 @onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea
@@ -23,7 +25,6 @@ var e_flame_is_playing: bool
 func _ready() -> void:
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Flame/SFX_Flame"), global_position)
-	current_fuel = MAX_FUEL
 	flame = get_node("Flame")
 	flame2 = get_node("Flame2")
 
@@ -32,6 +33,8 @@ func _ready() -> void:
 		fuel_bar.value = current_fuel
 	fuel_area.body_entered.connect(collect_fuel)
 	fuel_area.body_exited.connect(remove_fuel)
+
+	burning_rate = defualt_burning_rate
 
 func _process(delta: float) -> void:
 	if current_fuel > 0.0:
@@ -51,13 +54,19 @@ func _process(delta: float) -> void:
 		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
-	if randf() > 0.1: ## Horror feeling lol
-		for obj in objs_to_burn:
-			current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
-			obj.get_parent().call_deferred("queue_free")
-		objs_to_burn.clear()
-		total_weight = 0.0
-		weight_label.text = "fuel me"
+	## for cooling
+	if _percentage >= 0.99:
+		burning_rate = cooling_rate
+		## satisfying steam burst sound and particle here
+	else:
+		burning_rate = defualt_burning_rate
+		if _percentage <= 0.0 and randf() > 0.1: ## Horror feeling lol
+			for obj in objs_to_burn:
+				current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
+				obj.get_parent().call_deferred("queue_free")
+			objs_to_burn.clear()
+			total_weight = 0.0
+			weight_label.text = "fuel me"
 
 func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL

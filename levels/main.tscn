@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cfw4dmxpqaw21" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_low.tres" id="4_8a5tp"]
 [ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket.tscn" id="4_m1504"]
 [ext_resource type="Resource" uid="uid://b400rwpv001ve" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_mid.tres" id="5_f1mgo"]
-[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box.tscn" id="5_ifaiv"]
+[ext_resource type="PackedScene" uid="uid://qd2da6eqwe8l" path="res://interaction/draggable/box.tscn" id="5_ifaiv"]
 [ext_resource type="Shader" uid="uid://bbajv1x3vg24m" path="res://shaders/buckshot.gdshader" id="6_bg8b8"]
 [ext_resource type="Resource" uid="uid://jyil1s2usta" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_high.tres" id="6_duofn"]
 [ext_resource type="PackedScene" uid="uid://cdhwje3wi24dr" path="res://levels/cloud_1.tscn" id="8_6et1j"]
@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://cgpfmr7o14swl" path="res://levels/EnvironmentAssets/industrial_7.tscn" id="22_vpyym"]
 [ext_resource type="PackedScene" uid="uid://5s6va6v8lxnr" path="res://levels/EnvironmentAssets/industrial_8.tscn" id="23_i3naf"]
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
-[ext_resource type="PackedScene" uid="uid://b3nxxcmthysm3" path="res://interaction/draggable/log_1.tscn" id="25_vpyym"]
+[ext_resource type="PackedScene" uid="uid://md46ry2xncko" path="res://interaction/draggable/log_1.tscn" id="25_vpyym"]
 [ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="30_vpyym"]
 [ext_resource type="PackedScene" uid="uid://be5sqvxsn6fv2" path="res://levels/island_1.tscn" id="36_egc1g"]
 [ext_resource type="PackedScene" uid="uid://c21jsefsehe" path="res://levels/island_2.tscn" id="37_y60h0"]
@@ -132,7 +132,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
 size = Vector3(300, 300, 300)
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.44455725, 0, -0.89575034, 0, 1, 0, 0.89575034, 0, -0.44455725, 2.014004, 0.084713936, -2.824366)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2.014004, 0.084713936, -2.824366)
+top_level = false
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61095)
@@ -141,7 +142,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.73514, -0.5220251, 72.61
 transform = Transform3D(0.705587, 0, 0.7086232, 0, 1, 0, -0.7086232, 0, 0.705587, 4.450685, 0, -3.308285)
 collision_layer = 2147483649
 collision_mask = 2147483649
-basket_size = Vector3(6.3, 5, 6.3)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1

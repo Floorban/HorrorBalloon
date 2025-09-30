@@ -6,15 +6,13 @@ var switch_target_rotation: float = 0.0
 var switch_lerp_speed: float = 8.0
 var is_switch_snapping: bool = false
 var switch_moved: bool = false
-var last_switch_angle: float = 0.0   # angle of the door on the previous frame
+var last_switch_angle: float = 0.0
 var switch_creak_velocity_threshold: float = 0.01
 var switch_fade_speed: float = 50.0
 var switch_kickback_triggered: bool = false
 
 func _ready() -> void:
 	super._ready()
-	var balloon : BalloonController = get_tree().get_first_node_in_group("balloon") as BalloonController
-	if balloon: nodes_to_affect.append(balloon)
 	if object_ref: starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 
@@ -40,6 +38,7 @@ func _process(delta: float) -> void:
 			is_switch_snapping = false
 			var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 			notify_nodes(percentage)
+			print(percentage)
 	else:
 		switch_kickback_triggered = false
 
@@ -48,7 +47,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		var prev_angle = object_ref.rotation.z
-		object_ref.rotate_z(event.relative.y * .001)
+		object_ref.rotate_z(event.relative.y * .0006)
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
 		# var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 		

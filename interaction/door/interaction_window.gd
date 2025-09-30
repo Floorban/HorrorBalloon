@@ -28,7 +28,6 @@ func _ready():
 	super._ready()
 	starting_height = pivot_point.position.y
 	maximum_height = starting_height + max_height_offset
-	nodes_to_affect.append(get_parent().get_parent().get_parent().get_parent())
 
 func _process(delta):
 	if was_just_unlocked:

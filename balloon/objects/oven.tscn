@@ -3,8 +3,8 @@
 [ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="1_sicut"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="2_0qg0s"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/door_small.tscn" id="3_w7bsp"]
-[ext_resource type="PackedScene" uid="uid://cprcy3ipbbl73" path="res://interaction/switch/switch.tscn" id="6_o72q4"]
 [ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="6_sicut"]
+[ext_resource type="PackedScene" uid="uid://blfnyuhr4qq41" path="res://balloon/oven_lever.tscn" id="8_brhjr"]
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="10_71bfn"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sicut"]
@@ -28,8 +28,11 @@ script = ExtResource("2_0qg0s")
 [node name="DoorSmall" parent="." instance=ExtResource("3_w7bsp")]
 transform = Transform3D(0.75, 0, 0, 0, 0.79695576, -0.06972458, 0, 0.06972458, 0.79695576, -0.03246221, 0.7783848, -0.50953215)
 
-[node name="Switch" parent="." instance=ExtResource("6_o72q4")]
-transform = Transform3D(0.7984778, -0.602024, 0, 0.602024, 0.7984778, 0, 0, 0, 1, -0.80398035, 1.1027815, -0.086606644)
+[node name="OvenLever" parent="." instance=ExtResource("8_brhjr")]
+transform = Transform3D(0.7071067, 0.70710677, 0, -0.7071067, 0.70710677, 0, 0, 0, 1, -0.56866646, 1.1094909, -0.11276128)
+
+[node name="InteractionComponent" parent="OvenLever/StaticBody3D" index="2" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../..")]
 
 [node name="Collision" type="StaticBody3D" parent="."]
 
@@ -49,7 +52,7 @@ debug_color = Color(0.937255, 0.156863, 0.509804, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2963667, 0.49066186)
 
 [node name="SFX_Flame" type="FmodEventEmitter3D" parent="Flame"]
-event_name = "event:/Ambient/Environment/Fire"
+event_name = "event:/Balloon/Fire"
 event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
 auto_release = true
 
@@ -61,7 +64,7 @@ transform = Transform3D(10, 0, 2.842171e-14, 0, 10, 0, -2.842171e-14, 0, 10, -2.
 visible = false
 
 [node name="SFX_Flame" type="FmodEventEmitter3D" parent="Flame2"]
-event_name = "event:/Ambient/Environment/Fire"
+event_name = "event:/Balloon/Fire"
 event_guid = "{df997e38-569c-48a1-8732-ca3ed90771bf}"
 auto_release = true
 
@@ -102,4 +105,5 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[editable path="OvenLever"]
 [editable path="Flame2"]
