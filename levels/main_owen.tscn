@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvu7n2nnda6cw"]
+
+[ext_resource type="PackedScene" uid="uid://dfauikegolgu3" path="res://levels/main.tscn" id="1_cvqgi"]
+[ext_resource type="PackedScene" path="res://levels/cloud_1.tscn" id="2_0ss7b"]
+
+[node name="MainOwen" instance=ExtResource("1_cvqgi")]
+
+[node name="Cloud_1" parent="Env" index="0" instance=ExtResource("2_0ss7b")]

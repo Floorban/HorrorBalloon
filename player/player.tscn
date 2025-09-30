@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=14 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/reticles/white_reticle.png" id="2_g1dw6"]
@@ -6,19 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/reticles/tile_0155.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/reticles/tile_0156.png" id="4_g6k8r"]
 [ext_resource type="Shader" uid="uid://bygn8p8ivfrb5" path="res://shaders/note_fade.gdshader" id="5_boad6"]
-[ext_resource type="AudioStream" uid="uid://balac254rkql0" path="res://assets/sound_effects/footstep05.ogg" id="8_hg6s5"]
-[ext_resource type="AudioStream" uid="uid://b6cflqkbf4htm" path="res://assets/sound_effects/jump.ogg" id="9_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
-radius = 0.20263672
-height = 2.1965332
+radius = 0.05
+height = 1.63263
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
-radius = 0.22558594
+radius = 0.05
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
-radius = 3.9829938
+radius = 3.98299
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg6s5"]
 
@@ -36,11 +34,15 @@ shader_parameter/rect_width_px = 960.0
 shader_parameter/fade_width_px = 240.0
 shader_parameter/fade_strength = 0.745
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
+radius = 0.15
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+top_level = true
 script = ExtResource("1_oul6g")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0982666, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816315, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
@@ -48,20 +50,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
 
 [node name="StandupCheck" type="RayCast3D" parent="."]
-target_position = Vector3(0, 2, 0)
+target_position = Vector3(0, 0.5, 0)
+collision_mask = 2147483649
 
 [node name="InteractableCheck" type="Area3D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
 shape = SubResource("SphereShape3D_qjkh3")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 
 [node name="Eyes" type="Node3D" parent="Head"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0795133, 0.38435, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
 unique_name_in_owner = true
@@ -69,13 +73,23 @@ cull_mask = 524285
 current = true
 fov = 90.0
 
+[node name="Flashlight" type="SpotLight3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
+light_color = Color(0.96, 0.92416, 0.8928, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 1.5
+light_size = 0.05
+light_bake_mode = 0
+
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 4
+hit_from_inside = true
 
 [node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="KeepNoteCameraUpdated" type="RemoteTransform3D" parent="Head/Eyes/Camera3D"]
 remote_path = NodePath("../../../SubViewportContainer/SubViewport/NoteCamera")
@@ -87,6 +101,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
 transparent_bg = true
@@ -96,7 +111,7 @@ render_target_update_mode = 4
 
 [node name="NoteCamera" type="Camera3D" parent="Head/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.079513304, 2.38435, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5999999, 0)
 cull_mask = 2
 fov = 90.0
 
@@ -115,7 +130,7 @@ unique_name_in_owner = true
 
 [node name="LightCamera" type="Camera3D" parent="LightViewport/LightDetection"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.73379, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.29339, 0)
 fov = 20.0
 size = 0.7
 far = 1.0
@@ -220,13 +235,39 @@ unique_name_in_owner = true
 
 [node name="Audio" type="Node3D" parent="."]
 
-[node name="Footsteps" type="AudioStreamPlayer3D" parent="Audio"]
-unique_name_in_owner = true
-stream = ExtResource("8_hg6s5")
-volume_db = -25.0
+[node name="RightStep" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Step/Right"
+event_guid = "{8d099386-de64-44bf-b26e-df64952781fb}"
+fmod_parameters/terrain/id = 5162296383277836654
+fmod_parameters/terrain = "grass"
+fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
+fmod_parameters/terrain/variant_type = 4
 
-[node name="Jump" type="AudioStreamPlayer3D" parent="Audio"]
-unique_name_in_owner = true
-stream = ExtResource("9_8t03j")
-volume_db = -10.0
-unit_size = 3.0
+[node name="LeftStep" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Step/Left"
+event_guid = "{f2e4e7b5-c9ad-4ba7-a0f8-5ad3f234e9ad}"
+fmod_parameters/terrain/id = 5162296383277836654
+fmod_parameters/terrain = "grass"
+fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
+fmod_parameters/terrain/variant_type = 4
+
+[node name="Stand" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Crouch"
+event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
+fmod_parameters/stance/id = 4732078636444294086
+fmod_parameters/stance = "stand"
+fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
+fmod_parameters/stance/variant_type = 4
+
+[node name="Crouch" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/SFX/Girl/Crouch"
+event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
+fmod_parameters/stance/id = 4732078636444294086
+fmod_parameters/stance = "crouch"
+fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
+fmod_parameters/stance/variant_type = 4
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
+shape = SubResource("SphereShape3D_g6k8r")
+target_position = Vector3(0, 0, 0)

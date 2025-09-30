@@ -7,8 +7,7 @@ class_name PlayerController
 @onready var standing_collision_shape: CollisionShape3D = $StandingCollisionShape
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
 @onready var standup_check: RayCast3D = $StandupCheck
-@onready var interaction_controller: Node = %InteractionController
-@onready var footsteps_se: AudioStreamPlayer3D = %Footsteps
+@onready var interaction_controller: InteractionController = %InteractionController
 @onready var note_camera: Camera3D = %NoteCamera
 
 # Note sway variables
@@ -19,17 +18,22 @@ class_name PlayerController
 const walking_speed: float = 2.0
 const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
-const crouching_depth: float = -0.98
+const crouching_depth: float = -0.95
 var can_move := true
-var current_speed: float = 3.0
+var current_speed: float
+var max_speed: float
+var acceleration := 3.0
+var hold_back_speed := 0.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
+@onready var shape_cast: ShapeCast3D = $ShapeCast3D
 
 # Player Settings
+var base_head_y : float
 var base_fov: float = 90.0
 var normal_sensitivity: float = 0.2
 var current_sensitivity: float = normal_sensitivity
@@ -62,9 +66,28 @@ var head_bobbing_index: float = 0.0
 var last_bob_position_x: float = 0.0                                            # Tracks the previous horizontal head-bob position
 var last_bob_direction: int = 0                                                 # Tracks the previous movement direction of the bob (-1 = left, +1 = right)
 
+var is_dead := false
+
+# Audio Settings
+var e_right_step: FmodEventEmitter3D
+var e_left_step: FmodEventEmitter3D
+var e_crouch: FmodEventEmitter3D
+var e_stand: FmodEventEmitter3D
+var step_is_playing: bool = false
+var is_crouching: bool = false
+var is_standing: bool = false
+
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	e_right_step = get_node("Audio/RightStep")
+	e_left_step = get_node("Audio/LeftStep")
+	e_crouch = get_node("Audio/Crouch")
+	e_stand = get_node("Audio/Stand")
 	
+	original_position = player_camera.position
+	original_rotation = player_camera.rotation_degrees
+	base_head_y = head.position.y
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
@@ -75,8 +98,16 @@ func _input(event: InputEvent) -> void:
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
-	
+
+func get_movement_dir() -> Vector3:
+	input_dir = Input.get_vector("left", "right", "forward", "backward")
+	return (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+func get_local_movement_dir() -> Vector3:
+	return get_movement_dir().rotated(Vector3.UP, -rotation.y)
+
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	
 	updatePlayerState()
 	updateCamera(delta)
@@ -95,19 +126,31 @@ func _physics_process(delta: float) -> void:
 			is_in_air = false
 			
 	# Movement Logic
-	input_dir = Input.get_vector("left", "right", "forward", "backward")
-	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta*10.0)
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else: # player wants to stop moving
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
-			
+	direction = lerp(direction, get_movement_dir(), delta * 10.0)
+
+	if direction.length() > 0.01:
+		# Accelerate towards max speed
+		current_speed = move_toward(current_speed, max_speed, acceleration * delta)
+	else:
+		current_speed = move_toward(current_speed, 0, current_speed)
+
+	velocity.x = direction.x * current_speed
+	velocity.z = direction.z * current_speed * 0.8
+
+	apply_push_forces(shape_cast)
 	move_and_slide()
 	note_tilt_and_sway(input_dir, delta)
 
 func _process(delta: float) -> void:
+	if is_dead: return
+
+	if trauma > 0.0:
+		trauma = max(trauma - decay * delta, 0.0)
+		cam_shake()
+	else:
+		player_camera.position = original_position
+		player_camera.rotation_degrees = original_rotation
+
 	# slowly bring sensitivity back to normal levels when just unlocked camera
 	if sensitivity_fading_in:
 		current_sensitivity = lerp(current_sensitivity, normal_sensitivity, delta * sensitivity_restore_speed)
@@ -116,7 +159,33 @@ func _process(delta: float) -> void:
 			sensitivity_fading_in = false
 			
 	set_camera_locked(interaction_controller.isCameraLocked())
+
+## cam shake
+@export var decay: = 0.8
+@export var max_offset: = Vector3(0.5, 0.5, 0.5)
+@export var max_rotation: = Vector3(1.0, 1.0, 1.0) # degrees
+var trauma: = 0.0
+var trauma_power: = 2
+
+var original_position: Vector3
+var original_rotation: Vector3
+
+func cam_shake() -> void:
+	var amount = pow(trauma, trauma_power)
+	var _offset = Vector3(
+		max_offset.x * amount * randf_range(-1.0, 1.0),
+		max_offset.y * amount * randf_range(-1.0, 1.0),
+		max_offset.z * amount * randf_range(-1.0, 1.0)
+	)
+	var _rotation = Vector3(
+		max_rotation.x * amount * randf_range(-1.0, 1.0),
+		max_rotation.y * amount * randf_range(-1.0, 1.0),
+		max_rotation.z * amount * randf_range(-1.0, 1.0)
+	)
 	
+	player_camera.position = original_position + _offset
+	player_camera.rotation_degrees = original_rotation + _rotation
+
 func updatePlayerState() -> void:
 	moving = (input_dir != Vector2.ZERO)
 	if not is_on_floor():
@@ -134,9 +203,13 @@ func updatePlayerState() -> void:
 				player_state = PlayerState.SPRINTING
 			else:
 				player_state = PlayerState.WALKING
-			
+
+		if Input.is_action_just_pressed("crouch"): play_crouch_sound()
+		if Input.is_action_just_released("crouch"): play_stand_sound()
+
 	updatePlayerColShape(player_state)
 	updatePlayerSpeed(player_state)
+	updatePlayerSound(player_state)
 	
 func updatePlayerColShape(_player_state: PlayerState) -> void:
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
@@ -149,20 +222,24 @@ func updatePlayerColShape(_player_state: PlayerState) -> void:
 func updatePlayerSpeed(_player_state: PlayerState) -> void:
 	if not can_move: 
 		current_speed = 0
+		max_speed = 0
 		return
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
-		current_speed = crouching_speed
+		# current_speed = crouching_speed
+		max_speed = crouching_speed + hold_back_speed
 	elif _player_state == PlayerState.WALKING:
-		current_speed = walking_speed
+		# current_speed = walking_speed
+		max_speed = walking_speed + hold_back_speed
 	elif _player_state == PlayerState.SPRINTING:
-		current_speed = sprinting_speed
+		# current_speed = sprinting_speed
+		max_speed = sprinting_speed + hold_back_speed
 
 func updateCamera(delta: float) -> void:
 	if player_state == PlayerState.AIR:
 		pass
 		
 	if player_state == PlayerState.CROUCHING or player_state == PlayerState.IDLE_CROUCH:
-		head.position.y = lerp(head.position.y, 2.0 + crouching_depth, delta*lerp_speed)
+		head.position.y = lerp(head.position.y, base_head_y + crouching_depth, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov*0.95, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_crouching_intensity
 		head_bobbing_index += head_bobbing_crouching_speed * delta
@@ -170,17 +247,17 @@ func updateCamera(delta: float) -> void:
 		can_move = true
 		eyes.position.z = lerp(eyes.position.y, 0.0, delta*lerp_speed/2.0)
 
-		head.position.y = lerp(head.position.y, 2.0, delta*lerp_speed)
+		head.position.y = lerp(head.position.y, base_head_y, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_walking_intensity
 		head_bobbing_index += head_bobbing_walking_speed * delta
 	elif player_state == PlayerState.WALKING:
-		head.position.y = lerp(head.position.y, 2.0, delta*lerp_speed)
+		head.position.y = lerp(head.position.y, base_head_y, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_walking_intensity
 		head_bobbing_index += head_bobbing_walking_speed * delta
 	elif player_state == PlayerState.SPRINTING:
-		head.position.y = lerp(head.position.y, 2.0, delta*lerp_speed)
+		head.position.y = lerp(head.position.y, base_head_y, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov*1.05, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_sprinting_intensity
 		head_bobbing_index += head_bobbing_sprinting_speed * delta
@@ -191,8 +268,8 @@ func updateCamera(delta: float) -> void:
 		# Normalize to -180 to 180 (so the cam doesn't revert to left when all the way right, vice versa)
 		local_rot.y = fposmod(local_rot.y, 180.0)
 		local_rot.y = clamp(local_rot.y, viewing_yaw_origin - 50.0, viewing_yaw_origin + 50.0)
-		eyes.position.y = lerp(eyes.position.y, 3.0, delta*lerp_speed/4.0)
-		eyes.position.z = lerp(eyes.position.y, -18.0, delta*lerp_speed/4.0)
+		eyes.position.y = lerp(eyes.position.y, 5.0, delta*lerp_speed/4.0)
+		eyes.position.z = lerp(eyes.position.z, -.5, delta*lerp_speed/4.0)
 		player_camera.fov = lerp(player_camera.fov, base_fov*0.8, delta*lerp_speed/2.0)
 		
 	head_bobbing_vector.y = sin(head_bobbing_index)
@@ -205,10 +282,8 @@ func updateCamera(delta: float) -> void:
 		eyes.position.x = lerp(eyes.position.x , 0.0 ,delta*lerp_speed)
 	
 	note_camera.fov = player_camera.fov
-	# play_footsteps()
 	
 func set_camera_locked(locked: bool) -> void:
-	
 	if locked:
 		current_sensitivity = 0.0
 		sensitivity_fading_in = false
@@ -224,6 +299,24 @@ func apply_sway(tilt: Vector3):
 	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
 
+var player_weight := 10.0
+var player_to_obj_strength := 20.0
+
+func apply_push_forces(push_shape: ShapeCast3D):
+	push_shape.target_position = get_local_movement_dir() * 0.15
+	for i in push_shape.get_collision_count():
+		var collider = push_shape.get_collider(i)
+		if collider is RigidBody3D:
+			var mass_ratio : float = collider.mass / player_weight
+			mass_ratio = max(0.5, mass_ratio)
+
+			var push_dir : Vector3 = (collider.global_position - global_position).normalized()
+			var push_strength : float = max(velocity.length(), player_to_obj_strength) / mass_ratio
+			var push_force : Vector3 = Vector3((push_dir * push_strength).x, 0.0, (push_dir * push_strength).z)
+			
+			var col_contact : Vector3 = push_shape.get_collision_point(i) - collider.global_position
+			collider.apply_force(push_force, col_contact)
+
 func set_viewing_mode() -> void:
 	if not is_on_floor(): return
 	if player_state != PlayerState.VIEWING:
@@ -232,17 +325,61 @@ func set_viewing_mode() -> void:
 	else:
 		player_state = PlayerState.IDLE_STAND
 
-# func play_footsteps() -> void:
-# 	if moving and is_on_floor():
-# 		var bob_position_x = head_bobbing_vector.x
-# 		var bob_direction = sign(bob_position_x - last_bob_position_x)  # +1 = moving right, -1 = moving left
+func play_death_animation(target_pos: Vector3) -> void:
+	e_right_step.volume = 0
+	e_left_step.volume = 0
+	is_dead = true
+	
+	global_position = (target_pos)
+	rotation = Vector3(0,deg_to_rad(-165),0)
+	player_camera.rotation = Vector3.ZERO
+	set_camera_locked(true)
 
-# 		# A direction change means we just reached a peak in the bobbing cycle
-# 		if bob_direction != 0 and bob_direction != last_bob_direction and last_bob_direction != 0:
-# 			footsteps_se.play()
+func updatePlayerSound(_player_state: PlayerState) -> void:
+	match _player_state:
+		PlayerState.IDLE_STAND, PlayerState.IDLE_CROUCH, PlayerState.CROUCHING, PlayerState.AIR, PlayerState.VIEWING:
+			e_right_step.volume = lerp(e_right_step.volume, 0.0, 0.1)
+			e_left_step.volume = lerp(e_left_step.volume, 0.0, 0.1)
+			return
+	
+	var step_gap: float
+	
+	# for specific sound stuff
+	match _player_state:
+		PlayerState.WALKING: 
+			step_gap = 0.5
+			e_right_step.volume = 0.5
+			e_left_step.volume = 0.5
+		PlayerState.SPRINTING: 
+			step_gap = 0.35
+			e_right_step.volume = 1
+			e_left_step.volume = 1
 
-# 		last_bob_direction = bob_direction
-# 		last_bob_position_x = bob_position_x
-# 	else:
-# 		last_bob_direction = 0
-# 		last_bob_position_x = head_bobbing_vector.x
+	if step_is_playing: return
+	step_is_playing = true
+	
+	e_right_step.play()
+	await get_tree().create_timer(step_gap).timeout
+
+	e_left_step.play()
+	await get_tree().create_timer(step_gap).timeout
+	step_is_playing = false
+	
+func play_crouch_sound():
+	if is_crouching: return
+	is_crouching = true
+	e_crouch.play()
+	await get_tree().create_timer(0.3).timeout
+	is_crouching = false
+
+func play_stand_sound():
+	if is_standing: return
+	is_standing = true
+	e_stand.play()
+	await get_tree().create_timer(0.3).timeout
+	is_standing = false
+
+func _exit_tree():
+	e_right_step.stop()
+	e_left_step.stop()
+	pass

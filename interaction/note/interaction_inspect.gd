@@ -22,5 +22,5 @@ func _collect_note() -> void:
 	if col:
 		col.get_parent().remove_child(col)
 		col.queue_free()
-	_play_primary_sound_effect(true, false)
+	#_play_primary_sound_effect(true, false)
 	emit_signal("note_collected", get_parent())

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgpfmr7o14swl"]
+
+[ext_resource type="ArrayMesh" uid="uid://csqhlwucqwn82" path="res://assets/stolen/industrial/pipe_verticle_1.res" id="1_3kiej"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8n7sa"]
+points = PackedVector3Array(0.0288558, 2.158398, 0.32996756, 0.30019468, 2.158398, 0.13991955, -5.8799982e-05, 2.3203084, -6.482005e-05, -0.2713389, 2.158398, 0.18991858, -0.12829389, -0.022579202, 0.17648214, 0.12823507, -0.022579202, 0.17648214, 0.2712801, 2.158398, -0.19004822, 0.20751518, -0.022579202, -0.06750536, -0.30019474, 2.158398, -0.14004919, -0.02891463, 2.158398, -0.32996798, -0.20757398, -0.022579202, -0.06750536, -5.8799982e-05, -0.022579202, -0.21827763)
+
+[node name="Industrial_7" type="MeshInstance3D"]
+mesh = ExtResource("1_3kiej")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_8n7sa")

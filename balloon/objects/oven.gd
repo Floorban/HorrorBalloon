@@ -4,14 +4,29 @@ class_name Oven
 const MAX_FUEL: float = 100.0
 var current_fuel: float = 0.0
 
-var fule_conversion_rate: float = 0.9
-var burning_rate: float = 1.0
+var fule_conversion_rate: float = 1.0
+var burning_rate: float = 0.5
 
-@onready var fuel_bar: ProgressBar = $SubViewport/FuelBar
+@onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea
-var objs_to_burn: Array[InteractionHolddable] = []
+var objs_to_burn: Array[InteractionComponent] = []
+@onready var weight_label: Label = %WeightLabel
+var total_weight : float
+
+var audio: AudioManager
+var e_flame: FmodEventEmitter3D
+var e_flame_is_playing: bool
+
+@onready var flame: GPUParticles3D
+@onready var flame2: GPUParticles3D
 
 func _ready() -> void:
+	audio = get_tree().get_first_node_in_group("audio")
+	e_flame = audio.cache(get_node("Flame/SFX_Flame"), global_position)
+	current_fuel = MAX_FUEL
+	flame = get_node("Flame")
+	flame2 = get_node("Flame2")
+
 	if fuel_bar:
 		fuel_bar.max_value = MAX_FUEL
 		fuel_bar.value = current_fuel
@@ -20,30 +35,53 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if current_fuel > 0.0:
-		current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+			flame.emitting = true
+			flame2.emitting = true
+			if !e_flame_is_playing:
+				e_flame.paused = false
+				e_flame_is_playing = true
+			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+	else:
+		flame.emitting = false
+		flame2.emitting = false
+		e_flame_is_playing = false
+		e_flame.paused = true
+	
 	if fuel_bar:
 		fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
-	print("objs_to_burn:", objs_to_burn)
-	for obj in objs_to_burn:
-		print("adding fuel!")
-		current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
-		obj.get_parent().queue_free()
-		objs_to_burn.erase(obj)
-	objs_to_burn.clear()
+	if randf() > 0.1: ## Horror feeling lol
+		for obj in objs_to_burn:
+			current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
+			obj.get_parent().call_deferred("queue_free")
+		objs_to_burn.clear()
+		total_weight = 0.0
+		weight_label.text = "fuel me"
 
 func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL
 
 func collect_fuel(body: Node3D) -> void:
-	if body:
-		var interaction_component = body.get_node_or_null("InteractionComponent") as InteractionHolddable
-		if interaction_component and interaction_component not in objs_to_burn:
+	if body is RigidBody3D:
+		var interaction_component = body.get_node_or_null("InteractionComponent")
+		if interaction_component and "weight" in interaction_component and interaction_component not in objs_to_burn:
 			objs_to_burn.append(interaction_component)
+			total_weight += interaction_component.weight
+			weight_label.text = "weights: " + str(total_weight)
 
 func remove_fuel(body: Node3D) -> void:
 	if body:
-		var interaction_component = body.get_node_or_null("InteractionComponent") as InteractionHolddable
+		var interaction_component = body.get_node_or_null("InteractionComponent")
 		if interaction_component and interaction_component in objs_to_burn:
 			objs_to_burn.erase(interaction_component)
+			
+			if objs_to_burn.is_empty():
+				total_weight = 0.0
+				weight_label.text = "fuel me"
+			else:
+				total_weight -= interaction_component.weight
+				weight_label.text = "weights: " + str(total_weight)
+
+func _exit_tree() -> void:
+	e_flame.queue_free()

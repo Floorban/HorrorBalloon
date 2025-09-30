@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ilgvq7q13bg6"
+path="res://.godot/imported/flag_pole_001.obj-d26e9cf0449a5b91766b8e6215d33f87.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flag_pole_001.obj-d26e9cf0449a5b91766b8e6215d33f87.mesh"]
+
+source_file="res://assets/stolen/props/flag_pole_001.obj"
+dest_files=["res://.godot/imported/flag_pole_001.obj-d26e9cf0449a5b91766b8e6215d33f87.mesh", "res://.godot/imported/flag_pole_001.obj-d26e9cf0449a5b91766b8e6215d33f87.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

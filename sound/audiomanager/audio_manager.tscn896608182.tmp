@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://x8gnwdt0yplv"]
+
+[ext_resource type="Script" uid="uid://by5bqj05twlkd" path="res://sound/audiomanager/audio_manager.gd" id="1_n3as0"]
+[ext_resource type="Script" uid="uid://bh6ws3u0r2hbb" path="res://sound/script/world_ambient.gd" id="2_4bshs"]
+
+[node name="AudioManager" type="Node3D"]
+script = ExtResource("1_n3as0")
+
+[node name="Ambience" type="Node3D" parent="."]
+script = ExtResource("2_4bshs")
+ambient = null
+
+[node name="Essentials" type="Node3D" parent="."]
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Essentials"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="Essentials"]
+bank_paths = ["res://sound/banks/Desktop/Master.strings.bank", "res://sound/banks/Desktop/Master.bank", "res://sound/banks/Desktop/Balloon.bank", "res://sound/banks/Desktop/Level_1.bank"]

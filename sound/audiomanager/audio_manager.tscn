@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://x8gnwdt0yplv"]
+
+[ext_resource type="Script" uid="uid://by5bqj05twlkd" path="res://sound/audiomanager/audio_manager.gd" id="1_n3as0"]
+
+[node name="AudioManager" type="Node3D" groups=["audio"]]
+visible = false
+script = ExtResource("1_n3as0")
+test_name = "event:/Ambient/Atmosphere/Euphoria"
+
+[node name="WorldAmbient" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/Ambient/Atmosphere/Euphoria"
+event_guid = "{2f0afff7-fd3f-4927-b1b4-336377e72cee}"
+autoplay = true
+auto_release = true
+
+[node name="Essentials" type="Node3D" parent="."]
+
+[node name="FmodListener3D" type="FmodListener3D" parent="Essentials"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="Essentials"]
+bank_paths = ["res://sound/banks/Desktop/Master.strings.bank", "res://sound/banks/Desktop/Master.bank", "res://sound/banks/Desktop/Balloon.bank", "res://sound/banks/Desktop/Level_1.bank"]

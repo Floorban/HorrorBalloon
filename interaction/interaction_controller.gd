@@ -1,4 +1,5 @@
 extends Node
+class_name InteractionController
 
 @onready var interaction_controller: Node = %InteractionController
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
@@ -107,10 +108,10 @@ func _input(event: InputEvent) -> void:
 		var children = note_hand.get_children()
 		for child in children:
 			#note_interaction_component.secondary_audio_player.play()
-			if note_interaction_component.secondary_se:
-				note_interaction_component.secondary_audio_player.play()
-				child.visible = false
-				await note_interaction_component.secondary_audio_player.finished
+			#if note_interaction_component.secondary_se:
+				#note_interaction_component.secondary_audio_player.play()
+				#child.visible = false
+				#await note_interaction_component.secondary_audio_player.finished
 			child.queue_free()
 
 ## Determines if the object the player is interacting with should stop mouse camera movement

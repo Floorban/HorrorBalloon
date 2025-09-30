@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3nxxcmthysm3"]
+
+[ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://interaction/impact/impact_sound.gd" id="1_fgl1q"]
+[ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_wa4m8"]
+[ext_resource type="ArrayMesh" uid="uid://bfliashiuet1k" path="res://assets/stolen/props/pole_001.obj" id="2_0k1tm"]
+[ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_j6m3c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hvx"]
+albedo_texture = ExtResource("1_wa4m8")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_55hvx"]
+height = 0.6
+radius = 0.1
+
+[node name="Log1" type="RigidBody3D" groups=["interactable"]]
+collision_layer = 5
+linear_damp = 5.0
+angular_damp = 1.0
+script = ExtResource("1_fgl1q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.08, -0.25)
+material_override = SubResource("StandardMaterial3D_55hvx")
+mesh = ExtResource("2_0k1tm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.07, 0)
+shape = SubResource("CylinderShape3D_55hvx")
+
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
+script = ExtResource("3_j6m3c")
+fuel_amount = 25.0
+object_ref = NodePath("..")
+metadata/_custom_type_script = "uid://dl7lykc4qndpo"
+
+[node name="Impact" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/SFX/Interactables/Impact/Can"
+event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
+fmod_parameters/impact_strength/id = 8864240675834785146
+fmod_parameters/impact_strength = 0.0
+fmod_parameters/impact_strength/variant_type = 3

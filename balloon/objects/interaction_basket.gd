@@ -2,12 +2,11 @@
 extends InteractionComponent
 class_name InteractionBasket
 
-var is_occupied := false
 var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
 
-var player_is_out := false
+var player_is_out := true
 @onready var exit_1: Marker3D = $"../Exit_1"
 @onready var exit_2: Marker3D = $"../Exit_2"
 @onready var exit_3: Marker3D = $"../Exit_3"
@@ -15,6 +14,7 @@ var player_is_out := false
 
 func _ready() -> void:
 	super._ready()
+	can_interact = false
 
 func _input(event):
 	if not is_interacting: return
@@ -78,6 +78,7 @@ func get_out() -> void:
 	if not player: return
 
 	player.global_transform.origin = get_closest_exit().global_transform.origin
+	#player.global_translate(get_closest_exit().global_transform.origin)
 	hold_edge()
 	is_interacting = false
 	is_occupied = false
@@ -89,8 +90,8 @@ func get_in() -> void:
 	var center : Vector3 = get_parent().global_transform.origin
 	var closest_exit_pos := get_closest_exit().global_transform.origin
 
-	var enter : Vector3 = center.lerp(closest_exit_pos, 0.5)
-	player.global_transform.origin = enter
+	#var enter : Vector3 = center.lerp(closest_exit_pos, 0.5)
+	player.global_transform.origin = center.lerp(closest_exit_pos, 0.5)
 	
 	is_interacting = false
 	is_occupied = false
@@ -128,3 +129,12 @@ func _get(prop_name: StringName):
 		"_hold_duration":
 			return hold_duration
 	return null
+
+func _on_player_check_body_entered(body: Node3D) -> void:
+	if body is PlayerController:
+		can_interact = true
+
+func _on_player_check_body_exited(body: Node3D) -> void:
+	if body is PlayerController:
+		can_interact = false
+		if player: player.interaction_controller._unfocus()

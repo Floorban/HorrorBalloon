@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://32ryg20oq57a"]
+
+[ext_resource type="Texture2D" uid="uid://6dpdgpj0r1kf" path="res://assets/balloon/Basket/Textures/TempBasket_Lp_Basket_AlbedoTransparency.png" id="1_fagb6"]
+[ext_resource type="Texture2D" uid="uid://dehwjgj1odhci" path="res://assets/balloon/Basket/Textures/TempBasket_Lp_Basket_MetallicSmoothness.png" id="2_a1hbx"]
+[ext_resource type="Texture2D" uid="uid://cv46j6u8gq5xg" path="res://assets/balloon/Basket/Textures/TempBasket_Lp_Basket_Height.png" id="3_fplra"]
+[ext_resource type="Texture2D" uid="uid://0mf8536nt1sg" path="res://assets/balloon/Basket/Textures/TempBasket_Lp_Basket_Normal.png" id="4_8bv87"]
+
+[resource]
+resource_name = "Basket"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_fagb6")
+metallic = 1.0
+metallic_texture = ExtResource("2_a1hbx")
+roughness_texture = ExtResource("2_a1hbx")
+roughness_texture_channel = 3
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+normal_enabled = true
+normal_texture = ExtResource("4_8bv87")
+ao_enabled = true
+ao_light_affect = 0.31
+ao_texture = ExtResource("2_a1hbx")
+ao_texture_channel = 1
+heightmap_enabled = true
+heightmap_scale = 0.5
+heightmap_texture = ExtResource("3_fplra")

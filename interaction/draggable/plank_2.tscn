@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvra0xi1l8fcx"]
+
+[ext_resource type="PackedScene" uid="uid://f78nh2t5kjye" path="res://interaction/draggable/plank_1.tscn" id="1_p4ody"]
+[ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="2_bjvn2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1heuv"]
+albedo_texture = ExtResource("2_bjvn2")
+uv1_scale = Vector3(2, 2, 2)
+
+[node name="Plank2" instance=ExtResource("1_p4ody")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_1heuv")

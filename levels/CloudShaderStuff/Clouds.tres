@@ -1,0 +1,475 @@
+[gd_resource type="VisualShader" load_steps=42 format=3 uid="uid://dc7dlltb5caw2"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_o4d6i"]
+input_name = "uvw"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_cic41"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_xd1p5"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_4wpwp"]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 0.0]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_o4bys"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_kcshl"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_2qgtx"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_go60m"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_go60m"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4wpwp"]
+
+[sub_resource type="VisualShaderNodeTexture3DParameter" id="VisualShaderNodeTexture3DParameter_06hen"]
+parameter_name = "Noise_3d"
+texture_type = 1
+texture_filter = 1
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_06hen"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_0dpj3"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_o4d6i"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_0dpj3"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_o4d6i"]
+default_input_values = [0, 0.0, 1, 7.45]
+operator = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_2pdie"]
+parameter_name = "Contrast2"
+default_value_enabled = true
+default_value = 2.0
+
+[sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_xd1p5"]
+default_input_values = [0, Vector3(0, 0, 0)]
+port_type = 4
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_xd1p5"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_o4bys"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_06hen"]
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_44jfr"]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.1, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_44jfr"]
+expanded_output_ports = [0]
+parameter_name = "CloudEmissionColor"
+default_value_enabled = true
+default_value = Color(0.313292, 0.18695, 0.134337, 1)
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_3kwb5"]
+operator = 3
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_weace"]
+expanded_output_ports = [0]
+parameter_name = "Cloud1stColor"
+default_value_enabled = true
+default_value = Color(0.811765, 0.85098, 0.878431, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_buavb"]
+expanded_output_ports = [0]
+parameter_name = "Cloud2ndColor"
+default_value_enabled = true
+default_value = Color(0.27451, 0.380392, 0.45098, 1)
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_nsddy"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_tuqsl"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2pdie"]
+expanded_output_ports = [0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture3D" id="VisualShaderNodeTexture3D_06hen"]
+expanded_output_ports = [0]
+source = 1
+
+[sub_resource type="VisualShaderNodeVec4Parameter" id="VisualShaderNodeVec4Parameter_4wpwp"]
+expanded_output_ports = [0]
+parameter_name = "Noise1_Coordinates"
+default_value_enabled = true
+default_value = Vector4(1, 1, 1, 1)
+
+[sub_resource type="VisualShaderNodeVec4Parameter" id="VisualShaderNodeVec4Parameter_06hen"]
+expanded_output_ports = [0]
+parameter_name = "Noise2_Coordinates"
+default_value_enabled = true
+default_value = Vector4(1, 1, 1, 0.02)
+
+[sub_resource type="VisualShaderNodeVec4Parameter" id="VisualShaderNodeVec4Parameter_47oue"]
+expanded_output_ports = [0]
+parameter_name = "WindController"
+default_value_enabled = true
+default_value = Vector4(1, 1, 0.5, 0.333)
+
+[sub_resource type="VisualShaderNodeTexture3D" id="VisualShaderNodeTexture3D_qmu8j"]
+expanded_output_ports = [0]
+source = 1
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_xd1p5"]
+expanded_output_ports = [0]
+parameter_name = "NoiseDensityModifier"
+default_value_enabled = true
+default_value = Vector2(1, 0.5)
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_4wpwp"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_o4bys"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_vnwyy"]
+parameter_name = "CloudGlobalSize"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_o4d6i"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_go60m"]
+default_input_values = [0, 0.0, 1, 7.45]
+operator = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_go60m"]
+parameter_name = "Contrast"
+default_value_enabled = true
+default_value = 2.0
+
+[resource]
+code = "shader_type fog;
+uniform vec4 Noise1_Coordinates = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform vec4 WindController = vec4(1.000000, 1.000000, 0.500000, 0.333000);
+uniform float CloudGlobalSize = 1.0;
+uniform sampler3D Noise_3d : source_color, filter_nearest, repeat_enable;
+uniform vec2 NoiseDensityModifier = vec2(1.000000, 0.500000);
+uniform float Contrast = 2.0;
+uniform vec4 Noise2_Coordinates = vec4(1.000000, 1.000000, 1.000000, 0.020000);
+uniform float Contrast2 = 2.0;
+uniform vec4 Cloud1stColor : source_color = vec4(0.811765, 0.850980, 0.878431, 1.000000);
+uniform vec4 Cloud2ndColor : source_color = vec4(0.274510, 0.380392, 0.450980, 1.000000);
+uniform vec4 CloudEmissionColor : source_color = vec4(0.313292, 0.186950, 0.134337, 1.000000);
+
+
+
+void fog() {
+// Input:100
+	vec3 n_out100p0 = UVW;
+
+
+// Vector4Parameter:51
+	vec4 n_out51p0 = Noise1_Coordinates;
+	float n_out51p1 = n_out51p0.r;
+	float n_out51p2 = n_out51p0.g;
+	float n_out51p3 = n_out51p0.b;
+	float n_out51p4 = n_out51p0.a;
+
+
+// VectorCompose:109
+	vec3 n_out109p0 = vec3(n_out51p1, n_out51p2, n_out51p3);
+
+
+// VectorOp:126
+	vec3 n_out126p0 = n_out100p0 * n_out109p0;
+
+
+// Vector4Parameter:6
+	vec4 n_out6p0 = WindController;
+	float n_out6p1 = n_out6p0.r;
+	float n_out6p2 = n_out6p0.g;
+	float n_out6p3 = n_out6p0.b;
+	float n_out6p4 = n_out6p0.a;
+
+
+// VectorCompose:105
+	vec3 n_out105p0 = vec3(n_out6p1, n_out6p2, n_out6p3);
+
+
+// VectorFunc:164
+	vec3 n_out164p0 = normalize(n_out105p0);
+
+
+// VectorOp:46
+	vec3 n_out46p0 = n_out164p0 * vec3(n_out6p4);
+	float n_out46p1 = n_out46p0.r;
+	float n_out46p2 = n_out46p0.g;
+	float n_out46p3 = n_out46p0.b;
+
+
+// Input:11
+	float n_out11p0 = TIME;
+
+
+// FloatParameter:7
+	float n_out7p0 = CloudGlobalSize;
+
+
+// FloatOp:24
+	float n_out24p0 = n_out11p0 / n_out7p0;
+
+
+// VectorCompose:106
+	vec4 n_out106p0 = vec4(n_out46p1, n_out46p2, n_out46p3, n_out24p0);
+
+
+// VectorDecompose:104
+	float n_out104p0 = n_out106p0.x;
+	float n_out104p1 = n_out106p0.y;
+	float n_out104p2 = n_out106p0.z;
+	float n_out104p3 = n_out106p0.w;
+
+
+// VectorCompose:107
+	vec3 n_out107p0 = vec3(n_out104p0, n_out104p1, n_out104p2);
+
+
+// VectorOp:108
+	vec3 n_out108p0 = n_out107p0 * vec3(n_out104p3);
+
+
+// Reroute:124
+	vec3 n_out124p0 = n_out108p0;
+
+
+// VectorOp:110
+	vec3 n_out110p0 = n_out124p0 * vec3(n_out51p4);
+
+
+// VectorOp:111
+	vec3 n_out111p0 = n_out126p0 + n_out110p0;
+
+
+	vec4 n_out5p0;
+// Texture3D:5
+	n_out5p0 = texture(Noise_3d, n_out111p0);
+	float n_out5p1 = n_out5p0.r;
+
+
+// Vector2Parameter:64
+	vec2 n_out64p0 = NoiseDensityModifier;
+	float n_out64p1 = n_out64p0.r;
+	float n_out64p2 = n_out64p0.g;
+
+
+// FloatOp:65
+	float n_out65p0 = n_out5p1 * n_out64p1;
+
+
+// FloatParameter:98
+	float n_out98p0 = Contrast;
+
+
+// FloatOp:97
+	float n_out97p0 = pow(n_out65p0, n_out98p0);
+
+
+// Vector4Parameter:58
+	vec4 n_out58p0 = Noise2_Coordinates;
+	float n_out58p1 = n_out58p0.r;
+	float n_out58p2 = n_out58p0.g;
+	float n_out58p3 = n_out58p0.b;
+	float n_out58p4 = n_out58p0.a;
+
+
+// VectorCompose:115
+	vec3 n_out115p0 = vec3(n_out58p1, n_out58p2, n_out58p3);
+
+
+// VectorOp:127
+	vec3 n_out127p0 = n_out100p0 * n_out115p0;
+
+
+// VectorOp:116
+	vec3 n_out116p0 = n_out124p0 * vec3(n_out58p4);
+
+
+// VectorOp:117
+	vec3 n_out117p0 = n_out127p0 + n_out116p0;
+
+
+	vec4 n_out63p0;
+// Texture3D:63
+	n_out63p0 = texture(Noise_3d, n_out117p0);
+	float n_out63p2 = n_out63p0.g;
+
+
+// FloatOp:66
+	float n_out66p0 = n_out63p2 * n_out64p2;
+
+
+// FloatParameter:120
+	float n_out120p0 = Contrast2;
+
+
+// FloatOp:119
+	float n_out119p0 = pow(n_out66p0, n_out120p0);
+
+
+// FloatOp:114
+	float n_out114p0 = n_out97p0 + n_out119p0;
+
+
+// Reroute:95
+	float n_out95p0 = n_out114p0;
+
+
+// ColorParameter:37
+	vec4 n_out37p0 = Cloud1stColor;
+	float n_out37p1 = n_out37p0.r;
+	float n_out37p2 = n_out37p0.g;
+	float n_out37p3 = n_out37p0.b;
+
+
+// VectorCompose:40
+	vec3 n_out40p0 = vec3(n_out37p1, n_out37p2, n_out37p3);
+
+
+// ColorParameter:38
+	vec4 n_out38p0 = Cloud2ndColor;
+	float n_out38p1 = n_out38p0.r;
+	float n_out38p2 = n_out38p0.g;
+	float n_out38p3 = n_out38p0.b;
+
+
+// VectorCompose:41
+	vec3 n_out41p0 = vec3(n_out38p1, n_out38p2, n_out38p3);
+
+
+	vec3 n_out169p0;
+// If:169
+	float n_in169p2 = 0.10000;
+	if(abs(n_out97p0 - n_out119p0) < n_in169p2)
+	{
+		n_out169p0 = n_out40p0;
+	}
+	else if(n_out97p0 < n_out119p0)
+	{
+		n_out169p0 = n_out41p0;
+	}
+	else
+	{
+		n_out169p0 = n_out41p0;
+	}
+
+
+// ColorParameter:170
+	vec4 n_out170p0 = CloudEmissionColor;
+
+
+// Output:0
+	DENSITY = n_out95p0;
+	ALBEDO = n_out169p0;
+	EMISSION = vec3(n_out170p0.xyz);
+
+
+}
+"
+mode = 4
+preview_params/Noise1_Coordinates = "Vector4(1, 1, 1, 0.2)"
+preview_params/WindController = "Vector4(1, 1, 0.5, 0.333)"
+preview_params/CloudGlobalSize = "1.0"
+preview_params/Noise_3d = "null"
+preview_params/NoiseDensityModifier = "Vector2(1, 0.5)"
+preview_params/Contrast = "8.0"
+preview_params/Noise2_Coordinates = "Vector4(1, 1, 1, 0.02)"
+preview_params/Contrast2 = "8.0"
+preview_params/Cloud1stColor = "Color(0.810539, 0.850177, 0.879858, 1)"
+preview_params/Cloud2ndColor = "Color(0.276106, 0.382481, 0.451233, 1)"
+nodes/fog/0/position = Vector2(9560, 1220)
+nodes/fog/5/node = SubResource("VisualShaderNodeTexture3D_06hen")
+nodes/fog/5/position = Vector2(6320, -740)
+nodes/fog/6/node = SubResource("VisualShaderNodeVec4Parameter_47oue")
+nodes/fog/6/position = Vector2(300, -840)
+nodes/fog/7/node = SubResource("VisualShaderNodeFloatParameter_vnwyy")
+nodes/fog/7/position = Vector2(780, -40)
+nodes/fog/11/node = SubResource("VisualShaderNodeInput_go60m")
+nodes/fog/11/position = Vector2(820, -180)
+nodes/fog/24/node = SubResource("VisualShaderNodeFloatOp_3kwb5")
+nodes/fog/24/position = Vector2(1320, -200)
+nodes/fog/37/node = SubResource("VisualShaderNodeColorParameter_weace")
+nodes/fog/37/position = Vector2(6340, 840)
+nodes/fog/38/node = SubResource("VisualShaderNodeColorParameter_buavb")
+nodes/fog/38/position = Vector2(6340, 1200)
+nodes/fog/40/node = SubResource("VisualShaderNodeVectorCompose_nsddy")
+nodes/fog/40/position = Vector2(7060, 1100)
+nodes/fog/41/node = SubResource("VisualShaderNodeVectorCompose_tuqsl")
+nodes/fog/41/position = Vector2(7080, 1400)
+nodes/fog/46/node = SubResource("VisualShaderNodeVectorOp_2pdie")
+nodes/fog/46/position = Vector2(1340, -660)
+nodes/fog/51/node = SubResource("VisualShaderNodeVec4Parameter_4wpwp")
+nodes/fog/51/position = Vector2(2920, -1000)
+nodes/fog/58/node = SubResource("VisualShaderNodeVec4Parameter_06hen")
+nodes/fog/58/position = Vector2(2960, -200)
+nodes/fog/63/node = SubResource("VisualShaderNodeTexture3D_qmu8j")
+nodes/fog/63/position = Vector2(6320, 40)
+nodes/fog/64/node = SubResource("VisualShaderNodeVec2Parameter_xd1p5")
+nodes/fog/64/position = Vector2(6240, -400)
+nodes/fog/65/node = SubResource("VisualShaderNodeFloatOp_4wpwp")
+nodes/fog/65/position = Vector2(6760, -380)
+nodes/fog/66/node = SubResource("VisualShaderNodeFloatOp_o4bys")
+nodes/fog/66/position = Vector2(6760, -160)
+nodes/fog/95/node = SubResource("VisualShaderNodeReroute_o4d6i")
+nodes/fog/95/position = Vector2(9060, 1220)
+nodes/fog/97/node = SubResource("VisualShaderNodeFloatOp_go60m")
+nodes/fog/97/position = Vector2(7280, -380)
+nodes/fog/98/node = SubResource("VisualShaderNodeFloatParameter_go60m")
+nodes/fog/98/position = Vector2(6720, -620)
+nodes/fog/100/node = SubResource("VisualShaderNodeInput_o4d6i")
+nodes/fog/100/position = Vector2(4560, -300)
+nodes/fog/104/node = SubResource("VisualShaderNodeVectorDecompose_cic41")
+nodes/fog/104/position = Vector2(1860, -560)
+nodes/fog/105/node = SubResource("VisualShaderNodeVectorCompose_xd1p5")
+nodes/fog/105/position = Vector2(860, -720)
+nodes/fog/106/node = SubResource("VisualShaderNodeVectorCompose_4wpwp")
+nodes/fog/106/position = Vector2(1620, -560)
+nodes/fog/107/node = SubResource("VisualShaderNodeVectorCompose_o4bys")
+nodes/fog/107/position = Vector2(2320, -660)
+nodes/fog/108/node = SubResource("VisualShaderNodeVectorOp_kcshl")
+nodes/fog/108/position = Vector2(2740, -500)
+nodes/fog/109/node = SubResource("VisualShaderNodeVectorCompose_2qgtx")
+nodes/fog/109/position = Vector2(3940, -860)
+nodes/fog/110/node = SubResource("VisualShaderNodeVectorOp_go60m")
+nodes/fog/110/position = Vector2(4520, -780)
+nodes/fog/111/node = SubResource("VisualShaderNodeVectorOp_4wpwp")
+nodes/fog/111/position = Vector2(5400, -820)
+nodes/fog/113/node = SubResource("VisualShaderNodeTexture3DParameter_06hen")
+nodes/fog/113/position = Vector2(5580, -480)
+nodes/fog/114/node = SubResource("VisualShaderNodeFloatOp_06hen")
+nodes/fog/114/position = Vector2(7700, -280)
+nodes/fog/115/node = SubResource("VisualShaderNodeVectorCompose_0dpj3")
+nodes/fog/115/position = Vector2(3860, -60)
+nodes/fog/116/node = SubResource("VisualShaderNodeVectorOp_o4d6i")
+nodes/fog/116/position = Vector2(4700, 0)
+nodes/fog/117/node = SubResource("VisualShaderNodeVectorOp_0dpj3")
+nodes/fog/117/position = Vector2(5400, 20)
+nodes/fog/119/node = SubResource("VisualShaderNodeFloatOp_o4d6i")
+nodes/fog/119/position = Vector2(7280, -160)
+nodes/fog/120/node = SubResource("VisualShaderNodeFloatParameter_2pdie")
+nodes/fog/120/position = Vector2(6720, 40)
+nodes/fog/124/node = SubResource("VisualShaderNodeReroute_xd1p5")
+nodes/fog/124/position = Vector2(4340, -360)
+nodes/fog/126/node = SubResource("VisualShaderNodeVectorOp_xd1p5")
+nodes/fog/126/position = Vector2(4960, -580)
+nodes/fog/127/node = SubResource("VisualShaderNodeVectorOp_o4bys")
+nodes/fog/127/position = Vector2(5020, -240)
+nodes/fog/164/node = SubResource("VisualShaderNodeVectorFunc_06hen")
+nodes/fog/164/position = Vector2(1060, -720)
+nodes/fog/169/node = SubResource("VisualShaderNodeIf_44jfr")
+nodes/fog/169/position = Vector2(7820, 780)
+nodes/fog/170/node = SubResource("VisualShaderNodeColorParameter_44jfr")
+nodes/fog/170/position = Vector2(9160, 1320)
+nodes/fog/connections = PackedInt32Array(37, 1, 40, 0, 37, 2, 40, 1, 37, 3, 40, 2, 38, 1, 41, 0, 38, 2, 41, 1, 38, 3, 41, 2, 64, 1, 65, 1, 64, 2, 66, 1, 63, 2, 66, 0, 98, 0, 97, 1, 6, 1, 105, 0, 6, 2, 105, 1, 6, 3, 105, 2, 6, 4, 46, 1, 46, 1, 106, 0, 46, 2, 106, 1, 46, 3, 106, 2, 104, 0, 107, 0, 104, 1, 107, 1, 104, 2, 107, 2, 107, 0, 108, 0, 104, 3, 108, 1, 51, 1, 109, 0, 51, 2, 109, 1, 51, 3, 109, 2, 51, 4, 110, 1, 110, 0, 111, 1, 113, 0, 5, 2, 5, 1, 65, 0, 111, 0, 5, 0, 113, 0, 63, 2, 58, 1, 115, 0, 58, 2, 115, 1, 58, 3, 115, 2, 58, 4, 116, 1, 116, 0, 117, 1, 117, 0, 63, 0, 65, 0, 97, 0, 97, 0, 114, 0, 66, 0, 119, 0, 119, 0, 114, 1, 120, 0, 119, 1, 108, 0, 124, 0, 124, 0, 110, 0, 124, 0, 116, 0, 106, 0, 104, 0, 100, 0, 126, 0, 109, 0, 126, 1, 126, 0, 111, 0, 100, 0, 127, 0, 127, 0, 117, 0, 115, 0, 127, 1, 105, 0, 164, 0, 164, 0, 46, 0, 7, 0, 24, 1, 11, 0, 24, 0, 24, 0, 106, 3, 95, 0, 0, 0, 114, 0, 95, 0, 97, 0, 169, 0, 119, 0, 169, 1, 169, 0, 0, 1, 41, 0, 169, 5, 40, 0, 169, 3, 41, 0, 169, 4, 170, 0, 0, 2)

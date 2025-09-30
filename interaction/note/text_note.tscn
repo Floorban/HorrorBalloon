@@ -18,6 +18,7 @@ size = Vector3(2.2, 0.3, 3)
 
 [node name="Text_Note" type="StaticBody3D"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+collision_layer = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.112, 0, 0, 0, 1.536, 0, 0, 0, 1.536, 0, 0, 0)

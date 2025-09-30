@@ -1,0 +1,29 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://bgetyrh81jjux"
+path.bptc="res://.godot/imported/3dNoise.png-710efa6085ec33a0f371d213e50548ca.bptc.ctex3d"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://levels/CloudShaderStuff/3dNoise.png"
+dest_files=["res://.godot/imported/3dNoise.png-710efa6085ec33a0f371d213e50548ca.bptc.ctex3d"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=true
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=128
