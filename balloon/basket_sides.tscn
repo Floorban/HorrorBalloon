@@ -21,7 +21,7 @@ size = Vector3(0.06863403, 0.23757172, 0.94750977)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a3n6c"]
 size = Vector3(0.06863403, 0.23051453, 0.92248535)
 
-[node name="BasketSides" type="StaticBody3D"]
+[node name="BasketSides" type="CharacterBody3D"]
 collision_layer = 2147483653
 collision_mask = 5
 
@@ -61,7 +61,8 @@ shape = SubResource("BoxShape3D_agsvp")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.011703828, 0.16041282, -0.45521283)
 shape = SubResource("BoxShape3D_a3n6c")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_6sd76")]
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("1_6sd76")]
 script = ExtResource("2_0wdyp")
 _hold_to_switch = false
 object_ref = NodePath("..")
+pivot_point = NodePath("..")

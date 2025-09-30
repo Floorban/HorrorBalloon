@@ -22,7 +22,7 @@ mesh = ExtResource("2_ecxay")
 skeleton = NodePath("../../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.057003357, 0.15661544, 0, -0.15661544, -0.057003357, 0, 0, 0, 0.16666667, 0, 0, 0)
+transform = Transform3D(-0.05150284, 0.15850942, 0, -0.15850942, -0.05150284, 0, 0, 0, 0.16666667, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_exksr")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("3_ecxay")]

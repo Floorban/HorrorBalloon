@@ -41,10 +41,17 @@ func _physics_process(_delta: float) -> void:
 	can_land = land_checks.any(func(gc): return gc.is_colliding())
 	is_on_ground = ground_checks.any(func(gc): return gc.is_colliding())
 
-	if is_on_ground and not is_just_land:
+	if is_just_land and oven.get_fuel_percentage() > 0.5:
 		player.trauma = 0.5
+		sleeping = false
+		axis_lock_linear_y = false
+
+	if is_on_ground and not is_just_land:
+		player.trauma = 0.8
 		is_just_land = true
-		freeze = true
+		axis_lock_linear_y = true
+		linear_velocity = Vector3.ZERO
+		return
 		
 	_apply_vertical_force()
 	_apply_horizontal_force()
