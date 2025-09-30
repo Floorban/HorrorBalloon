@@ -13,6 +13,7 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+.cache
 addons/fmod/libs/windows/fmodL.dll
 addons/fmod/libs/windows/fmodstudioL.dll
 addons/fmod/libs/windows/~libGodotFmod.windows.editor.x86_64.dll
