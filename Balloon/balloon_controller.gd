@@ -18,19 +18,19 @@ var total_weight: float = 0.0
 var player_weight: float = 10.0
 
 # vertical
-const GRAVITY := 6.0
+const GRAVITY := 10.0
 @export var vertical_base_force: float = 10.0
 var vertical_force: float = 0.0
 var locked_vertical := false
 var is_just_land : = false
 
 # horizontal
-@export var horizontal_force: float = 2.0
+@export var horizontal_force: float = 5.0
 var move_threshold := 0.1
 var horizontal_dir: Vector3 = Vector3.ZERO
 
 # tilt
-@export var max_tilt_angle := 8.0 # degrees
+@export var max_tilt_angle := 6.0
 var tilt_tween: Tween = null
 var tilt_damping := 0.5
 
@@ -113,7 +113,6 @@ func _check_ground_contacts() -> bool:
 		if gc.is_colliding():
 			var col = gc.get_collider()
 			if col and col != self:
-				print(col.name)
 				return true
 	return false
 
