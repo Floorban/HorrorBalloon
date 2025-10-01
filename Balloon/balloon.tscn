@@ -159,21 +159,23 @@ attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
 
-[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_1")
 
 [node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
 
 [node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
 
 [node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
-transform = Transform3D(-0.0173648, 0.0984808, -4.30473e-09, 0, -4.37114e-09, -0.1, -0.0984808, -0.0173648, 7.5904e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
 
-[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_2")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
@@ -188,8 +190,9 @@ transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.
 [node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
 script = ExtResource("2_2rviv")
+follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_3")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]

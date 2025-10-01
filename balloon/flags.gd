@@ -1,21 +1,27 @@
 extends Node3D
 
-@export var follow_owner : BalloonController
-var my_flags : Array[Node3D]
-@export var attached_rope : VerletRope
+@onready var follow_owner: BalloonController = get_tree().get_first_node_in_group("balloon")
+var my_flags: Array = []
+@export var attached_rope: VerletRope
 
 func _ready() -> void:
-	if attached_rope == null: return
+	if attached_rope == null:
+		return
 	_get_child_flags()
 	_assign_flags_to_verlets(attached_rope)
 
-func _physics_process(_delta):
+func _physics_process(delta: float) -> void:
 	if follow_owner == null:
 		return
-		
-	if follow_owner.horizontal_dir.length() > 0.01:
+
+	var move_dir = follow_owner.horizontal_dir
+	if move_dir.length() > 0.01:
+		var target_yaw = atan2(move_dir.x, move_dir.z)
+
 		for flag in my_flags:
-			flag.rotation =(Vector3(global_transform.origin.x, 0, global_transform.origin.z) - follow_owner.horizontal_dir).normalized()
+			var current_rot = flag.rotation
+			var new_yaw = lerp_angle(current_rot.y, target_yaw + 90, delta * 5.0)
+			flag.rotation = Vector3(deg_to_rad(-90.0), new_yaw, 0.0)
 
 func _get_child_flags() -> void:
 	for flag in get_children():
@@ -24,4 +30,4 @@ func _get_child_flags() -> void:
 func _assign_flags_to_verlets(rope: VerletRope) -> void:
 	var dist = int(rope.simulation_particles / 5.0)
 	for i in my_flags.size():
-		rope.attach_object_to_particle(dist*(i+1), my_flags[i])
+		rope.attach_object_to_particle(dist * (i + 1), my_flags[i])

@@ -24,6 +24,7 @@ var e_flame_is_playing: bool
 @onready var smoke: GPUParticles3D = $Smoke
 
 func _ready() -> void:
+	smoke.emitting = false
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
 
