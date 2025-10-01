@@ -14,8 +14,26 @@ var is_attacking := false
 @export var _max_trauma := 2.5
 var _trauma_timer := 0.0
 
+## Sound Settings
+var audio: AudioManager
+@onready var e_screech: FmodEventEmitter3D = $"../../Audio/Screech"
+var anxiety := "Anxiety"
+var guilt := "Guilt"
+var hatred := "Hatred"
+var terror := "Terror"
+@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+func _ready():
+	audio = get_tree().get_first_node_in_group("audio")
+	audio.cache(e_screech, $"../..".global_position)
+	e_screech.set_parameter(anxiety, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(guilt, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(hatred, rng.randf_range(0.0, 100.0))
+	e_screech.set_parameter(terror, rng.randf_range(0.0, 100.0))
+
 func enter(_previous_state_name: String, _data := {}) -> void:
 	_chase_timer = chase_max_time
+	e_screech.play()
 
 func update(delta: float) -> void:
 	_update_path_timer -= delta

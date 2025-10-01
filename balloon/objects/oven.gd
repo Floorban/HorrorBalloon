@@ -98,4 +98,8 @@ func remove_fuel(body: Node3D) -> void:
 				weight_label.text = "weights: " + str(total_weight)
 
 func _exit_tree() -> void:
+	e_release.stop()
+	e_release.queue_free()
+	
+	e_flame.stop()
 	e_flame.queue_free()

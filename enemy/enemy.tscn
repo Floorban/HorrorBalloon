@@ -141,7 +141,13 @@ script = ExtResource("7_2fq87")
 _searching_speed = 3.0
 _search_radius = 15.0
 
-[node name="Screech" type="FmodEventEmitter3D" parent="." index="6"]
+[node name="Audio" type="Node3D" parent="." index="6"]
+
+[node name="Jumpscare" type="FmodEventEmitter3D" parent="Audio" index="0"]
+event_name = "event:/SFX/Creature/Jumpscare"
+event_guid = "{fb7c84cc-b1e4-42a9-b05c-d895e188025b}"
+
+[node name="Screech" type="FmodEventEmitter3D" parent="Audio" index="1"]
 event_name = "event:/SFX/Creature/Screech"
 event_guid = "{b275a6a0-add5-493e-ab60-a7ff406b58bc}"
 auto_release = true

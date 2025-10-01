@@ -23,7 +23,7 @@ var player_weight: float = 10.0
 
 # vertical
 const GRAVITY := 5.0
-@export var vertical_base_force: float = 10.0
+@export var vertical_base_force: float = 15.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
-	if is_grounded and oven.get_fuel_percentage() > 0.3:
+	if is_grounded and oven.get_fuel_percentage() > 0.1:
 		_on_takeoff()
 	if not ground_check_enabled and oven.get_fuel_percentage() > 0:
 		player.trauma = 0.5
