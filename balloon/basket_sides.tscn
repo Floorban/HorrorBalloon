@@ -22,7 +22,7 @@ size = Vector3(0.06863403, 0.23757172, 0.94750977)
 size = Vector3(0.06863403, 0.23051453, 0.92248535)
 
 [node name="BasketSides" type="CharacterBody3D"]
-collision_layer = 2147483653
+collision_layer = 5
 collision_mask = 5
 
 [node name="Exit_1" type="Marker3D" parent="."]

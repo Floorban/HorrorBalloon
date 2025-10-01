@@ -38,7 +38,6 @@ func _process(delta: float) -> void:
 			is_switch_snapping = false
 			var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 			notify_nodes(percentage)
-			print(percentage)
 	else:
 		switch_kickback_triggered = false
 

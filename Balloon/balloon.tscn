@@ -24,19 +24,19 @@ size = Vector3(0.9675293, 0.04852295, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10762517043215
+metadata/creation_stamp = 2424341352281
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10762550597641
+metadata/creation_stamp = 2424525901659
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10762584152075
+metadata/creation_stamp = 2424559456093
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 10762617706497
+metadata/creation_stamp = 2424593010527
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(1.0183105, 0.45910645, 1.017456)
@@ -45,6 +45,8 @@ size = Vector3(1.0183105, 0.45910645, 1.017456)
 viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
+collision_layer = 0
+collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
@@ -52,7 +54,7 @@ script = ExtResource("1_35dws")
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="Bottom" type="StaticBody3D" parent="Body"]
+[node name="Bottom" type="CharacterBody3D" parent="Body"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.02956009, 0.023223877)

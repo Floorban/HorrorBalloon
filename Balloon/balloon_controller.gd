@@ -9,6 +9,8 @@ class_name BalloonController
 var _is_reparenting := false
 @onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
 var is_grounded := false
+var ground_check_enabled := true
+var ground_disable_timer := 0.0
 
 # weight / objects in balloon
 var objs_in_balloon: Dictionary = {}
@@ -38,11 +40,20 @@ func _ready() -> void:
 		obj_in_balloon_area.body_entered.connect(_on_body_entered)
 		obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if not ground_check_enabled:
+		ground_disable_timer -= delta
+		if ground_disable_timer <= 0.0:
+			ground_check_enabled = true
+
+	var touching_ground := false
+	if ground_check_enabled:
+		touching_ground = _check_ground_contacts()
+	
 	if not is_grounded:
 		apply_central_force(Vector3.DOWN * GRAVITY)
 	
-	if not is_grounded and _check_ground_contacts() and linear_velocity.y <= 0.1:
+	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
 	if is_grounded and oven.get_fuel_percentage() > 0.5:
 		_on_takeoff()
@@ -87,9 +98,11 @@ func _on_land() -> void:
 func _on_takeoff() -> void:
 	is_grounded = false
 	sleeping = false
-	linear_velocity.y = vertical_base_force * 0.5
+	linear_velocity.y = vertical_base_force * 0.1
 	player.trauma = 0.5
 	print("Balloon taking off")
+	ground_check_enabled = false
+	ground_disable_timer = 1.0
 
 func _check_ground_contacts() -> bool:
 	for i in ground_checks.size():
@@ -100,8 +113,10 @@ func _check_ground_contacts() -> bool:
 		if gc.is_colliding():
 			var col = gc.get_collider()
 			if col and col != self:
+				print(col.name)
 				return true
 	return false
+
 func _get_all_weights() -> float:
 	var sum: float = 0.0
 	for val in objs_in_balloon.values():
@@ -145,8 +160,8 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		_is_reparenting = true
-		call_deferred("_deferred_attach", player)
+		# _is_reparenting = true
+		# call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
@@ -155,7 +170,7 @@ func _on_body_entered(body: Node3D) -> void:
 			call_deferred("_deferred_attach", body)
 	total_weight = _get_all_weights()
 
-func _on_body_exited(body: Node) -> void:
+func _on_body_exited(body: Node3D) -> void:
 	if _is_reparenting or not body:
 		return
 
@@ -174,7 +189,7 @@ func _on_body_exited(body: Node) -> void:
 
 	total_weight = _get_all_weights()
 
-func _deferred_attach(body: Node) -> void:
+func _deferred_attach(body: Node3D) -> void:
 	_is_reparenting = true
 	if not body:
 		_is_reparenting = false
@@ -201,7 +216,7 @@ func _deferred_attach(body: Node) -> void:
 
 	_is_reparenting = false
 
-func _deferred_deattach(body: Node) -> void:
+func _deferred_deattach(body: Node3D) -> void:
 	_is_reparenting = true
 	if not body:
 		_is_reparenting = false
