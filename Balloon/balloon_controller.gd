@@ -98,6 +98,7 @@ func _apply_horizontal_force() -> void:
 		player.apply_sway(final_tilt)
 
 func _on_land() -> void:
+	$Audio/SFX_Land.play_one_shot()
 	is_grounded = true
 	linear_velocity = Vector3.ZERO
 	sleeping = true

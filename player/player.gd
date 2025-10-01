@@ -78,10 +78,10 @@ var is_crouching: bool = false
 var is_standing: bool = false
 
 func _ready() -> void:
-	e_right_step = get_node("Audio/RightStep")
-	e_left_step = get_node("Audio/LeftStep")
-	e_crouch = get_node("Audio/Crouch")
-	e_stand = get_node("Audio/Stand")
+	e_right_step = get_node("Audio/SFX_RightStep")
+	e_left_step = get_node("Audio/SFX_LeftStep")
+	e_crouch = get_node("Audio/SFX_Crouch")
+	e_stand = get_node("Audio/SFX_Stand")
 	
 	original_position = player_camera.position
 	original_rotation = player_camera.rotation_degrees
