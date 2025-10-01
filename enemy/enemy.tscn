@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d5y5qpf5rhd8"]
+[gd_scene load_steps=9 format=3 uid="uid://d5y5qpf5rhd8"]
 
 [ext_resource type="PackedScene" uid="uid://dc8aica257weg" path="res://enemy/Eye_Monster/scene.gltf" id="1_1wwld"]
 [ext_resource type="Script" uid="uid://rjjcaejd33x4" path="res://enemy/enemy.gd" id="1_5anih"]
@@ -11,10 +11,14 @@
 height = 6.2753906
 radius = 2.911621
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1wwld"]
+size = Vector3(30, 5, 30)
+
 [node name="Enemy" groups=["enemy"] instance=ExtResource("1_1wwld")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_5anih")
+max_spotting_distance = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21775484, 3.0905104, -0.1547885)
@@ -109,14 +113,15 @@ speed_scale = 0.5
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53469276, -3.9423008)
 
-[node name="EyeRayCast" type="RayCast3D" parent="Eye" index="0"]
-unique_name_in_owner = true
-target_position = Vector3(0, 0, -5)
+[node name="PlayerCheck" type="ShapeCast3D" parent="Eye" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+shape = SubResource("BoxShape3D_1wwld")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4"]
 unique_name_in_owner = true
 path_desired_distance = 0.3
 target_desired_distance = 0.6
+debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_1h0du")
@@ -128,11 +133,12 @@ script = ExtResource("4_s81n7")
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")
+chase_max_time = 30.0
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")
 _searching_speed = 3.0
-_search_radius = 20.0
+_search_radius = 15.0
 
 [node name="Screech" type="FmodEventEmitter3D" parent="." index="6"]
 event_name = "event:/SFX/Creature/Screech"

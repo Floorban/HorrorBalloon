@@ -164,7 +164,7 @@ spawn_point_data = ExtResource("6_duofn")
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2281475, -0.47331524, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3642349, -0.47331524, -1.9581585)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -94.220764, 5.344199, 66.237045)
