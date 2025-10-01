@@ -18,10 +18,9 @@ var total_weight: float = 0.0
 var player_weight: float = 10.0
 
 # vertical
-const GRAVITY := 10.0
-@export var vertical_base_force: float = 10.0
+const GRAVITY := 3.0
+@export var vertical_base_force: float = 5.0
 var vertical_force: float = 0.0
-var locked_vertical := false
 var is_just_land : = false
 
 # horizontal
@@ -55,14 +54,14 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
-	if is_grounded and oven.get_fuel_percentage() > 0.5:
+	if is_grounded and oven.get_fuel_percentage() > 0.3:
 		_on_takeoff()
 
 	_apply_vertical_force()
 	_apply_horizontal_force()
 
 func _apply_vertical_force() -> void:
-	if locked_vertical:
+	if is_grounded:
 		return
 
 	var fuel_mult : float = oven.get_fuel_percentage() if oven and oven.has_method("get_fuel_percentage") else 0.0
@@ -159,8 +158,8 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		# _is_reparenting = true
-		# call_deferred("_deferred_attach", player)
+		_is_reparenting = true
+		call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
@@ -173,13 +172,7 @@ func _on_body_exited(body: Node3D) -> void:
 	if _is_reparenting or not body:
 		return
 
-	if body == player:
-		if objs_in_balloon.has(body):
-			objs_in_balloon.erase(body)
-		total_weight = _get_all_weights()
-		return
-
-	if body.is_in_group("interactable"):
+	if body == player or body.is_in_group("interactable"):
 		_is_reparenting = true
 		call_deferred("_deferred_deattach", body)
 

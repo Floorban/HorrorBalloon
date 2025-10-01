@@ -77,6 +77,8 @@ func collect_fuel(body: Node3D) -> void:
 	if body is RigidBody3D:
 		var interaction_component = body.get_node_or_null("InteractionComponent")
 		if interaction_component and "weight" in interaction_component and interaction_component not in objs_to_burn:
+			body.linear_velocity = Vector3.ZERO
+			print("Ss")
 			objs_to_burn.append(interaction_component)
 			total_weight += interaction_component.weight
 			weight_label.text = "weights: " + str(total_weight)

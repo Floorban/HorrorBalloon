@@ -24,19 +24,19 @@ size = Vector3(0.9675293, 0.04852295, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18966475023604
+metadata/creation_stamp = 49999207570000
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18966508558343
+metadata/creation_stamp = 49999241124676
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18966542131024
+metadata/creation_stamp = 49999274659811
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 18966575685988
+metadata/creation_stamp = 49999308214216
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(1.0183105, 0.45910645, 1.017456)
@@ -50,6 +50,7 @@ collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
+horizontal_force = 2.0
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -283,24 +284,24 @@ collision_mask = 2147483648
 
 [node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700848, 0.16100788, 2.9441404)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2536583, 0.16100788, 2.6153243)
 target_position = Vector3(0, -0.35, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.16100788, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974897, 0.16100788, 2.6317258)
 target_position = Vector3(0, -0.35, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0342343, 0.16100788, -2.666778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7580302, 0.16100788, -2.3905723)
 target_position = Vector3(0, -0.35, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6551423, 0.16100788, -2.7046866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.16100788, -2.349565)
 target_position = Vector3(0, -0.35, 0)
 collision_mask = 2147483648
