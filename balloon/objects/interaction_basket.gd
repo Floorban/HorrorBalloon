@@ -54,7 +54,7 @@ func preInteract(_hand: Marker3D, _target: Node = null) -> void:
 
 ## Hold to switch
 func interact() -> void:
-	if not hold_to_switch: return
+	if not hold_to_switch or player_is_out: return
 	
 	super.interact()
 	if is_interacting:

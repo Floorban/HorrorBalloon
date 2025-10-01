@@ -167,11 +167,11 @@ spawn_point_data = ExtResource("6_duofn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2281475, -0.47331524, 0)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -94.99756, 5.344199, 66.48918)
+transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -94.220764, 5.344199, 66.237045)
 collision_layer = 2147483648
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.9849164, 0, 0.17302929, 0, 1, 0, -0.17302936, 0, 0.98491645, -262.75946, 5.9716234, -272.18677)
+transform = Transform3D(-0.17821822, 0, -0.9839908, 0, 1, 0, 0.9839907, 0, -0.1782183, -92.16116, 5.619755, 66.59776)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -335,6 +335,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153419, 2.9294996, -4.5114
 
 [node name="DeadZone" parent="." instance=ExtResource("35_duofn")]
 
+[connection signal="body_entered" from="DeadZone" to="." method="_on_dead_zone_body_entered"]
 [connection signal="body_exited" from="DeadZone" to="." method="_on_dead_zone_body_exited"]
-
-[editable path="DeadZone"]

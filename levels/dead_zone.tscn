@@ -1,10 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://kg4u6uc5807x"]
+[gd_scene load_steps=6 format=3 uid="uid://kg4u6uc5807x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h32ad"]
-size = Vector3(550, 350, 550)
+size = Vector3(550, 350, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjm6t"]
+size = Vector3(550, 350, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h8cwm"]
+size = Vector3(43.686768, 350, 516.43896)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig2iq"]
+size = Vector3(43.686768, 350, 516.43896)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eougr"]
+size = Vector3(609.9612, 32.581352, 610.9697)
 
 [node name="DeadZone" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 250)
 shape = SubResource("BoxShape3D_h32ad")
+debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
+shape = SubResource("BoxShape3D_pjm6t")
+debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.49582, 0, 4.302536)
+shape = SubResource("BoxShape3D_h8cwm")
+debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.02127, 0, 4.302536)
+shape = SubResource("BoxShape3D_ig2iq")
+debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 175.20117, 0)
+shape = SubResource("BoxShape3D_eougr")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
