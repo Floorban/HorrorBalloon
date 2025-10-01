@@ -1,9 +1,7 @@
 extends SpotLight3D
+class_name Objective
 
-@export var actuation_percentage: float = 0.8
+@onready var default_light_energy: float = self.light_energy
 
 func execute(_percentage: float) -> void:
-	if _percentage > .97:
-		light_energy = (100.0)
-	elif  _percentage < .03:
-		light_energy = (0.0)
+	light_energy = (1 - _percentage) * default_light_energy

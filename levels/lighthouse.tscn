@@ -1,22 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://0ymhl8o7lb8y"]
+[gd_scene load_steps=5 format=3 uid="uid://0ymhl8o7lb8y"]
 
 [ext_resource type="ArrayMesh" uid="uid://c2730mhjd6bgt" path="res://assets/buildings/lighthouse.res" id="1_lcai8"]
+[ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="2_03bo1"]
+[ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://scripts/light.gd" id="2_lfiru"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lcai8"]
 points = PackedVector3Array(-1, -1, 0, -0.92404073, -1, 0.38253725, -1, -0.0007341504, 0, -0.92404073, -1, -0.382733, -0.7071261, -1, 0.7069303, -0.92404073, -0.0007341504, 0.38253725, -0.92404073, -0.0007341504, -0.382733, -0.8363352, 6.099696, 0, -0.7071261, -1, -0.7071261, -0.382733, -1, 0.92384493, -0.7071261, -0.0007341504, 0.7069303, -0.5914252, 6.099696, 0.59122944, -0.7727095, 6.099696, 0.31989038, -0.7071261, -0.0007341504, -0.7071261, -0.7727095, 6.099696, -0.32008612, -0.5914252, 6.099696, -0.5914252, -0.6709084, 7.1597004, 0.2777995, -0.7261159, 7.1597004, 0, -0.6709084, 7.1597004, -0.2779953, -0.382733, -1, -0.92404073, 0, -1, 1, -0.382733, -0.0007341504, 0.92384493, -0.32008612, 6.099696, 0.77251375, -0.2779953, 7.1597004, 0.6707126, -0.5135082, 7.1597004, 0.51331246, -0.382733, -0.0007341504, -0.92404073, -0.5135082, 7.1597004, -0.5135082, -0.2779953, 7.1597004, -0.6709084, -0.32008612, 6.099696, -0.7727095, -0.00019574165, 7.5, 0, 0, -1, -1, 0.38253725, -1, 0.92384493, 0, -0.0007341504, 1, 0, 6.099696, 0.83613944, -0.00019574165, 7.1597004, 0.7259201, 0, -0.0007341504, -1, 0, 6.099696, -0.8363352, -0.00019574165, 7.1597004, -0.7261159, 0.2777995, 7.1597004, 0.6707126, 0.51331246, 7.1597004, 0.51331246, 0.6707126, 7.1597004, 0.2777995, 0.7259201, 7.1597004, 0, 0.6707126, 7.1597004, -0.2779953, 0.51331246, 7.1597004, -0.5135082, 0.2777995, 7.1597004, -0.6709084, 0.38253725, -1, -0.92404073, 0.7069303, -1, 0.7069303, 0.38253725, -0.0007341504, 0.92384493, 0.31989038, 6.099696, 0.77251375, 0.38253725, -0.0007341504, -0.92404073, 0.31989038, 6.099696, -0.7727095, 0.59122944, 6.099696, 0.59122944, 0.77251375, 6.099696, 0.31989038, 0.83613944, 6.099696, 0, 0.77251375, 6.099696, -0.32008612, 0.59122944, 6.099696, -0.5914252, 0.7069303, -1, -0.7071261, 0.92384493, -1, 0.38253725, 0.7069303, -0.0007341504, 0.7069303, 0.7069303, -0.0007341504, -0.7071261, 0.92384493, -0.0007341504, 0.38253725, 1, -0.0007341504, 0, 0.92384493, -0.0007341504, -0.382733, 0.92384493, -1, -0.382733, 1, -1, 0)
 
-[node name="Lighthouse" type="StaticBody3D"]
+[node name="Objective" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Lighthouse" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lighthouse"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = ExtResource("1_lcai8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lighthouse"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_lcai8")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.53653395, -0.26778063, 0.80026555, 0, 0.9483181, 0.3173212, -0.84387875, -0.1702536, 0.5088049, -4.190575, 31.671432, -2.2839167)
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighthouse" groups=["objective"]]
+transform = Transform3D(0.853887, 0.1651525, -0.49356008, 5.6631375e-09, 0.9483181, 0.31732124, 0.5204583, -0.2709565, 0.80975664, -0.5340884, 18.722355, 0.040859222)
 light_energy = 1000.0
 spot_range = 1000.0
 spot_angle = 10.0
+script = ExtResource("2_lfiru")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.759702, -1.628695, 0)
+size = Vector3(0.2, 2, 0.2)
+
+[node name="Wheel" parent="CSGBox3D" instance=ExtResource("2_03bo1")]
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, -0.04007005, 1.1174111, -0.07191014)
+
+[node name="InteractionComponent" parent="CSGBox3D/Wheel/Wheel" index="10" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../../../Lighthouse/SpotLight3D")]
+
+[editable path="CSGBox3D/Wheel"]

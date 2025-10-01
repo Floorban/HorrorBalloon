@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name PlayerController
 
+signal player_fall
+
 @onready var head: Node3D = %Head
 @onready var eyes: Node3D = %Eyes
 @onready var player_camera: Camera3D = %Camera3D
@@ -119,6 +121,8 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 		else: # falling down
 			velocity += get_gravity() * delta * 2.0
+			if velocity.y <= -20.0:
+				player_fall.emit()
 	else:
 		if is_in_air == true: # the first frame since landing.
 			# footsteps_se.play()

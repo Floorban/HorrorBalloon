@@ -22,3 +22,8 @@ shape = SubResource("ConcavePolygonShape3D_adhss")
 
 [node name="Lighthouse" parent="." index="2"]
 transform = Transform3D(0.48873, 0.18650688, 0.8522665, -0.060306378, 0.98176783, -0.18026394, -0.8703483, 0.036703296, 0.49106696, 0, 2.0632324, 6.034813)
+
+[node name="CSGBox3D" parent="Lighthouse" index="1"]
+transform = Transform3D(5.1057697e-10, 1.2943495e-08, -0.9999999, 0.18431161, 0.9828678, 0, 0.98286784, -0.1843116, -2.9802322e-08, 7.5110526, 2.4192288, -0.74324584)
+
+[editable path="Lighthouse"]

@@ -1,5 +1,6 @@
 extends Node3D
 
+var main_scene_path := "uid://dfauikegolgu3"
 @export var resource_spawner: ResourceSpawner
 @export var island_scenes: Array[PackedScene] = []
 @export var island_spawn_points: Array[Node3D] = []
@@ -8,17 +9,22 @@ extends Node3D
 @onready var player: PlayerController = get_tree().get_first_node_in_group("player")
 @onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
 @export var default_resource: Node3D
+@export var objectives: Array[Objective]
 
 func _ready() -> void:
 	if enemy: enemy.reached_player.connect(game_over)
+	if player: player.player_fall.connect(game_over)
 	randomize()
 	resource_spawner.spawn_resources()
 	generate_islands()
 	var area_size := 150.0
 	var spawn_pos = _get_random_point(area_size) 
 	balloon.global_position = spawn_pos
-	player.global_position = spawn_pos
+	#player.global_position = spawn_pos
 	default_resource.global_position = spawn_pos + Vector3.RIGHT * 5
+
+func _process(_delta: float) -> void:
+	objective_progress()
 
 func _get_random_point(area_size: float, avoid_radius: float = 50.0) -> Vector3:
 	var half := area_size / 2.0
@@ -44,13 +50,23 @@ func generate_islands() -> void:
 		instance.global_transform = point.global_transform
 		add_child(instance)
 
+func objective_progress():
+	if objectives.is_empty(): return
+	var p_cond := 0
+	for o in objectives:
+		if o.light_energy <= 0.0:
+			p_cond += 1
+	if p_cond >= 3:
+		game_over()
+	print(p_cond)
+
 func game_over() -> void:
 	print("game over")
 	if player and enemy:
 		player.trauma = 2.0
 		player.play_death_animation(enemy._eye.global_position)
 	await get_tree().create_timer(1.2).timeout
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file(main_scene_path)
 
 func _on_dead_zone_body_entered(body: Node3D) -> void:
 	if body is PlayerController:

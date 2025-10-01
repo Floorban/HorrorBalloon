@@ -16,3 +16,8 @@ shape = SubResource("ConvexPolygonShape3D_cnax8")
 
 [node name="Lighthouse" parent="." index="2"]
 transform = Transform3D(0.9086209, 0.064149134, 0.41266596, -0.018002283, 0.99323004, -0.11476016, -0.417234, 0.09684455, 0.9036244, 0, 7.9984283, -16.323269)
+
+[node name="CSGBox3D" parent="Lighthouse" index="1"]
+transform = Transform3D(-0.9934615, 0.0630081, -0.0952059, 0.06691304, 0.99702, -0.038391616, 0.09250349, -0.04451111, -0.99471694, 1.3166733, -0.8302374, 7.9212017)
+
+[editable path="Lighthouse"]
