@@ -23,17 +23,17 @@ var player_weight: float = 10.0
 
 # vertical
 const GRAVITY := 5.0
-@export var vertical_base_force: float = 5.0
+@export var vertical_base_force: float = 10.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
 # horizontal
-@export var horizontal_force: float = 5.0
+@export var horizontal_force: float = 10.0
 var move_threshold := 0.1
 var horizontal_dir: Vector3 = Vector3.ZERO
 
 # tilt
-@export var max_tilt_angle := 6.0
+@export var max_tilt_angle := 8.0
 var tilt_tween: Tween = null
 var tilt_damping := 0.5
 
@@ -46,6 +46,12 @@ func _ready() -> void:
 		player_exited.emit()
 	else:
 		player_entered.emit()
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	var lv = state.linear_velocity
+	lv.x = clamp(lv.x, -2, 2)
+	lv.z = clamp(lv.z, -2, 2)
+	state.linear_velocity = lv
 
 func _physics_process(delta: float) -> void:
 	if not ground_check_enabled:
