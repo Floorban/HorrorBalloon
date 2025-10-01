@@ -358,24 +358,24 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	if step_is_playing: return
 	step_is_playing = true
 	
-	e_right_step.play()
+	e_right_step.play_one_shot()
 	await get_tree().create_timer(step_gap).timeout
 
-	e_left_step.play()
+	e_left_step.play_one_shot()
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
 	
 func play_crouch_sound():
 	if is_crouching: return
 	is_crouching = true
-	e_crouch.play()
+	e_crouch.play_one_shot()
 	await get_tree().create_timer(0.3).timeout
 	is_crouching = false
 
 func play_stand_sound():
 	if is_standing: return
 	is_standing = true
-	e_stand.play()
+	e_stand.play_one_shot()
 	await get_tree().create_timer(0.3).timeout
 	is_standing = false
 

@@ -57,7 +57,7 @@ func execute(_percentage: float) -> void:
 	## for cooling
 	if _percentage >= 0.99:
 		burning_rate = cooling_rate
-		e_release.play()
+		e_release.play_one_shot()
 		smoke.emitting = true
 	else:
 		smoke.emitting = false
