@@ -329,8 +329,8 @@ func play_death_animation(target_pos: Vector3) -> void:
 	e_left_step.volume = 0
 	is_dead = true
 	
-	global_position = (target_pos)
-	rotation = Vector3(0,deg_to_rad(-165),0)
+	global_position = (target_pos + Vector3(-3, 2, 0))
+	rotation = Vector3(0,deg_to_rad(-100),0)
 	player_camera.rotation = Vector3.ZERO
 	set_camera_locked(true)
 

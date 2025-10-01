@@ -100,29 +100,64 @@ cell_size = 2.0
 script = ExtResource("1_o6dmv")
 resource_spawner = NodePath("ResourceSpawner")
 
-[node name="ResourceSpawner" parent="." node_paths=PackedStringArray("resource_spawn_points") instance=ExtResource("2_i3naf")]
-resource_spawn_points = [NodePath("../ResrouceSpawnPoints/ResrouceSpawnPoint_1"), NodePath("../ResrouceSpawnPoints/ResrouceSpawnPoint_2"), NodePath("../ResrouceSpawnPoints/ResrouceSpawnPoint_3"), NodePath("../ResrouceSpawnPoints/ResrouceSpawnPoint_4"), NodePath("../ResrouceSpawnPoints/ResrouceSpawnPoint_5")]
+[node name="ResourceSpawner" parent="." instance=ExtResource("2_i3naf")]
 
-[node name="ResrouceSpawnPoints" type="Node" parent="."]
+[node name="ResourceSpawnPoints" type="Node" parent="."]
 
-[node name="ResrouceSpawnPoint_1" parent="ResrouceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.47657, 0, -10.180534)
+[node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, 67.43477)
 spawn_point_data = ExtResource("4_8a5tp")
 
-[node name="ResrouceSpawnPoint_2" parent="ResrouceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.47657, 0, -15.637747)
+[node name="ResrouceSpawnPoint_2" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, 61.977562)
 spawn_point_data = ExtResource("4_8a5tp")
 
-[node name="ResrouceSpawnPoint_3" parent="ResrouceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.47657, 0, -24.095863)
+[node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, -23.650478)
 spawn_point_data = ExtResource("5_f1mgo")
 
-[node name="ResrouceSpawnPoint_4" parent="ResrouceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.922173, 0, -10.180534)
+[node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.909061, 0, -44.65907)
 spawn_point_data = ExtResource("5_f1mgo")
 
-[node name="ResrouceSpawnPoint_5" parent="ResrouceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.920174, 0, -19.017826)
+[node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.542694, 0, -13.445053)
+spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_6" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, 67.43477)
+spawn_point_data = ExtResource("4_8a5tp")
+
+[node name="ResrouceSpawnPoint_7" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, 61.977562)
+spawn_point_data = ExtResource("4_8a5tp")
+
+[node name="ResrouceSpawnPoint_8" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, -23.650478)
+spawn_point_data = ExtResource("5_f1mgo")
+
+[node name="ResrouceSpawnPoint_9" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.886395, 0, -44.65907)
+spawn_point_data = ExtResource("5_f1mgo")
+
+[node name="ResrouceSpawnPoint_10" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.252762, 0, -13.445053)
+spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_11" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.718918, 0, -64.286194)
+spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_12" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.3369, 0, -41.310753)
+spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_13" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.95977, 0, 34.12323)
+spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_14" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.756798, 3.8146973e-06, -46.58087)
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
@@ -130,12 +165,12 @@ spawn_point_data = ExtResource("6_duofn")
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2281475, -0.47331524, 0)
 
-[node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.7654266, 0, 0.64352226, 0, 1, 0, -0.64352226, 0, 0.7654266, -22.261806, 2.5419939, -21.085403)
-
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -52.30281, 2.1692193, -10.173137)
+transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -94.99756, 5.344199, 66.48918)
 collision_layer = 2147483648
+
+[node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
+transform = Transform3D(0.015375793, 0, -0.99988145, 0, 1, 0, 0.9998814, 0, 0.015375704, -94.36562, 5.9716234, 65.01644)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -254,6 +289,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -48.2752, 0, 54.707)
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -196.055, 11.0605, -177.629)
 
 [node name="Resource" type="Node3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.059677, 0, 95.330696)
 
 [node name="Cube_5kg" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.471161)

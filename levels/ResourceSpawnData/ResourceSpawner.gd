@@ -2,7 +2,11 @@ extends Node
 class_name ResourceSpawner
 
 @export var resource_spawn_data: Array[ResourceSpawnData] = []
-@export var resource_spawn_points: Array[SpawnPoint] = []
+@onready var spawn_points := $"../ResourceSpawnPoints"
+var resource_spawn_points: Array[SpawnPoint] = []
+
+func _ready() -> void:
+	_get_spawn_points()
 
 func spawn_resources() -> void:
 	randomize()
@@ -28,6 +32,12 @@ func _pick_index_by_weight(indices: Array) -> int:
 		if r <= cur:
 			return idx
 	return indices.back()
+
+func _get_spawn_points():
+	if not spawn_points: return
+	for point in spawn_points.get_children():
+		if point is SpawnPoint:
+			resource_spawn_points.append(point)
 
 func generate_resources() -> void:
 	if resource_spawn_points.is_empty() or resource_spawn_data.is_empty():
