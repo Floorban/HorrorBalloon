@@ -32,3 +32,7 @@ func game_over() -> void:
 		player.play_death_animation(enemy._eye.global_position)
 	await get_tree().create_timer(1.2).timeout
 	get_tree().reload_current_scene()
+
+func _on_dead_zone_body_exited(body: Node3D) -> void:
+	if body is PlayerController:
+		game_over()

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://kg4u6uc5807x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h32ad"]
+size = Vector3(550, 350, 550)
+
+[node name="DeadZone" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h32ad")
+debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)

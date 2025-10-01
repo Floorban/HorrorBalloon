@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=45 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cuxsfkw6l0n63" path="res://levels/EnvironmentAssets/industrial_9.tscn" id="24_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="25_vpyym"]
 [ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="30_vpyym"]
+[ext_resource type="PackedScene" uid="uid://kg4u6uc5807x" path="res://levels/dead_zone.tscn" id="35_duofn"]
 [ext_resource type="PackedScene" uid="uid://be5sqvxsn6fv2" path="res://levels/island_1.tscn" id="36_egc1g"]
 [ext_resource type="PackedScene" uid="uid://c21jsefsehe" path="res://levels/island_2.tscn" id="37_y60h0"]
 [ext_resource type="PackedScene" uid="uid://c8qvb4yhay683" path="res://levels/island_3.tscn" id="38_05fi1"]
@@ -170,7 +171,7 @@ transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.578085
 collision_layer = 2147483648
 
 [node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.015375793, 0, -0.99988145, 0, 1, 0, 0.9998814, 0, 0.015375704, -94.36562, 5.9716234, 65.01644)
+transform = Transform3D(0.9849164, 0, 0.17302929, 0, 1, 0, -0.17302936, 0, 0.98491645, -262.75946, 5.9716234, -272.18677)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -277,7 +278,7 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -19.5761, -1.52588e-05, 23
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -337.121, 0, 193.267)
 
 [node name="Industrial_6" parent="Env/NavigationRegion3D/Industrial" instance=ExtResource("21_wk3pi")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -408.98, 0, 4.10755)
+transform = Transform3D(3.6215212, 0, -3.4474025, 0, 5, 0, 3.4474025, 0, 3.6215212, 113.298035, -7.6293945e-06, 183.09113)
 
 [node name="Industrial_7" parent="Env/NavigationRegion3D/Industrial" instance=ExtResource("22_vpyym")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -146.379, 0, -40.2109)
@@ -331,3 +332,9 @@ max_contacts_reported = 1
 
 [node name="Log7" parent="Env/Resource" instance=ExtResource("25_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153419, 2.9294996, -4.51141)
+
+[node name="DeadZone" parent="." instance=ExtResource("35_duofn")]
+
+[connection signal="body_exited" from="DeadZone" to="." method="_on_dead_zone_body_exited"]
+
+[editable path="DeadZone"]
