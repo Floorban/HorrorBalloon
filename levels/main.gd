@@ -20,7 +20,7 @@ func _ready() -> void:
 	var area_size := 150.0
 	var spawn_pos = _get_random_point(area_size) 
 	balloon.global_position = spawn_pos
-	#player.global_position = spawn_pos
+	player.global_position = spawn_pos
 	default_resource.global_position = spawn_pos + Vector3.RIGHT * 5
 
 func _process(_delta: float) -> void:
