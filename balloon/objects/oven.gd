@@ -19,15 +19,13 @@ var audio: AudioManager
 var e_flame: FmodEventEmitter3D
 var e_flame_is_playing: bool
 @onready var e_release: FmodEventEmitter3D = $Audio/SFX_ReleaseGas
-@onready var flame: GPUParticles3D
-@onready var flame2: GPUParticles3D
+@onready var flame: GPUParticles3D = $Flame
+@onready var flame2: GPUParticles3D = $Flame2
+@onready var smoke: GPUParticles3D = $Smoke
 
 func _ready() -> void:
-	# current_fuel = MAX_FUEL
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
-	flame = get_node("Flame")
-	flame2 = get_node("Flame2")
 
 	if fuel_bar:
 		fuel_bar.max_value = MAX_FUEL
@@ -48,6 +46,7 @@ func _process(delta: float) -> void:
 	else:
 		flame.emitting = false
 		flame2.emitting = false
+		smoke.emitting = false
 		e_flame_is_playing = false
 		e_flame.paused = true
 	
@@ -59,8 +58,9 @@ func execute(_percentage: float) -> void:
 	if _percentage >= 0.99:
 		burning_rate = cooling_rate
 		e_release.play()
-		# satisfying particle here
+		smoke.emitting = true
 	else:
+		smoke.emitting = false
 		burning_rate = defualt_burning_rate
 		if _percentage <= 0.0 and randf() > 0.1: ## Horror feeling lol
 			for obj in objs_to_burn:
