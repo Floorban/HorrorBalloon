@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://levels/ResourceSpawnData/resource_spawner.tscn" id="2_i3naf"]
 [ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="2_wk3pi"]
 [ext_resource type="PackedScene" uid="uid://bo580gbwr80n2" path="res://levels/ResourceSpawnData/resource_spawn_point.tscn" id="3_m6gxc"]
@@ -193,13 +193,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.411, 131.44122, -0.471)
 size = Vector3(300, 300, 300)
 
 [node name="Island1" parent="Env" instance=ExtResource("36_egc1g")]
-transform = Transform3D(0.7780787, 0, 0.6281668, 0, 1, 0, -0.6281668, 0, 0.7780787, -91.19835, 85.393265, -21.778564)
+transform = Transform3D(0.7780787, 0, 0.6281668, 0, 1, 0, -0.6281668, 0, 0.7780787, -91.19835, 64.63476, -50.06546)
 
 [node name="Island2" parent="Env" instance=ExtResource("37_y60h0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.700684, 67.76727, 84.63267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.26452, 67.76727, 52.309395)
 
 [node name="Island3" parent="Env" instance=ExtResource("38_05fi1")]
-transform = Transform3D(-0.1301109, 0, 0.9914995, 0, 1, 0, -0.9914995, 0, -0.1301109, 81.59975, 53.58992, -62.503265)
+transform = Transform3D(0.9309985, 0, -0.36502296, 0, 1, 0, 0.36502296, 0, 0.9309985, 64.75985, 53.58992, -48.152172)
 
 [node name="Ground" type="StaticBody3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.442, -0.5, 0)
