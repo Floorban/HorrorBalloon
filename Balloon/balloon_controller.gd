@@ -3,6 +3,7 @@ class_name BalloonController
 
 signal player_entered
 signal player_exited
+signal has_landed
 
 @onready var player: PlayerController = get_tree().get_first_node_in_group("player")
 @onready var balloon_body: Node3D = $Body
@@ -63,6 +64,8 @@ func _physics_process(delta: float) -> void:
 		_on_land()
 	if is_grounded and oven.get_fuel_percentage() > 0.3:
 		_on_takeoff()
+	if not ground_check_enabled and oven.get_fuel_percentage() > 0:
+		player.trauma = 0.5
 
 	_apply_vertical_force()
 	_apply_horizontal_force()
@@ -99,6 +102,7 @@ func _on_land() -> void:
 	linear_velocity = Vector3.ZERO
 	sleeping = true
 	player.trauma = 0.8
+	has_landed.emit()
 	print("Balloon landed")
 
 func _on_takeoff() -> void:
