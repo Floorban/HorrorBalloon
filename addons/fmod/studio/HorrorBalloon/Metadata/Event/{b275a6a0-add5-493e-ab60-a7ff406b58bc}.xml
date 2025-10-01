@@ -747,6 +747,7 @@
 		<relationship name="effects">
 			<destination>{2abe3124-dffb-41e1-bcd8-ecf3487ef4a4}</destination>
 			<destination>{e580c89f-cf00-4070-abe0-00f1de4399da}</destination>
+			<destination>{23614e24-d4b2-47d5-94e4-7e1cd3da3b8d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{74910549-acac-4e0b-b06c-4e587a1cb2d7}" />
@@ -903,6 +904,11 @@
 	<object class="MixerBusPanner" id="{96bc066a-6e18-4b55-88e5-a4e0f437160d}" />
 	<object class="MixerBusFader" id="{2abe3124-dffb-41e1-bcd8-ecf3487ef4a4}" />
 	<object class="SpatialiserEffect" id="{e580c89f-cf00-4070-abe0-00f1de4399da}" />
+	<object class="LimiterEffect" id="{23614e24-d4b2-47d5-94e4-7e1cd3da3b8d}">
+		<property name="ceiling">
+			<value>-12</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{29840958-085a-46ee-97b8-0e242006ed42}">
 		<property name="position">
 			<value>0.20000000000000001</value>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{48b2b6c1-c4a2-4092-9302-cc09ce043e4a}">
+	<object class="AudioFile" id="{b38126fe-c5a5-4894-a0c3-30b5356ab3f3}">
 		<property name="assetPath">
-			<value>s_Player_Crouch.ogg</value>
+			<value>s_Creature_Jumpscare.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.48</value>
+			<value>5.5</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{f07d0426-a1b0-41e5-8c22-5cf9a9a47224}</destination>
