@@ -24,22 +24,22 @@ size = Vector3(0.9675293, 0.04852295, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 65346283329367
+metadata/creation_stamp = 91878443818208
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 65346316882459
+metadata/creation_stamp = 91878477382665
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 65346350436266
+metadata/creation_stamp = 91878510927610
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 65346383992182
+metadata/creation_stamp = 91878544482310
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
-size = Vector3(0.9407959, 0.45910645, 0.91119385)
+size = Vector3(0.9611206, 0.45910645, 0.9583206)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
@@ -216,7 +216,7 @@ gravity_point = true
 process_mode = 3
 physics_interpolation_mode = 1
 auto_translate_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012390139, 0.2546997, -0.00039672852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002227785, 0.2546997, -0.0028877258)
 shape = SubResource("BoxShape3D_rdoix")
 
 [node name="UI" type="Node3D" parent="Body"]

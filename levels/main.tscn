@@ -134,12 +134,12 @@ size = Vector3(300, 300, 300)
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.29959, -0.5220251, 72.61095)
 
+[node name="Player" parent="." instance=ExtResource("3_n4swq")]
+transform = Transform3D(0.7654266, 0, 0.64352226, 0, 1, 0, -0.64352226, 0, 0.7654266, 7.3942327, 2.5419939, -0.75485134)
+
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, 9.478785, 2.1692193, -10.173137)
 collision_layer = 2147483648
-
-[node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.7654266, 0, 0.64352226, 0, 1, 0, -0.64352226, 0, 0.7654266, 7.3942327, 2.5419939, -0.75485134)
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
