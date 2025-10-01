@@ -1,9 +1,12 @@
 extends RigidBody3D
 class_name BalloonController
 
+signal player_entered
+signal player_exited
+
 @onready var player: PlayerController = get_tree().get_first_node_in_group("player")
-@onready var oven: Node = %Oven
 @onready var balloon_body: Node3D = $Body
+@onready var oven: Node = %Oven
 
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
 var _is_reparenting := false
@@ -38,6 +41,10 @@ func _ready() -> void:
 	if obj_in_balloon_area:
 		obj_in_balloon_area.body_entered.connect(_on_body_entered)
 		obj_in_balloon_area.body_exited.connect(_on_body_exited)
+	if not objs_in_balloon.has(player):
+		player_exited.emit()
+	else:
+		player_entered.emit()
 
 func _physics_process(delta: float) -> void:
 	if not ground_check_enabled:
@@ -160,6 +167,7 @@ func _on_body_entered(body: Node3D) -> void:
 		objs_in_balloon[body] = player_weight
 		_is_reparenting = true
 		call_deferred("_deferred_attach", player)
+		player_entered.emit()
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
@@ -175,6 +183,7 @@ func _on_body_exited(body: Node3D) -> void:
 	if body == player or body.is_in_group("interactable"):
 		_is_reparenting = true
 		call_deferred("_deferred_deattach", body)
+		if body == player: player_exited.emit()
 
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)

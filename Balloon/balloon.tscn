@@ -39,7 +39,7 @@ resource_local_to_scene = true
 metadata/creation_stamp = 65346383992182
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
-size = Vector3(1.0183105, 0.45910645, 1.017456)
+size = Vector3(0.9407959, 0.45910645, 0.91119385)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
@@ -159,9 +159,8 @@ attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
 
-[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_1")
 
 [node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
@@ -173,9 +172,8 @@ transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-
 [node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("4_5n8ep")]
 transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
 
-[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_2")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
@@ -190,9 +188,8 @@ transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.
 [node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("4_cwey4")]
 transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
 
-[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("follow_owner", "attached_rope")]
+[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("2_2rviv")
-follow_owner = NodePath("../../..")
 attached_rope = NodePath("../../Ropes/BalloonRope_3")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("5_fbxog")]
@@ -219,7 +216,7 @@ gravity_point = true
 process_mode = 3
 physics_interpolation_mode = 1
 auto_translate_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008300783, 0.2546997, 0.0029907227)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012390139, 0.2546997, -0.00039672852)
 shape = SubResource("BoxShape3D_rdoix")
 
 [node name="UI" type="Node3D" parent="Body"]
@@ -308,3 +305,5 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.16100788, -2.349565)
 target_position = Vector3(0, -0.2, 0)
 collision_mask = 2147483648
+
+[editable path="Body/BasketSides"]

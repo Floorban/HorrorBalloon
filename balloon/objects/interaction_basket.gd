@@ -6,15 +6,22 @@ var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
 
-var player_is_out := true
-@onready var exit_1: Marker3D = $"../Exit_1"
-@onready var exit_2: Marker3D = $"../Exit_2"
-@onready var exit_3: Marker3D = $"../Exit_3"
-@onready var exit_4: Marker3D = $"../Exit_4"
+var player_is_out := false
+@onready var exit_1: Marker3D = $"../Exit_1_1"
+@onready var exit_2: Marker3D = $"../Exit_1_2"
+@onready var exit_3: Marker3D = $"../Exit_2_1"
+@onready var exit_4: Marker3D = $"../Exit_2_2"
+@onready var exit_5: Marker3D = $"../Exit_3"
+@onready var exit_6: Marker3D = $"../Exit_4"
+
 
 func _ready() -> void:
 	super._ready()
 	can_interact = false
+	var balloon : BalloonController = get_tree().get_first_node_in_group("balloon")
+	if balloon:
+		balloon.player_entered.connect(player_has_entered)
+		balloon.player_exited.connect(player_has_exited)
 
 func _input(event):
 	if not is_interacting: return
@@ -38,7 +45,6 @@ func preInteract(_hand: Marker3D, _target: Node = null) -> void:
 	super.preInteract(_hand, _target) ## put it before the mode check otherwise can't be detected as is_interacting when hold_to_switch mode
 	if player_is_out:
 		get_in()
-		player_is_out = false
 		return
 
 	if hold_to_switch: return
@@ -64,7 +70,7 @@ func hold_edge() -> void:
 	hold_time = 0.0
 
 func get_closest_exit() -> Marker3D:
-	var exits: Array[Marker3D] = [exit_1, exit_2, exit_3, exit_4]
+	var exits: Array[Marker3D] = [exit_1, exit_2, exit_3, exit_4, exit_5, exit_6]
 	var closest_exit: Marker3D = exit_1
 	var closest_dist: float = INF
 	for exit in exits:
@@ -82,7 +88,7 @@ func get_out() -> void:
 	hold_edge()
 	is_interacting = false
 	is_occupied = false
-	player_is_out = true
+	player_has_exited()
 
 func get_in() -> void:
 	if not player: return
@@ -95,6 +101,13 @@ func get_in() -> void:
 	
 	is_interacting = false
 	is_occupied = false
+	player_has_entered()
+
+func player_has_entered() -> void:
+	player_is_out = false
+
+func player_has_exited() -> void:
+	player_is_out = true
 
 func _get_property_list() -> Array[Dictionary]:
 	var ret: Array[Dictionary] = []
