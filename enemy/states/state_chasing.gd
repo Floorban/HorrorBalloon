@@ -2,12 +2,17 @@ extends EnemyState
 
 @export var chase_max_time := 8.0
 @export var update_path_delay := 0.0
-@export var _chasing_speed := 6.0
-@export var _catching_distance := 1.4
+@export var _chasing_speed := 4.0
+@export var _catching_distance := 3.0
 
 var _chase_timer := 0.0
 var _update_path_timer := 0.0
 var is_attacking := false
+
+@export var _trauma_interval := 1.2
+@export var _shake_radius := 50.0
+@export var _max_trauma := 2.5
+var _trauma_timer := 0.0
 
 func enter(_previous_state_name: String, _data := {}) -> void:
 	_chase_timer = chase_max_time
@@ -16,7 +21,17 @@ func update(delta: float) -> void:
 	_update_path_timer -= delta
 	_chase_timer -= delta
 	if _chase_timer <= 0.0:
-		requested_transition_to_other_state.emit("Searching", {"player_last_seen_position":_enemy.player.global_position})
+		requested_transition_to_other_state.emit("Searching", {"player_last_seen_position": _enemy.player.global_position})
+		
+	_trauma_timer -= delta
+	if _trauma_timer <= 0.0:
+		_trauma_timer = _trauma_interval
+		var dist := _enemy.global_position.distance_to(_enemy.player.global_position)
+		if dist <= _shake_radius:
+			var normalized : float = clamp((_shake_radius - dist) / _shake_radius, 0.0, 1.0)
+			var trauma_strength := pow(normalized, 2.5)
+			var spike := trauma_strength * _max_trauma
+			_enemy.player.trauma = clamp(_enemy.player.trauma + spike, 0.0, 1.0)
 
 func physics_update(_delta: float) -> void:
 	if _update_path_timer <= 0.0:

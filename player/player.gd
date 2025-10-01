@@ -142,15 +142,14 @@ func _physics_process(delta: float) -> void:
 	note_tilt_and_sway(input_dir, delta)
 
 func _process(delta: float) -> void:
-	if is_dead: return
-
 	if trauma > 0.0:
 		trauma = max(trauma - decay * delta, 0.0)
 		cam_shake()
 	else:
 		player_camera.position = original_position
 		player_camera.rotation_degrees = original_rotation
-
+		
+	if is_dead: return
 	# slowly bring sensitivity back to normal levels when just unlocked camera
 	if sensitivity_fading_in:
 		current_sensitivity = lerp(current_sensitivity, normal_sensitivity, delta * sensitivity_restore_speed)

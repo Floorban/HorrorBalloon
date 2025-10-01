@@ -129,9 +129,6 @@ script = ExtResource("4_s81n7")
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")
-chase_max_time = 10.0
-_chasing_speed = 4.0
-_catching_distance = 3.0
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")

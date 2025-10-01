@@ -109,7 +109,7 @@ shape = SubResource("ConvexPolygonShape3D_eiymd")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_tfl4h")]
 script = ExtResource("3_v8mh5")
-fuel_amount = 20.0
+fuel_amount = 40.0
 weight = 1.0
 drag_distance = 0.0
 drag_step = 0.3
