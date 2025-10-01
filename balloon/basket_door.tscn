@@ -12,14 +12,11 @@ points = PackedVector3Array(0.16903639, 1.7525549, 0.6333998, 0.147483, 1.752554
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 5
 
-[node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(1, -1.8626451e-09, 0, 1.8626451e-09, 1, 0, 0, 0, 1, 0, 0, -0.016728565)
-
-[node name="BasketDoorMesh" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.014525961, 0.16603246, 0, -0.16603246, -0.014525961, 0, 0, 0, 0.16666667, 0, 0, 0.016728565)
+[node name="BasketDoorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.014525963, 0.16603246, 0, -0.16603246, -0.014525963, 0, 0, 0, 0.16666667, 0, 0, 0)
 material_override = ExtResource("1_5awjs")
 mesh = ExtResource("2_ecxay")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.043136507, 0.16098765, 0, -0.16098765, -0.043136507, 0, 0, 0, 0.16666667, 0, 0, 0)

@@ -7,7 +7,7 @@ var current_fuel: float = 0.0
 var fule_conversion_rate: float = 1.0
 var burning_rate : float
 var defualt_burning_rate := 0.5
-var cooling_rate := 10.0
+var cooling_rate := 5.0
 
 @onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea

@@ -1,6 +1,8 @@
 extends Node
 class_name InteractionController
 
+@onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
+
 @onready var interaction_controller: Node = %InteractionController
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 @onready var player_camera: Camera3D = %Camera3D
@@ -19,7 +21,6 @@ var current_object: Object
 var last_potential_object: Object
 var interaction_component: Node
 var note_interaction_component: Node
-
 var is_note_overlay_display: bool = false
 
 func _ready() -> void:
@@ -94,7 +95,7 @@ func _process(_delta: float) -> void:
 						interaction_component.connect("note_collected", Callable(self, "_on_note_collected"))
 						
 					if interaction_component is InteractionDoor:
-						interaction_component.set_direction(current_object.to_local(interaction_raycast.get_collision_point()))
+						interaction_component.set_direction(balloon.objs_in_balloon.has(balloon.player))
 			else: # If the object just looked at cant be interacted with, call unfocus
 				current_object = null
 				_unfocus()

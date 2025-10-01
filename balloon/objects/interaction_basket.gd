@@ -14,7 +14,6 @@ var player_is_out := false
 @onready var exit_5: Marker3D = $"../Exit_3"
 @onready var exit_6: Marker3D = $"../Exit_4"
 
-
 func _ready() -> void:
 	super._ready()
 	can_interact = false
@@ -37,7 +36,7 @@ func _input(event):
 			hold_edge()
 			is_occupied = false
 	
-	if is_occupied and event.is_action_pressed("forward"):
+	if is_occupied and event.is_action_pressed("secondary"):
 		get_out()
 
 ## Click to to switch

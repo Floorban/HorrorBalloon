@@ -60,7 +60,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		door_input_active = true
-		var delta: float = event.relative.y * 0.003
+		var delta: float = event.relative.y * 0.002
 		if not is_front:
 			delta = -delta
 		# Simulate resistance to small motions
@@ -74,8 +74,8 @@ func interact() -> void:
 	lock_camera = true
 
 ## True if player is looking at the front of an object, false otherwise
-func set_direction(_normal: Vector3) -> void:
-	if _normal.z > 0:
+func set_direction(is_out: bool) -> void:
+	if is_out:
 		is_front = true
 	else:
 		is_front = false
