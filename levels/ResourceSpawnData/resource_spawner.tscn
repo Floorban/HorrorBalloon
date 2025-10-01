@@ -1,15 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://qhvj2quki6w6"]
+[gd_scene load_steps=5 format=3 uid="uid://qhvj2quki6w6"]
 
 [ext_resource type="Script" uid="uid://c3p8g6ii4lbqy" path="res://levels/ResourceSpawnData/ResourceSpawner.gd" id="1_iltcb"]
 [ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://levels/ResourceSpawnData/ResourceData/ResourceSpawnData.gd" id="2_3ciss"]
-[ext_resource type="Script" uid="uid://b6pybvw21txbb" path="res://levels/ResourceSpawnData/SpawnPointData/SpawnPointData.gd" id="2_6g3ox"]
 [ext_resource type="Resource" uid="uid://b4m53elchbkk" path="res://levels/ResourceSpawnData/ResourceData/fuel_resource_logs.tres" id="3_7ykqx"]
-[ext_resource type="Resource" uid="uid://jyil1s2usta" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_high.tres" id="3_mdgah"]
-[ext_resource type="Resource" uid="uid://b400rwpv001ve" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_mid.tres" id="4_scjhg"]
 [ext_resource type="Resource" uid="uid://cd6ft2xjn8m5b" path="res://levels/ResourceSpawnData/ResourceData/fuel_resource_planks.tres" id="4_xrk8q"]
-[ext_resource type="Resource" uid="uid://cfw4dmxpqaw21" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_low.tres" id="5_3ciss"]
 
-[node name="ResourceSpawner" type="Node"]
+[node name="ResourceSpawner" type="Node3D"]
 script = ExtResource("1_iltcb")
 resource_spawn_data = Array[ExtResource("2_3ciss")]([ExtResource("3_7ykqx"), ExtResource("4_xrk8q")])
-spawn_point_data = Array[ExtResource("2_6g3ox")]([ExtResource("3_mdgah"), ExtResource("4_scjhg"), ExtResource("5_3ciss")])

@@ -1,5 +1,7 @@
 extends EnemyState
 
+var balloon : BalloonController
+
 @export var _roaming_speed := 2.0
 
 var _map_synchronized := false
@@ -13,7 +15,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	_map_synchronized = true
 	_nav_map = _enemy.get_world_3d().get_navigation_map()
-	var balloon := get_tree().get_first_node_in_group("balloon")
+	balloon = get_tree().get_first_node_in_group("balloon")
 	if balloon and balloon.has_signal("has_landed"):
 		balloon.has_landed.connect(_on_balloon_landed)
 
@@ -45,7 +47,7 @@ func _on_balloon_landed() -> void:
 	if _enemy.found_target:
 		return
 	if _enemy and _enemy.player:
-		var last_known_pos = _enemy.player.global_position
+		var last_known_pos = balloon.global_position
 		_on_heard_noise(last_known_pos)
 
 func _on_heard_noise(noise_position: Vector3) -> void:

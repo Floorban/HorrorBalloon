@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=50 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
@@ -32,9 +32,14 @@
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="25_vpyym"]
 [ext_resource type="PackedScene" uid="uid://d5y5qpf5rhd8" path="res://enemy/enemy.tscn" id="30_vpyym"]
 [ext_resource type="PackedScene" uid="uid://kg4u6uc5807x" path="res://levels/dead_zone.tscn" id="35_duofn"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="35_egc1g"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="35_xombn"]
 [ext_resource type="PackedScene" uid="uid://be5sqvxsn6fv2" path="res://levels/island_1.tscn" id="36_egc1g"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="36_vydlj"]
 [ext_resource type="PackedScene" uid="uid://c21jsefsehe" path="res://levels/island_2.tscn" id="37_y60h0"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="38_2hoto"]
 [ext_resource type="PackedScene" uid="uid://c8qvb4yhay683" path="res://levels/island_3.tscn" id="38_05fi1"]
+[ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="39_l412s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -97,81 +102,130 @@ vertices = PackedVector3Array(114.8678, 65.42454, -196.43848, 114.8678, 65.42454
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(4, 5, 9), PackedInt32Array(9, 5, 10), PackedInt32Array(10, 13, 9), PackedInt32Array(9, 13, 11), PackedInt32Array(11, 13, 12), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 11), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 19), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(34, 33, 32), PackedInt32Array(32, 33, 35), PackedInt32Array(34, 32, 26), PackedInt32Array(26, 32, 25), PackedInt32Array(36, 31, 22), PackedInt32Array(37, 30, 38), PackedInt32Array(38, 30, 31), PackedInt32Array(38, 31, 39), PackedInt32Array(39, 31, 36), PackedInt32Array(41, 40, 38), PackedInt32Array(43, 27, 42), PackedInt32Array(42, 27, 23), PackedInt32Array(35, 36, 32), PackedInt32Array(32, 36, 22), PackedInt32Array(32, 22, 20), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 39), PackedInt32Array(39, 41, 38), PackedInt32Array(44, 24, 25), PackedInt32Array(47, 46, 45), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 44), PackedInt32Array(50, 44, 25), PackedInt32Array(45, 38, 40), PackedInt32Array(51, 48, 40), PackedInt32Array(40, 48, 52), PackedInt32Array(40, 52, 45), PackedInt32Array(45, 52, 47), PackedInt32Array(53, 44, 48), PackedInt32Array(51, 53, 48), PackedInt32Array(54, 49, 50), PackedInt32Array(54, 50, 56), PackedInt32Array(56, 50, 55), PackedInt32Array(59, 58, 57), PackedInt32Array(56, 55, 60), PackedInt32Array(60, 55, 57), PackedInt32Array(59, 57, 52), PackedInt32Array(52, 57, 47), PackedInt32Array(58, 60, 57), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 64), PackedInt32Array(64, 61, 65), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 63), PackedInt32Array(63, 66, 62), PackedInt32Array(70, 69, 68), PackedInt32Array(68, 69, 67), PackedInt32Array(64, 65, 70), PackedInt32Array(70, 65, 69), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 75), PackedInt32Array(73, 75, 74), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(83, 82, 80), PackedInt32Array(80, 82, 81), PackedInt32Array(86, 85, 84), PackedInt32Array(90, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(92, 91, 93), PackedInt32Array(93, 91, 94), PackedInt32Array(95, 90, 87), PackedInt32Array(90, 95, 92), PackedInt32Array(92, 95, 91), PackedInt32Array(89, 93, 88), PackedInt32Array(88, 93, 94), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 99), PackedInt32Array(102, 101, 100), PackedInt32Array(103, 102, 104), PackedInt32Array(104, 102, 105), PackedInt32Array(105, 102, 106), PackedInt32Array(106, 102, 100), PackedInt32Array(96, 108, 107), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(112, 109, 113), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(116, 118, 115), PackedInt32Array(115, 118, 111), PackedInt32Array(111, 118, 110), PackedInt32Array(114, 112, 117), PackedInt32Array(117, 112, 113), PackedInt32Array(122, 121, 119), PackedInt32Array(119, 121, 120), PackedInt32Array(125, 124, 123), PackedInt32Array(126, 46, 47), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130), PackedInt32Array(132, 131, 126), PackedInt32Array(132, 126, 133), PackedInt32Array(133, 126, 47), PackedInt32Array(133, 47, 57), PackedInt32Array(133, 57, 130), PackedInt32Array(130, 127, 133), PackedInt32Array(128, 129, 134), PackedInt32Array(134, 129, 135), PackedInt32Array(131, 136, 126), PackedInt32Array(126, 136, 137), PackedInt32Array(138, 30, 37), PackedInt32Array(137, 136, 37), PackedInt32Array(37, 136, 139), PackedInt32Array(37, 139, 138), PackedInt32Array(138, 139, 135), PackedInt32Array(140, 134, 135), PackedInt32Array(139, 140, 135), PackedInt32Array(21, 141, 20), PackedInt32Array(20, 141, 142), PackedInt32Array(143, 138, 135), PackedInt32Array(142, 141, 144), PackedInt32Array(142, 144, 145), PackedInt32Array(145, 146, 142), PackedInt32Array(142, 146, 143), PackedInt32Array(142, 143, 135), PackedInt32Array(29, 143, 28), PackedInt32Array(28, 143, 146), PackedInt32Array(148, 147, 149), PackedInt32Array(149, 147, 150), PackedInt32Array(150, 147, 152), PackedInt32Array(150, 152, 151), PackedInt32Array(155, 154, 153), PackedInt32Array(155, 153, 156), PackedInt32Array(157, 155, 156), PackedInt32Array(157, 156, 158), PackedInt32Array(159, 157, 158), PackedInt32Array(158, 160, 159), PackedInt32Array(162, 161, 163), PackedInt32Array(167, 166, 168), PackedInt32Array(168, 166, 164), PackedInt32Array(164, 166, 165), PackedInt32Array(171, 170, 169), PackedInt32Array(173, 172, 174), PackedInt32Array(174, 172, 175), PackedInt32Array(175, 172, 177), PackedInt32Array(175, 177, 176), PackedInt32Array(180, 179, 178), PackedInt32Array(180, 178, 181), PackedInt32Array(182, 180, 181), PackedInt32Array(182, 181, 183), PackedInt32Array(184, 182, 183), PackedInt32Array(183, 185, 184), PackedInt32Array(187, 186, 188), PackedInt32Array(188, 186, 189), PackedInt32Array(189, 186, 190), PackedInt32Array(192, 191, 193), PackedInt32Array(193, 191, 194), PackedInt32Array(194, 191, 195), PackedInt32Array(198, 197, 196), PackedInt32Array(200, 199, 201), PackedInt32Array(201, 199, 195), PackedInt32Array(203, 202, 198), PackedInt32Array(191, 204, 203), PackedInt32Array(201, 196, 205), PackedInt32Array(196, 201, 198), PackedInt32Array(198, 201, 195), PackedInt32Array(198, 195, 203), PackedInt32Array(203, 195, 191), PackedInt32Array(209, 208, 206), PackedInt32Array(206, 208, 207), PackedInt32Array(211, 210, 212), PackedInt32Array(212, 210, 213), PackedInt32Array(213, 210, 214), PackedInt32Array(218, 217, 215), PackedInt32Array(215, 217, 216), PackedInt32Array(222, 221, 219), PackedInt32Array(219, 221, 220)]
 cell_size = 2.0
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("resource_spawner")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("resource_spawner", "default_resource")]
 script = ExtResource("1_o6dmv")
 resource_spawner = NodePath("ResourceSpawner")
+default_resource = NodePath("Env/Resource")
 
 [node name="ResourceSpawner" parent="." instance=ExtResource("2_i3naf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.692856, 0, 0)
+map_size = 250.0
+jitter_amount = 0.5
 
 [node name="ResourceSpawnPoints" type="Node" parent="."]
 
 [node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, 67.43477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.656494, 0, -78.35917)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_2" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, 61.977562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.764, 0, -49.80541)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.40509, 0, -23.650478)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.07607, 0, -19.16066)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.909061, 0, -44.65907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.06406, 0, 38.406025)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.542694, 0, -13.445053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.24224, 0, 84.57159)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_6" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, 67.43477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.110817, 0, -94.64442)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_7" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, 61.977562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.20205, 0, -39.47677)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_8" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.609634, 0, -23.650478)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.301983, 0, -24.976854)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_9" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.886395, 0, -44.65907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.61557, 0, 69.73244)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_10" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.252762, 0, -13.445053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.204685, 0, 105.28499)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_11" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.718918, 0, -64.286194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.612403, 0, -88.36309)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_12" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.3369, 0, -41.310753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.345743, 0, -32.174942)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_13" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.95977, 0, 34.12323)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2314625, 0, -16.713795)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_14" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.756798, 3.8146973e-06, -46.58087)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.269747, 0, 52.49342)
+gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
+
+[node name="ResrouceSpawnPoint_15" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.707247, 0, 86.68233)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("4_8a5tp")
+
+[node name="ResrouceSpawnPoint_16" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.64993, 0, -81.55281)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("4_8a5tp")
+
+[node name="ResrouceSpawnPoint_17" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.86154, 0, -40.79556)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("4_8a5tp")
+
+[node name="ResrouceSpawnPoint_18" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.68678, 0, -11.57711)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("5_f1mgo")
+
+[node name="ResrouceSpawnPoint_19" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.875732, 0, 65.689766)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("5_f1mgo")
+
+[node name="ResrouceSpawnPoint_20" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.92964, 0, 117.279205)
+gizmo_extents = 5.0
+spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
 
 [node name="Enemy" parent="." instance=ExtResource("30_vpyym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3642349, -0.47331524, -1.9581585)
 
-[node name="Balloon" parent="." instance=ExtResource("2_gw050")]
-transform = Transform3D(0.5780853, 0, -0.8159761, 0, 1, 0, 0.815976, 0, 0.57808536, -94.220764, 5.344199, 66.237045)
-collision_layer = 2147483648
+[node name="Player" parent="." instance=ExtResource("3_n4swq")]
+transform = Transform3D(0.9600203, 0, -0.2799295, 0, 1, 0, 0.2799294, 0, 0.96002036, -77.24603, 2.4101148, 73.32235)
 
-[node name="Player" parent="Balloon" instance=ExtResource("3_n4swq")]
-transform = Transform3D(-0.17821822, 0, -0.9839908, 0, 1, 0, 0.9839907, 0, -0.1782183, -92.16116, 5.619755, 66.59776)
+[node name="Balloon" parent="." instance=ExtResource("2_gw050")]
+transform = Transform3D(-0.99529326, 0, 0.096905485, 0, 1, 0, -0.09690547, 0, -0.9952934, -78.54757, 1.5002923, 74.63714)
+collision_layer = 2147483648
+max_tilt_angle = 6.0
 
 [node name="Mask" type="MeshInstance2D" parent="."]
 texture_filter = 1
@@ -298,40 +352,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.47
 [node name="Cube_5kg2" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, -4.7508335)
 
+[node name="Cube_5kg3" parent="Env/Resource" instance=ExtResource("4_m1504")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.537216, -0.6735945, 0.64852905)
+
 [node name="Cube_5kg4" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, -4.7508335)
 
 [node name="Cube_5kg5" parent="Env/Resource" instance=ExtResource("4_m1504")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, -1.9820843)
 
-[node name="Cube_5kg6" parent="Env/Resource" instance=ExtResource("4_m1504")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0776448, -0.14430344, 2.9897394)
-
-[node name="Cube_5kg3" parent="Env/Resource" instance=ExtResource("4_m1504")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5372148, -0.6735945, 0.6485305)
-
 [node name="Cube_10kg" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -7.0405912, 1.0022688, -5.0152836)
-contact_monitor = true
-max_contacts_reported = 1
-
-[node name="Cube_10kg2" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, -3.471321, 1.0022688, 0.7975464)
+transform = Transform3D(-0.6609654, -0.0028839635, 0.75041103, 0.0043632197, -0.99999094, 0, 0.75040436, 0.0032742089, 0.6609714, -2.56707, -0.049736977, -6.631592)
 contact_monitor = true
 max_contacts_reported = 1
 
 [node name="Cube_10kg3" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 4.897442, 1.0022688, -10.886214)
+transform = Transform3D(-0.4059515, -0.0017712718, -0.9138929, 0.0043632197, -0.99999094, 0, -0.91388476, -0.0039875163, 0.4059552, -0.00039672852, 0.4942901, -10.886215)
 contact_monitor = true
 max_contacts_reported = 1
 
-[node name="Cube_10kg4" parent="Env/Resource" instance=ExtResource("5_ifaiv")]
-transform = Transform3D(-0.999991, -0.00436322, 0, 0.00436322, -0.999991, 0, 0, 0, 1, 6.6900043, 6.012529, -9.851397)
-contact_monitor = true
-max_contacts_reported = 1
+[node name="Log1" parent="Env/Resource" instance=ExtResource("25_vpyym")]
+transform = Transform3D(0.9260485, 0, 0.37740445, 0, 1, 0, -0.37740445, 0, 0.9260485, -1.8140602, 0, -9.047249)
 
-[node name="Log7" parent="Env/Resource" instance=ExtResource("25_vpyym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153419, 2.9294996, -4.51141)
+[node name="Log3" parent="Env/Resource" instance=ExtResource("25_vpyym")]
+transform = Transform3D(0.3551559, 0, -0.9348071, 0, 1, 0, 0.9348071, 0, 0.3551559, 1.808713, 0, -8.567926)
+
+[node name="Log2" parent="Env/Resource" instance=ExtResource("35_xombn")]
+transform = Transform3D(0.3758523, 0, 0.9266796, -0.50843024, 0.8360468, 0.2062144, -0.77474755, -0.5486581, 0.3142301, -3.987774, 0, -3.6012192)
+
+[node name="Log6" parent="Env/Resource" instance=ExtResource("35_xombn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2997894, 0, -4.5586014)
+
+[node name="Log5" parent="Env/Resource" instance=ExtResource("25_vpyym")]
+transform = Transform3D(0.5665213, 0, 0.8240471, 0, 1, 0, -0.8240471, 0, 0.5665213, -3.6386185, -0.24877834, -9.8520355)
+
+[node name="Log7" parent="Env/Resource" instance=ExtResource("36_vydlj")]
+transform = Transform3D(0.56534135, 0, -0.82485706, 0, 1, 0, 0.82485706, 0, 0.56534135, 0, 0, -4.6193542)
+
+[node name="Log4" parent="Env/Resource" instance=ExtResource("36_vydlj")]
+transform = Transform3D(-0.14824095, 0, -0.98895127, 0, 1, 0, 0.98895127, 0, -0.14824095, -5.480999, 0, -4.36187)
+
+[node name="Plank1" parent="Env/Resource" instance=ExtResource("35_egc1g")]
+transform = Transform3D(0.7745913, 0.17707661, 0.60716724, 0, 0.9600059, -0.27997983, -0.632462, 0.21686997, 0.7436123, -0.14410782, 0.36864698, -7.7194443)
+
+[node name="Plank3" parent="Env/Resource" instance=ExtResource("38_2hoto")]
+transform = Transform3D(0.3963469, 0, 0.91810083, 0, 1, 0, -0.91810083, 0, 0.3963469, 0, -4.034211, -9.859711)
+
+[node name="Plank6" parent="Env/Resource" instance=ExtResource("39_l412s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0002975, 0, -1.8676758)
+
+[node name="Plank4" parent="Env/Resource" instance=ExtResource("35_egc1g")]
+transform = Transform3D(0.97314394, 0.027154043, -0.22859067, -0.07651991, 0.9747086, -0.20997183, 0.21710768, 0.2218245, 0.95060956, -2.639287, -0.5963855, -11.801375)
+
+[node name="Plank5" parent="Env/Resource" instance=ExtResource("35_egc1g")]
+transform = Transform3D(0.97314394, 0.027154043, -0.22859067, -0.07651991, 0.9747086, -0.20997183, 0.21710768, 0.2218245, 0.95060956, -8.032929, -2.1644244, -4.2510824)
 
 [node name="DeadZone" parent="." instance=ExtResource("35_duofn")]
 
