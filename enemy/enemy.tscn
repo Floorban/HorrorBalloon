@@ -153,5 +153,9 @@ fmod_parameters/hatred/variant_type = 3
 fmod_parameters/anxiety/id = 3910553063797741933
 fmod_parameters/anxiety = 0.0
 fmod_parameters/anxiety/variant_type = 3
+fmod_parameters/status/id = -131682236173088112
+fmod_parameters/status = "Chasing"
+fmod_parameters/status/labels = PackedStringArray("Idle", "Chasing")
+fmod_parameters/status/variant_type = 4
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="StateMachine/Chasing" method="_on_animation_player_current_animation_changed"]
