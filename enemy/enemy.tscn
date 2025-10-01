@@ -119,8 +119,9 @@ path_desired_distance = 0.3
 target_desired_distance = 0.6
 debug_enabled = true
 
-[node name="StateMachine" type="Node" parent="." index="5"]
+[node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_1h0du")
+initial_state = NodePath("Roaming")
 metadata/_custom_type_script = "uid://dkc1man884b1s"
 
 [node name="Roaming" type="Node" parent="StateMachine" index="0"]

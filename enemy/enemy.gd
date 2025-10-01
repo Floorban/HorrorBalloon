@@ -15,6 +15,9 @@ var _current_speed := 0.0
 
 var found_target := false
 
+var last_seen_position: Vector3
+var last_seen_time: float = 0.0
+
 ## Sound Settings
 var audio: AudioManager
 @onready var e_screech: FmodEventEmitter3D = $Screech
@@ -77,6 +80,11 @@ func is_player_in_view() -> bool:
 	var in_fov := -_eye.global_basis.z.normalized().dot(vec_to_player.normalized()) > 0.3
 	if in_fov:
 		return not is_line_of_sight_broken()
+	
+	if in_fov and not is_line_of_sight_broken():
+		last_seen_position = player.global_position
+		last_seen_time = Time.get_ticks_msec() / 1000.0
+		return true
 	
 	return false
 
