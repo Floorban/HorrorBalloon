@@ -83,10 +83,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2963667, 0.49066186)
 [node name="Flame2" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.6185933e-08, 0.8934559, -0.10840249)
 
-[node name="SpotLight3D" parent="Flame2" index="0"]
-transform = Transform3D(10, 0, 2.842171e-14, 0, 10, 0, -2.842171e-14, 0, 10, -2.5033785e-08, 0, 0.57270646)
-visible = false
-
 [node name="Smoke" parent="." instance=ExtResource("6_6mct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4482235e-09, 0, -0.19327283)
 
@@ -146,4 +142,3 @@ fmod_parameters/valve/labels = PackedStringArray("Open", "Closed")
 fmod_parameters/valve/variant_type = 4
 
 [editable path="OvenLever"]
-[editable path="Flame2"]
