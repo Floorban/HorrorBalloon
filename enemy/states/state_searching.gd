@@ -1,7 +1,7 @@
 extends EnemyState
 
 @export var search_time := 10.0
-@export var _searching_speed := 6.0
+@export var _searching_speed := 3.0
 @export var _search_radius := 10.0
 
 var _search_timer := 0.0
@@ -28,9 +28,8 @@ func physics_update(_delta: float) -> void:
 	if _enemy.navigation_agent.is_navigation_finished():
 		_go_to_position_around_player_last_seen_position()
 	
-	if not _enemy.is_line_of_sight_broken():
+	if _enemy.is_player_in_view():
 		requested_transition_to_other_state.emit("Chasing")
-
 
 func _go_to_position_around_player_last_seen_position() -> void:
 	var random_position := _player_last_seen_position + _get_random_position_inside_circle(_search_radius, _player_last_seen_position.y)
