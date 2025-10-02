@@ -113,7 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53469276, -3.9423008)
 unique_name_in_owner = true
 path_desired_distance = 0.3
 target_desired_distance = 0.6
-debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_1h0du")
@@ -128,6 +127,7 @@ script = ExtResource("5_gc7sf")
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")
+_search_radius = 20.0
 
 [node name="Audio" type="Node3D" parent="." index="6"]
 

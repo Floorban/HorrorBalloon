@@ -19,7 +19,7 @@ func _ready() -> void:
 	var spawn_pos = _get_random_point(area_size) 
 	balloon.global_position = spawn_pos
 	player.global_position = spawn_pos
-	default_resource.global_position = spawn_pos + Vector3.RIGHT * 5
+	default_resource.global_position = spawn_pos + Vector3.LEFT * 5
 
 func _process(_delta: float) -> void:
 	objective_progress()
@@ -33,7 +33,7 @@ func _get_random_point(area_size: float, avoid_radius: float = 70.0) -> Vector3:
 		z = randf_range(-half, half)
 		if Vector2(x, z).length() >= avoid_radius:
 			break
-	var y := 50.0
+	var y := 3.0
 	return Vector3(x, y, z)
 
 func generate_islands() -> void:

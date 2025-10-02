@@ -18,12 +18,13 @@ var prev_door_angle: float = 0.0                 # angle of the door on the prev
 @export var is_locked: bool = false
 var was_just_unlocked: bool = false
 
-
 func _ready():
 	super._ready()
 	starting_rotation = pivot_point.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 	nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
+	door_angle = maximum_rotation
+	pivot_point.rotation.z = maximum_rotation
 
 func _process(delta):
 	if was_just_unlocked:

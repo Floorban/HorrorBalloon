@@ -51,6 +51,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var lv = state.linear_velocity
 	lv.x = clamp(lv.x, -2, 2)
 	lv.z = clamp(lv.z, -2, 2)
+	lv.y = clamp(lv.y, -5, 3)
 	state.linear_velocity = lv
 
 func _physics_process(delta: float) -> void:
@@ -63,8 +64,8 @@ func _physics_process(delta: float) -> void:
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
 	
-	#if not is_grounded:
-		#apply_central_force(Vector3.DOWN * GRAVITY)
+	if not is_grounded:
+		apply_central_force(Vector3.DOWN * GRAVITY)
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
