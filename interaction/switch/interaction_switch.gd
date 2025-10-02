@@ -15,6 +15,7 @@ func _ready() -> void:
 	super._ready()
 	if object_ref: starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
+	object_ref.rotation.z = maximum_rotation
 
 func _process(delta: float) -> void:
 	#if is_interacting:

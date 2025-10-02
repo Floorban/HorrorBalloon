@@ -22,8 +22,8 @@ var total_weight: float = 0.0
 var player_weight: float = 10.0
 
 # vertical
-const GRAVITY := 5.0
-@export var vertical_base_force: float = 10.0
+const GRAVITY := 4.0
+@export var vertical_base_force: float = 12.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 

@@ -47,11 +47,8 @@ func _on_balloon_landed() -> void:
 	if _enemy.found_target:
 		return
 	if _enemy and _enemy.player:
-		var last_known_pos = balloon.global_position
-		_on_heard_noise(last_known_pos)
-
-func _on_heard_noise(noise_position: Vector3) -> void:
-	requested_transition_to_other_state.emit("Searching", {"player_last_seen_position": noise_position})
+		var last_known_pos = _enemy.player.global_position
+		requested_transition_to_other_state.emit("Chasing")
 
 func _travel_to_random_position() -> void:
 	var rand_pos := NavigationServer3D.map_get_random_point(_nav_map, 1, true)

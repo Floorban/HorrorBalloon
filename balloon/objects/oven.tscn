@@ -41,7 +41,7 @@ script = ExtResource("2_0qg0s")
 transform = Transform3D(0.75, 0, 0, 0, 0.79695576, -0.06972458, 0, 0.06972458, 0.79695576, -0.03246221, 0.7783848, -0.50953215)
 
 [node name="OvenLever" parent="." instance=ExtResource("8_brhjr")]
-transform = Transform3D(0.7071067, 0.70710677, 0, -0.7071067, 0.70710677, 0, 0, 0, 1, -0.56866646, 1.1094909, -0.11276128)
+transform = Transform3D(0.70710665, 0.7071067, 1.5099033e-12, -0.7070823, 0.70708233, 0.00830767, 0.00587441, -0.0058744107, 0.9999655, -0.56866646, 1.1094909, -0.11276128)
 
 [node name="InteractionComponent" parent="OvenLever/StaticBody3D" index="2" node_paths=PackedStringArray("nodes_to_affect")]
 nodes_to_affect = [NodePath("../../..")]

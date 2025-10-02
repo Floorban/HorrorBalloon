@@ -130,7 +130,6 @@ metadata/_custom_type_script = "uid://dkc1man884b1s"
 
 [node name="Roaming" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_s81n7")
-_roaming_speed = null
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")
@@ -138,8 +137,7 @@ chase_max_time = 30.0
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")
-_searching_speed = 3.0
-_search_radius = 15.0
+_search_radius = 5.0
 
 [node name="Audio" type="Node3D" parent="." index="6"]
 
