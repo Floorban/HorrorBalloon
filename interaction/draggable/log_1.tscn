@@ -9,8 +9,8 @@
 albedo_texture = ExtResource("1_wa4m8")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_55hvx"]
-height = 0.6
-radius = 0.1
+height = 0.6542969
+radius = 0.12451172
 
 [node name="Log1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5

@@ -9,7 +9,7 @@
 albedo_texture = ExtResource("1_uw3nf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uw3nf"]
-size = Vector3(0.15722656, 0.70202637, 0.04260254)
+size = Vector3(0.15820313, 0.70202637, 0.11230469)
 
 [node name="Plank1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
