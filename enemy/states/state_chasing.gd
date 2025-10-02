@@ -9,8 +9,6 @@ var _chase_timer := 0.0
 var _update_path_timer := 0.0
 
 ## Sound Settings
-var audio: AudioManager
-@onready var e_screech: FmodEventEmitter3D = $"../../Audio/Screech"
 var anxiety := "Anxiety"
 var guilt := "Guilt"
 var hatred := "Hatred"
@@ -18,15 +16,13 @@ var terror := "Terror"
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func ready():
-	audio = get_tree().get_first_node_in_group("audio")
-	audio.cache(e_screech, $"../..".global_position)
-	e_screech.set_parameter(anxiety, rng.randf_range(0.0, 100.0))
-	e_screech.set_parameter(guilt, rng.randf_range(0.0, 100.0))
-	e_screech.set_parameter(hatred, rng.randf_range(0.0, 100.0))
-	e_screech.set_parameter(terror, rng.randf_range(0.0, 100.0))
+	$"../../Audio/Screech".set_parameter(anxiety, rng.randf_range(0.0, 100.0))
+	$"../../Audio/Screech".set_parameter(guilt, rng.randf_range(0.0, 100.0))
+	$"../../Audio/Screech".set_parameter(hatred, rng.randf_range(0.0, 100.0))
+	$"../../Audio/Screech".set_parameter(terror, rng.randf_range(0.0, 100.0))
 
 func enter(previous_state_name: String, data := {}) -> void:
-	e_screech.play_one_shot()
+	$"../../Audio/Screech".set_parameter("Status", "Chasing")
 	_chase_timer = chase_max_time
 
 func update(delta: float) -> void:

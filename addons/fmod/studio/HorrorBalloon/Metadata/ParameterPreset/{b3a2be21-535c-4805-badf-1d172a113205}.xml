@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="ParameterPreset" id="{b3a2be21-535c-4805-badf-1d172a113205}">
 		<property name="name">
-			<value>terror</value>
+			<value>Terror</value>
 		</property>
 		<relationship name="folder">
 			<destination>{6633d1ed-9a62-492a-84f0-daa7f682277e}</destination>
@@ -12,6 +12,9 @@
 		</relationship>
 	</object>
 	<object class="GameParameter" id="{c1fe67b2-8f62-4ed3-b7e2-a52b31664bb9}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
 		<property name="initialValue">
 			<value>0</value>
 		</property>

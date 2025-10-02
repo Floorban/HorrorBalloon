@@ -15,6 +15,7 @@ func _ready() -> void:
 
 
 func enter(previous_state_name: String, data := {}) -> void:
+	#$"../../Audio/Screech".set_parameter("Status", "Idle")
 	if not _map_synchronized:
 		return
 	

@@ -5,7 +5,7 @@
 			<value>Jumpscare</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{7efe2ed1-9130-4de7-a31c-8e7863c3e916}</destination>
@@ -56,7 +56,11 @@
 			<destination>{a0f3faae-5985-4b73-b58b-f6912fa13ce2}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{c8caff65-e2f7-4b66-81f1-c1e740d38608}" />
+	<object class="EventAutomatableProperties" id="{c8caff65-e2f7-4b66-81f1-c1e740d38608}">
+		<property name="maximumDistance">
+			<value>150</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{1f8b274a-c112-4e06-873b-bdc1f78c4c2a}" />
 	<object class="GroupTrack" id="{50d989df-e55d-4999-85b1-feaf23d0404b}">
 		<relationship name="modules">
@@ -125,6 +129,7 @@
 	<object class="MixerBusEffectChain" id="{accda183-32ae-4b2d-9c84-8e617b55b0f1}">
 		<relationship name="effects">
 			<destination>{351299cf-ab34-40cf-b082-01b542507dc3}</destination>
+			<destination>{ee71efa4-5f24-4ff7-b49c-21e07320c164}</destination>
 			<destination>{63ebafcd-4965-44d2-9efc-5983d3632fe5}</destination>
 		</relationship>
 	</object>
@@ -145,6 +150,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{12fc19bf-ce27-4e4d-940d-b76981e6d6ed}" />
 	<object class="MixerBusFader" id="{351299cf-ab34-40cf-b082-01b542507dc3}" />
+	<object class="SpatialiserEffect" id="{ee71efa4-5f24-4ff7-b49c-21e07320c164}" />
 	<object class="DistortionEffect" id="{63ebafcd-4965-44d2-9efc-5983d3632fe5}">
 		<property name="level">
 			<value>0.799999952</value>
