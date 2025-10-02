@@ -63,7 +63,7 @@ func execute(_percentage: float) -> void:
 	else:
 		smoke.emitting = false
 		burning_rate = defualt_burning_rate
-		if _percentage <= 0.0 and randf() > 0.1: ## Horror feeling lol
+		if _percentage <= 0.0:
 			for obj in objs_to_burn:
 				current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
 				obj.get_parent().call_deferred("queue_free")
