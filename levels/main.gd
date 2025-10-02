@@ -69,3 +69,7 @@ func game_over() -> void:
 func _on_dead_zone_body_entered(body: Node3D) -> void:
 	if body is PlayerController:
 		game_over()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		game_over()
