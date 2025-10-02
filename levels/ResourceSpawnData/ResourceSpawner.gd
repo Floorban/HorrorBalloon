@@ -27,6 +27,9 @@ func _on_generate_preview_pressed():
 	randomize()
 	distribute_spawn_points(resource_spawn_points, map_size, jitter_amount)
 
+func _ready() -> void:
+	spawn_resources()
+
 func _get_spawn_points():
 	resource_spawn_points.clear()
 	if not spawn_points: return
@@ -96,7 +99,6 @@ func spawn_resources() -> void:
 	randomize()
 	distribute_spawn_points(resource_spawn_points, map_size, jitter_amount)
 	generate_resources()
-	print("spawn resource")
 
 func _available_indices(remaining: Array) -> Array:
 	var arr: Array = []

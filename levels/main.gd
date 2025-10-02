@@ -1,7 +1,6 @@
 extends Node3D
 
 var main_scene_path := "uid://dfauikegolgu3"
-@export var resource_spawner: ResourceSpawner
 @export var island_scenes: Array[PackedScene] = []
 @export var island_spawn_points: Array[Node3D] = []
 
@@ -15,7 +14,6 @@ func _ready() -> void:
 	if enemy: enemy.reached_player.connect(game_over)
 	if player: player.player_fall.connect(game_over)
 	randomize()
-	resource_spawner.spawn_resources()
 	generate_islands()
 	var area_size := 130.0
 	var spawn_pos = _get_random_point(area_size) 
@@ -26,7 +24,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	objective_progress()
 
-func _get_random_point(area_size: float, avoid_radius: float = 80.0) -> Vector3:
+func _get_random_point(area_size: float, avoid_radius: float = 70.0) -> Vector3:
 	var half := area_size / 2.0
 	var x := 0.0
 	var z := 0.0
