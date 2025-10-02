@@ -29,3 +29,9 @@ is_locked = false
 object_ref = NodePath("..")
 pivot_point = NodePath("..")
 maximum_rotation = 95.0
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="SFX_DoorClose" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/Balloon/Door"
+event_guid = "{c5c8aee1-f3da-4bed-b8bb-ab0f1803660a}"

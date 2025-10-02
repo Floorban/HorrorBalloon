@@ -113,6 +113,7 @@ func _on_land() -> void:
 	print("Balloon landed")
 
 func _on_takeoff() -> void:
+	$Audio/SFX_Engine.play_one_shot()
 	is_grounded = false
 	sleeping = false
 	linear_velocity.y = vertical_base_force * 0.1
@@ -261,3 +262,10 @@ func execute(percentage: float) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
+
+func _exit_tree() -> void:
+	$Audio/SFX_Engine.stop()
+	$Audio/SFX_Land.stop()
+	
+	$Audio/SFX_Engine.queue_free()
+	$Audio/SFX_Land.queue_free()

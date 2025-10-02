@@ -33,3 +33,9 @@ max_height_offset = 0.65
 is_locked = false
 object_ref = NodePath("../../..")
 pivot_point = NodePath("../..")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="SFX_OvenClose" type="FmodEventEmitter3D" parent="Audio"]
+event_name = "event:/Balloon/Oven/Close"
+event_guid = "{59a6c452-5acc-4dd6-a431-d546369b725b}"

@@ -18,6 +18,7 @@ var prev_door_angle: float = 0.0                 # angle of the door on the prev
 @export var is_locked: bool = false
 var was_just_unlocked: bool = false
 
+
 func _ready():
 	super._ready()
 	starting_rotation = pivot_point.rotation.z
@@ -115,6 +116,9 @@ func update_door_sounds(_delta: float) -> void:
 	# SHUT LOGIC
 	# Check if the player opened the door.
 	if abs(door_angle - starting_rotation) > shut_angle_threshold:
+		##TODO: Optimize
+		$"../Audio/SFX_DoorClose".play()
+
 		door_opened = true
 	
 	# If the door was previosuly opened and the player is now shutting it
@@ -125,6 +129,9 @@ func update_door_sounds(_delta: float) -> void:
 			#primary_audio_player.stop()
 			#print("stop!")
 		door_opened = false
+		
+		$"../Audio/SFX_DoorClose".play()
+		
 		notify_nodes(0)
 
 #func stop_door_sounds(delta: float) -> void:

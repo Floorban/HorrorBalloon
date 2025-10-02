@@ -98,3 +98,4 @@ func update_window_sounds(_delta: float) -> void:
 	if window_opened and abs(window_height - starting_height) < close_snap_range:
 		window_opened = false
 		notify_nodes(0)
+		$"../../../Audio/SFX_OvenClose".play_one_shot()
