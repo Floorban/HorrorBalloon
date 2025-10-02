@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c21jsefsehe"]
+[gd_scene load_steps=11 format=3 uid="uid://c21jsefsehe"]
 
 [ext_resource type="PackedScene" uid="uid://cgil2vtb0asbc" path="res://levels/island_base.tscn" id="1_qyhj1"]
 [ext_resource type="Texture2D" uid="uid://ju35scwkbvcn" path="res://assets/Smoke30Frames_0.png" id="2_e1078"]
+[ext_resource type="PackedScene" uid="uid://dxo43pwgdu1p5" path="res://interaction/draggable/bucket.tscn" id="3_m78m2"]
+[ext_resource type="PackedScene" uid="uid://nv6su48cqvpq" path="res://interaction/draggable/box.tscn" id="4_c5u13"]
+[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="5_gat0u"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="7_yxro5"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="8_ty6w6"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="9_muvnp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jo0i"]
 albedo_texture = ExtResource("2_e1078")
@@ -26,4 +32,34 @@ transform = Transform3D(0.41351765, 0, -0.91049623, -0.086571164, 0.9954695, -0.
 [node name="CSGBox3D" parent="Lighthouse" index="1"]
 transform = Transform3D(-0.03948739, -0.14159724, 0.98913616, -0.006049484, 0.9899243, 0.14146852, -0.99920166, -0.00039751735, -0.03994614, -7.5956945, -1.6115804, 2.1244166)
 
+[node name="Resource" type="Node3D" parent="." index="3"]
+transform = Transform3D(0.945274, 0, -0.32627764, 0, 1, 0, 0.32627764, 0, 0.945274, 0, 6.5003347, -7.319889)
+
+[node name="Cube_5kg" parent="Resource" index="0" instance=ExtResource("3_m78m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.429951, -0.6735945, -0.471161)
+
+[node name="Cube_5kg3" parent="Resource" index="1" instance=ExtResource("3_m78m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.537216, -0.6735945, 0.64852905)
+
+[node name="Cube_10kg3" parent="Resource" index="2" instance=ExtResource("4_c5u13")]
+transform = Transform3D(-0.4059515, -0.0017712718, -0.9138929, 0.0043632197, -0.99999094, 0, -0.91388476, -0.0039875163, 0.4059552, -0.00039672852, 0.4942901, -10.886215)
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="Log1" parent="Resource" index="3" instance=ExtResource("5_gat0u")]
+transform = Transform3D(0.9260485, 0, 0.37740445, 0, 1, 0, -0.37740445, 0, 0.9260485, -1.8140602, 0, -9.047249)
+
+[node name="Log7" parent="Resource" index="4" instance=ExtResource("7_yxro5")]
+transform = Transform3D(0.56534135, 0, -0.82485706, 0, 1, 0, 0.82485706, 0, 0.56534135, 0, 0, -4.6193542)
+
+[node name="Log4" parent="Resource" index="5" instance=ExtResource("7_yxro5")]
+transform = Transform3D(-0.14824095, 0, -0.98895127, 0, 1, 0, 0.98895127, 0, -0.14824095, -5.480999, 0, -4.36187)
+
+[node name="Plank3" parent="Resource" index="6" instance=ExtResource("8_ty6w6")]
+transform = Transform3D(0.3963469, 0, 0.91810083, 0, 1, 0, -0.91810083, 0, 0.3963469, 0, -4.034211, -9.859711)
+
+[node name="Plank5" parent="Resource" index="7" instance=ExtResource("9_muvnp")]
+transform = Transform3D(0.97314394, 0.027154043, -0.22859067, -0.07651991, 0.9747086, -0.20997183, 0.21710768, 0.2218245, 0.95060956, -8.032929, -2.1644244, -4.2510824)
+
 [editable path="Lighthouse"]
+[editable path="Lighthouse/CSGBox3D/Wheel"]

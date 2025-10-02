@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8qvb4yhay683"]
+[gd_scene load_steps=10 format=3 uid="uid://c8qvb4yhay683"]
 
 [ext_resource type="PackedScene" uid="uid://cgil2vtb0asbc" path="res://levels/island_base.tscn" id="1_adhss"]
 [ext_resource type="Texture2D" uid="uid://blo1ja3oxj50x" path="res://assets/Islands/grass.png" id="2_5bbdx"]
+[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="3_7rbuo"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="4_7352d"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="5_e3x70"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="6_4f81l"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="7_ng3gd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yltjh"]
 albedo_color = Color(0.62152386, 0.62152386, 0.6215238, 1)
@@ -26,4 +31,29 @@ transform = Transform3D(0.48873, 0.18650688, 0.8522665, -0.060306378, 0.98176783
 [node name="CSGBox3D" parent="Lighthouse" index="1"]
 transform = Transform3D(5.1057697e-10, 1.2943495e-08, -0.9999999, 0.18431161, 0.9828678, 0, 0.98286784, -0.1843116, -2.9802322e-08, 7.5110526, 2.4192288, -0.74324584)
 
+[node name="Resource" type="Node3D" parent="." index="3"]
+transform = Transform3D(0.7109836, 0, 0.70320857, 0, 1, 0, -0.70320857, 0, 0.7109836, -4.8941345, 4.9150186, -10.654514)
+
+[node name="Log1" parent="Resource" index="0" instance=ExtResource("3_7rbuo")]
+transform = Transform3D(0.9260485, 0, 0.37740445, 0, 1, 0, -0.37740445, 0, 0.9260485, -1.8140602, 0, -9.047249)
+
+[node name="Log2" parent="Resource" index="1" instance=ExtResource("4_7352d")]
+transform = Transform3D(0.3758523, 0, 0.9266796, -0.50843024, 0.8360468, 0.2062144, -0.77474755, -0.5486581, 0.3142301, -3.987774, 0, -3.6012192)
+
+[node name="Log5" parent="Resource" index="2" instance=ExtResource("3_7rbuo")]
+transform = Transform3D(0.5665213, 0, 0.8240471, 0, 1, 0, -0.8240471, 0, 0.5665213, -3.6386185, -0.24877834, -9.8520355)
+
+[node name="Log7" parent="Resource" index="3" instance=ExtResource("5_e3x70")]
+transform = Transform3D(0.56534135, 0, -0.82485706, 0, 1, 0, 0.82485706, 0, 0.56534135, 0, 0, -4.6193542)
+
+[node name="Plank1" parent="Resource" index="4" instance=ExtResource("6_4f81l")]
+transform = Transform3D(0.7745913, 0.17707661, 0.60716724, 0, 0.9600059, -0.27997983, -0.632462, 0.21686997, 0.7436123, -0.14410782, 0.36864698, -7.7194443)
+
+[node name="Plank3" parent="Resource" index="5" instance=ExtResource("7_ng3gd")]
+transform = Transform3D(0.3963469, 0, 0.91810083, 0, 1, 0, -0.91810083, 0, 0.3963469, 0, -4.034211, -9.859711)
+
+[node name="Plank5" parent="Resource" index="6" instance=ExtResource("6_4f81l")]
+transform = Transform3D(0.97314394, 0.027154043, -0.22859067, -0.07651991, 0.9747086, -0.20997183, 0.21710768, 0.2218245, 0.95060956, -8.032929, -2.1644244, -4.2510824)
+
 [editable path="Lighthouse"]
+[editable path="Lighthouse/CSGBox3D/Wheel"]
