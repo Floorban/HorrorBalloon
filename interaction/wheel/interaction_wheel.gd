@@ -59,11 +59,11 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_position: Vector2 = event.position
 		if calculate_cross_product(mouse_position) > 0:
-			wheel_rotation += 0.1
+			wheel_rotation += 0.2
 		else:
-			wheel_rotation -= 0.1
+			wheel_rotation -= 0.2
 			
-		object_ref.rotation.z = wheel_rotation *.1
+		object_ref.rotation.z = wheel_rotation *.2
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
 		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
 			

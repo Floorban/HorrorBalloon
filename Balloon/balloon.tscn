@@ -18,25 +18,25 @@
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
-size = Vector3(0.9675293, 0.05697632, 0.9849243)
+size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4099596704396
+metadata/creation_stamp = 16400634696930
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4099630258826
+metadata/creation_stamp = 16400668250992
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4099663813238
+metadata/creation_stamp = 16400701805287
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4099697367684
+metadata/creation_stamp = 16400735360513
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -50,6 +50,7 @@ collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
+max_tilt_angle = 6.0
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -57,7 +58,7 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 [node name="Bottom" type="CharacterBody3D" parent="Body"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.033786774, 0.023223877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.025814056, 0.023223877)
 shape = SubResource("BoxShape3D_q3h3j")
 
 [node name="BasketSides" parent="Body" instance=ExtResource("2_uro0l")]
