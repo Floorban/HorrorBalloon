@@ -15,6 +15,7 @@ radius = 2.911621
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_5anih")
+max_spotting_distance = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21775484, 3.0905104, -0.1547885)
@@ -109,9 +110,6 @@ speed_scale = 0.5
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53469276, -3.9423008)
 
-[node name="PlayerCheck" type="RayCast3D" parent="Eye" index="0"]
-target_position = Vector3(0, 0, -5)
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="4"]
 unique_name_in_owner = true
 path_desired_distance = 0.3
@@ -124,7 +122,7 @@ metadata/_custom_type_script = "uid://dkc1man884b1s"
 
 [node name="Roaming" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_s81n7")
-_roaming_speed = 20.0
+_roaming_speed = 3.0
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")

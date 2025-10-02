@@ -1,16 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://kg4u6uc5807x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h32ad"]
-size = Vector3(550, 350, 50)
+size = Vector3(550, 563.04395, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pjm6t"]
-size = Vector3(550, 350, 50)
+size = Vector3(550, 564.5029, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h8cwm"]
-size = Vector3(43.686768, 350, 516.43896)
+size = Vector3(43.686768, 564.5029, 516.43896)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig2iq"]
-size = Vector3(43.686768, 350, 516.43896)
+size = Vector3(43.686768, 558.667, 516.43896)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eougr"]
 size = Vector3(609.9612, 32.581352, 610.9697)
@@ -18,26 +18,26 @@ size = Vector3(609.9612, 32.581352, 610.9697)
 [node name="DeadZone" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 250)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.52197, 250)
 shape = SubResource("BoxShape3D_h32ad")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 107.251465, -250)
 shape = SubResource("BoxShape3D_pjm6t")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.49582, 0, 4.302536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 259.49582, 107.251465, 4.302536)
 shape = SubResource("BoxShape3D_h8cwm")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.02127, 0, 4.302536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -246.02127, 104.333496, 4.302536)
 shape = SubResource("BoxShape3D_ig2iq")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 175.20117, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 394.90823, 0)
 shape = SubResource("BoxShape3D_eougr")
 debug_color = Color(0.6113269, 0.3770702, 0.13512099, 0.41960785)
