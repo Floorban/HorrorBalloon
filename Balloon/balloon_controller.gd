@@ -23,7 +23,7 @@ var player_weight: float = 10.0
 
 # vertical
 const GRAVITY := 4.0
-@export var vertical_base_force: float = 12.0
+@export var vertical_base_force: float = 10.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
@@ -63,8 +63,8 @@ func _physics_process(delta: float) -> void:
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
 	
-	if not is_grounded:
-		apply_central_force(Vector3.DOWN * GRAVITY)
+	#if not is_grounded:
+		#apply_central_force(Vector3.DOWN * GRAVITY)
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
@@ -92,7 +92,7 @@ func _apply_horizontal_force() -> void:
 		return
 
 	var final_tilt: Vector3 = _compute_weighted_tilt()
-	_tilt_to(final_tilt, tilt_damping)
+	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 
 	horizontal_dir = Vector3(-final_tilt.z, 0.0, -final_tilt.x).normalized()
 

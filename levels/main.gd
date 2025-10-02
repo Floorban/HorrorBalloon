@@ -33,7 +33,7 @@ func _get_random_point(area_size: float, avoid_radius: float = 70.0) -> Vector3:
 		z = randf_range(-half, half)
 		if Vector2(x, z).length() >= avoid_radius:
 			break
-	var y := 5.0
+	var y := 50.0
 	return Vector3(x, y, z)
 
 func generate_islands() -> void:
