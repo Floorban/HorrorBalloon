@@ -133,11 +133,10 @@ script = ExtResource("4_s81n7")
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")
-chase_max_time = 30.0
+chase_max_time = 10.0
 
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")
-_search_radius = 5.0
 
 [node name="Audio" type="Node3D" parent="." index="6"]
 

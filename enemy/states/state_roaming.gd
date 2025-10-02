@@ -1,6 +1,7 @@
 extends EnemyState
 
 var balloon : BalloonController
+var checked_balloon := false
 
 @export var _roaming_speed := 2.0
 
@@ -44,12 +45,13 @@ func physics_update(_delta: float) -> void:
 		_saw_player = false
 
 func _on_balloon_landed() -> void:
-	if _enemy.found_target:
-		return
-	if _enemy and _enemy.player:
-		var last_known_pos = _enemy.player.global_position
-		requested_transition_to_other_state.emit("Chasing")
+	checked_balloon = true
 
 func _travel_to_random_position() -> void:
-	var rand_pos := NavigationServer3D.map_get_random_point(_nav_map, 1, true)
-	_enemy.travel_to_position(rand_pos, _roaming_speed)
+	if checked_balloon:
+		var balloon_pos = balloon.global_transform.origin
+		_enemy.travel_to_position(balloon_pos, _roaming_speed)
+		checked_balloon = false
+	else:
+		var rand_pos := NavigationServer3D.map_get_random_point(_nav_map, 1, true)
+		_enemy.travel_to_position(rand_pos, _roaming_speed)
