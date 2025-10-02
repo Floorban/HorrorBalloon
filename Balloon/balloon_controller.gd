@@ -63,8 +63,8 @@ func _physics_process(delta: float) -> void:
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
 	
-	if not is_grounded:
-		apply_central_force(Vector3.DOWN * GRAVITY)
+	#if not is_grounded:
+		#apply_central_force(Vector3.DOWN * GRAVITY)
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
@@ -94,7 +94,7 @@ func _apply_horizontal_force() -> void:
 	var final_tilt: Vector3 = _compute_weighted_tilt()
 	_tilt_to(final_tilt, tilt_damping)
 
-	horizontal_dir = Vector3(-final_tilt.z, 0.0, final_tilt.x).normalized()
+	horizontal_dir = Vector3(-final_tilt.z, 0.0, -final_tilt.x).normalized()
 
 	if horizontal_dir.length() > move_threshold:
 		var target_force = horizontal_dir * horizontal_force
@@ -155,7 +155,7 @@ func _compute_weighted_tilt() -> Vector3:
 		var x_dir : float = clamp(rel_pos_local.x, -1.0, 1.0)
 		var z_dir : float = clamp(rel_pos_local.z, -1.0, 1.0)
 
-		total_influence += Vector3(z_dir * weight, 0.0, -x_dir * weight)
+		total_influence += Vector3(z_dir * weight, 0.0, x_dir * weight)
 		weight_sum += weight
 
 	if weight_sum > 0.0:

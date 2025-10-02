@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 		for flag in my_flags:
 			var current_rot = flag.rotation
-			var new_yaw = lerp_angle(current_rot.y, target_yaw + 90, delta * 5.0)
+			var new_yaw = lerp_angle(current_rot.y, target_yaw - 90, delta * 5.0)
 			flag.rotation = Vector3(deg_to_rad(-90.0), new_yaw, 0.0)
 
 func _get_child_flags() -> void:
