@@ -1,6 +1,6 @@
 extends Node3D
 
-var main_scene_path := "uid://dfauikegolgu3"
+const main_scene_path := "uid://dfauikegolgu3"
 @export var island_scenes: Array[PackedScene] = []
 @export var island_spawn_points: Array[Node3D] = []
 

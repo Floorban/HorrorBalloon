@@ -43,7 +43,6 @@ class RopeRaycastCollisionData:
 	var normal: Vector3
 	
 	func _init(position: Vector3, normal: Vector3) -> void:
-		print("pos")
 		self.position = position
 		self.normal = normal
 
@@ -438,11 +437,8 @@ func collide_rope(dynamic_collisions: Array) -> void:
 
 func _get_camera() -> Camera3D:
 	var cam := get_viewport().get_camera_3d()
-	
-	if Engine.is_editor_hint():
-		return EditorInterface.get_editor_viewport_3d(0).get_camera_3d()
-	else:
-		return cam
+
+	return cam
 
 func draw_curve() -> void:
 	# Ensure mesh exists
