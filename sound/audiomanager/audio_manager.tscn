@@ -13,6 +13,12 @@ event_guid = "{2f0afff7-fd3f-4927-b1b4-336377e72cee}"
 autoplay = true
 auto_release = true
 
+[node name="BeatboxShuffle" type="FmodEventEmitter3D" parent="."]
+event_name = "event:/Ambient/Atmosphere/Shuffles"
+event_guid = "{d0a737e5-16dd-40a7-a758-2f8ef2f72c6c}"
+autoplay = true
+auto_release = true
+
 [node name="Essentials" type="Node3D" parent="."]
 
 [node name="FmodListener3D" type="FmodListener3D" parent="Essentials"]

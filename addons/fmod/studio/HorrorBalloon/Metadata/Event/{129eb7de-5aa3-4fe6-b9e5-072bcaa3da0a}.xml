@@ -5,7 +5,7 @@
 			<value>Land</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{f765d54e-ca39-42d8-903e-e7a135b92a0b}</destination>
@@ -62,6 +62,9 @@
 	<object class="EventAutomatableProperties" id="{60d8ad71-2e23-48df-8e45-a6720e7d9def}">
 		<property name="maxVoices">
 			<value>1</value>
+		</property>
+		<property name="maximumDistance">
+			<value>70</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{3fe8784d-0ec2-4aea-a98c-16f9e1f8fbc7}" />
@@ -240,6 +243,7 @@
 	<object class="MixerBusEffectChain" id="{096435e8-c983-4add-9e0f-9e31057d652c}">
 		<relationship name="effects">
 			<destination>{688d0f32-6183-4ca7-a706-344f358adafa}</destination>
+			<destination>{b88ee4e5-12de-4b80-a18e-697ce31bc875}</destination>
 			<destination>{9bd9acca-643b-4788-bded-4a82c59ec8c8}</destination>
 		</relationship>
 	</object>
@@ -270,6 +274,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{bc37eda2-49a7-4765-863c-feeb29a24aa5}" />
 	<object class="MixerBusFader" id="{688d0f32-6183-4ca7-a706-344f358adafa}" />
+	<object class="SpatialiserEffect" id="{b88ee4e5-12de-4b80-a18e-697ce31bc875}" />
 	<object class="SFXReverbEffect" id="{9bd9acca-643b-4788-bded-4a82c59ec8c8}">
 		<property name="decayTime">
 			<value>2600</value>

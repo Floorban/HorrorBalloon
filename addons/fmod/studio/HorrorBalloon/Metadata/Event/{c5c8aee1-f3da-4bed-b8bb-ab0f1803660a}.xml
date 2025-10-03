@@ -5,7 +5,7 @@
 			<value>Door</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{f765d54e-ca39-42d8-903e-e7a135b92a0b}</destination>
@@ -103,6 +103,7 @@
 	<object class="MixerBusEffectChain" id="{265e2574-c4f3-46f9-b94d-afc2ec9208b0}">
 		<relationship name="effects">
 			<destination>{0df59906-f7d6-4104-9bcf-dfb1fa6eb1b9}</destination>
+			<destination>{1d79ddf5-7cd1-4c26-9514-8581868a8b1b}</destination>
 			<destination>{674667f1-ae37-44e0-8bd1-9ce89095ae68}</destination>
 			<destination>{80b48fa4-7d04-482b-a836-c618b905b4c2}</destination>
 		</relationship>
@@ -115,6 +116,7 @@
 	</object>
 	<object class="MixerBusFader" id="{0ba94da3-d9c4-4726-9f99-ceb2d31f0078}" />
 	<object class="MixerBusFader" id="{0df59906-f7d6-4104-9bcf-dfb1fa6eb1b9}" />
+	<object class="SpatialiserEffect" id="{1d79ddf5-7cd1-4c26-9514-8581868a8b1b}" />
 	<object class="DistortionEffect" id="{674667f1-ae37-44e0-8bd1-9ce89095ae68}">
 		<property name="level">
 			<value>0.729999959</value>

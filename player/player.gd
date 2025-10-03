@@ -168,7 +168,7 @@ func _process(delta: float) -> void:
 @export var max_offset: = Vector3(0.5, 0.5, 0.5)
 @export var max_rotation: = Vector3(1.0, 1.0, 1.0) # degrees
 var trauma: = 0.0
-var trauma_power: = 2
+var trauma_power: = 1
 
 var original_position: Vector3
 var original_rotation: Vector3

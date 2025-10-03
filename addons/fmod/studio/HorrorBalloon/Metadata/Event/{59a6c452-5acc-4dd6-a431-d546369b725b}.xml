@@ -5,7 +5,7 @@
 			<value>Close</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9e4668d3-64b6-481e-b7be-c0d79cc49c06}</destination>
@@ -199,6 +199,7 @@
 	<object class="MixerBusEffectChain" id="{70946f54-0430-420b-ba02-cb2b3fb227a2}">
 		<relationship name="effects">
 			<destination>{b6b68187-ac29-40af-b73e-5d9e3ca3f5c8}</destination>
+			<destination>{3758d4df-f7e5-4ef6-b36c-70b969222d01}</destination>
 			<destination>{90422e52-c143-4fee-9989-6b0d795f0765}</destination>
 		</relationship>
 	</object>
@@ -248,6 +249,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{7c9fd4af-a138-43b6-aee0-83b754a0d51d}" />
 	<object class="MixerBusFader" id="{b6b68187-ac29-40af-b73e-5d9e3ca3f5c8}" />
+	<object class="SpatialiserEffect" id="{3758d4df-f7e5-4ef6-b36c-70b969222d01}" />
 	<object class="SFXReverbEffect" id="{90422e52-c143-4fee-9989-6b0d795f0765}">
 		<property name="decayTime">
 			<value>2500</value>

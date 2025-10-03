@@ -15,12 +15,6 @@ var hatred := "Hatred"
 var terror := "Terror"
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func ready():
-	$"../../Audio/Screech".set_parameter(anxiety, rng.randf_range(0.0, 100.0))
-	$"../../Audio/Screech".set_parameter(guilt, rng.randf_range(0.0, 100.0))
-	$"../../Audio/Screech".set_parameter(hatred, rng.randf_range(0.0, 100.0))
-	$"../../Audio/Screech".set_parameter(terror, rng.randf_range(0.0, 100.0))
-
 func enter(previous_state_name: String, data := {}) -> void:
 	$"../../Audio/Screech".set_parameter("Status", "Chasing")
 	_chase_timer = chase_max_time

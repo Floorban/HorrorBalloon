@@ -75,7 +75,7 @@
 			<value>1</value>
 		</property>
 		<property name="maximumDistance">
-			<value>55</value>
+			<value>90</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{44372c16-fb14-4e8c-a461-44635a88d835}" />
@@ -1309,7 +1309,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-7</value>
+			<value>-27</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{f681013d-d79e-4413-b155-8507792e21db}">
@@ -1317,7 +1317,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-22.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{53e4bab2-e4e1-4b3b-8fbb-3855aa00899f}">

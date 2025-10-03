@@ -17,9 +17,9 @@ var found_target := false
 var last_seen_position: Vector3
 var last_seen_time: float = 0.0
 
-@export var _trauma_interval := 1.0
+@export var _trauma_interval := 10
 @export var _shake_radius := 50.0
-@export var _max_trauma := 2.5
+@export var _max_trauma := 1.5
 var _trauma_timer := 0.0
 
 func _ready() -> void:
@@ -77,6 +77,7 @@ func is_player_in_view() -> bool:
 		return true
 
 func reached_target():
+	$Audio/Screech.stop()
 	found_target = true
 	reached_player.emit()
 	animation_player.play("ATK")
