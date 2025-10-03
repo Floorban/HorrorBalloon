@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_45fdq"]
 [ext_resource type="Script" uid="uid://ckgwbyqo20yrn" path="res://interaction/wheel/interaction_wheel.gd" id="2_5cn1b"]
-[ext_resource type="Texture2D" uid="uid://ctkh4o54eonug" path="res://assets/reticles/wheel_reticle.png" id="2_c5phc"]
+[ext_resource type="Texture2D" uid="uid://ctkh4o54eonug" path="res://assets/ui/wheel_reticle.png" id="2_c5phc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_c5phc"]
 size = Vector3(0.1, 1, 0.1)

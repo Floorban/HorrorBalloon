@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgh3ul6rjlkgi"
-path="res://.godot/imported/white_reticle.png-f7ae6b0fbf4bf7cc0a378ec85f7cc09e.ctex"
+uid="uid://c3kiqqhiwopwf"
+path="res://.godot/imported/mouse_scroll.png-94b33cc9826ea64938975358605d57ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/reticles/white_reticle.png"
-dest_files=["res://.godot/imported/white_reticle.png-f7ae6b0fbf4bf7cc0a378ec85f7cc09e.ctex"]
+source_file="res://assets/ui/mouse_scroll.png"
+dest_files=["res://.godot/imported/mouse_scroll.png-94b33cc9826ea64938975358605d57ea.ctex"]
 
 [params]
 

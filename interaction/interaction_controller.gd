@@ -14,6 +14,7 @@ var interaction_component: InteractionComponent
 @onready var chest: Marker3D = %Chest
 
 # UI
+var ui_tween: Tween
 var is_focused: bool = false
 @onready var default_reticle: TextureRect = %DefaultReticle
 @onready var highlight_reticle: TextureRect = %HighlightReticle
@@ -119,17 +120,40 @@ func is_cam_locked() -> bool:
 
 #image: Texture2D, prompt: String
 func interaction_ui_init() -> void:
+	if ui_tween and ui_tween.is_valid():
+		ui_tween.kill()
+		
+	if ui_spawn_root.get_children().size() > 0 :
+		for ui in ui_spawn_root.get_children(): ui.queue_free()
+	
 	if not interaction_component or interaction_component.ui_set.size() <= 0: return
-	ui_spawn_root.get_parent().visible = true
 	for ui_data in interaction_component.ui_set:
 		var ui_instance = interaction_ui_scene.instantiate()
 		ui_spawn_root.add_child(ui_instance)
 		if ui_instance.has_method("init_data"): ui_instance.init_data(ui_data)
+	
+	var parent = ui_spawn_root.get_parent().get_parent()
+	parent.visible = true
+	parent.modulate.a = 0.0
+	ui_tween = create_tween()
+	ui_tween.tween_property(parent, "modulate:a", 1.0, 0.25) \
+		.set_trans(Tween.TRANS_CUBIC) \
+		.set_ease(Tween.EASE_OUT)
 
 func interaction_ui_clear() -> void:
-	ui_spawn_root.get_parent().visible = false
-	if ui_spawn_root.get_children().size() > 0:
-		for ui in ui_spawn_root.get_children(): ui.queue_free()
+	if ui_tween and ui_tween.is_valid():
+		ui_tween.kill()
+		
+	var parent = ui_spawn_root.get_parent().get_parent()
+	if ui_spawn_root.get_child_count() == 0:
+		parent.visible = false
+		return
+
+	ui_tween = create_tween()
+	ui_tween.tween_property(parent, "modulate:a", 0.0, 0.35) \
+		.set_trans(Tween.TRANS_CUBIC) \
+		.set_ease(Tween.EASE_IN)
+	ui_tween.tween_callback(Callable(parent, "set_visible").bind(false))
 
 ## Called when the player is looking at an interactable objects
 func _focus() -> void:
