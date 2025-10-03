@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=15 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/reticles/white_reticle.png" id="2_g1dw6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/reticles/tile_0155.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/reticles/tile_0156.png" id="4_g6k8r"]
 [ext_resource type="Shader" uid="uid://bygn8p8ivfrb5" path="res://shaders/note_fade.gdshader" id="5_boad6"]
+[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_hint.tscn" id="5_rgyib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.05
@@ -150,9 +151,11 @@ mesh = SubResource("SphereMesh_g6k8r")
 
 [node name="Control" type="Control" parent="GUI/ReticleLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
 unique_name_in_owner = true
@@ -186,6 +189,29 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/ReticleLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 22
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/ReticleLayer/Control/MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="InteractionHint" parent="GUI/ReticleLayer/Control/MarginContainer/VBoxContainer" instance=ExtResource("5_rgyib")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 

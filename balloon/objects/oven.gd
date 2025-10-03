@@ -23,9 +23,11 @@ var e_flame_is_playing: bool
 @onready var flame2: GPUParticles3D = $Flame2
 @onready var smoke: GPUParticles3D = $Smoke
 
-@onready var balloon : BalloonController = get_parent().get_parent()
+var balloon : BalloonController
 
 func _ready() -> void:
+	var b = get_parent().get_parent()
+	if b is BalloonController: balloon = b
 	smoke.emitting = false
 	audio = get_tree().get_first_node_in_group("audio")
 	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
@@ -68,7 +70,7 @@ func execute(_percentage: float) -> void:
 		if _percentage <= 0.0:
 			for obj in objs_to_burn:
 				current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
-				if balloon.objs_in_balloon.has(obj.object_ref):
+				if balloon and balloon.objs_in_balloon.has(obj.object_ref):
 					balloon.objs_in_balloon.erase(obj.object_ref)
 				obj.get_parent().call_deferred("queue_free")
 			objs_to_burn.clear()
