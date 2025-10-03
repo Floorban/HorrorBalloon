@@ -14,33 +14,15 @@ height = 1.63263
 radius = 0.05
 height = 1.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
-radius = 3.98299
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
 radius = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
+radius = 3.98299
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
 script = ExtResource("1_oul6g")
-
-[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816315, 0)
-shape = SubResource("CapsuleShape3D_kqu6x")
-
-[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CapsuleShape3D_oul6g")
-
-[node name="StandupCheck" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0.5, 0)
-collision_mask = 2147483649
-
-[node name="InteractableCheck" type="Area3D" parent="."]
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
-shape = SubResource("SphereShape3D_qjkh3")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -80,6 +62,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.033379674, -0.35738713)
 
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816315, 0)
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="StandupCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.5, 0)
+collision_mask = 2147483649
+
+[node name="FeetPushShapeCast" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
+shape = SubResource("SphereShape3D_g6k8r")
+target_position = Vector3(0, 0, 0)
+
+[node name="InteractableCheck" type="Area3D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
+shape = SubResource("SphereShape3D_qjkh3")
+
+[node name="InteractionController" parent="." instance=ExtResource("2_rkbax")]
+unique_name_in_owner = true
+
 [node name="GUI" type="Node" parent="."]
 
 [node name="ReticleLayer" type="CanvasLayer" parent="GUI"]
@@ -94,7 +103,6 @@ grow_vertical = 2
 
 [node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
@@ -104,7 +112,6 @@ stretch_mode = 3
 
 [node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
@@ -139,9 +146,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 1
-
-[node name="InteractionController" parent="." instance=ExtResource("2_rkbax")]
-unique_name_in_owner = true
 
 [node name="Audio" type="Node3D" parent="."]
 
@@ -180,9 +184,3 @@ fmod_parameters/stance = "crouch"
 fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
 fmod_parameters/stance/variant_type = 4
 unique_name_in_owner = true
-
-[node name="FeetPushShapeCast" type="ShapeCast3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
-shape = SubResource("SphereShape3D_g6k8r")
-target_position = Vector3(0, 0, 0)

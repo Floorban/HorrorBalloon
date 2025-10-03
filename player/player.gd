@@ -100,7 +100,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
 
 	if event is InputEventMouseMotion:
-		if current_sensitivity > 0.01 and not interaction_controller.isCameraLocked():
+		if current_sensitivity > 0.01 and not interaction_controller.is_cam_locked():
 			mouse_input = event.relative
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
@@ -160,7 +160,7 @@ func update_cam_state(delta: float) -> void:
 			current_sensitivity = normal_sensitivity
 			sensitivity_fading_in = false
 			
-	lock_player_camera(interaction_controller.isCameraLocked())
+	lock_player_camera(interaction_controller.is_cam_locked())
 
 func updatecam_shake(delta: float) -> void:
 	if trauma > 0.0:
