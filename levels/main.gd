@@ -17,9 +17,9 @@ func _ready() -> void:
 	generate_islands()
 	var area_size := 130.0
 	var spawn_pos = _get_random_point(area_size) 
-	balloon.global_position = spawn_pos
-	player.global_position = spawn_pos
-	default_resource.global_position = spawn_pos + Vector3.LEFT * 5
+	#balloon.global_position = spawn_pos
+	#player.global_position = spawn_pos
+	default_resource.global_position = balloon.global_position + Vector3.LEFT * 5
 
 func _process(_delta: float) -> void:
 	objective_progress()

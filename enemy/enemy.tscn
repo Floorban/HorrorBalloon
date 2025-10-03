@@ -122,6 +122,7 @@ metadata/_custom_type_script = "uid://dkc1man884b1s"
 
 [node name="Roaming" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_s81n7")
+_roaming_speed = 20.0
 
 [node name="Chasing" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gc7sf")
