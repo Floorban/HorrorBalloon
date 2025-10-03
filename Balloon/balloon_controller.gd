@@ -101,8 +101,8 @@ func _apply_horizontal_force() -> void:
 		var target_force = horizontal_dir * horizontal_force
 		apply_central_force(target_force)
 
-	if player and player.has_method("apply_sway"):
-		player.apply_sway(final_tilt)
+	if player and player.has_method("apply_player_camera_sway"):
+		player.apply_player_camera_sway(final_tilt)
 
 func _on_land() -> void:
 	$Audio/SFX_Land.play_one_shot()

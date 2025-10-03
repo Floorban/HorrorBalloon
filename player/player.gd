@@ -10,11 +10,37 @@ signal player_fall
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
 @onready var standup_check: RayCast3D = $StandupCheck
 @onready var interaction_controller: InteractionController = %InteractionController
-@onready var note_camera: Camera3D = %NoteCamera
 
-# Note sway variables
-@onready var note_hand: Marker3D = %NoteHand
-@export var note_sway_amount: float = .1
+# Audio Settings
+@onready var e_right_step: FmodEventEmitter3D = %SFX_RightStep
+@onready var e_left_step: FmodEventEmitter3D = %SFX_LeftStep
+@onready var e_stand: FmodEventEmitter3D = %SFX_Stand
+@onready var e_crouch: FmodEventEmitter3D = %SFX_Crouch
+var step_is_playing: bool = false
+var is_crouching: bool = false
+var is_standing: bool = false
+
+# Player Settings
+var is_dead := false
+var base_head_y : float
+var base_fov: float = 90.0
+var normal_sensitivity: float = 0.2
+var current_sensitivity: float = normal_sensitivity
+var sensitivity_restore_speed: float = 4.0
+var sensitivity_fading_in: bool = false
+var viewing_yaw_origin: float = 0.0
+
+# State Machine
+enum PlayerState {
+	IDLE_STAND,
+	IDLE_CROUCH,
+	CROUCHING,
+	WALKING,
+	SPRINTING,
+	AIR,
+	VIEWING
+	}
+var player_state: PlayerState = PlayerState.IDLE_STAND
 
 # Movement Variables
 const walking_speed: float = 2.0
@@ -32,28 +58,6 @@ var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 4.0
 var mouse_input: Vector2
 var is_in_air: bool = false
-@onready var shape_cast: ShapeCast3D = $ShapeCast3D
-
-# Player Settings
-var base_head_y : float
-var base_fov: float = 90.0
-var normal_sensitivity: float = 0.2
-var current_sensitivity: float = normal_sensitivity
-var sensitivity_restore_speed: float = 4.0  # tweak for smoothness
-var sensitivity_fading_in: bool = false
-var viewing_yaw_origin: float = 0.0
-
-# State Machine
-enum PlayerState {
-	IDLE_STAND,
-	IDLE_CROUCH,
-	CROUCHING,
-	WALKING,
-	SPRINTING,
-	AIR,
-	VIEWING
-	}
-var player_state: PlayerState = PlayerState.IDLE_STAND
 
 # Headbobbing Vars
 const head_bobbing_sprinting_speed: float = 14.0
@@ -65,30 +69,31 @@ const head_bobbing_crouching_intensity: float = 0.05
 var head_bobbing_current_intensity: float = 0.0
 var head_bobbing_vector: Vector2 = Vector2.ZERO
 var head_bobbing_index: float = 0.0
-var last_bob_position_x: float = 0.0                                            # Tracks the previous horizontal head-bob position
-var last_bob_direction: int = 0                                                 # Tracks the previous movement direction of the bob (-1 = left, +1 = right)
+var last_bob_position_x: float = 0.0
+var last_bob_direction: int = 0   #movement direction of the bob (-1 = left, +1 = right)
 
-var is_dead := false
+# Camera Shake
+var decay: = 0.8
+var max_offset: = Vector3(0.5, 0.5, 0.5)
+var max_rotation: = Vector3(1.0, 1.0, 1.0) # degrees
+var trauma: = 0.0
+var trauma_power: = 2
+var cam_original_position: Vector3
+var cam_original_rotation: Vector3
 
-# Audio Settings
-var e_right_step: FmodEventEmitter3D
-var e_left_step: FmodEventEmitter3D
-var e_crouch: FmodEventEmitter3D
-var e_stand: FmodEventEmitter3D
-var step_is_playing: bool = false
-var is_crouching: bool = false
-var is_standing: bool = false
+# Feet Push
+var player_weight := 10.0
+var feet_push_obj_strength := 20.0
+@onready var push_shape_cast: ShapeCast3D = %FeetPushShapeCast
 
-func _ready() -> void:
-	e_right_step = get_node("Audio/SFX_RightStep")
-	e_left_step = get_node("Audio/SFX_LeftStep")
-	e_crouch = get_node("Audio/SFX_Crouch")
-	e_stand = get_node("Audio/SFX_Stand")
-	
-	original_position = player_camera.position
-	original_rotation = player_camera.rotation_degrees
+func player_init() -> void:
+	cam_original_position = player_camera.position
+	cam_original_rotation = player_camera.rotation_degrees
 	base_head_y = head.position.y
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _ready() -> void:
+	player_init()
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -108,13 +113,8 @@ func get_movement_dir() -> Vector3:
 func get_local_movement_dir() -> Vector3:
 	return get_movement_dir().rotated(Vector3.UP, -rotation.y)
 
-func _physics_process(delta: float) -> void:
-	if is_dead: return
-	
-	updatePlayerState()
-	updateCamera(delta)
-	
-	# Falling
+# Falling
+func update_player_verticle(delta: float) -> void:
 	if not is_on_floor():
 		is_in_air = true
 		if velocity.y >= 0:
@@ -128,10 +128,10 @@ func _physics_process(delta: float) -> void:
 			# footsteps_se.play()
 			# TODO: add a slow down + (camera) landing effect
 			is_in_air = false
-			
-	# Movement Logic
-	direction = lerp(direction, get_movement_dir(), delta * 10.0)
 
+# Movement Logic
+func update_player_horizontel(delta: float) -> void:
+	direction = lerp(direction, get_movement_dir(), delta * 10.0)
 	if direction.length() > 0.01:
 		# Accelerate towards max speed
 		current_speed = move_toward(current_speed, max_speed, acceleration * delta)
@@ -141,18 +141,17 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed * 0.8
 
-	apply_push_forces(shape_cast)
+func _physics_process(delta: float) -> void:
+	if is_dead: return
+	update_player_state()
+	update_cam_movement(delta)
+	
+	update_player_verticle(delta)
+	update_player_horizontel(delta)
+	apply_push_forces(push_shape_cast)
 	move_and_slide()
-	note_tilt_and_sway(input_dir, delta)
 
-func _process(delta: float) -> void:
-	if trauma > 0.0:
-		trauma = max(trauma - decay * delta, 0.0)
-		cam_shake()
-	else:
-		player_camera.position = original_position
-		player_camera.rotation_degrees = original_rotation
-		
+func update_cam_state(delta: float) -> void:
 	if is_dead: return
 	# slowly bring sensitivity back to normal levels when just unlocked camera
 	if sensitivity_fading_in:
@@ -161,17 +160,15 @@ func _process(delta: float) -> void:
 			current_sensitivity = normal_sensitivity
 			sensitivity_fading_in = false
 			
-	set_camera_locked(interaction_controller.isCameraLocked())
+	lock_player_camera(interaction_controller.isCameraLocked())
 
-## cam shake
-@export var decay: = 0.8
-@export var max_offset: = Vector3(0.5, 0.5, 0.5)
-@export var max_rotation: = Vector3(1.0, 1.0, 1.0) # degrees
-var trauma: = 0.0
-var trauma_power: = 2
-
-var original_position: Vector3
-var original_rotation: Vector3
+func updatecam_shake(delta: float) -> void:
+	if trauma > 0.0:
+		trauma = max(trauma - decay * delta, 0.0)
+		cam_shake()
+	else:
+		player_camera.position = cam_original_position
+		player_camera.rotation_degrees = cam_original_rotation
 
 func cam_shake() -> void:
 	var amount = pow(trauma, trauma_power)
@@ -186,10 +183,14 @@ func cam_shake() -> void:
 		max_rotation.z * amount * randf_range(-1.0, 1.0)
 	)
 	
-	player_camera.position = original_position + _offset
-	player_camera.rotation_degrees = original_rotation + _rotation
+	player_camera.position = cam_original_position + _offset
+	player_camera.rotation_degrees = cam_original_rotation + _rotation
 
-func updatePlayerState() -> void:
+func _process(delta: float) -> void:
+	updatecam_shake(delta)
+	update_cam_state(delta)
+
+func update_player_state() -> void:
 	moving = (input_dir != Vector2.ZERO)
 	if not is_on_floor():
 		player_state = PlayerState.AIR
@@ -210,19 +211,19 @@ func updatePlayerState() -> void:
 		if Input.is_action_just_pressed("crouch"): play_crouch_sound()
 		if Input.is_action_just_released("crouch"): play_stand_sound()
 
-	updatePlayerColShape(player_state)
-	updatePlayerSpeed(player_state)
+	update_player_collision(player_state)
+	update_player_speed(player_state)
 	updatePlayerSound(player_state)
-	
-func updatePlayerColShape(_player_state: PlayerState) -> void:
+
+func update_player_collision(_player_state: PlayerState) -> void:
 	if _player_state == PlayerState.CROUCHING or _player_state == PlayerState.IDLE_CROUCH:
 		standing_collision_shape.disabled = true
 		crouching_collision_shape.disabled = false
 	else:
 		standing_collision_shape.disabled = false
 		crouching_collision_shape.disabled = true
-	
-func updatePlayerSpeed(_player_state: PlayerState) -> void:
+
+func update_player_speed(_player_state: PlayerState) -> void:
 	if not can_move: 
 		current_speed = 0
 		max_speed = 0
@@ -237,7 +238,7 @@ func updatePlayerSpeed(_player_state: PlayerState) -> void:
 		# current_speed = sprinting_speed
 		max_speed = sprinting_speed + hold_back_speed
 
-func updateCamera(delta: float) -> void:
+func update_cam_movement(delta: float) -> void:
 	if player_state == PlayerState.AIR:
 		pass
 		
@@ -283,42 +284,17 @@ func updateCamera(delta: float) -> void:
 	else:
 		eyes.position.y = lerp(eyes.position.y , 0.0 ,delta*lerp_speed)
 		eyes.position.x = lerp(eyes.position.x , 0.0 ,delta*lerp_speed)
-	
-	note_camera.fov = player_camera.fov
-	
-func set_camera_locked(locked: bool) -> void:
+
+func lock_player_camera(locked: bool) -> void:
 	if locked:
 		current_sensitivity = 0.0
 		sensitivity_fading_in = false
 	else:
 		sensitivity_fading_in = true
 
-func note_tilt_and_sway(_input_dir: Vector2, delta: float) -> void:
-	if note_hand:
-		note_hand.rotation.z = lerp(note_hand.rotation.z, -_input_dir.x * note_sway_amount, 10 * delta)
-		note_hand.rotation.x = lerp(note_hand.rotation.x, -_input_dir.y * note_sway_amount, 10 * delta)
-
-func apply_sway(tilt: Vector3):
+func apply_player_camera_sway(tilt: Vector3):
 	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
-
-var player_weight := 10.0
-var player_to_obj_strength := 20.0
-
-func apply_push_forces(push_shape: ShapeCast3D):
-	push_shape.target_position = get_local_movement_dir() * 0.15
-	for i in push_shape.get_collision_count():
-		var collider = push_shape.get_collider(i)
-		if collider is RigidBody3D:
-			var mass_ratio : float = collider.mass / player_weight
-			mass_ratio = max(0.5, mass_ratio)
-
-			var push_dir : Vector3 = (collider.global_position - global_position).normalized()
-			var push_strength : float = max(velocity.length(), player_to_obj_strength) / mass_ratio
-			var push_force : Vector3 = Vector3((push_dir * push_strength).x, 0.0, (push_dir * push_strength).z)
-			
-			var col_contact : Vector3 = push_shape.get_collision_point(i) - collider.global_position
-			collider.apply_force(push_force, col_contact)
 
 func set_viewing_mode() -> void:
 	if not is_on_floor(): return
@@ -328,6 +304,22 @@ func set_viewing_mode() -> void:
 	else:
 		player_state = PlayerState.IDLE_STAND
 
+#Push small objects around feet
+func apply_push_forces(push_shape: ShapeCast3D):
+	push_shape.target_position = get_local_movement_dir() * 0.15
+	for i in push_shape.get_collision_count():
+		var collider = push_shape.get_collider(i)
+		if collider is RigidBody3D:
+			var mass_ratio : float = collider.mass / player_weight
+			mass_ratio = max(0.5, mass_ratio)
+
+			var push_dir : Vector3 = (collider.global_position - global_position).normalized()
+			var push_strength : float = max(velocity.length(), feet_push_obj_strength) / mass_ratio
+			var push_force : Vector3 = Vector3((push_dir * push_strength).x, 0.0, (push_dir * push_strength).z)
+			
+			var col_contact : Vector3 = push_shape.get_collision_point(i) - collider.global_position
+			collider.apply_force(push_force, col_contact)
+
 func play_death_animation(target_pos: Vector3) -> void:
 	e_right_step.volume = 0
 	e_left_step.volume = 0
@@ -336,7 +328,7 @@ func play_death_animation(target_pos: Vector3) -> void:
 	global_position = (target_pos + Vector3(-3, 2, 0))
 	rotation = Vector3(0,deg_to_rad(-100),0)
 	player_camera.rotation = Vector3.ZERO
-	set_camera_locked(true)
+	lock_player_camera(true)
 
 func updatePlayerSound(_player_state: PlayerState) -> void:
 	match _player_state:
@@ -367,7 +359,7 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	e_left_step.play_one_shot()
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
-	
+
 func play_crouch_sound():
 	if is_crouching: return
 	is_crouching = true

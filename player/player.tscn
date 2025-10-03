@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=10 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/reticles/white_reticle.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/reticles/tile_0155.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/reticles/tile_0156.png" id="4_g6k8r"]
-[ext_resource type="Shader" uid="uid://bygn8p8ivfrb5" path="res://shaders/note_fade.gdshader" id="5_boad6"]
-[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_hint.tscn" id="5_rgyib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.05
@@ -18,22 +16,6 @@ height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
 radius = 3.98299
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg6s5"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_g6k8r"]
-lightmap_size_hint = Vector2i(11, 6)
-material = SubResource("StandardMaterial3D_hg6s5")
-radius = 0.3
-height = 0.6
-radial_segments = 4
-rings = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgyib"]
-shader = ExtResource("5_boad6")
-shader_parameter/rect_width_px = 960.0
-shader_parameter/fade_width_px = 240.0
-shader_parameter/fade_strength = 0.745
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
 radius = 0.15
@@ -93,63 +75,16 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="KeepNoteCameraUpdated" type="RemoteTransform3D" parent="Head/Eyes/Camera3D"]
-remote_path = NodePath("../../../SubViewportContainer/SubViewport/NoteCamera")
 
 [node name="Chest" type="Marker3D" parent="Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.033379674, -0.35738713)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="NoteCamera" type="Camera3D" parent="Head/SubViewportContainer/SubViewport"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5999999, 0)
-cull_mask = 2
-fov = 90.0
-
-[node name="NoteHand" type="Marker3D" parent="Head/SubViewportContainer/SubViewport/NoteCamera"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.25, -0.75)
-
-[node name="LightViewport" type="SubViewport" parent="."]
-unique_name_in_owner = true
-handle_input_locally = false
-size = Vector2i(16, 16)
-render_target_update_mode = 4
-
-[node name="LightDetection" type="Node3D" parent="LightViewport"]
-unique_name_in_owner = true
-
-[node name="LightCamera" type="Camera3D" parent="LightViewport/LightDetection"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.29339, 0)
-fov = 20.0
-size = 0.7
-far = 1.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LightViewport/LightDetection"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.85, 0)
-layers = 524288
-mesh = SubResource("SphereMesh_g6k8r")
-
 [node name="GUI" type="Node" parent="."]
 
 [node name="ReticleLayer" type="CanvasLayer" parent="GUI"]
 
-[node name="Control" type="Control" parent="GUI/ReticleLayer"]
+[node name="Reticles" type="Control" parent="GUI/ReticleLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,8 +92,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
+[node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
@@ -166,15 +102,16 @@ offset_bottom = 40.0
 texture = ExtResource("2_g1dw6")
 stretch_mode = 3
 
-[node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
+[node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_qjkh3")
 
-[node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Control"]
+[node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
@@ -183,82 +120,25 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_g6k8r")
 
-[node name="Debug" type="Label" parent="GUI/ReticleLayer/Control"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/ReticleLayer/Control"]
-layout_mode = 1
+[node name="InteractionControlPanel" type="MarginContainer" parent="GUI/CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -72.0
+offset_bottom = 68.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 22
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/ReticleLayer/Control/MarginContainer"]
+[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 1
-
-[node name="InteractionHint" parent="GUI/ReticleLayer/Control/MarginContainer/VBoxContainer" instance=ExtResource("5_rgyib")]
-layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
-
-[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
-
-[node name="NoteOverlay" type="Control" parent="GUI/CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BlackOverlay" type="ColorRect" parent="GUI/CanvasLayer/NoteOverlay"]
-material = SubResource("ShaderMaterial_rgyib")
-layout_mode = 0
-offset_left = 960.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
-
-[node name="Control" type="Control" parent="GUI/CanvasLayer/NoteOverlay"]
-anchors_preset = 0
-offset_left = 1205.0
-offset_top = 21.0
-offset_right = 1893.0
-offset_bottom = 1062.0
-
-[node name="NoteContent" type="RichTextLabel" parent="GUI/CanvasLayer/NoteOverlay/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -513.5
-offset_bottom = 517.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "test text is typed here
-
-
-test"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="InteractionController" parent="." instance=ExtResource("2_rkbax")]
 unique_name_in_owner = true
@@ -272,6 +152,7 @@ fmod_parameters/terrain/id = 5162296383277836654
 fmod_parameters/terrain = "grass"
 fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
 fmod_parameters/terrain/variant_type = 4
+unique_name_in_owner = true
 
 [node name="SFX_LeftStep" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/SFX/Girl/Step/Left"
@@ -280,6 +161,7 @@ fmod_parameters/terrain/id = 5162296383277836654
 fmod_parameters/terrain = "grass"
 fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
 fmod_parameters/terrain/variant_type = 4
+unique_name_in_owner = true
 
 [node name="SFX_Stand" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/SFX/Girl/Crouch"
@@ -288,6 +170,7 @@ fmod_parameters/stance/id = 4732078636444294086
 fmod_parameters/stance = "stand"
 fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
 fmod_parameters/stance/variant_type = 4
+unique_name_in_owner = true
 
 [node name="SFX_Crouch" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/SFX/Girl/Crouch"
@@ -296,8 +179,10 @@ fmod_parameters/stance/id = 4732078636444294086
 fmod_parameters/stance = "crouch"
 fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
 fmod_parameters/stance/variant_type = 4
+unique_name_in_owner = true
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+[node name="FeetPushShapeCast" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
 shape = SubResource("SphereShape3D_g6k8r")
 target_position = Vector3(0, 0, 0)

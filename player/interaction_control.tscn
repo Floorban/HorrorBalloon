@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cgy2ke6mlhmar"]
 
-[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="1_7envl"]
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="1_tns3k"]
 
-[node name="InteractionHint" type="PanelContainer"]
+[node name="InteractionControl" type="PanelContainer"]
 offset_right = 122.0
 offset_bottom = 55.0
 size_flags_horizontal = 4
@@ -22,7 +22,7 @@ theme_override_constants/separation = 15
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-texture = ExtResource("1_7envl")
+texture = ExtResource("1_tns3k")
 expand_mode = 1
 stretch_mode = 4
 

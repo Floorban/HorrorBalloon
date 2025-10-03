@@ -9,13 +9,10 @@ class_name InteractionController
 @onready var hand: Marker3D = %Hand
 @onready var chest: Marker3D = %Chest
 
-@onready var note_hand: Marker3D = %NoteHand
 @onready var default_reticle: TextureRect = %DefaultReticle
 @onready var highlight_reticle: TextureRect = %HighlightReticle
 @onready var interacting_reticle: TextureRect = %InteractingReticle
 @onready var interactable_check: Area3D = $"../InteractableCheck"
-@onready var note_overlay: Control = %NoteOverlay
-@onready var note_content: RichTextLabel = %NoteContent
 
 @onready var outline_material: Material = preload("res://materials/item_highlighter.tres")
 
@@ -103,19 +100,6 @@ func _process(_delta: float) -> void:
 				_unfocus()
 		else:
 			_unfocus()
-			
-func _input(event: InputEvent) -> void:
-	if is_note_overlay_display and event.is_action_pressed("primary"):
-		note_overlay.visible = false
-		is_note_overlay_display = false
-		var children = note_hand.get_children()
-		for child in children:
-			#note_interaction_component.secondary_audio_player.play()
-			#if note_interaction_component.secondary_se:
-				#note_interaction_component.secondary_audio_player.play()
-				#child.visible = false
-				#await note_interaction_component.secondary_audio_player.finished
-			child.queue_free()
 
 ## Determines if the object the player is interacting with should stop mouse camera movement
 func isCameraLocked() -> bool:
@@ -140,19 +124,6 @@ func _unfocus() -> void:
 func _on_item_collected(item: Node):
 	# TODO: INVENTORY SYSTEM would handle storing this item here.
 	print("Player Collected: ", item)
-	
-func _on_note_collected(note: Node3D):
-	# Reparent Note to the Hand
-	note.get_parent().remove_child(note)
-	note_hand.add_child(note)
-	note.transform.origin = note_hand.transform.origin
-	note.position = Vector3(0.0,0.0,0.0)
-	note.rotation_degrees = Vector3(90,10,0)
-	note_overlay.visible = true
-	is_note_overlay_display = true
-	note_interaction_component = note.get_node_or_null("InteractionComponent")
-	note_content.bbcode_enabled=true
-	note_content.text = note_interaction_component.content
 
 ## Called when a collectible item is within range of the player
 func _collectible_item_entered_range(body: Node3D) -> void:
