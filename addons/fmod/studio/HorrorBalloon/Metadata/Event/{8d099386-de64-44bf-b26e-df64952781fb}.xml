@@ -238,11 +238,7 @@
 			<value>10</value>
 		</property>
 	</object>
-	<object class="GainEffect" id="{62b38315-188a-4cd8-a3ce-e033a00d5dcc}">
-		<property name="gain">
-			<value>10</value>
-		</property>
-	</object>
+	<object class="GainEffect" id="{62b38315-188a-4cd8-a3ce-e033a00d5dcc}" />
 	<object class="ThreeEQEffect" id="{457da9e3-8f3f-4a94-ad1d-97bafb509524}">
 		<property name="lowGain">
 			<value>-37</value>

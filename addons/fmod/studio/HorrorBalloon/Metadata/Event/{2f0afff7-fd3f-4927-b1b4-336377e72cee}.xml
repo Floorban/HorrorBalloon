@@ -109,6 +109,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1f348d29-10bf-4fe4-8bd5-39ea35430257}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{9cb07919-26c5-4661-b964-a04911d216fb}</destination>
 		</relationship>
@@ -242,7 +245,6 @@
 	<object class="MixerBusEffectChain" id="{9cb07919-26c5-4661-b964-a04911d216fb}">
 		<relationship name="effects">
 			<destination>{f91e6fa6-4acd-409a-b979-1069d584080e}</destination>
-			<destination>{4ff284a9-fe12-45aa-8e85-040a63e14127}</destination>
 			<destination>{3522ec2f-b18a-46f0-afeb-101ca12e32b1}</destination>
 		</relationship>
 	</object>
@@ -309,24 +311,23 @@
 	</object>
 	<object class="MixerBusPanner" id="{6df21ece-2c02-4343-b192-565e2af2a69d}" />
 	<object class="MixerBusFader" id="{f91e6fa6-4acd-409a-b979-1069d584080e}" />
-	<object class="GainEffect" id="{4ff284a9-fe12-45aa-8e85-040a63e14127}">
-		<property name="gain">
-			<value>10</value>
-		</property>
-	</object>
 	<object class="ThreeEQEffect" id="{3522ec2f-b18a-46f0-afeb-101ca12e32b1}">
 		<property name="lowGain">
-			<value>-11.5</value>
+			<value>-11</value>
 		</property>
 		<property name="midGain">
 			<value>-80</value>
 		</property>
 		<property name="highGain">
-			<value>10</value>
+			<value>-6.5</value>
 		</property>
 		<property name="highCrossover">
 			<value>2100</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{3fdbe705-892b-47d6-9c4f-1e169a451879}</destination>
+			<destination>{9d6fb8e8-a1f3-4d36-85cc-945796d9c176}</destination>
+		</relationship>
 	</object>
 	<object class="AutomationPoint" id="{a7162202-406c-41dd-807b-61d8e04e8a18}">
 		<property name="position">
@@ -427,6 +428,40 @@
 		<relationship name="modulators">
 			<destination>{51cc1444-f3c8-4c86-bf65-cee3dc319c3a}</destination>
 		</relationship>
+	</object>
+	<object class="LFOModulator" id="{3fdbe705-892b-47d6-9c4f-1e169a451879}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>lowGain</value>
+		</property>
+		<property name="shape">
+			<value>6</value>
+		</property>
+		<property name="phase">
+			<value>22</value>
+		</property>
+		<property name="depth">
+			<value>18.5</value>
+		</property>
+		<property name="direction">
+			<value>-100</value>
+		</property>
+	</object>
+	<object class="LFOModulator" id="{9d6fb8e8-a1f3-4d36-85cc-945796d9c176}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>highGain</value>
+		</property>
+		<property name="shape">
+			<value>6</value>
+		</property>
+		<property name="phase">
+			<value>114</value>
+		</property>
+		<property name="depth">
+			<value>17</value>
+		</property>
+		<property name="direction">
+			<value>-100</value>
+		</property>
 	</object>
 	<object class="LFOModulator" id="{fb2edf88-d718-456d-98a1-c5e47314a011}">
 		<property name="nameOfPropertyBeingModulated">
