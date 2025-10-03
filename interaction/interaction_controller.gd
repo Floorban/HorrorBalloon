@@ -8,27 +8,30 @@ class_name InteractionController
 @onready var player_camera: Camera3D = %Camera3D
 var current_object: Object
 var last_potential_object: Object
-var interaction_component: Node
+var interaction_component: InteractionComponent
 
 @onready var hand: Marker3D = %Hand
 @onready var chest: Marker3D = %Chest
 
 # UI
+var is_focused: bool = false
 @onready var default_reticle: TextureRect = %DefaultReticle
 @onready var highlight_reticle: TextureRect = %HighlightReticle
 @onready var interacting_reticle: TextureRect = %InteractingReticle
 @onready var interactable_check: Area3D = $"../InteractableCheck"
 
-@onready var ui_spawn_root: VBoxContainer = %InteractionControlSpawnRoot
-@onready var interaction_ui: PackedScene = preload("uid://cgy2ke6mlhmar")
+@onready var ui_spawn_root: Control = %InteractionControlSpawnRoot
+@onready var interaction_ui_scene: PackedScene = preload("uid://cgy2ke6mlhmar")
 
 @onready var outline_material: Material = preload("res://materials/item_highlighter.tres")
 
 func ui_init() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	var screen_size = get_viewport().get_visible_rect().size
 	default_reticle.position = screen_size / 2 - default_reticle.texture.get_size() / 2
 	highlight_reticle.position = screen_size / 2 - highlight_reticle.texture.get_size() / 2
 	interacting_reticle.position = screen_size / 2 - interacting_reticle.texture.get_size() / 2
+	interaction_ui_clear()
 
 func _ready() -> void:
 	interactable_check.body_entered.connect(_collectible_item_entered_range)
@@ -116,17 +119,23 @@ func is_cam_locked() -> bool:
 
 #image: Texture2D, prompt: String
 func interaction_ui_init() -> void:
-	ui_spawn_root.visible = true
-	var ui_instance = interaction_ui.instantiate()
-	ui_spawn_root.add_child(ui_instance)
+	if not interaction_component or interaction_component.ui_set.size() <= 0: return
+	ui_spawn_root.get_parent().visible = true
+	for ui_data in interaction_component.ui_set:
+		var ui_instance = interaction_ui_scene.instantiate()
+		ui_spawn_root.add_child(ui_instance)
+		if ui_instance.has_method("init_data"): ui_instance.init_data(ui_data)
 
 func interaction_ui_clear() -> void:
-	ui_spawn_root.visible = false
-	for ui in ui_spawn_root.get_children():
-		ui.queue_free()
+	ui_spawn_root.get_parent().visible = false
+	if ui_spawn_root.get_children().size() > 0:
+		for ui in ui_spawn_root.get_children(): ui.queue_free()
 
 ## Called when the player is looking at an interactable objects
 func _focus() -> void:
+	if is_focused:
+		return
+	is_focused = true
 	default_reticle.visible = false
 	highlight_reticle.visible = true
 	interacting_reticle.visible = false
@@ -134,6 +143,9 @@ func _focus() -> void:
 
 ## Called when the player is NOT looking at an interactable objects
 func _unfocus() -> void:
+	if not is_focused:
+		return
+	is_focused = false
 	default_reticle.visible = true
 	highlight_reticle.visible = false
 	interacting_reticle.visible = false
@@ -149,7 +161,7 @@ func _collectible_item_entered_range(body: Node3D) -> void:
 	# TODO: Use Collision layers to ignore collisions with the player
 	if body.name != "Player":
 		var ic = body.get_node_or_null("InteractionComponent")
-		if ic and ic is InteractionCollectable:
+		if ic and ic is InteractionComponent:
 			var mesh: MeshInstance3D = body.find_child("MeshInstance3D", true, false)
 			mesh.material_overlay = outline_material
 

@@ -3,6 +3,7 @@ class_name InteractionDoor
 
 @export_category("Door Settings")
 # Door Variables
+@export var pivot_point: Node3D
 var door_angle: float = 0.0
 var door_velocity: float = 0.0
 @export var door_smoothing: float = 80.0

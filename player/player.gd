@@ -90,7 +90,6 @@ func player_init() -> void:
 	cam_original_position = player_camera.position
 	cam_original_rotation = player_camera.rotation_degrees
 	base_head_y = head.position.y
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _ready() -> void:
 	player_init()

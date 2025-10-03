@@ -112,6 +112,7 @@ stretch_mode = 3
 
 [node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
@@ -139,13 +140,24 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 22
 
-[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+[node name="Background" type="PanelContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer/InteractionControlPanel/Background"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel/Background/MarginContainer"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_constants/separation = 5
-alignment = 1
+theme_override_constants/separation = 10
 
 [node name="Audio" type="Node3D" parent="."]
 

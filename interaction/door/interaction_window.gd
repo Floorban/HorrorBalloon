@@ -10,7 +10,7 @@ var is_front: bool
 var window_opened: bool = false
 
 # Movement thresholds
-@export var max_height_offset: float = 0.6
+@export var max_height_offset: float = 0.5
 var window_creak_velocity_threshold: float = 0.002
 var open_height_threshold: float = 0.2
 var close_snap_range: float = 0.05
@@ -26,14 +26,14 @@ var maximum_height: float
 
 func _ready():
 	super._ready()
-	starting_height = pivot_point.position.y
+	starting_height = object_ref.position.y
 	maximum_height = starting_height + max_height_offset
 
 func _process(delta):
 	if was_just_unlocked:
 		window_velocity = 0.0
 		window_input_active = false
-		pivot_point.position.y = starting_height
+		object_ref.position.y = starting_height
 		window_height = starting_height
 		was_just_unlocked = false
 	else:
@@ -45,13 +45,13 @@ func _process(delta):
 		if is_locked:
 			var lock_wiggle: float = 0.02
 			window_height = clamp(window_height, starting_height, starting_height + lock_wiggle)
-			pivot_point.position.y = window_height
+			object_ref.position.y = window_height
 			
 			if window_input_active and prev_window_height != window_height:
 				window_input_active = false
 		else:
 			window_height = clamp(window_height, starting_height, maximum_height)
-			pivot_point.position.y = window_height
+			object_ref.position.y = window_height
 			window_input_active = false
 
 			if prev_window_height != window_height:
@@ -86,7 +86,7 @@ func unlock() -> void:
 	window_velocity = 0.0
 	window_input_active = false
 	window_height = starting_height
-	pivot_point.position.y = starting_height
+	object_ref.position.y = starting_height
 
 ## Fires when the player is interacting with it
 func update_window_sounds(_delta: float) -> void:

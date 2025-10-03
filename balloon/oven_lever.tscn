@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://blfnyuhr4qq41"]
+[gd_scene load_steps=10 format=3 uid="uid://blfnyuhr4qq41"]
 
 [ext_resource type="ArrayMesh" uid="uid://beww380wtxg3d" path="res://assets/stolen/torch.res" id="1_mns2s"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_7crer"]
 [ext_resource type="Script" uid="uid://cnlu27fc4vjhy" path="res://interaction/switch/interaction_switch.gd" id="3_2unyq"]
+[ext_resource type="Script" uid="uid://bd1dhdqfubwrg" path="res://interaction/interaction_ui_data.gd" id="4_yeh3m"]
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="5_rqx53"]
+[ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://Survival/Textures/Rock.jpg" id="6_rqx53"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7crer"]
 points = PackedVector3Array(0.015589661, 0.0032238308, 0.1566835, -9.313226e-09, 0.014552815, 0.1566835, -9.313226e-09, 0.008831721, 0.16729298, 0.010147926, 0.0014561266, 0.16729298, 0.0062718736, -0.010473704, 0.16729298, 0.009632138, -0.015100503, 0.1566835, 0.004846583, -0.0066741547, -0.025565617, 0.007843659, 0.0025475156, -0.025565617, -9.313226e-09, 0.008248292, -0.025565617, -0.01558968, 0.0032238308, 0.1566835, -0.010150997, 0.0014561266, 0.16729298, -0.007846728, 0.0025475156, -0.025565617, -0.0062749432, -0.010473704, 0.16729298, -0.009635206, -0.015100503, 0.1566835, -0.0048496537, -0.0066741547, -0.025565617)
+
+[sub_resource type="Resource" id="Resource_kqr0m"]
+script = ExtResource("4_yeh3m")
+icon = ExtResource("6_rqx53")
+prompt = "up is burn, down is efaf"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_wao8h"]
+script = ExtResource("4_yeh3m")
+icon = ExtResource("5_rqx53")
+prompt = "drrraaag"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [node name="OvenLever" type="Node3D"]
 
@@ -23,7 +38,7 @@ skeleton = NodePath("../../..")
 transform = Transform3D(-2.1855695e-07, 0, -5, 0, 5, 0, 5, 0, -2.1855695e-07, 0, 0, 0.02075439)
 shape = SubResource("ConvexPolygonShape3D_7crer")
 
-[node name="InteractionComponent" parent="StaticBody3D" node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("2_7crer")]
+[node name="InteractionComponent" parent="StaticBody3D" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_7crer")]
 script = ExtResource("3_2unyq")
+ui_set = Array[ExtResource("4_yeh3m")]([SubResource("Resource_kqr0m"), SubResource("Resource_wao8h")])
 object_ref = NodePath("../..")
-pivot_point = NodePath("..")
