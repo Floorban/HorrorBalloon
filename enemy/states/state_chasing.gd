@@ -21,7 +21,7 @@ func ready():
 	$"../../Audio/Screech".set_parameter(hatred, rng.randf_range(0.0, 100.0))
 	$"../../Audio/Screech".set_parameter(terror, rng.randf_range(0.0, 100.0))
 
-func enter(previous_state_name: String, data := {}) -> void:
+func enter(_previous_state_name: String, _data := {}) -> void:
 	$"../../Audio/Screech".set_parameter("Status", "Chasing")
 	_chase_timer = chase_max_time
 

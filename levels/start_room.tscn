@@ -140,10 +140,6 @@ transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-
 [node name="ClimbEdge" parent="." instance=ExtResource("4_g25at")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6542552, 0)
 
-[node name="InteractionComponent" parent="ClimbEdge" index="4"]
-viewing_offet = null
-viewing_zoom = null
-
 [node name="ClimbEdge2" parent="." instance=ExtResource("4_g25at")]
 transform = Transform3D(-0.6284791, 0, 0.7778264, 0, 1, 0, -0.7778264, 0, -0.6284791, 2.731402, -1.6542552, 0.19354363)
 

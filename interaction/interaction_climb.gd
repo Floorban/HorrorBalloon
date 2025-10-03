@@ -25,8 +25,9 @@ func check_player_side(interact_ray: RayCast3D) -> void:
 func _ready() -> void:
 	super._ready()
 	can_interact = false
-	interact_area.body_entered.connect(_on_player_check_body_entered)
-	interact_area.body_exited.connect(_on_player_check_body_exited)
+	if interact_area:
+		interact_area.body_entered.connect(_on_player_entered)
+		interact_area.body_exited.connect(_on_player_exited)
 
 func _input(event):
 	if not is_interacting: return
@@ -67,23 +68,26 @@ func interact() -> void:
 			is_occupied = true
 
 func go_to_exit() -> void:
+	if not player: return
+	player.set_viewing_mode()
 	player.global_transform.origin = target_pos
 	is_interacting = false
 	is_occupied = false
 
 func hold_edge() -> void:
-	if player:
-		player.set_viewing_settings(viewing_offet, viewing_zoom)
-		player.set_viewing_mode()	
+	if not player: return
+	player.set_viewing_settings(viewing_offet, viewing_zoom)
+	player.set_viewing_mode()
 	hold_time = 0.0
 
-func _on_player_check_body_entered(body: Node3D) -> void:
+func _on_player_entered(body: Node3D) -> void:
 	if body is PlayerController:
 		can_interact = true
 
-func _on_player_check_body_exited(body: Node3D) -> void:
+func _on_player_exited(body: Node3D) -> void:
 	if body is PlayerController:
 		can_interact = false
+		body.interaction_controller._unfocus()
 
 func _get_property_list() -> Array[Dictionary]:
 	var ret: Array[Dictionary] = []

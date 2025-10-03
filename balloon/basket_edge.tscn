@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv46576oyc5s4"]
+
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_8wilv"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="4_8sgpj"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_rkblm"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="6_pwly1"]
+[ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="7_wnxmg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_886i1"]
+size = Vector3(0.23242188, 0.7912903, 1.8173828)
+
+[sub_resource type="Resource" id="Resource_j0nhb"]
+script = ExtResource("5_rkblm")
+icon = ExtResource("6_pwly1")
+prompt = "Peak"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_iqv37"]
+script = ExtResource("5_rkblm")
+icon = ExtResource("7_wnxmg")
+prompt = "Cross"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
+size = Vector3(1.2011719, 0.3046875, 1.1679688)
+
+[node name="BasketEdge" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23890686, 0)
+shape = SubResource("BoxShape3D_886i1")
+
+[node name="Exit1" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45745957, 0.0061983466, 0)
+
+[node name="Exit2" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46640205, 0.0061983466, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("3_8wilv")]
+script = ExtResource("4_8sgpj")
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("5_rkblm")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+shape = SubResource("BoxShape3D_5j1qt")

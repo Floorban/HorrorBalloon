@@ -17,10 +17,6 @@ var player_is_out := false
 func _ready() -> void:
 	super._ready()
 	can_interact = false
-	var balloon : BalloonController = get_tree().get_first_node_in_group("balloon")
-	if balloon:
-		balloon.player_entered.connect(player_has_entered)
-		balloon.player_exited.connect(player_has_exited)
 
 func _input(event):
 	if not is_interacting: return

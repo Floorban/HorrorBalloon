@@ -253,7 +253,6 @@ func update_cam_movement(delta: float) -> void:
 	elif player_state == PlayerState.IDLE_STAND:
 		can_move = true
 		eyes.position.z = lerp(eyes.position.y, 0.0, delta*lerp_speed/2.0)
-
 		head.position.y = lerp(head.position.y, base_head_y, delta*lerp_speed)
 		player_camera.fov = lerp(player_camera.fov, base_fov, delta*lerp_speed)
 		head_bobbing_current_intensity = head_bobbing_walking_intensity
@@ -271,13 +270,15 @@ func update_cam_movement(delta: float) -> void:
 	elif player_state == PlayerState.VIEWING:
 		can_move = false
 		current_sensitivity = current_sensitivity / 2.0
-		var local_rot = rotation_degrees
-		# Normalize to -180 to 180 (so the cam doesn't revert to left when all the way right, vice versa)
-		local_rot.y = fposmod(local_rot.y, 180.0)
-		local_rot.y = clamp(local_rot.y, viewing_yaw_origin - 50.0, viewing_yaw_origin + 50.0)
+		
+		var relative_yaw = rotation_degrees.y - viewing_yaw_origin
+		relative_yaw = fposmod(relative_yaw + 180.0, 360.0) - 180.0
+		relative_yaw = clamp(relative_yaw, -50.0, 50.0)
+		rotation_degrees.y = viewing_yaw_origin + relative_yaw
+		
 		eyes.position.y = lerp(eyes.position.y, viewing_offet.y, delta*lerp_speed/4.0)
 		eyes.position.z = lerp(eyes.position.z, viewing_offet.z, delta*lerp_speed/4.0)
-		player_camera.fov = lerp(player_camera.fov, base_fov * viewing_zoom, delta*lerp_speed/2.0)
+		player_camera.fov = lerp(player_camera.fov, base_fov * viewing_zoom, delta*lerp_speed/3.0)
 		
 	head_bobbing_vector.y = sin(head_bobbing_index)
 	head_bobbing_vector.x = (sin(head_bobbing_index/2.0))
@@ -296,7 +297,7 @@ func lock_player_camera(locked: bool) -> void:
 		sensitivity_fading_in = true
 
 func apply_player_camera_sway(tilt: Vector3):
-	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
+	var sway = Vector3(-tilt.x * 0.25, 0.0, -tilt.z * 0.25)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
 
 func set_viewing_settings(target_offset : Vector3 = Vector3(0, 5.0, -0.5), target_zoom : float = 0.8) -> void:
