@@ -91,7 +91,10 @@ func check_potential_interactables() -> void:
 				
 				if interaction_component is InteractionCollectable:
 					interaction_component.connect("item_collected", Callable(self, "_on_item_collected"))
-					
+				
+				if interaction_component is InteractionClimb:
+					interaction_component.check_player_side(interaction_raycast)
+				
 				if interaction_component is InteractionDoor:
 					interaction_component.set_direction(balloon.objs_in_balloon.has(balloon.player))
 		else: 

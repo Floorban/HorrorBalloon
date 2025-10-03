@@ -23,6 +23,15 @@ radius = 3.98299
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjkh3"]
 bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.003519166, 0.0035191693, 0.0035191625, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true

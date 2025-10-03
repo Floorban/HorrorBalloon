@@ -1,21 +1,17 @@
-[gd_scene load_steps=33 format=3 uid="uid://teq6yccg8gfb"]
+[gd_scene load_steps=25 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
 [ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://Survival/Textures/Rock.jpg" id="2_cfm6c"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="3_n085v"]
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="4_421my"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="4_886i1"]
+[ext_resource type="PackedScene" uid="uid://coo4eh02kt2xq" path="res://balloon/climb_edge.tscn" id="4_g25at"]
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="5_4wh7y"]
 [ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="5_g25at"]
 [ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="6_4b5ck"]
-[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="6_fc33q"]
 [ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="7_fc33q"]
-[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="7_n2a5e"]
 [ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="8_n2a5e"]
-[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="8_qftyv"]
-[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="9_6ioy8"]
 [ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="9_qftyv"]
-[ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="10_qftyv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wkf7w"]
 size = Vector2(7, 3)
@@ -51,26 +47,6 @@ size = Vector3(0.163, 2, 1.153)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5qjer"]
 size = Vector3(0.098, 2, 0.999)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qjer"]
-albedo_color = Color(0.46229059, 0.46229059, 0.46229059, 1)
-albedo_texture = ExtResource("4_421my")
-uv1_scale = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_886i1"]
-size = Vector3(0.5932617, 0.10797119, 2.0230408)
-
-[sub_resource type="Resource" id="Resource_j0nhb"]
-script = ExtResource("8_qftyv")
-icon = ExtResource("9_6ioy8")
-prompt = "Peak"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
-[sub_resource type="Resource" id="Resource_iqv37"]
-script = ExtResource("8_qftyv")
-icon = ExtResource("10_qftyv")
-prompt = "Cross"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dd2j"]
 albedo_color = Color(0.66245234, 0.66245234, 0.6624523, 1)
@@ -161,27 +137,11 @@ shape = SubResource("BoxShape3D_4wh7y")
 [node name="Oven" parent="." instance=ExtResource("3_n085v")]
 transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 4.697576, -1.919863, -0.50978476)
 
-[node name="CrossOver" type="Node3D" parent="."]
+[node name="ClimbEdge" parent="." instance=ExtResource("4_g25at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6542552, 0)
 
-[node name="Edge" type="StaticBody3D" parent="CrossOver"]
-collision_layer = 5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CrossOver/Edge"]
-transform = Transform3D(1.0062852, 1.6510378, 0, -3.0470066, 0.5452614, 0, 0, 0, 2.1037245, 1.4450414, -1.7819891, 0)
-material_override = SubResource("StandardMaterial3D_5qjer")
-mesh = ExtResource("5_4wh7y")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CrossOver/Edge"]
-transform = Transform3D(0.31359473, 0.94955695, 0, -0.94955695, 0.31359473, 0, 0, 0, 1, 1.4818438, -1.7394961, -0.0129852295)
-shape = SubResource("BoxShape3D_886i1")
-
-[node name="InteractionComponent" parent="CrossOver/Edge" node_paths=PackedStringArray("object_ref") instance=ExtResource("6_fc33q")]
-script = ExtResource("7_n2a5e")
-_hold_to_switch = true
-_hold_duration = 0.3
-ui_set = Array[ExtResource("8_qftyv")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
-object_ref = NodePath("../..")
+[node name="ClimbEdge2" parent="." instance=ExtResource("4_g25at")]
+transform = Transform3D(-0.6284791, 0, 0.7778264, 0, 1, 0, -0.7778264, 0, -0.6284791, 2.731402, -1.6542552, 0.19354363)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0762866, 1.714971, -0.3430715, -3.193403, -0.013602767, 0.20566256, 0.30531982, 0.2862255, 2.0653477, 1.4450414, -1.6348191, -1.0982673)
