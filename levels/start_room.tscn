@@ -152,7 +152,7 @@ material_override = SubResource("StandardMaterial3D_6dd2j")
 mesh = ExtResource("5_4wh7y")
 
 [node name="Resources" type="Node3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 2.8581605, -1.5541602, -2.292796)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 2.8581605, -1.5541602, -1.717271)
 
 [node name="Log1" parent="Resources" instance=ExtResource("4_886i1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5155983, -0.5535852, 0.3733605)
@@ -164,19 +164,19 @@ transform = Transform3D(0.8694777, 0, 0.4939722, 0.30999497, 0.77857184, -0.5456
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13526821, -0.65198267, -0.2922927)
 
 [node name="Log5" parent="Resources" instance=ExtResource("5_g25at")]
-transform = Transform3D(0.5194296, 0, -0.8545132, 0, 1, 0, 0.8545132, 0, 0.5194296, 0.31174183, -0.6519828, 0.22617185)
+transform = Transform3D(0.5194296, 0, -0.85451317, 0, 0.99999994, 0, 0.85451317, 0, 0.5194296, 1.252285, -0.6519828, 0.22617173)
 
 [node name="Log3" parent="Resources" instance=ExtResource("6_4b5ck")]
 transform = Transform3D(0.78046316, 0, -0.6252018, 0, 1, 0, 0.6252018, 0, 0.78046316, 0.25015974, -0.65198267, -0.2922927)
 
 [node name="Plank1" parent="Resources" instance=ExtResource("7_fc33q")]
-transform = Transform3D(-0.6355258, 0, -0.7720796, 0, 1, 0, 0.7720796, 0, -0.6355258, -0.0834713, -0.31480348, 0.031168818)
+transform = Transform3D(-0.63552576, 0, -0.7720795, 0, 0.99999994, 0, 0.7720795, 0, -0.63552576, -0.89173937, -0.3148036, 0.031168938)
 
 [node name="Plank4" parent="Resources" instance=ExtResource("7_fc33q")]
 transform = Transform3D(-0.06825894, 0, -0.9976677, 0, 1, 0, 0.9976677, 0, -0.06825894, 0.1543541, -0.31480348, -0.32621157)
 
 [node name="Plank2" parent="Resources" instance=ExtResource("8_n2a5e")]
-transform = Transform3D(0.82426465, 0, 0.5662049, 0.55424756, 0.20442772, -0.8068574, -0.11574799, 0.9788818, 0.16850254, 0.20203495, -0.31480348, 0.031168818)
+transform = Transform3D(0.8242646, 0, 0.5662049, 0.55424756, 0.2044277, -0.80685735, -0.11574799, 0.9788817, 0.16850252, 0.20203495, -0.3148036, 0.80812097)
 
 [node name="Plank3" parent="Resources" instance=ExtResource("9_qftyv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6707592, -0.31480348, 0.031168818)

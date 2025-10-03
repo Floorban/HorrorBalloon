@@ -5,7 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bfliashiuet1k" path="res://assets/stolen/props/pole_001.obj" id="2_0k1tm"]
 [ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_j6m3c"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_3qh3i"]
-[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="6_fbbtr"]
+[ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="6_3qh3i"]
 [ext_resource type="Texture2D" uid="uid://b6hk3xhtgseyb" path="res://assets/ui/mouse_right_button.png" id="7_jle51"]
 [ext_resource type="Texture2D" uid="uid://c3kiqqhiwopwf" path="res://assets/ui/mouse_scroll.png" id="8_vr6gl"]
 
@@ -18,8 +18,8 @@ radius = 0.12451172
 
 [sub_resource type="Resource" id="Resource_67s4j"]
 script = ExtResource("5_3qh3i")
-icon = ExtResource("6_fbbtr")
-prompt = "Hold"
+icon = ExtResource("6_3qh3i")
+prompt = "+ R = Rotate"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="Resource" id="Resource_157fb"]
@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 [node name="Log1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
 linear_damp = 1.0
-angular_damp = 1.0
+angular_damp = 10.0
 script = ExtResource("1_fgl1q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

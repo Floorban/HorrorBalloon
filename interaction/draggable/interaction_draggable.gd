@@ -23,11 +23,6 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if not is_interacting: return
-
-	if event.is_action_pressed("wheel_up"):
-		drag_distance = clamp(drag_distance + drag_step, min_drag_distance, max_drag_distance)
-	elif event.is_action_pressed("wheel_down"):
-		drag_distance = clamp(drag_distance - drag_step, min_drag_distance, max_drag_distance)
 	
 	if event.is_action_pressed("rotate_object"):
 		rotating = true
@@ -42,16 +37,23 @@ func _input(event) -> void:
 		var rot_y := mouse_motion.x * rotation_speed
 		object_ref.rotate(Vector3.UP, rot_y)
 		object_ref.rotate(Vector3.RIGHT, rot_x)
+	
+	if not rotating:
+		if event.is_action_pressed("wheel_up"):
+			drag_distance = clamp(drag_distance + drag_step, min_drag_distance, max_drag_distance)
+		elif event.is_action_pressed("wheel_down"):
+			drag_distance = clamp(drag_distance - drag_step, min_drag_distance, max_drag_distance)
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
 	player.hold_back_speed = -object_ref.mass / 5.0
+	#drag_distance = -0.3
 	drag_distance = (player_hand.global_position - object_ref.global_position).length()
-	object_ref.set_collision_layer_value(1, false)
-	object_ref.axis_lock_angular_x = true
-	object_ref.axis_lock_angular_y = true
-	object_ref.axis_lock_angular_z = true
+	#object_ref.set_collision_layer_value(1, false)
+	#object_ref.axis_lock_angular_x = true
+	#object_ref.axis_lock_angular_y = true
+	#object_ref.axis_lock_angular_z = true
 
 func interact() -> void:
 	super.interact()
@@ -80,7 +82,7 @@ func _draggable_interact() -> void:
 	if object_ref is RigidBody3D:
 		var target_position: Vector3 = player_hand.global_transform.origin - player_hand.global_transform.basis.z * drag_distance
 		var object_distance: Vector3 = target_position - object_ref.global_transform.origin
-		var target_velocity: Vector3 = object_distance * (30.0 / object_ref.mass)
+		var target_velocity: Vector3 = object_distance * (10.0 / object_ref.mass)
 		object_ref.set_linear_velocity(object_ref.linear_velocity.lerp(target_velocity, drag_smoothness))
 		last_velocity = object_ref.global_transform.origin
 
