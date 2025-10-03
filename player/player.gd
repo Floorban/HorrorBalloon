@@ -46,7 +46,7 @@ var player_state: PlayerState = PlayerState.IDLE_STAND
 const walking_speed: float = 2.0
 const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
-const crouching_depth: float = -0.95
+const crouching_depth: float = -0.7
 var can_move := true
 var current_speed: float
 var max_speed: float

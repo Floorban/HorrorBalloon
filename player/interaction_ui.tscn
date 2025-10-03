@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgy2ke6mlhmar"]
 
-[ext_resource type="Script" uid="uid://bc5udqig2ggcx" path="res://player/interaction_ui.gd" id="1_5hnom"]
+[ext_resource type="Script" path="res://player/interaction_ui.gd" id="1_5hnom"]
 [ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="2_6tr3g"]
 
 [node name="InteractoinUI" type="HBoxContainer"]
@@ -17,7 +17,7 @@ custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 texture = ExtResource("2_6tr3g")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="PromptLabel" type="Label" parent="."]
 unique_name_in_owner = true

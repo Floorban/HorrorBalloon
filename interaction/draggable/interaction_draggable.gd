@@ -33,10 +33,10 @@ func _input(event) -> void:
 
 	if rotating and event is InputEventMouseMotion:
 		var mouse_motion : Vector2 = event.relative
-		var rot_x := mouse_motion.y * rotation_speed
+		var rot_x := -mouse_motion.y * rotation_speed
 		var rot_y := mouse_motion.x * rotation_speed
-		object_ref.rotate(Vector3.UP, rot_y)
-		object_ref.rotate(Vector3.RIGHT, rot_x)
+		object_ref.global_rotate(Vector3.UP, rot_y)
+		object_ref.global_rotate(Vector3.RIGHT, rot_x)
 	
 	if not rotating:
 		if event.is_action_pressed("wheel_up"):
@@ -92,7 +92,7 @@ func _draggable_throw() -> void:
 
 	if object_ref is RigidBody3D:
 		var throw_direction: Vector3 = -player_hand.global_transform.basis.z.normalized()
-		var throw_strength: float = (10.0/object_ref.mass)
+		var throw_strength: float = (5.0/object_ref.mass)
 		object_ref.set_linear_velocity(throw_direction*throw_strength)
 		
 		can_interact = false
