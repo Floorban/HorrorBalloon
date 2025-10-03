@@ -86,6 +86,10 @@ var player_weight := 10.0
 var feet_push_obj_strength := 20.0
 @onready var push_shape_cast: ShapeCast3D = %FeetPushShapeCast
 
+# Viewing Vars
+var viewing_offet: Vector3 = Vector3(0, 5.0, -0.5)
+var viewing_zoom: float = 0.8
+
 func player_init() -> void:
 	cam_original_position = player_camera.position
 	cam_original_rotation = player_camera.rotation_degrees
@@ -271,9 +275,9 @@ func update_cam_movement(delta: float) -> void:
 		# Normalize to -180 to 180 (so the cam doesn't revert to left when all the way right, vice versa)
 		local_rot.y = fposmod(local_rot.y, 180.0)
 		local_rot.y = clamp(local_rot.y, viewing_yaw_origin - 50.0, viewing_yaw_origin + 50.0)
-		eyes.position.y = lerp(eyes.position.y, 5.0, delta*lerp_speed/4.0)
-		eyes.position.z = lerp(eyes.position.z, -.5, delta*lerp_speed/4.0)
-		player_camera.fov = lerp(player_camera.fov, base_fov*0.8, delta*lerp_speed/2.0)
+		eyes.position.y = lerp(eyes.position.y, viewing_offet.y, delta*lerp_speed/4.0)
+		eyes.position.z = lerp(eyes.position.z, viewing_offet.z, delta*lerp_speed/4.0)
+		player_camera.fov = lerp(player_camera.fov, base_fov * viewing_zoom, delta*lerp_speed/2.0)
 		
 	head_bobbing_vector.y = sin(head_bobbing_index)
 	head_bobbing_vector.x = (sin(head_bobbing_index/2.0))
@@ -294,6 +298,10 @@ func lock_player_camera(locked: bool) -> void:
 func apply_player_camera_sway(tilt: Vector3):
 	var sway = Vector3(-tilt.x * 0.5, 0.0, -tilt.z * 0.5)
 	player_camera.rotation = player_camera.rotation.lerp(sway, 0.1)
+
+func set_viewing_settings(target_offset : Vector3 = Vector3(0, 5.0, -0.5), target_zoom : float = 0.8) -> void:
+	viewing_offet = target_offset
+	viewing_zoom = target_zoom
 
 func set_viewing_mode() -> void:
 	if not is_on_floor(): return

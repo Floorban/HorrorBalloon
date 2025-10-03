@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://coo4eh02kt2xq"]
+[gd_scene load_steps=13 format=3 uid="uid://coo4eh02kt2xq"]
 
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="1_5j1qt"]
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="2_p4er6"]
@@ -28,34 +28,46 @@ icon = ExtResource("7_x3rks")
 prompt = "Cross"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
+size = Vector3(1.2011719, 0.3046875, 1.1679688)
+
 [node name="ClimbEdge" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4958816, 1.8122215, 0)
 collision_layer = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1.0062852, 1.6510378, 0, -3.0470066, 0.5452614, 0, 0, 0, 2.1037245, 1.4450414, -1.7819891, 0)
+transform = Transform3D(1.0062852, 1.6510378, 0, -3.0470066, 0.5452614, 0, 0, 0, 2.1037245, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_5qjer")
 mesh = ExtResource("2_p4er6")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.31359473, 0.94955695, 0, -0.94955695, 0.31359473, 0, 0, 0, 1, 1.4818438, -1.7394961, -0.0129852295)
+transform = Transform3D(0.31359473, 0.94955695, 0, -0.94955695, 0.31359473, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_886i1")
 
-[node name="exit_1" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8329758, 0.0061983466, 0)
+[node name="Exit1" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45745957, 0.0061983466, 0)
 
-[node name="exit_2" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7646835, 0.0061983466, 0)
+[node name="Exit2" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46640205, 0.0061983466, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="NormalCheckRay" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 target_position = Vector3(0, 5, 0)
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("3_j7nan")]
 script = ExtResource("4_dr3mn")
-_hold_to_switch = true
-_hold_duration = 0.3
+viewing_offet = Vector3(0, 3, -0.2)
+viewing_zoom = 0.95
+_hold_to_switch = false
 ui_set = Array[ExtResource("5_fo43k")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+shape = SubResource("BoxShape3D_5j1qt")
