@@ -178,25 +178,25 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	if body == player:
 		objs_in_balloon[body] = player_weight
-		_is_reparenting = true
+		#_is_reparenting = true
 		call_deferred("_deferred_attach", player)
 		player_entered.emit()
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj and "weight" in obj:
 			objs_in_balloon[body] = obj.weight
-			_is_reparenting = true
+			#_is_reparenting = true
 			call_deferred("_deferred_attach", body)
 	total_weight = _get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
 	if _is_reparenting or not body:
 		return
+	if body == player: player_exited.emit()
 
 	if body == player or body.is_in_group("interactable"):
-		_is_reparenting = true
+		#_is_reparenting = true
 		call_deferred("_deferred_deattach", body)
-		if body == player: player_exited.emit()
 
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)

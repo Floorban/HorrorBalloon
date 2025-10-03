@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ffaam5q4ph"]
+
+[ext_resource type="Script" uid="uid://47b3wdte2bme" path="res://balloon/objects/Compass.gd" id="1_mw1jy"]
+[ext_resource type="PackedScene" uid="uid://c24vbtu6kx54h" path="res://balloon/objects/compass_model.tscn" id="2_fjvul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogfsl"]
+albedo_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e8tyb"]
+material = SubResource("StandardMaterial3D_ogfsl")
+
+[node name="Compass" type="Node3D"]
+script = ExtResource("1_mw1jy")
+rotation_speed = null
+
+[node name="CompassModel" parent="." instance=ExtResource("2_fjvul")]
+
+[node name="Target" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07665, 4.76837e-07, 4.9824)
+mesh = SubResource("SphereMesh_e8tyb")
+
+[editable path="CompassModel"]

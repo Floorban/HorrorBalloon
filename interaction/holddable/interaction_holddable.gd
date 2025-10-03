@@ -6,7 +6,6 @@ class_name InteractionHolddable
 
 func _ready() -> void:
 	super._ready()
-	weight = object_ref.mass
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
@@ -14,20 +13,17 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	if not is_occupied: 
 		pickup()
 		is_occupied = true
+	else:
+		drop()
+		is_occupied = false
 
-func interact() -> void:
+func _process(_delta: float) -> void:
 	if is_occupied and object_ref:
 		object_ref.global_position = player_hand.global_transform.origin
-		object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
+		#object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
 
 func auxInteract() -> void:
 	super.auxInteract()
-	_holddable_throw()
-
-func postInteract() -> void:
-	super.postInteract()
-	drop()
-	is_occupied = false
 
 func pickup():
 	if object_ref is RigidBody3D:
@@ -35,22 +31,34 @@ func pickup():
 		object_ref.linear_velocity = Vector3.ZERO
 
 	object_ref.global_position = player_hand.global_transform.origin
-	object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
+	#object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
 	is_occupied = true
 
 func drop():
 	is_occupied = false
-	# object_ref.angular_velocity = Vector3.ZERO
-	# object_ref.linear_velocity = Vector3.ZERO
+	if object_ref:
+		var ground_pos = _get_ground()
+		object_ref.global_position = ground_pos
 
-func _holddable_throw() -> void:
-	drop()
-	var rigid_body_3d: RigidBody3D = object_ref as RigidBody3D
-	if rigid_body_3d:
-		var throw_direction: Vector3 = -player_hand.global_transform.basis.z.normalized()
-		var throw_strength: float = (3.0/rigid_body_3d.mass)
-		rigid_body_3d.set_linear_velocity(throw_direction*throw_strength)
-		
-		can_interact = false
-		await get_tree().create_timer(2.0).timeout
-		can_interact = true
+func _get_ground() -> Vector3:
+	if not object_ref or not (object_ref is Node3D):
+		return Vector3.ZERO
+
+	var space_state = object_ref.get_world_3d().direct_space_state
+	
+	var start = object_ref.global_position
+	var end = start - Vector3.UP * 10.0
+	
+	var query = PhysicsRayQueryParameters3D.new()
+	query.from = start
+	query.to = end
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	query.exclude = [object_ref]
+	
+	var result = space_state.intersect_ray(query)
+	
+	if result.has("position"):
+		return result.position
+	else:
+		return object_ref.global_position

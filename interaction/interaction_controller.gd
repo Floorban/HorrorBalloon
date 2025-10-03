@@ -7,6 +7,8 @@ class_name InteractionController
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 @onready var player_camera: Camera3D = %Camera3D
 @onready var hand: Marker3D = %Hand
+@onready var chest: Marker3D = %Chest
+
 @onready var note_hand: Marker3D = %NoteHand
 @onready var default_reticle: TextureRect = %DefaultReticle
 @onready var highlight_reticle: TextureRect = %HighlightReticle
@@ -86,7 +88,7 @@ func _process(_delta: float) -> void:
 				_focus()
 				if Input.is_action_just_pressed("primary"):
 					current_object = potential_object
-					interaction_component.preInteract(hand, current_object)
+					interaction_component.preInteract(chest, current_object)
 					
 					if interaction_component is InteractionCollectable:
 						interaction_component.connect("item_collected", Callable(self, "_on_item_collected"))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=26 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://de37j8tbo1c28" path="res://assets/balloon/Basket/Details.tres" id="15_0hh8o"]
 [ext_resource type="ArrayMesh" uid="uid://c2bvqtxmapshk" path="res://assets/balloon/Basket/Meshes/BigPlank.res" id="16_i26vf"]
 [ext_resource type="ArrayMesh" uid="uid://d1xm44d34t0mf" path="res://assets/balloon/Basket/Meshes/CorrugatedMetal.res" id="17_kawdg"]
+[ext_resource type="PackedScene" uid="uid://3leh7n7a36vi" path="res://interaction/holddable/campass.tscn" id="17_snxhu"]
 [ext_resource type="ArrayMesh" uid="uid://dr5i8jyoobmk2" path="res://assets/balloon/Basket/Meshes/SmallestPlanks.res" id="18_2pii6"]
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
 
@@ -22,21 +23,21 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
-resource_local_to_scene = true
-metadata/creation_stamp = 16400634696930
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
-resource_local_to_scene = true
-metadata/creation_stamp = 16400668250992
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 16400701805287
+metadata/creation_stamp = 2503546591757
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 16400735360513
+metadata/creation_stamp = 2503580146191
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
+resource_local_to_scene = true
+metadata/creation_stamp = 2503613700625
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nfn1q"]
+resource_local_to_scene = true
+metadata/creation_stamp = 2503647255059
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -138,23 +139,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_q3h3j")
+mesh = SubResource("ImmediateMesh_exksr")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_snxhu")
+mesh = SubResource("ImmediateMesh_x3kbh")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_exksr")
+mesh = SubResource("ImmediateMesh_nwaq6")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_x3kbh")
+mesh = SubResource("ImmediateMesh_nfn1q")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -315,3 +316,6 @@ event_guid = "{bb2df2d1-dfe8-4e3f-9101-b8cd2ce0a65b}"
 [node name="SFX_Land" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/Balloon/Land"
 event_guid = "{129eb7de-5aa3-4fe6-b9e5-072bcaa3da0a}"
+
+[node name="Campass" parent="." instance=ExtResource("17_snxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6660602, 0.86927974, 0)

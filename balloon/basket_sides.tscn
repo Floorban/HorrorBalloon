@@ -86,8 +86,7 @@ shape = SubResource("BoxShape3D_a3n6c")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("1_6sd76")]
 script = ExtResource("2_0wdyp")
-_hold_to_switch = true
-_hold_duration = 0.3
+_hold_to_switch = false
 object_ref = NodePath("..")
 pivot_point = NodePath("..")
 

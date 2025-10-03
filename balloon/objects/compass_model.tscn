@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c24vbtu6kx54h"]
+
+[ext_resource type="PackedScene" uid="uid://cwgpq5tlg8mvn" path="res://balloon/objects/Compass.blend" id="1_qtmtv"]
+
+[node name="CompassModel" instance=ExtResource("1_qtmtv")]

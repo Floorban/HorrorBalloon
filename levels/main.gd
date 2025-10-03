@@ -18,7 +18,7 @@ func _ready() -> void:
 	var area_size := 130.0
 	var spawn_pos = _get_random_point(area_size) 
 	balloon.global_position = spawn_pos
-	player.global_position = spawn_pos
+	#player.global_position = spawn_pos
 	default_resource.global_position = spawn_pos + Vector3.LEFT * 5
 
 func _process(_delta: float) -> void:
@@ -68,8 +68,4 @@ func game_over() -> void:
 
 func _on_dead_zone_body_entered(body: Node3D) -> void:
 	if body is PlayerController:
-		game_over()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
 		game_over()
