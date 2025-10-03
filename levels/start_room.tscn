@@ -1,10 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://teq6yccg8gfb"]
+[gd_scene load_steps=25 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
 [ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://Survival/Textures/Rock.jpg" id="2_cfm6c"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="3_n085v"]
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="4_421my"]
+[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="4_886i1"]
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="5_4wh7y"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="5_g25at"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="6_4b5ck"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="7_fc33q"]
+[ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="8_n2a5e"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="9_qftyv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wkf7w"]
 size = Vector2(7, 3)
@@ -58,6 +64,7 @@ mesh = ExtResource("1_wkf7w")
 skeleton = NodePath("../..")
 
 [node name="Ground" type="Node3D" parent="Church"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007103145, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Church/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -1.9923418, -0.5000801)
@@ -132,7 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0305347, -0.9792238, -2.459
 shape = SubResource("BoxShape3D_4wh7y")
 
 [node name="Oven" parent="." instance=ExtResource("3_n085v")]
-transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 4.668744, -1.9167942, -0.4765824)
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 4.697576, -1.919863, -0.50978476)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.0062852, 1.6510378, 0, -3.0470066, 0.5452614, 0, 0, 0, 2.1037245, 1.4450414, -1.7819891, 0)
@@ -143,3 +150,33 @@ mesh = ExtResource("5_4wh7y")
 transform = Transform3D(-0.0762866, 1.714971, -0.3430715, -3.193403, -0.013602767, 0.20566256, 0.30531982, 0.2862255, 2.0653477, 1.4450414, -1.6348191, -1.0982673)
 material_override = SubResource("StandardMaterial3D_6dd2j")
 mesh = ExtResource("5_4wh7y")
+
+[node name="Resources" type="Node3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 2.8581605, -1.5541602, -2.292796)
+
+[node name="Log1" parent="Resources" instance=ExtResource("4_886i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5155983, -0.5535852, 0.3733605)
+
+[node name="Log2" parent="Resources" instance=ExtResource("4_886i1")]
+transform = Transform3D(0.8694777, 0, 0.4939722, 0.30999497, 0.77857184, -0.5456455, -0.38459286, 0.6275555, 0.6769509, -0.11810398, -0.5535852, 0.3733605)
+
+[node name="Log4" parent="Resources" instance=ExtResource("5_g25at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13526821, -0.65198267, -0.2922927)
+
+[node name="Log5" parent="Resources" instance=ExtResource("5_g25at")]
+transform = Transform3D(0.5194296, 0, -0.8545132, 0, 1, 0, 0.8545132, 0, 0.5194296, 0.31174183, -0.6519828, 0.22617185)
+
+[node name="Log3" parent="Resources" instance=ExtResource("6_4b5ck")]
+transform = Transform3D(0.78046316, 0, -0.6252018, 0, 1, 0, 0.6252018, 0, 0.78046316, 0.25015974, -0.65198267, -0.2922927)
+
+[node name="Plank1" parent="Resources" instance=ExtResource("7_fc33q")]
+transform = Transform3D(-0.6355258, 0, -0.7720796, 0, 1, 0, 0.7720796, 0, -0.6355258, -0.0834713, -0.31480348, 0.031168818)
+
+[node name="Plank4" parent="Resources" instance=ExtResource("7_fc33q")]
+transform = Transform3D(-0.06825894, 0, -0.9976677, 0, 1, 0, 0.9976677, 0, -0.06825894, 0.1543541, -0.31480348, -0.32621157)
+
+[node name="Plank2" parent="Resources" instance=ExtResource("8_n2a5e")]
+transform = Transform3D(0.82426465, 0, 0.5662049, 0.55424756, 0.20442772, -0.8068574, -0.11574799, 0.9788818, 0.16850254, 0.20203495, -0.31480348, 0.031168818)
+
+[node name="Plank3" parent="Resources" instance=ExtResource("9_qftyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6707592, -0.31480348, 0.031168818)

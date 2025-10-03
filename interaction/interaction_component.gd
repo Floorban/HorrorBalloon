@@ -23,7 +23,6 @@ var previous_mouse_position: Vector2
 var last_velocity: Vector3 = Vector3.ZERO
 var contact_velocity_threshold: float = 1.0
 
-
 func _ready() -> void:
 	pass
 

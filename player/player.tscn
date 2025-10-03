@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=12 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/ui/tile_0156.png" id="4_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_g6k8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.05
-height = 1.63263
+height = 1.2582095
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
 radius = 0.05
@@ -29,7 +30,7 @@ script = ExtResource("1_oul6g")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9214115, 0)
 
 [node name="Eyes" type="Node3D" parent="Head"]
 unique_name_in_owner = true
@@ -43,15 +44,16 @@ fov = 90.0
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Eyes/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
+visible = false
 light_color = Color(0.96, 0.92416, 0.8928, 1)
-light_energy = 2.0
+light_energy = 0.0
 light_volumetric_fog_energy = 1.5
 light_size = 0.05
 light_bake_mode = 0
 
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
 hit_from_inside = true
 
@@ -59,14 +61,12 @@ hit_from_inside = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
-[node name="KeepNoteCameraUpdated" type="RemoteTransform3D" parent="Head/Eyes/Camera3D"]
-
 [node name="Chest" type="Marker3D" parent="Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.033379674, -0.35738713)
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816315, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62910473, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
@@ -143,25 +143,38 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 22
 
-[node name="Background" type="PanelContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+[node name="UIBackground" type="PanelContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qjkh3")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer/InteractionControlPanel/Background"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel/Background/MarginContainer"]
+[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer"]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/separation = 5
+
+[node name="InteractoinUI1" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_g6k8r")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InteractoinUI2" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_g6k8r")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_g6k8r")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Audio" type="Node3D" parent="."]
 

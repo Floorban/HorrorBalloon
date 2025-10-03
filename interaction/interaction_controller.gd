@@ -14,15 +14,19 @@ var interaction_component: InteractionComponent
 @onready var chest: Marker3D = %Chest
 
 # UI
-var ui_tween: Tween
+var ui_alpha := 0.0
+var ui_target_alpha := 0.0
+var ui_speed := 5.0
 var is_focused: bool = false
 @onready var default_reticle: TextureRect = %DefaultReticle
 @onready var highlight_reticle: TextureRect = %HighlightReticle
 @onready var interacting_reticle: TextureRect = %InteractingReticle
 @onready var interactable_check: Area3D = $"../InteractableCheck"
 
+@onready var ui_background: PanelContainer = %UIBackground
 @onready var ui_spawn_root: Control = %InteractionControlSpawnRoot
-@onready var interaction_ui_scene: PackedScene = preload("uid://cgy2ke6mlhmar")
+#@onready var interaction_ui_scene: PackedScene = preload("uid://cgy2ke6mlhmar")
+@onready var interactoin_uis : Array[Control] = [%InteractoinUI1, %InteractoinUI2, %InteractoinUI3]
 
 @onready var outline_material: Material = preload("res://materials/item_highlighter.tres")
 
@@ -83,7 +87,7 @@ func check_potential_interactables() -> void:
 			_focus()
 			if Input.is_action_just_pressed("primary"):
 				current_object = potential_object
-				interaction_component.preInteract(chest, current_object)
+				interaction_component.preInteract(hand, current_object)
 				
 				if interaction_component is InteractionCollectable:
 					interaction_component.connect("item_collected", Callable(self, "_on_item_collected"))
@@ -96,7 +100,7 @@ func check_potential_interactables() -> void:
 	else:
 		stop_interactions()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not player.can_move:
 		default_reticle.visible = false
 		highlight_reticle.visible = false
@@ -110,6 +114,10 @@ func _process(_delta: float) -> void:
 			stop_interactions()
 	else:
 		check_potential_interactables()
+	
+	ui_alpha = lerp(ui_alpha, ui_target_alpha, delta * ui_speed)
+	ui_background.modulate.a = ui_alpha
+	ui_background.visible = ui_alpha > 0.01
 
 ## If the object the player is interacting with should stop mouse camera movement
 func is_cam_locked() -> bool:
@@ -118,42 +126,45 @@ func is_cam_locked() -> bool:
 			return true
 	return false
 
-#image: Texture2D, prompt: String
 func interaction_ui_init() -> void:
-	if ui_tween and ui_tween.is_valid():
-		ui_tween.kill()
-		
-	if ui_spawn_root.get_children().size() > 0 :
-		for ui in ui_spawn_root.get_children(): ui.queue_free()
-	
-	if not interaction_component or interaction_component.ui_set.size() <= 0: return
+	if not interaction_component or interaction_component.ui_set.size() <= 0:
+		return
+	for ui in interactoin_uis: ui.visible = false
+	var i := 0
 	for ui_data in interaction_component.ui_set:
-		var ui_instance = interaction_ui_scene.instantiate()
-		ui_spawn_root.add_child(ui_instance)
-		if ui_instance.has_method("init_data"): ui_instance.init_data(ui_data)
+		if i >= interactoin_uis.size():
+			break
+		var ui = interactoin_uis[i]
+		ui.visible = true
+		if ui.has_method("init_data"):
+			ui.init_data(ui_data)
+		i += 1
 	
-	var parent = ui_spawn_root.get_parent().get_parent()
-	parent.visible = true
-	parent.modulate.a = 0.0
-	ui_tween = create_tween()
-	ui_tween.tween_property(parent, "modulate:a", 1.0, 0.25) \
-		.set_trans(Tween.TRANS_CUBIC) \
-		.set_ease(Tween.EASE_OUT)
+	ui_background.visible = true
+	ui_target_alpha = 1.0
+	
+	#for ui_data in interaction_component.ui_set: 
+		#var ui_instance = interaction_ui_scene.instantiate()
+		#ui_spawn_root.add_child(ui_instance)
+		#if ui_instance.has_method("init_data"): ui_instance.init_data(ui_data)
+		
+	#if ui_tween: ui_tween.kill()
+	#parent.modulate.a = 0.0
+	#ui_tween = create_tween()
+	#ui_tween.tween_property(parent, "modulate:a", 1.0, 0.25) \
+		#.set_trans(Tween.TRANS_CUBIC) \
+		#.set_ease(Tween.EASE_OUT)
 
 func interaction_ui_clear() -> void:
-	if ui_tween and ui_tween.is_valid():
-		ui_tween.kill()
-		
-	var parent = ui_spawn_root.get_parent().get_parent()
-	if ui_spawn_root.get_child_count() == 0:
-		parent.visible = false
-		return
-
-	ui_tween = create_tween()
-	ui_tween.tween_property(parent, "modulate:a", 0.0, 0.35) \
-		.set_trans(Tween.TRANS_CUBIC) \
-		.set_ease(Tween.EASE_IN)
-	ui_tween.tween_callback(Callable(parent, "set_visible").bind(false))
+	ui_background.visible = false
+	ui_target_alpha = 0.0
+	
+	#if ui_tween: ui_tween.kill()
+	#ui_tween = create_tween()
+	#ui_tween.tween_property(parent, "modulate:a", 0.0, 0.35) \
+		#.set_trans(Tween.TRANS_CUBIC) \
+		#.set_ease(Tween.EASE_IN)
+	#ui_tween.tween_callback(Callable(parent, "set_visible").bind(false))
 
 ## Called when the player is looking at an interactable objects
 func _focus() -> void:
