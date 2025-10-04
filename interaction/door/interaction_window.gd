@@ -6,7 +6,6 @@ var window_height: float = 0.0
 var window_velocity: float = 0.0
 @export var window_smoothing: float = 80.0
 var window_input_active: bool = false
-var is_front: bool
 var window_opened: bool = false
 
 # Movement thresholds
@@ -28,6 +27,7 @@ func _ready():
 	super._ready()
 	starting_height = object_ref.position.y
 	maximum_height = starting_height + max_height_offset
+	object_ref.position.y = maximum_height
 
 func _process(delta):
 	if was_just_unlocked:
@@ -66,8 +66,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		window_input_active = true
 		var delta_move: float = event.relative.y * 0.001
-		if not is_front:
-			delta_move = -delta_move
+		delta_move = -delta_move
 		
 		# small motions resistance
 		if abs(delta_move) < 0.01:

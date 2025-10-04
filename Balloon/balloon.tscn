@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=31 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
@@ -14,30 +14,35 @@
 [ext_resource type="Material" uid="uid://de37j8tbo1c28" path="res://assets/balloon/Basket/Details.tres" id="15_0hh8o"]
 [ext_resource type="ArrayMesh" uid="uid://c2bvqtxmapshk" path="res://assets/balloon/Basket/Meshes/BigPlank.res" id="16_i26vf"]
 [ext_resource type="ArrayMesh" uid="uid://d1xm44d34t0mf" path="res://assets/balloon/Basket/Meshes/CorrugatedMetal.res" id="17_kawdg"]
-[ext_resource type="PackedScene" uid="uid://3leh7n7a36vi" path="res://interaction/holddable/campass.tscn" id="17_snxhu"]
+[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="17_wq7tp"]
 [ext_resource type="ArrayMesh" uid="uid://dr5i8jyoobmk2" path="res://assets/balloon/Basket/Meshes/SmallestPlanks.res" id="18_2pii6"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="18_2whnr"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="19_2lwo6"]
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="20_ns4al"]
+[ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="21_pnbqt"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="22_yd7v6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
 size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43900286884127
+metadata/creation_stamp = 90930900269499
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2whnr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43900320438560
+metadata/creation_stamp = 90930933823942
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2lwo6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43900353992994
+metadata/creation_stamp = 90930967386533
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ns4al"]
 resource_local_to_scene = true
-metadata/creation_stamp = 43900387547427
+metadata/creation_stamp = 90931000941097
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -139,23 +144,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_snxhu")
+mesh = SubResource("ImmediateMesh_wq7tp")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_exksr")
+mesh = SubResource("ImmediateMesh_2whnr")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_x3kbh")
+mesh = SubResource("ImmediateMesh_2lwo6")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_nwaq6")
+mesh = SubResource("ImmediateMesh_ns4al")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -317,5 +322,44 @@ event_guid = "{bb2df2d1-dfe8-4e3f-9101-b8cd2ce0a65b}"
 event_name = "event:/Balloon/Land"
 event_guid = "{129eb7de-5aa3-4fe6-b9e5-072bcaa3da0a}"
 
-[node name="Campass" parent="." instance=ExtResource("17_snxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6660602, 0.86927974, 0)
+[node name="Log1" parent="." instance=ExtResource("17_wq7tp")]
+transform = Transform3D(0.076514035, 0.24034664, 0.967667, -0.01894523, 0.97068715, -0.23959884, -0.99688864, 0, 0.07882461, -0.00870537, 1.3414998, -0.28672692)
+
+[node name="Log2" parent="." instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0, 1.3036617, -0.26605225)
+
+[node name="Log7" parent="." instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 2.1599436, 1.3036617, -1.2556969)
+
+[node name="Log6" parent="." instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, -1.2276964)
+
+[node name="Log5" parent="." instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.16344956, -0.05014117, 0.9852767, -0.35565817, 0.92855626, 0.1062555, -0.92021257, -0.3677891, 0.13393894, -0.14989826, 1.1800601, -0.1803168)
+
+[node name="Log3" parent="." instance=ExtResource("19_2lwo6")]
+transform = Transform3D(0.3230586, 0, -0.946379, 0, 1, 0, 0.946379, 0, 0.3230586, -0.15730749, 1.3771147, -0.31641755)
+
+[node name="Log4" parent="." instance=ExtResource("19_2lwo6")]
+transform = Transform3D(-0.28644097, 0, -0.9580979, 0, 1, 0, 0.9580979, 0, -0.28644097, 0.09440826, 1.1554941, -0.23951545)
+
+[node name="Log8" parent="." instance=ExtResource("19_2lwo6")]
+transform = Transform3D(-0.6994011, -0.6742895, -0.23700626, -0.6386186, 0.7384671, -0.21640888, 0.32094356, 0, -0.9470985, 1.874001, 1.1554941, -1.8773029)
+
+[node name="Plank1" parent="." instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.052492987, -0.35253978, -0.9343234, 0.76681805, 0.585122, -0.26386076, 0.63971454, -0.73030686, 0.2396189, 0.024460178, 1.4039445, -0.27697495)
+
+[node name="Plank5" parent="." instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.38986197, -0.75115055, -0.5327108, 2.4838915, 0.75823665, -1.9115869)
+
+[node name="Plank6" parent="." instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.38986197, -0.75115055, -0.5327108, -0.32189023, 0.52808833, -1.2010946)
+
+[node name="Plank7" parent="." instance=ExtResource("20_ns4al")]
+transform = Transform3D(0.62849134, 0.47373754, -0.61690444, -0.12778735, 0.8452356, 0.5188912, 0.7672478, -0.24728598, 0.59176034, -0.5428893, 0.74012303, -0.7350259)
+
+[node name="Plank2" parent="." instance=ExtResource("21_pnbqt")]
+transform = Transform3D(0.10975167, 0, 0.99395895, 0, 1, 0, -0.99395895, 0, 0.10975167, -0.12027167, 1.346784, -0.15921015)
+
+[node name="Plank3" parent="." instance=ExtResource("22_yd7v6")]
+transform = Transform3D(0.46089578, 0.12639274, -0.8784075, -0.3797048, 0.9227177, -0.06646062, 0.8021218, 0.36416683, 0.47326848, 0.060402974, 1.3761469, -0.26452947)
