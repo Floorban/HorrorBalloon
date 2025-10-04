@@ -7,22 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="7_wnxmg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_886i1"]
-size = Vector3(0.23242188, 0.7912903, 1.8173828)
+size = Vector3(0.08300781, 0.39941406, 0.58984375)
 
-[sub_resource type="Resource" id="Resource_j0nhb"]
+[sub_resource type="Resource" id="Resource_a3n6c"]
 script = ExtResource("5_rkblm")
 icon = ExtResource("6_pwly1")
 prompt = "Peak"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
-[sub_resource type="Resource" id="Resource_iqv37"]
+[sub_resource type="Resource" id="Resource_5m6r2"]
 script = ExtResource("5_rkblm")
 icon = ExtResource("7_wnxmg")
 prompt = "Cross"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
-size = Vector3(1.2011719, 0.3046875, 1.1679688)
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk1uh"]
+size = Vector3(0.27905273, 0.12805176, 0.3086586)
 
 [node name="BasketEdge" type="Node3D"]
 
@@ -50,11 +50,11 @@ script = ExtResource("4_8sgpj")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("5_rkblm")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
+ui_set = Array[ExtResource("5_rkblm")]([SubResource("Resource_a3n6c"), SubResource("Resource_5m6r2")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
-shape = SubResource("BoxShape3D_5j1qt")
+shape = SubResource("BoxShape3D_bk1uh")

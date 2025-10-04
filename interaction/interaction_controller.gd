@@ -39,8 +39,8 @@ func ui_init() -> void:
 	interaction_ui_clear()
 
 func _ready() -> void:
-	interactable_check.body_entered.connect(_collectible_item_entered_range)
-	interactable_check.body_exited.connect(_collectible_item_exited_range)
+	#interactable_check.body_entered.connect(_collectible_item_entered_range)
+	#interactable_check.body_exited.connect(_collectible_item_exited_range)
 	ui_init()
 
 func perform_interactions(target: InteractionComponent) -> void:

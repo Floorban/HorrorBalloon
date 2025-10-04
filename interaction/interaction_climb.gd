@@ -8,11 +8,11 @@ var hold_duration: float = 0.3
 @export var viewing_offet : Vector3 = Vector3(0, 5.0, -0.5)
 @export var viewing_zoom : float = 0.8
 
-@onready var interact_area: Area3D = %InteractArea
+@onready var interact_area: Area3D = $"../InteractArea"
 var target_pos := Vector3.ZERO
-@onready var exit_1: Marker3D = %Exit1
-@onready var exit_2: Marker3D = %Exit2
-@onready var normal_check_ray: RayCast3D = %NormalCheckRay
+@onready var exit_1: Marker3D = $"../Exit1"
+@onready var exit_2: Marker3D = $"../Exit2"
+@onready var normal_check_ray: RayCast3D = $"../NormalCheckRay"
 
 func check_player_side(interact_ray: RayCast3D) -> void:
 	var player_dir: Vector3 = interact_ray.global_transform.basis.x.normalized()

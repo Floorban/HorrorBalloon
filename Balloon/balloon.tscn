@@ -25,19 +25,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20460536422123
+metadata/creation_stamp = 43900286884127
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20460570055068
+metadata/creation_stamp = 43900320438560
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20460603607650
+metadata/creation_stamp = 43900353992994
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20460637160881
+metadata/creation_stamp = 43900387547427
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -51,7 +51,7 @@ collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
-max_tilt_angle = 6.0
+max_tilt_angle = 10.0
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
