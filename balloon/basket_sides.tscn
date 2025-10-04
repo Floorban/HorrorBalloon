@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bt6tmy1fu5xa2"]
+[gd_scene load_steps=20 format=3 uid="uid://bt6tmy1fu5xa2"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_6sd76"]
 [ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="2_a3n6c"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="3_5m6r2"]
 [ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="4_bk1uh"]
+[ext_resource type="Texture2D" uid="uid://462nbhhg2r4k" path="res://assets/ui/mouse_v_drag.png" id="5_5m6r2"]
 [ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="5_tjdak"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wdyp"]
@@ -12,6 +13,12 @@ size = Vector3(0.06863403, 0.24382782, 0.43029785)
 [sub_resource type="Resource" id="Resource_j0nhb"]
 script = ExtResource("3_5m6r2")
 icon = ExtResource("4_bk1uh")
+prompt = "Get On"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_0ia10"]
+script = ExtResource("3_5m6r2")
+icon = ExtResource("5_5m6r2")
 prompt = "Peak"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
@@ -33,35 +40,11 @@ size = Vector3(0.24856567, 0.12805176, 0.3086586)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rfk8s"]
 size = Vector3(0.033906937, 0.24169922, 0.36787415)
 
-[sub_resource type="Resource" id="Resource_a3n6c"]
-script = ExtResource("3_5m6r2")
-icon = ExtResource("4_bk1uh")
-prompt = "Peak"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
-[sub_resource type="Resource" id="Resource_5m6r2"]
-script = ExtResource("3_5m6r2")
-icon = ExtResource("5_tjdak")
-prompt = "Cross"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk1uh"]
 size = Vector3(0.26576233, 0.12805176, 0.3086586)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lmpme"]
 size = Vector3(0.033906937, 0.24633789, 0.35664368)
-
-[sub_resource type="Resource" id="Resource_bk1uh"]
-script = ExtResource("3_5m6r2")
-icon = ExtResource("4_bk1uh")
-prompt = "Peak"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
-[sub_resource type="Resource" id="Resource_tjdak"]
-script = ExtResource("3_5m6r2")
-icon = ExtResource("5_tjdak")
-prompt = "Cross"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ia10"]
 size = Vector3(0.27349854, 0.12805176, 0.3086586)
@@ -98,7 +81,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge_1_1"]
@@ -130,7 +113,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge_1_2"]
@@ -162,7 +145,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_a3n6c"), SubResource("Resource_5m6r2")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge_2_1"]
@@ -194,7 +177,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_bk1uh"), SubResource("Resource_tjdak")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge2_2"]
@@ -226,7 +209,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_bk1uh"), SubResource("Resource_tjdak")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge4_1"]
@@ -258,7 +241,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_bk1uh"), SubResource("Resource_tjdak")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge4_2"]
@@ -290,7 +273,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_bk1uh"), SubResource("Resource_tjdak")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge5_1"]
@@ -322,7 +305,7 @@ script = ExtResource("2_a3n6c")
 viewing_offet = Vector3(0, 5, -0.5)
 viewing_zoom = 0.8
 _hold_to_switch = false
-ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_bk1uh"), SubResource("Resource_tjdak")])
+ui_set = Array[ExtResource("3_5m6r2")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="BasketEdge5_2"]

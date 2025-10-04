@@ -14,12 +14,12 @@ albedo_texture = ExtResource("1_5j1qt")
 uv1_scale = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_886i1"]
-size = Vector3(0.5932617, 0.10797119, 2.0230408)
+size = Vector3(0.92006016, 0.14529419, 2.021286)
 
 [sub_resource type="Resource" id="Resource_j0nhb"]
 script = ExtResource("5_fo43k")
 icon = ExtResource("6_sed4t")
-prompt = "Peak"
+prompt = "Get On"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="Resource" id="Resource_iqv37"]
@@ -29,7 +29,7 @@ prompt = "Cross"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
-size = Vector3(1.2011719, 0.3046875, 1.1679688)
+size = Vector3(0.9415283, 0.3046875, 1.9794312)
 
 [node name="ClimbEdge" type="Node3D"]
 

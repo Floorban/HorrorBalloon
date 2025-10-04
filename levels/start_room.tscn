@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://teq6yccg8gfb"]
+[gd_scene load_steps=36 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
 [ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://Survival/Textures/Rock.jpg" id="2_cfm6c"]
@@ -9,9 +9,14 @@
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="5_4wh7y"]
 [ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="5_g25at"]
 [ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="6_4b5ck"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="7_6ioy8"]
 [ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="7_fc33q"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="8_8qil6"]
 [ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="8_n2a5e"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="9_j0nhb"]
 [ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="9_qftyv"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="10_iqv37"]
+[ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="11_ylhff"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wkf7w"]
 size = Vector2(7, 3)
@@ -48,10 +53,40 @@ size = Vector3(0.163, 2, 1.153)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5qjer"]
 size = Vector3(0.098, 2, 0.999)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dd2j"]
-albedo_color = Color(0.66245234, 0.66245234, 0.6624523, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qjer"]
+albedo_color = Color(0.46229059, 0.46229059, 0.46229059, 1)
 albedo_texture = ExtResource("4_421my")
 uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_886i1"]
+size = Vector3(0.92006016, 0.14529419, 2.021286)
+
+[sub_resource type="Resource" id="Resource_j0nhb"]
+script = ExtResource("9_j0nhb")
+icon = ExtResource("10_iqv37")
+prompt = "Peak"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_iqv37"]
+script = ExtResource("9_j0nhb")
+icon = ExtResource("11_ylhff")
+prompt = "Cross"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
+size = Vector3(0.9415283, 0.3046875, 1.9794312)
+
+[sub_resource type="Resource" id="Resource_6ioy8"]
+script = ExtResource("9_j0nhb")
+icon = ExtResource("10_iqv37")
+prompt = "Get On"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_8qil6"]
+script = ExtResource("9_j0nhb")
+icon = ExtResource("11_ylhff")
+prompt = "Cross"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [node name="StartRoom" type="Node3D"]
 
@@ -138,15 +173,59 @@ shape = SubResource("BoxShape3D_4wh7y")
 transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 4.697576, -1.919863, -0.50978476)
 
 [node name="ClimbEdge" parent="." instance=ExtResource("4_g25at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6542552, 0)
+transform = Transform3D(0.9749401, 0, 0.22246745, 0, 1, 0, -0.22246745, 0, 0.9749401, 1.2239205, -1.6542552, 0.031823874)
 
-[node name="ClimbEdge2" parent="." instance=ExtResource("4_g25at")]
-transform = Transform3D(-0.6284791, 0, 0.7778264, 0, 1, 0, -0.7778264, 0, -0.6284791, 2.731402, -1.6542552, 0.19354363)
+[node name="MeshInstance3D" parent="ClimbEdge/StaticBody3D" index="0"]
+material_override = SubResource("StandardMaterial3D_5qjer")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0762866, 1.714971, -0.3430715, -3.193403, -0.013602767, 0.20566256, 0.30531982, 0.2862255, 2.0653477, 1.4450414, -1.6348191, -1.0982673)
-material_override = SubResource("StandardMaterial3D_6dd2j")
+[node name="CollisionShape3D" parent="ClimbEdge/StaticBody3D" index="1"]
+transform = Transform3D(0.31359488, 0.94955724, 0, -0.94955695, 0.31359473, 0, 7.450581e-09, -2.9802322e-08, 1, 0.009320021, 0.031287193, -2.9802322e-08)
+shape = SubResource("BoxShape3D_886i1")
+
+[node name="InteractionComponent" parent="ClimbEdge" index="4"]
+ui_set = Array[ExtResource("9_j0nhb")]([SubResource("Resource_j0nhb"), SubResource("Resource_iqv37")])
+
+[node name="CollisionShape3D" parent="ClimbEdge/InteractArea" index="0"]
+shape = SubResource("BoxShape3D_5j1qt")
+
+[node name="ClimbEdge2" type="Node3D" parent="."]
+transform = Transform3D(-0.8211453, -0.47224692, 0.32047394, -0.5430459, 0.819251, -0.18419878, -0.1755613, -0.32528597, -0.9291757, 1.2718983, -1.562315, -1.1267534)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ClimbEdge2"]
+collision_layer = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClimbEdge2/StaticBody3D"]
+transform = Transform3D(1.0062852, 1.6510378, 0, -3.0470066, 0.5452614, 0, 0, 0, 2.1037245, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5qjer")
 mesh = ExtResource("5_4wh7y")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClimbEdge2/StaticBody3D"]
+transform = Transform3D(0.31359458, 0.9495563, 0, -0.949557, 0.31359476, 2.9802322e-08, 4.4703484e-08, -1.4901161e-08, 0.99999964, -0.021196067, 0.0641793, 0.0008780956)
+shape = SubResource("BoxShape3D_886i1")
+
+[node name="Exit1" type="Marker3D" parent="ClimbEdge2"]
+transform = Transform3D(0.99999976, 3.7252903e-09, -1.4901161e-08, 8.195639e-08, 1, 2.9802322e-08, 2.9802322e-08, 0, 0.99999964, -0.21614143, -0.29010594, 0.18169463)
+
+[node name="Exit2" type="Marker3D" parent="ClimbEdge2"]
+transform = Transform3D(0.99999976, 3.7252903e-09, -1.4901161e-08, 8.568168e-08, 1, 2.9802322e-08, 2.9802322e-08, 0, 0.99999976, 0.5614795, 0.08747089, 0.081168056)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="ClimbEdge2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="ClimbEdge2" node_paths=PackedStringArray("object_ref") instance=ExtResource("7_6ioy8")]
+script = ExtResource("8_8qil6")
+viewing_offet = Vector3(0, 3, -0.2)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("9_j0nhb")]([SubResource("Resource_6ioy8"), SubResource("Resource_8qil6")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="ClimbEdge2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClimbEdge2/InteractArea"]
+transform = Transform3D(0.8241259, -0.56640625, -2.9802322e-08, 0.54958165, 0.7996461, 0.24192196, -0.13702595, -0.1993742, 0.97029537, 0, 0.008615851, 0.03455627)
+shape = SubResource("BoxShape3D_5j1qt")
 
 [node name="Resources" type="Node3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 2.8581605, -1.5541602, -1.717271)

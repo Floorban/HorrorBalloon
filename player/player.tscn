@@ -9,11 +9,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.05
-height = 1.2582095
+height = 1.2901382
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
-radius = 0.05
-height = 1.0
+radius = 0.078125
+height = 0.9067383
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
 radius = 0.15
@@ -39,7 +39,7 @@ script = ExtResource("1_oul6g")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9214115, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Eyes" type="Node3D" parent="Head"]
 unique_name_in_owner = true
@@ -75,11 +75,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.033379674, -0.35738713)
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62910473, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6450691, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
 
 [node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45336914, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
 
 [node name="StandupCheck" type="RayCast3D" parent="."]

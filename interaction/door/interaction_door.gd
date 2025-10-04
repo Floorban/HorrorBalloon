@@ -3,6 +3,7 @@ class_name InteractionDoor
 
 @export_category("Door Settings")
 # Door Variables
+@onready var normal_check_ray: RayCast3D = $"../NormalCheckRay"
 @export var pivot_point: Node3D
 var door_angle: float = 0.0
 var door_velocity: float = 0.0
@@ -24,8 +25,8 @@ func _ready():
 	starting_rotation = pivot_point.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 	nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
-	door_angle = maximum_rotation
-	pivot_point.rotation.z = maximum_rotation
+	#door_angle = maximum_rotation
+	#pivot_point.rotation.z = maximum_rotation
 
 func _process(delta):
 	if was_just_unlocked:
@@ -77,11 +78,19 @@ func interact() -> void:
 	lock_camera = true
 
 ## True if player is looking at the front of an object, false otherwise
-func set_direction(is_out: bool) -> void:
-	if is_out:
+func check_player_side(interact_ray: RayCast3D) -> void:
+	var player_dir: Vector3 = interact_ray.global_transform.basis.x.normalized()
+	var local_dir: Vector3 = normal_check_ray.global_transform.basis.inverse() * player_dir
+	if local_dir.z > 0:
 		is_front = true
 	else:
 		is_front = false
+
+#func set_direction(is_out: bool) -> void:
+	#if is_out:
+		#is_front = true
+	#else:
+		#is_front = false
 
 func unlock() -> void:
 	is_locked = false

@@ -1,15 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdi4tb4kffd6k"]
+[gd_scene load_steps=14 format=3 uid="uid://bdi4tb4kffd6k"]
 
 [ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://interaction/impact/impact_sound.gd" id="1_ah7yw"]
 [ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_uw3nf"]
 [ext_resource type="ArrayMesh" uid="uid://dv2tocwgxoo7c" path="res://assets/stolen/props/plank_001.obj" id="2_uw3nf"]
 [ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_w4y3j"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_p75mq"]
+[ext_resource type="Texture2D" uid="uid://c3kiqqhiwopwf" path="res://assets/ui/mouse_scroll.png" id="6_5in2o"]
+[ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="7_fgj4c"]
+[ext_resource type="Texture2D" uid="uid://b6hk3xhtgseyb" path="res://assets/ui/mouse_right_button.png" id="8_am61n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hvx"]
 albedo_texture = ExtResource("1_uw3nf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uw3nf"]
-size = Vector3(0.15820313, 0.70202637, 0.11230469)
+size = Vector3(0.15820313, 0.6699219, 0.052734375)
+
+[sub_resource type="Resource" id="Resource_11scr"]
+script = ExtResource("5_p75mq")
+icon = ExtResource("6_5in2o")
+prompt = "Distance"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_67s4j"]
+script = ExtResource("5_p75mq")
+icon = ExtResource("7_fgj4c")
+prompt = "+ R = Rotate"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_157fb"]
+script = ExtResource("5_p75mq")
+icon = ExtResource("8_am61n")
+prompt = "Throw"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [node name="Plank1" type="RigidBody3D" groups=["interactable"]]
 collision_layer = 5
@@ -29,5 +51,6 @@ shape = SubResource("BoxShape3D_uw3nf")
 [node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
 script = ExtResource("3_w4y3j")
 fuel_amount = 35.0
+ui_set = Array[ExtResource("5_p75mq")]([SubResource("Resource_11scr"), SubResource("Resource_67s4j"), SubResource("Resource_157fb")])
 object_ref = NodePath("..")
 metadata/_custom_type_script = "uid://dl7lykc4qndpo"

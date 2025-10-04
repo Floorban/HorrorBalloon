@@ -22,12 +22,12 @@ skeleton = NodePath("../../..")
 transform = Transform3D(-0.043136507, 0.16098765, 0, -0.16098765, -0.043136507, 0, 0, 0, 0.16666667, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_exksr")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref", "pivot_point") instance=ExtResource("3_ecxay")]
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("pivot_point", "object_ref") instance=ExtResource("3_ecxay")]
 script = ExtResource("4_8bll4")
+pivot_point = NodePath("..")
 door_smoothing = 80.0
 is_locked = false
 object_ref = NodePath("..")
-pivot_point = NodePath("..")
 maximum_rotation = 95.0
 
 [node name="Audio" type="Node3D" parent="."]
@@ -35,3 +35,6 @@ maximum_rotation = 95.0
 [node name="SFX_DoorClose" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/Balloon/Door"
 event_guid = "{c5c8aee1-f3da-4bed-b8bb-ab0f1803660a}"
+
+[node name="NormalCheckRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1, 0)

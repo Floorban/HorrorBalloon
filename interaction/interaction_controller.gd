@@ -1,8 +1,6 @@
 extends Node
 class_name InteractionController
 
-@onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
-
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 @onready var player: PlayerController = $".."
 @onready var player_camera: Camera3D = %Camera3D
@@ -96,7 +94,7 @@ func check_potential_interactables() -> void:
 					interaction_component.check_player_side(interaction_raycast)
 				
 				if interaction_component is InteractionDoor:
-					interaction_component.set_direction(balloon.objs_in_balloon.has(balloon.player))
+					interaction_component.check_player_side(interaction_raycast)
 		else: 
 			# If the object just looked at cant be interacted with, call unfocus
 			stop_interactions()
