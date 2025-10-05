@@ -85,7 +85,10 @@ func check_potential_interactables() -> void:
 			_focus()
 			if Input.is_action_just_pressed("primary"):
 				current_object = potential_object
-				interaction_component.preInteract(hand, current_object)
+				if interaction_component is InteractionHolddable:
+					interaction_component.preInteract(chest, current_object)
+				else:
+					interaction_component.preInteract(hand, current_object)
 				
 				if interaction_component is InteractionCollectable:
 					interaction_component.connect("item_collected", Callable(self, "_on_item_collected"))

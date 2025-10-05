@@ -1,9 +1,6 @@
 extends InteractionComponent
 class_name InteractionHolddable
 
-@export var fuel_amount := 10.0
-@export var weight: float = 1.0
-
 func _ready() -> void:
 	super._ready()
 
@@ -13,32 +10,35 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	if not is_occupied: 
 		pickup()
 		is_occupied = true
-	else:
+
+func _input(event: InputEvent) -> void:
+	if not is_occupied: return
+	if event.is_action_pressed("primary"):
 		drop()
 		is_occupied = false
 
-func _process(_delta: float) -> void:
-	if is_occupied and object_ref:
-		object_ref.global_position = player_hand.global_transform.origin
-		#object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
+#func _process(_delta: float) -> void:
+	#if is_occupied and object_ref:
+		#object_ref.global_position = player_hand.global_transform.origin
+		#object_ref.global_rotation = player_hand.global_rotation
 
 func auxInteract() -> void:
 	super.auxInteract()
+	## zoom in on the obj
+	## special use from the obj
 
 func pickup():
-	if object_ref is RigidBody3D:
-		object_ref.angular_velocity = Vector3.ZERO
-		object_ref.linear_velocity = Vector3.ZERO
-
 	object_ref.global_position = player_hand.global_transform.origin
-	#object_ref.global_rotation = player_hand.global_transform.basis.get_euler() + Vector3(0, deg_to_rad(90), 0)
+	#object_ref.global_rotation = player_hand.global_rotation
+	object_ref.reparent(player_hand)
 	is_occupied = true
 
 func drop():
 	is_occupied = false
-	if object_ref:
-		var ground_pos = _get_ground()
-		object_ref.global_position = ground_pos
+	var ground_pos = _get_ground()
+	object_ref.global_position = ground_pos
+	object_ref.global_rotation = Vector3.ZERO
+	object_ref.reparent(get_tree().current_scene)
 
 func _get_ground() -> Vector3:
 	if not object_ref or not (object_ref is Node3D):
