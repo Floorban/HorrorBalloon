@@ -76,8 +76,7 @@ func go_to_exit() -> void:
 
 func hold_edge() -> void:
 	if not player: return
-	player.set_viewing_settings(viewing_offet, viewing_zoom)
-	player.set_viewing_mode()
+	player.set_viewing_mode(viewing_offet, viewing_zoom)
 	hold_time = 0.0
 
 func _on_player_entered(body: Node3D) -> void:

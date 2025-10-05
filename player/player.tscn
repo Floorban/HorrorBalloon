@@ -72,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="Chest" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(0.90218514, -0.40689725, -0.14316562, 0.08417976, 0.4916058, -0.86673987, 0.42305517, 0.769908, 0.47777185, 0.106981486, -0.17169416, -0.28345287)
+transform = Transform3D(0.90218514, -0.40689725, -0.14316562, 0.08417976, 0.4916058, -0.86673987, 0.42305517, 0.769908, 0.47777185, 0.18839309, -0.20246267, -0.28345287)
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6450691, 0)
