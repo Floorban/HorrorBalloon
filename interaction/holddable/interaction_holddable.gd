@@ -89,8 +89,9 @@ func drop():
 	var ground_pos = _get_ground()
 	if ground_pos == Vector3.ZERO: return
 	
-	var root : Node3D = player.get_parent()
-	if root == get_tree().current_scene:
+	var in_balloon := false
+	in_balloon = balloon.objs_in_balloon.has(player)
+	if not in_balloon:
 		object_ref.reparent(get_tree().current_scene)
 	else:
 		object_ref.reparent(balloon.balloon_body)
