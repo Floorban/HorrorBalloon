@@ -1,9 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=53 format=3 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://levels/ResourceSpawnData/resource_spawner.tscn" id="2_i3naf"]
 [ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="2_wk3pi"]
+[ext_resource type="PackedScene" uid="uid://bwu5pcoyk8yal" path="res://sound/ambience/ambience_level_1.tscn" id="3_l412s"]
 [ext_resource type="PackedScene" uid="uid://bo580gbwr80n2" path="res://levels/ResourceSpawnData/resource_spawn_point.tscn" id="3_m6gxc"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_n4swq"]
 [ext_resource type="Resource" uid="uid://cfw4dmxpqaw21" path="res://levels/ResourceSpawnData/SpawnPointData/spawn_point_low.tres" id="4_8a5tp"]
@@ -41,7 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="39_l412s"]
 [ext_resource type="PackedScene" uid="uid://d1d00frh5ptoj" path="res://levels/origin.tscn" id="41_vydlj"]
 [ext_resource type="PackedScene" uid="uid://teq6yccg8gfb" path="res://levels/start_room.tscn" id="42_2hoto"]
-[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="42_l412s"]
+[ext_resource type="PackedScene" path="res://interaction/holddable/static_resource_1.tscn" id="42_l412s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -109,6 +110,8 @@ script = ExtResource("1_o6dmv")
 default_resource = NodePath("Env/Resource")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
+
+[node name="AmbienceLevel1" parent="." instance=ExtResource("3_l412s")]
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
 transform = Transform3D(0.9946667, 0, -0.10313976, 0, 1, 0, 0.10313958, 0, 0.9946668, 2.6505578, -0.5675286, -17.828093)

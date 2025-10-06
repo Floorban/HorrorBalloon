@@ -18,7 +18,7 @@ var total_weight : float
 var audio: AudioManager
 var e_flame: FmodEventEmitter3D
 var e_flame_is_playing: bool
-@onready var e_release: FmodEventEmitter3D = $Audio/SFX_ReleaseGas
+@export var SFX_Release: String
 @onready var flame: GPUParticles3D = $Flame
 @onready var flame2: GPUParticles3D = $Flame2
 @onready var smoke: GPUParticles3D = $Smoke
@@ -62,7 +62,7 @@ func execute(_percentage: float) -> void:
 	## for cooling
 	if _percentage >= 0.99:
 		burning_rate = cooling_rate
-		e_release.play_one_shot()
+		FmodServer.play_one_shot_attached(SFX_Release, self)
 		smoke.emitting = true
 	else:
 		smoke.emitting = false
@@ -104,8 +104,5 @@ func remove_fuel(body: Node3D) -> void:
 				weight_label.text = "weights: " + str(total_weight)
 
 func _exit_tree() -> void:
-	e_release.stop()
-	e_release.queue_free()
-	
 	e_flame.stop()
 	e_flame.queue_free()
