@@ -42,6 +42,7 @@ func auxInteract() -> void:
 
 ## Runs once, when the player LAST interacts with an object
 func postInteract() -> void:
+	player.interaction_controller.current_object = null
 	is_interacting = false
 	lock_camera = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

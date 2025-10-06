@@ -35,6 +35,7 @@ corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
+collision_mask = 2147483649
 script = ExtResource("1_oul6g")
 
 [node name="Head" type="Node3D" parent="."]
@@ -96,6 +97,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
 shape = SubResource("SphereShape3D_g6k8r")
 target_position = Vector3(0, 0, 0)
+collision_mask = 5
 
 [node name="InteractableCheck" type="Area3D" parent="."]
 collision_mask = 5

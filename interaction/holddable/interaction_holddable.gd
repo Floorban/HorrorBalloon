@@ -19,11 +19,12 @@ func _ready() -> void:
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
 	player_hand = hand
-	if not is_occupied: 
-		pickup()
-		is_occupied = true
+	pickup()
 
-#func _process(_delta: float) -> void:
+func postInteract() -> void:
+	pass
+
+#func _physics_process(_delta: float) -> void:
 	#if not is_occupied: return
 	#object_ref.global_position = player_hand.global_position
 	#object_ref.global_rotation = player_hand.global_rotation
@@ -73,27 +74,31 @@ func zoom_out() -> void:
 	player.set_viewing_mode()
 
 func pickup():
+	if is_occupied: return
 	object_ref.global_position = player_hand.global_transform.origin
 	object_ref.global_rotation = player_hand.global_rotation
 	object_ref.reparent(player_hand)
 	is_occupied = true
 	can_interact = false
+	player.interaction_controller.current_object = object_ref
 
 func drop():
+	if is_zoomed_in: return
 	var ground_pos = _get_ground()
 	if ground_pos == Vector3.ZERO: return
 	
 	var root : Node3D = player.get_parent()
 	if root == get_tree().current_scene:
 		object_ref.reparent(get_tree().current_scene)
-	## if in the balloon reparent to the balloon
 	else:
 		object_ref.reparent(balloon.balloon_body)
 	object_ref.global_position = ground_pos
 	object_ref.global_rotation = Vector3.ZERO
 	is_occupied = false
-	await get_tree().create_timer(0.5).timeout
 	can_interact = true
+	player.interaction_controller.interaction_component = null
+	player.interaction_controller._unfocus()
+	player.interaction_controller.interaction_ui_clear()
 
 func _get_ground() -> Vector3:
 	if not object_ref: return Vector3.ZERO

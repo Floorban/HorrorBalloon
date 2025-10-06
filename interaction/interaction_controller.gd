@@ -51,7 +51,6 @@ func perform_interactions(target: InteractionComponent) -> void:
 	# Limit interaction distance
 	elif player_camera.global_transform.origin.distance_to(current_object.global_transform.origin) > 3.0:
 		interaction_component.postInteract()
-		current_object = null
 		_unfocus()
 		return
 	if Input.is_action_just_pressed("secondary"):
@@ -61,16 +60,18 @@ func perform_interactions(target: InteractionComponent) -> void:
 		target.interact()
 	else:
 		target.postInteract()
-		stop_interactions()
+		if not interaction_component is InteractionHolddable:
+			stop_interactions()
 
 func stop_interactions() -> void:
-	current_object = null 
+	if current_object and not interaction_component is InteractionHolddable:
+		current_object = null
 	_unfocus()
 
 func check_potential_interactables() -> void:
 	var potential_object: Object = interaction_raycast.get_collider()
 	
-	if potential_object and potential_object is Node:
+	if (potential_object and potential_object is Node):
 		var node: Node = potential_object
 		interaction_component = null
 		while node:
@@ -189,7 +190,8 @@ func _unfocus() -> void:
 	default_reticle.visible = true
 	highlight_reticle.visible = false
 	interacting_reticle.visible = false
-	interaction_ui_clear()
+	if current_object == null:
+		interaction_ui_clear()
 
 ## Called when the player collects an item
 func _on_item_collected(item: Node):

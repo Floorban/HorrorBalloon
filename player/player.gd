@@ -309,7 +309,6 @@ func set_viewing_mode(target_offset : Vector3 = Vector3(0, 5.0, -0.5), target_zo
 		player_state = PlayerState.VIEWING
 	else:
 		player_state = PlayerState.IDLE_STAND
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 #Push small objects around feet
 func apply_push_forces(push_shape: ShapeCast3D):

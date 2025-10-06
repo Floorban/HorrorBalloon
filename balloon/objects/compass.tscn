@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://d1ffaam5q4ph"]
 
-[ext_resource type="Script" uid="uid://47b3wdte2bme" path="res://balloon/objects/compass.gd" id="1_mw1jy"]
+[ext_resource type="Script" uid="uid://o1wd3luj2v2m" path="res://balloon/objects/compass.gd" id="1_mw1jy"]
 [ext_resource type="PackedScene" uid="uid://c24vbtu6kx54h" path="res://balloon/objects/compass_model.tscn" id="2_fjvul"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_vsxwu"]
 [ext_resource type="Script" uid="uid://bj8bubvwnopj7" path="res://interaction/holddable/interaction_holddable.gd" id="4_cv74v"]
@@ -24,20 +24,18 @@ icon = ExtResource("7_t6epe")
 prompt = "Zoom In"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
-[node name="Compass" type="Node3D"]
-script = ExtResource("1_mw1jy")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Compass" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_mw1jy")
 
-[node name="CompassModel" parent="StaticBody3D" instance=ExtResource("2_fjvul")]
+[node name="CompassModel" parent="." instance=ExtResource("2_fjvul")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="Pointer" parent="StaticBody3D/CompassModel" index="0"]
+[node name="Pointer" parent="CompassModel" index="0"]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0.048581045, 0.053173594, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009232946, -0.0008264184, 0)
 shape = SubResource("CylinderShape3D_vsxwu")
 
@@ -51,4 +49,4 @@ zoom_speed = 0.1
 ui_set = Array[ExtResource("5_ebgub")]([SubResource("Resource_bwogo"), SubResource("Resource_00nns")])
 object_ref = NodePath("..")
 
-[editable path="StaticBody3D/CompassModel"]
+[editable path="CompassModel"]
