@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cbn86oxrka8gn"]
+
+[ext_resource type="Texture2D" uid="uid://cj5lfyfhe5cg" path="res://assets/balloon/Gauges/HeatGauge_Gauge_AlbedoTransparency.png" id="1_qme4l"]
+[ext_resource type="Texture2D" uid="uid://dr0bwrr8wbyxh" path="res://assets/balloon/Gauges/HeatGauge_Gauge_MetallicSmoothness.png" id="2_oa1pt"]
+[ext_resource type="Texture2D" uid="uid://baclnuar6x0ny" path="res://assets/balloon/Gauges/HeatGauge_Gauge_Normal.png" id="3_6ttwk"]
+
+[resource]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_qme4l")
+metallic = 1.0
+metallic_texture = ExtResource("2_oa1pt")
+roughness_texture = ExtResource("2_oa1pt")
+roughness_texture_channel = 3
+normal_enabled = true
+normal_texture = ExtResource("3_6ttwk")
+ao_enabled = true
+ao_texture = ExtResource("2_oa1pt")
+ao_texture_channel = 1
