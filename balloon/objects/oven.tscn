@@ -47,6 +47,7 @@ transform = Transform3D(0.70710665, 0.7071067, 1.5099033e-12, -0.7070823, 0.7070
 nodes_to_affect = [NodePath("../../..")]
 
 [node name="Collision" type="CharacterBody3D" parent="."]
+collision_layer = 1073741825
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36306, 0)
