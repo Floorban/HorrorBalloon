@@ -77,6 +77,9 @@ func interact() -> void:
 	super.interact()
 	lock_camera = true
 
+func auxInteract() -> void:
+	postInteract()
+
 ## True if player is looking at the front of an object, false otherwise
 func check_player_side(interact_ray: RayCast3D) -> void:
 	var player_dir: Vector3 = interact_ray.global_transform.basis.x.normalized()

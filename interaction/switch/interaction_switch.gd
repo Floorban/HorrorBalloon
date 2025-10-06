@@ -71,6 +71,9 @@ func postInteract() -> void:
 		switch_target_rotation = maximum_rotation
 		is_switch_snapping = true
 
+func auxInteract() -> void:
+	postInteract()
+
 #func update_switch_sounds(delta: float) -> void:
 	## Calculate angular speed
 	#var angular_speed = abs(object_ref.rotation.z - last_switch_angle) / max(delta, 0.0001)

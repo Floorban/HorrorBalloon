@@ -78,6 +78,9 @@ func interact() -> void:
 	super.interact()
 	lock_camera = true
 
+func auxInteract() -> void:
+	postInteract()
+
 func unlock() -> void:
 	is_locked = false
 	was_just_unlocked = true
