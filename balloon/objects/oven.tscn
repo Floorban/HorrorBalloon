@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="10_71bfn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sicut"]
-height = 0.90556335
+height = 0.9663811
 radius = 0.64990234
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6mct1"]
@@ -19,10 +19,10 @@ height = 5.334305
 radius = 0.59521484
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sicut"]
-size = Vector3(1.2067871, 1.010498, 0.2703781)
+size = Vector3(1.2067871, 1.010498, 0.32366562)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6mct1"]
-size = Vector3(0.14227295, 1, 0.68481445)
+size = Vector3(0.20101929, 1, 0.68481445)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71bfn"]
 size = Vector3(1.0380859, 0.70025635, 1.1279297)
@@ -59,7 +59,7 @@ nodes_to_affect = [NodePath("../../..")]
 collision_layer = 1073741825
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36306, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39346886, 0)
 shape = SubResource("CylinderShape3D_sicut")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision"]
@@ -67,15 +67,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.057625, 0)
 shape = SubResource("CylinderShape3D_6mct1")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7763568e-15, 1.2802429, 0.4640236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2802429, 0.43737984)
 shape = SubResource("BoxShape3D_sicut")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49996948, 1.2802429, 0.043197647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4705963, 1.2802429, 0.043197647)
 shape = SubResource("BoxShape3D_6mct1")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50134164, 1.2802429, 0.043197602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48447722, 1.2802429, 0.043197602)
 shape = SubResource("BoxShape3D_6mct1")
 
 [node name="FuelArea" type="Area3D" parent="."]
@@ -89,9 +89,11 @@ debug_color = Color(0.937255, 0.156863, 0.509804, 1)
 
 [node name="Flame" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2963667, 0.49066186)
+visible = false
 
 [node name="Flame2" parent="." instance=ExtResource("10_71bfn")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.6185933e-08, 0.8934559, -0.10840249)
+visible = false
 
 [node name="Smoke" parent="." instance=ExtResource("6_6mct1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4482235e-09, 0, -0.19327283)
