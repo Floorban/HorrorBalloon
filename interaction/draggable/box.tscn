@@ -36,10 +36,3 @@ max_drag_distance = 0.5
 min_drag_distance = -0.2
 drag_smoothness = 0.05
 object_ref = NodePath("..")
-
-[node name="Impact" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/Interactables/Impact/Can"
-event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
-fmod_parameters/impact_strength/id = 8864240675834785146
-fmod_parameters/impact_strength = 0.0
-fmod_parameters/impact_strength/variant_type = 3

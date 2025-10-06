@@ -1,7 +1,6 @@
-extends RigidBody3D
+#extends RigidBody3D
 #
-#@onready var e_impact: FmodEventEmitter3D = $Impact
-#@export var impact_parameter: String = "impact_strength"
+#@export var SFX_Impact: String = "event:/SFX/Interactables/Impact/Can"
 #
 #var can_play: bool = false
 #var disabled: bool = false
@@ -14,7 +13,7 @@ extends RigidBody3D
 #func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	##TODO: Sleep object if inactive for long but wakes up after being grabbed
 	#var current_time: float = Time.get_ticks_msec() / 1000.0
-	#if current_time <= 5.0: return
+	#if current_time <= 10.0: return
 #
 	#if state.get_contact_count() > 0:
 		#var max_intensity: float = 0.0
@@ -31,8 +30,7 @@ extends RigidBody3D
 #
 		## Plays sound only if collision intensity is strong enough and no cooldown
 		#if max_intensity > 0.05 and current_time - last_play_time >= cooldown:
-			#e_impact.set_parameter(impact_parameter, max_intensity)
-			#e_impact.play()
+			#FmodServer.play_one_shot_attached_with_params(SFX_Impact, self, {"impact_strength": max_intensity})
 			#last_play_time = current_time
 			#print("Impact intensity:", max_intensity)
 #

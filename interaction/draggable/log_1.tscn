@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_wa4m8"]
 [ext_resource type="ArrayMesh" uid="uid://bfliashiuet1k" path="res://assets/stolen/props/pole_001.obj" id="2_0k1tm"]
 [ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/draggable/interaction_draggable.gd" id="3_j6m3c"]
-[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_3qh3i"]
+[ext_resource type="Script" uid="uid://bd1dhdqfubwrg" path="res://interaction/interaction_ui_data.gd" id="5_3qh3i"]
 [ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="6_3qh3i"]
 [ext_resource type="Texture2D" uid="uid://b6hk3xhtgseyb" path="res://assets/ui/mouse_right_button.png" id="7_jle51"]
 [ext_resource type="Texture2D" uid="uid://c3kiqqhiwopwf" path="res://assets/ui/mouse_scroll.png" id="8_vr6gl"]
@@ -55,10 +55,3 @@ fuel_amount = 25.0
 ui_set = Array[ExtResource("5_3qh3i")]([SubResource("Resource_11scr"), SubResource("Resource_67s4j"), SubResource("Resource_157fb")])
 object_ref = NodePath("..")
 metadata/_custom_type_script = "uid://dl7lykc4qndpo"
-
-[node name="Impact" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/SFX/Interactables/Impact/Can"
-event_guid = "{6f54e69f-7ab2-4d26-98e0-5a378011b915}"
-fmod_parameters/impact_strength/id = 8864240675834785146
-fmod_parameters/impact_strength = 0.0
-fmod_parameters/impact_strength/variant_type = 3
