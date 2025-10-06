@@ -1,6 +1,11 @@
 extends InteractionComponent
 class_name InteractionHolddable
 
+@onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
+
+@export var fuel_amount: float = 50.0
+@export var weight: float = 1.0
+
 var is_zoomed_in := false
 @export var zoom_position_offset := Vector3(-0.08, 0.18, -0.15)
 @export var zoom_rotation_offset := Vector3(10, 15, 0) 
@@ -16,6 +21,11 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 	if not is_occupied: 
 		pickup()
 		is_occupied = true
+
+#func _process(_delta: float) -> void:
+	#if not is_occupied: return
+	#object_ref.global_position = player_hand.global_position
+	#object_ref.global_rotation = player_hand.global_rotation
 
 func _input(event: InputEvent) -> void:
 	if not is_occupied: return
@@ -73,7 +83,12 @@ func drop():
 	var ground_pos = _get_ground()
 	object_ref.global_position = ground_pos
 	object_ref.global_rotation = Vector3.ZERO
-	object_ref.reparent(get_tree().current_scene)
+	var root : Node3D = player.get_parent()
+	if root == get_tree().current_scene:
+		object_ref.reparent(get_tree().current_scene)
+	## if in the balloon reparent to the balloon
+	else:
+		object_ref.reparent(balloon.balloon_body)
 
 func _get_ground() -> Vector3:
 	if not object_ref or not (object_ref is Node3D):

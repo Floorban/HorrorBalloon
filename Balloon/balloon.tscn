@@ -30,19 +30,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 90930900269499
+metadata/creation_stamp = 2511851314075
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2whnr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 90930933823942
+metadata/creation_stamp = 2511884868509
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2lwo6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 90930967386533
+metadata/creation_stamp = 2511918422943
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ns4al"]
 resource_local_to_scene = true
-metadata/creation_stamp = 90931000941097
+metadata/creation_stamp = 2511951977377
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -61,7 +61,7 @@ max_tilt_angle = 10.0
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
-[node name="Bottom" type="CharacterBody3D" parent="Body"]
+[node name="Bottom" type="CharacterBody3D" parent="Body" groups=["balloon_ground"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.025814056, 0.023223877)
@@ -280,6 +280,48 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Log1" parent="Body" instance=ExtResource("17_wq7tp")]
+transform = Transform3D(0.012752339, 0.040057775, 0.16127783, -0.0031575384, 0.16178119, -0.03993314, -0.16614811, 0, 0.013137436, -0.0014508951, 0.22358331, -0.047787823)
+
+[node name="Log2" parent="Body" instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.12228831, 0, -0.11324023, 0, 0.16666667, 0, 0.11324023, 0, 0.12228831, 0, 1.3095964, -0.24423444)
+
+[node name="Log7" parent="Body" instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.12228831, 0, -0.11324023, 0, 0.16666667, 0, 0.11324023, 0, 0.12228831, 0.3599906, 1.3095964, -0.20928282)
+
+[node name="Log6" parent="Body" instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.12228831, 0, -0.11324023, 0, 0.16666667, 0, 0.11324023, 0, 0.12228831, 0.018429011, 0.1430236, -0.20461607)
+
+[node name="Log5" parent="Body" instance=ExtResource("18_2whnr")]
+transform = Transform3D(0.027241593, -0.008356862, 0.1642128, -0.059276365, 0.15475938, 0.017709251, -0.15336877, -0.061298184, 0.022323158, -0.024983045, 0.1966767, -0.030052802)
+
+[node name="Log3" parent="Body" instance=ExtResource("19_2lwo6")]
+transform = Transform3D(0.053843103, 0, -0.15772983, 0, 0.16666667, 0, 0.15772983, 0, 0.053843103, -0.026217915, 0.22951911, -0.05273626)
+
+[node name="Log4" parent="Body" instance=ExtResource("19_2lwo6")]
+transform = Transform3D(-0.04774016, 0, -0.15968299, 0, 0.16666667, 0, 0.15968299, 0, -0.04774016, 0.01573471, 0.19258235, -0.039919242)
+
+[node name="Log8" parent="Body" instance=ExtResource("19_2lwo6")]
+transform = Transform3D(-0.11656685, -0.11238159, -0.039501045, -0.10643643, 0.123077855, -0.03606815, 0.053490594, 0, -0.15784976, 0.31233352, 1.2849019, -0.31288382)
+
+[node name="Plank1" parent="Body" instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.008748831, -0.05875663, -0.15572056, 0.12780301, 0.09752034, -0.043976795, 0.10661909, -0.12171781, 0.039936483, 0.0040766965, 0.23399076, -0.046162494)
+
+[node name="Plank5" parent="Body" instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.08498331, 0.05093714, -0.13401872, 0.12780301, 0.09752034, -0.043976795, 0.064977, -0.12519176, -0.088785134, 0.4139819, 1.2186922, -0.31859782)
+
+[node name="Plank6" parent="Body" instance=ExtResource("20_ns4al")]
+transform = Transform3D(-0.08498331, 0.05093714, -0.13401872, 0.12780301, 0.09752034, -0.043976795, 0.064977, -0.12519176, -0.088785134, -0.053648375, 1.1803341, -0.20018244)
+
+[node name="Plank7" parent="Body" instance=ExtResource("20_ns4al")]
+transform = Transform3D(0.10474856, 0.07895626, -0.10281741, -0.021297893, 0.1408726, 0.08648187, 0.12787464, -0.041214332, 0.098626725, -0.09048155, 1.2156733, -0.122504316)
+
+[node name="Plank2" parent="Body" instance=ExtResource("21_pnbqt")]
+transform = Transform3D(0.018291947, 0, 0.16565983, 0, 0.16666667, 0, -0.16565983, 0, 0.018291947, -0.020045279, 0.224464, -0.026535025)
+
+[node name="Plank3" parent="Body" instance=ExtResource("22_yd7v6")]
+transform = Transform3D(0.07681596, 0.021065457, -0.14640126, -0.06328414, 0.15378629, -0.01107677, 0.13368697, 0.06069447, 0.07887808, 0.010067163, 0.22935782, -0.044088244)
+
 [node name="GroundCheck" type="Node3D" parent="."]
 
 [node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
@@ -321,45 +363,3 @@ event_guid = "{bb2df2d1-dfe8-4e3f-9101-b8cd2ce0a65b}"
 [node name="SFX_Land" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/Balloon/Land"
 event_guid = "{129eb7de-5aa3-4fe6-b9e5-072bcaa3da0a}"
-
-[node name="Log1" parent="." instance=ExtResource("17_wq7tp")]
-transform = Transform3D(0.076514035, 0.24034664, 0.967667, -0.01894523, 0.97068715, -0.23959884, -0.99688864, 0, 0.07882461, -0.00870537, 1.3414998, -0.28672692)
-
-[node name="Log2" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0, 1.3036617, -0.26605225)
-
-[node name="Log7" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 2.1599436, 1.3036617, -1.2556969)
-
-[node name="Log6" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, -1.2276964)
-
-[node name="Log5" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.16344956, -0.05014117, 0.9852767, -0.35565817, 0.92855626, 0.1062555, -0.92021257, -0.3677891, 0.13393894, -0.14989826, 1.1800601, -0.1803168)
-
-[node name="Log3" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(0.3230586, 0, -0.946379, 0, 1, 0, 0.946379, 0, 0.3230586, -0.15730749, 1.3771147, -0.31641755)
-
-[node name="Log4" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(-0.28644097, 0, -0.9580979, 0, 1, 0, 0.9580979, 0, -0.28644097, 0.09440826, 1.1554941, -0.23951545)
-
-[node name="Log8" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(-0.6994011, -0.6742895, -0.23700626, -0.6386186, 0.7384671, -0.21640888, 0.32094356, 0, -0.9470985, 1.874001, 1.1554941, -1.8773029)
-
-[node name="Plank1" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.052492987, -0.35253978, -0.9343234, 0.76681805, 0.585122, -0.26386076, 0.63971454, -0.73030686, 0.2396189, 0.024460178, 1.4039445, -0.27697495)
-
-[node name="Plank5" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.38986197, -0.75115055, -0.5327108, 2.4838915, 0.75823665, -1.9115869)
-
-[node name="Plank6" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.38986197, -0.75115055, -0.5327108, -0.32189023, 0.52808833, -1.2010946)
-
-[node name="Plank7" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(0.62849134, 0.47373754, -0.61690444, -0.12778735, 0.8452356, 0.5188912, 0.7672478, -0.24728598, 0.59176034, -0.5428893, 0.74012303, -0.7350259)
-
-[node name="Plank2" parent="." instance=ExtResource("21_pnbqt")]
-transform = Transform3D(0.10975167, 0, 0.99395895, 0, 1, 0, -0.99395895, 0, 0.10975167, -0.12027167, 1.346784, -0.15921015)
-
-[node name="Plank3" parent="." instance=ExtResource("22_yd7v6")]
-transform = Transform3D(0.46089578, 0.12639274, -0.8784075, -0.3797048, 0.9227177, -0.06646062, 0.8021218, 0.36416683, 0.47326848, 0.060402974, 1.3761469, -0.26452947)

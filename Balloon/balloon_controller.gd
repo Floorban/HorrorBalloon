@@ -176,7 +176,7 @@ func _on_body_entered(body: Node3D) -> void:
 		call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
-		if obj and "weight" in obj:
+		if obj is InteractionDraggable or obj is InteractionHolddable:
 			objs_in_balloon[body] = obj.weight
 			#_is_reparenting = true
 			call_deferred("_deferred_attach", body)
@@ -200,7 +200,7 @@ func _deferred_attach(body: Node3D) -> void:
 		_is_reparenting = false
 		return
 
-	if body.get_parent() == self:
+	if body.get_parent() == balloon_body:
 		_is_reparenting = false
 		return
 
@@ -212,7 +212,7 @@ func _deferred_attach(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent:
 		parent.remove_child(body)
-	add_child(body)
+	balloon_body.add_child(body)
 
 	body.global_transform = old_transform
 

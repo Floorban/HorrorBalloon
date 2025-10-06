@@ -3,7 +3,7 @@ extends Node3D
 
 @export var rotation_speed := 10.0
 @onready var pointer: MeshInstance3D = $StaticBody3D/CompassModel/Pointer
-@onready var target: Node3D = get_tree().get_first_node_in_group("balloon")
+@onready var target: Node3D = get_tree().get_first_node_in_group("lighthouse")
 
 func _process(delta: float) -> void:
 	if not target:

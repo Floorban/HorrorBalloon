@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
-[ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://Survival/Textures/Rock.jpg" id="2_cfm6c"]
+[ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://assets/stolen/Survival/Textures/Rock.jpg" id="2_cfm6c"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="3_n085v"]
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="4_421my"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="4_886i1"]
