@@ -211,7 +211,7 @@ func _deferred_attach(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent:
 		parent.remove_child(body)
-	balloon_body.add_child(body)
+	add_child(body)
 
 	body.global_transform = old_transform
 

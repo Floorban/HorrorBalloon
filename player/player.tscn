@@ -35,7 +35,6 @@ corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
-collision_mask = 2147483649
 script = ExtResource("1_oul6g")
 
 [node name="Head" type="Node3D" parent="."]
