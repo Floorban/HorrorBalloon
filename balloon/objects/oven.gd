@@ -8,6 +8,7 @@ var fule_conversion_rate: float = 1.0
 var burning_rate : float
 var defualt_burning_rate := 0.5
 var cooling_rate := 5.0
+var is_burning: bool
 
 @onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea
@@ -15,10 +16,11 @@ var objs_to_burn: Array[InteractionComponent] = []
 @onready var weight_label: Label = %WeightLabel
 var total_weight : float
 
-var audio: AudioManager
-var e_flame: FmodEventEmitter3D
-var e_flame_is_playing: bool
+## -- Sound Settings --
+@export var SFX_Flame: String
 @export var SFX_Release: String
+
+## -- Particle Settings -- 
 @onready var flame: GPUParticles3D = $Flame
 @onready var flame2: GPUParticles3D = $Flame2
 @onready var smoke: GPUParticles3D = $Smoke
@@ -29,8 +31,6 @@ func _ready() -> void:
 	var b = get_parent().get_parent()
 	if b is BalloonController: balloon = b
 	smoke.emitting = false
-	audio = get_tree().get_first_node_in_group("audio")
-	e_flame = audio.cache(get_node("Audio/SFX_Flame"), global_position)
 
 	if fuel_bar:
 		fuel_bar.max_value = MAX_FUEL
@@ -44,16 +44,16 @@ func _process(delta: float) -> void:
 	if current_fuel > 0.0:
 			flame.emitting = true
 			flame2.emitting = true
-			if !e_flame_is_playing:
-				e_flame.paused = false
-				e_flame_is_playing = true
+			if !is_burning:
+				FmodServer.play_one_shot(SFX_Flame)
+				print("byurrrn")
+				is_burning = true
 			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
 	else:
 		flame.emitting = false
 		flame2.emitting = false
 		smoke.emitting = false
-		e_flame_is_playing = false
-		e_flame.paused = true
+		is_burning = false
 	
 	if fuel_bar:
 		fuel_bar.value = current_fuel
@@ -102,7 +102,3 @@ func remove_fuel(body: Node3D) -> void:
 			else:
 				total_weight -= interaction_component.weight
 				weight_label.text = "weights: " + str(total_weight)
-
-func _exit_tree() -> void:
-	e_flame.stop()
-	e_flame.queue_free()
