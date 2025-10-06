@@ -36,6 +36,9 @@ corner_radius_bottom_left = 10
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
 script = ExtResource("1_oul6g")
+SFX_StepR = "event:/SFX/Girl/Step/Right"
+SFX_StepL = "event:/SFX/Girl/Step/Left"
+SFX_Crouch = "event:/SFX/Girl/Crouch"
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -190,41 +193,3 @@ layout_mode = 2
 [node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_g6k8r")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Audio" type="Node3D" parent="."]
-
-[node name="SFX_RightStep" type="FmodEventEmitter3D" parent="Audio"]
-event_name = "event:/SFX/Girl/Step/Right"
-event_guid = "{8d099386-de64-44bf-b26e-df64952781fb}"
-fmod_parameters/terrain/id = 5162296383277836654
-fmod_parameters/terrain = "grass"
-fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
-fmod_parameters/terrain/variant_type = 4
-unique_name_in_owner = true
-
-[node name="SFX_LeftStep" type="FmodEventEmitter3D" parent="Audio"]
-event_name = "event:/SFX/Girl/Step/Left"
-event_guid = "{f2e4e7b5-c9ad-4ba7-a0f8-5ad3f234e9ad}"
-fmod_parameters/terrain/id = 5162296383277836654
-fmod_parameters/terrain = "grass"
-fmod_parameters/terrain/labels = PackedStringArray("default", "grass")
-fmod_parameters/terrain/variant_type = 4
-unique_name_in_owner = true
-
-[node name="SFX_Stand" type="FmodEventEmitter3D" parent="Audio"]
-event_name = "event:/SFX/Girl/Crouch"
-event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
-fmod_parameters/stance/id = 4732078636444294086
-fmod_parameters/stance = "stand"
-fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
-fmod_parameters/stance/variant_type = 4
-unique_name_in_owner = true
-
-[node name="SFX_Crouch" type="FmodEventEmitter3D" parent="Audio"]
-event_name = "event:/SFX/Girl/Crouch"
-event_guid = "{ea399370-598d-4511-b37f-a4dac4ab8dc0}"
-fmod_parameters/stance/id = 4732078636444294086
-fmod_parameters/stance = "crouch"
-fmod_parameters/stance/labels = PackedStringArray("crouch", "stand")
-fmod_parameters/stance/variant_type = 4
-unique_name_in_owner = true

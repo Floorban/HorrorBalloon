@@ -12,10 +12,10 @@ signal player_fall
 @onready var interaction_controller: InteractionController = %InteractionController
 
 # Audio Settings
-@onready var e_right_step: FmodEventEmitter3D = %SFX_RightStep
-@onready var e_left_step: FmodEventEmitter3D = %SFX_LeftStep
-@onready var e_stand: FmodEventEmitter3D = %SFX_Stand
-@onready var e_crouch: FmodEventEmitter3D = %SFX_Crouch
+@export var SFX_StepR: String
+@export var SFX_StepL: String
+@export var SFX_Crouch: String
+var step_volume: float
 var step_is_playing: bool = false
 var is_crouching: bool = false
 var is_standing: bool = false
@@ -211,8 +211,8 @@ func update_player_state() -> void:
 			else:
 				player_state = PlayerState.WALKING
 
-		if Input.is_action_just_pressed("crouch"): play_crouch_sound()
-		if Input.is_action_just_released("crouch"): play_stand_sound()
+		if Input.is_action_just_pressed("crouch"): play_crouch_sound("crouch")
+		if Input.is_action_just_released("crouch"): play_crouch_sound("stand")
 
 	update_player_collision(player_state)
 	update_player_speed(player_state)
@@ -327,8 +327,6 @@ func apply_push_forces(push_shape: ShapeCast3D):
 			collider.apply_force(push_force, col_contact)
 
 func play_death_animation(target_pos: Vector3) -> void:
-	e_right_step.volume = 0
-	e_left_step.volume = 0
 	is_dead = true
 	
 	global_position = (target_pos + Vector3(-3, 2, 0))
@@ -339,8 +337,7 @@ func play_death_animation(target_pos: Vector3) -> void:
 func updatePlayerSound(_player_state: PlayerState) -> void:
 	match _player_state:
 		PlayerState.IDLE_STAND, PlayerState.IDLE_CROUCH, PlayerState.CROUCHING, PlayerState.AIR, PlayerState.VIEWING:
-			e_right_step.volume = lerp(e_right_step.volume, 0.0, 0.1)
-			e_left_step.volume = lerp(e_left_step.volume, 0.0, 0.1)
+			step_volume = lerp(step_volume, 0.0, 0.1)
 			return
 	
 	var step_gap: float
@@ -349,38 +346,24 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	match _player_state:
 		PlayerState.WALKING: 
 			step_gap = 0.5
-			e_right_step.volume = 0.5
-			e_left_step.volume = 0.5
+			step_volume = 0.5
 		PlayerState.SPRINTING: 
 			step_gap = 0.35
-			e_right_step.volume = 1
-			e_left_step.volume = 1
+			step_volume = 1
 
 	if step_is_playing: return
 	step_is_playing = true
 	
-	e_right_step.play_one_shot()
+	FmodServer.play_one_shot_with_params(SFX_StepR, {"volume": step_volume})
 	await get_tree().create_timer(step_gap).timeout
 
-	e_left_step.play_one_shot()
+	FmodServer.play_one_shot_with_params(SFX_StepL, {"volume": step_volume})
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
 
-func play_crouch_sound():
+func play_crouch_sound(stance: String):
 	if is_crouching: return
 	is_crouching = true
-	e_crouch.play_one_shot()
+	FmodServer.play_one_shot_with_params(SFX_Crouch, {"stance": stance})
 	await get_tree().create_timer(0.3).timeout
 	is_crouching = false
-
-func play_stand_sound():
-	if is_standing: return
-	is_standing = true
-	e_stand.play_one_shot()
-	await get_tree().create_timer(0.3).timeout
-	is_standing = false
-
-func _exit_tree():
-	e_right_step.stop()
-	e_left_step.stop()
-	pass
