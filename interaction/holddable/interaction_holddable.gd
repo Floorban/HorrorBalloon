@@ -2,6 +2,7 @@ extends InteractionComponent
 class_name InteractionHolddable
 
 @onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
+@onready var interaction_raycast : RayCast3D = player.interaction_controller.placable_raycast
 
 @export var fuel_amount: float = 50.0
 @export var weight: float = 1.0
@@ -31,7 +32,6 @@ func _input(event: InputEvent) -> void:
 	if not is_occupied: return
 	if event.is_action_pressed("primary"):
 		drop()
-		is_occupied = false
 	if event.is_action_pressed("secondary"):
 		zoom_in()
 	elif event.is_action_released("secondary"):
@@ -77,37 +77,50 @@ func pickup():
 	object_ref.global_rotation = player_hand.global_rotation
 	object_ref.reparent(player_hand)
 	is_occupied = true
+	can_interact = false
 
 func drop():
-	is_occupied = false
 	var ground_pos = _get_ground()
-	object_ref.global_position = ground_pos
-	object_ref.global_rotation = Vector3.ZERO
+	if ground_pos == Vector3.ZERO: return
+	
 	var root : Node3D = player.get_parent()
 	if root == get_tree().current_scene:
 		object_ref.reparent(get_tree().current_scene)
 	## if in the balloon reparent to the balloon
 	else:
 		object_ref.reparent(balloon.balloon_body)
+	object_ref.global_position = ground_pos
+	object_ref.global_rotation = Vector3.ZERO
+	is_occupied = false
+	await get_tree().create_timer(0.5).timeout
+	can_interact = true
 
 func _get_ground() -> Vector3:
-	if not object_ref or not (object_ref is Node3D):
-		return Vector3.ZERO
+	if not object_ref: return Vector3.ZERO
 
+	var hit_pos: Vector3 = Vector3.ZERO
+	var has_hit := false
+
+	if interaction_raycast.is_colliding():
+		hit_pos = interaction_raycast.get_collision_point()
+		has_hit = true
+	if has_hit:
+		return hit_pos
+		
+	## drop on ground if placable area no found
 	var space_state = object_ref.get_world_3d().direct_space_state
-	
 	var start = object_ref.global_position
 	var end = start - Vector3.UP * 10.0
-	
+
 	var query = PhysicsRayQueryParameters3D.new()
 	query.from = start
 	query.to = end
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
 	query.exclude = [object_ref]
-	
+
 	var result = space_state.intersect_ray(query)
-	
+
 	if result.has("position"):
 		return result.position
 	else:

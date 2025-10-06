@@ -2,6 +2,7 @@ extends Node
 class_name InteractionController
 
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
+@onready var placable_raycast: RayCast3D = %PlacableRaycast
 @onready var player: PlayerController = $".."
 @onready var player_camera: Camera3D = %Camera3D
 var current_object: Object

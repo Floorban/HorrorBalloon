@@ -43,6 +43,11 @@ shape = SubResource("CylinderShape3D_vsxwu")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("3_vsxwu")]
 script = ExtResource("4_cv74v")
+fuel_amount = 50.0
+weight = 1.0
+zoom_position_offset = Vector3(-0.08, 0.18, -0.15)
+zoom_rotation_offset = Vector3(10, 15, 0)
+zoom_speed = 0.1
 ui_set = Array[ExtResource("5_ebgub")]([SubResource("Resource_bwogo"), SubResource("Resource_00nns")])
 object_ref = NodePath("..")
 
