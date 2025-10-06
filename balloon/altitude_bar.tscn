@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://docr5nmdss3qf"]
+
+[ext_resource type="ArrayMesh" uid="uid://dllrxafqskb3x" path="res://assets/balloon/Gauges/AltitudGauge.res" id="1_ajqy3"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_g51k0"]
+[ext_resource type="Script" uid="uid://cosofspdw4mjk" path="res://interaction/interaction_inspect.gd" id="3_1134o"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_5n7k1"]
+[ext_resource type="Texture2D" uid="uid://462nbhhg2r4k" path="res://assets/ui/mouse_v_drag.png" id="5_sk1dg"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="6_bntrc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajqy3"]
+size = Vector3(0.21716309, 1.2133789, 0.40527344)
+
+[sub_resource type="Resource" id="Resource_trym0"]
+script = ExtResource("4_5n7k1")
+icon = ExtResource("5_sk1dg")
+prompt = "Inspect"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_8ujiw"]
+script = ExtResource("4_5n7k1")
+icon = ExtResource("6_bntrc")
+prompt = "Exit"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[node name="AltitudeBar" type="MeshInstance3D"]
+mesh = ExtResource("1_ajqy3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06201172, 0.012451172, 0)
+shape = SubResource("BoxShape3D_ajqy3")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("2_g51k0")]
+script = ExtResource("3_1134o")
+zoom_position_offset = Vector3(-0.08, 0.18, -0.15)
+zoom_rotation_offset = Vector3(10, 15, 0)
+zoom_speed = 0.1
+ui_set = Array[ExtResource("4_5n7k1")]([SubResource("Resource_trym0"), SubResource("Resource_8ujiw")])
+object_ref = NodePath("..")
