@@ -184,6 +184,8 @@
 			<destination>{42429389-e8b5-41c4-a706-46c05cc1ee62}</destination>
 			<destination>{723e8241-e41e-4b1b-b672-cdba7c98098c}</destination>
 			<destination>{70fdf33f-65b7-4e34-a649-d1521f71e8ad}</destination>
+			<destination>{2ba378d8-feaf-4c8e-82b6-07879e7192df}</destination>
+			<destination>{1f7c5ad3-b773-4136-a808-4863f8ecb496}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{02afd3a9-edec-48e7-b3d9-39cf60bc2338}" />
@@ -269,6 +271,16 @@
 			<value>0.5</value>
 		</property>
 	</object>
+	<object class="SFXReverbEffect" id="{2ba378d8-feaf-4c8e-82b6-07879e7192df}">
+		<property name="decayTime">
+			<value>8000</value>
+		</property>
+	</object>
+	<object class="FlangerEffect" id="{1f7c5ad3-b773-4136-a808-4863f8ecb496}">
+		<property name="rate">
+			<value>1.30000007</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{27e6305e-3000-4a9b-b97c-10b117012b83}">
 		<property name="position">
 			<value>0</value>
@@ -290,7 +302,7 @@
 	</object>
 	<object class="AutomationPoint" id="{6c8f30c9-df87-4c0b-9a14-793c6acb6d2d}">
 		<property name="position">
-			<value>3.7625605637938637</value>
+			<value>3.5</value>
 		</property>
 		<property name="value">
 			<value>1</value>
