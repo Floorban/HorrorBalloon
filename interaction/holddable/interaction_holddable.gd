@@ -16,6 +16,12 @@ var tween: Tween
 
 func _ready() -> void:
 	super._ready()
+	object_ref.global_position = _get_ground()
+
+func _process(_delta: float) -> void:
+	if not is_occupied: return
+	object_ref.global_position = player_hand.global_position
+	object_ref.global_rotation = player_hand.global_rotation
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
@@ -102,7 +108,7 @@ func _get_ground() -> Vector3:
 	var hit_pos: Vector3 = Vector3.ZERO
 	var has_hit := false
 
-	if interaction_raycast.is_colliding():
+	if is_occupied and interaction_raycast.is_colliding():
 		hit_pos = interaction_raycast.get_collision_point()
 		has_hit = true
 	if has_hit:
@@ -118,6 +124,7 @@ func _get_ground() -> Vector3:
 	query.to = end
 	query.collide_with_areas = false
 	query.collide_with_bodies = true
+	query.collision_mask = interaction_raycast.collision_mask
 	query.exclude = [object_ref]
 
 	var result = space_state.intersect_ray(query)

@@ -165,7 +165,7 @@ func _tilt_to(target_rot: Vector3, damping: float) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(balloon_body, "rotation", target_rot, damping)
-
+	
 func _on_body_entered(body: Node3D) -> void:
 	if _is_reparenting:
 		return
@@ -175,7 +175,7 @@ func _on_body_entered(body: Node3D) -> void:
 		call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
-		if obj is InteractionDraggable:
+		if obj is InteractionDraggable or obj is InteractionHolddable:
 			objs_in_balloon[body] = obj.weight
 			_is_reparenting = true
 			call_deferred("_deferred_attach", body)
@@ -211,7 +211,7 @@ func _deferred_attach(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent:
 		parent.remove_child(body)
-	add_child(body)
+	balloon_body.add_child(body)
 
 	body.global_transform = old_transform
 

@@ -17,8 +17,8 @@ prompt = "Drop"
 metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [node name="StaticResource" type="CharacterBody3D" groups=["interactable"]]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 1073741828
+collision_mask = 1073741824
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.2356723, -0.013275534, -0.009922013)
@@ -29,6 +29,7 @@ mesh = ExtResource("2_7jdjg")
 script = ExtResource("4_vcbkb")
 fuel_amount = 50.0
 weight = 1.0
+inspectable = false
 zoom_position_offset = Vector3(-0.08, 0.18, -0.15)
 zoom_rotation_offset = Vector3(10, 15, 0)
 zoom_speed = 0.1

@@ -71,7 +71,8 @@ func execute(_percentage: float) -> void:
 			for obj in objs_to_burn:
 				current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
 				if balloon and balloon.objs_in_balloon.has(obj.object_ref):
-					balloon.objs_in_balloon.erase(obj.object_ref)
+					balloon._on_body_exited(obj.object_ref)
+					#balloon.objs_in_balloon.erase(obj.object_ref)
 				obj.get_parent().call_deferred("queue_free")
 			objs_to_burn.clear()
 			total_weight = 0.0
@@ -81,10 +82,10 @@ func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL
 
 func collect_fuel(body: Node3D) -> void:
-	if body is RigidBody3D:
+	if body is RigidBody3D or body is CharacterBody3D:
 		var interaction_component = body.get_node_or_null("InteractionComponent")
 		if interaction_component and "weight" in interaction_component and interaction_component not in objs_to_burn:
-			body.linear_velocity = Vector3.ZERO
+			#body.linear_velocity = Vector3.ZERO
 			objs_to_burn.append(interaction_component)
 			total_weight += interaction_component.weight
 			weight_label.text = "weights: " + str(total_weight)

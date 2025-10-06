@@ -6,6 +6,8 @@
 size = Vector3(0.5673828, 0.1953125, 0.15820313)
 
 [node name="StaticResource1" instance=ExtResource("1_qli2p")]
+collision_layer = 3221225476
+collision_mask = 3221225472
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("BoxShape3D_n403w")

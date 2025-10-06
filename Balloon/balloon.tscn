@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=25 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
@@ -14,35 +14,29 @@
 [ext_resource type="Material" uid="uid://de37j8tbo1c28" path="res://assets/balloon/Basket/Details.tres" id="15_0hh8o"]
 [ext_resource type="ArrayMesh" uid="uid://c2bvqtxmapshk" path="res://assets/balloon/Basket/Meshes/BigPlank.res" id="16_i26vf"]
 [ext_resource type="ArrayMesh" uid="uid://d1xm44d34t0mf" path="res://assets/balloon/Basket/Meshes/CorrugatedMetal.res" id="17_kawdg"]
-[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="17_wq7tp"]
 [ext_resource type="ArrayMesh" uid="uid://dr5i8jyoobmk2" path="res://assets/balloon/Basket/Meshes/SmallestPlanks.res" id="18_2pii6"]
-[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="18_2whnr"]
-[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="19_2lwo6"]
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
-[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="20_ns4al"]
-[ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="21_pnbqt"]
-[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="22_yd7v6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
 size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 11037814384136
+metadata/creation_stamp = 2512086195066
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_2whnr"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 11037847938562
+metadata/creation_stamp = 2512119749500
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_2lwo6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 11037881494697
+metadata/creation_stamp = 2512153303934
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_ns4al"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 11037915047428
+metadata/creation_stamp = 2512186858368
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -51,7 +45,7 @@ size = Vector3(0.96102905, 0.46351624, 0.95084)
 viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
 
 [node name="Balloon" type="RigidBody3D" groups=["balloon"]]
-collision_layer = 0
+collision_layer = 1073741824
 collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
@@ -79,6 +73,7 @@ transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0.05198991, 0)
 skeleton = NodePath("..")
 
 [node name="Model" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011595726, 0)
 
 [node name="Basket" type="MeshInstance3D" parent="Body/Model"]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.033377808, 0.02243486, 0.022525966)
@@ -145,23 +140,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_wq7tp")
+mesh = SubResource("ImmediateMesh_q3h3j")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_2whnr")
+mesh = SubResource("ImmediateMesh_snxhu")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_2lwo6")
+mesh = SubResource("ImmediateMesh_exksr")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_ns4al")
+mesh = SubResource("ImmediateMesh_x3kbh")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -322,54 +317,3 @@ event_guid = "{bb2df2d1-dfe8-4e3f-9101-b8cd2ce0a65b}"
 [node name="SFX_Land" type="FmodEventEmitter3D" parent="Audio"]
 event_name = "event:/Balloon/Land"
 event_guid = "{129eb7de-5aa3-4fe6-b9e5-072bcaa3da0a}"
-
-[node name="Log1" parent="." instance=ExtResource("17_wq7tp")]
-transform = Transform3D(0.076514035, 0.24034664, 0.967667, -0.01894523, 0.97068715, -0.23959884, -0.99688864, 0, 0.07882461, -0.00870537, 1.3414998, -0.28672695)
-
-[node name="Log2" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0, 7.8575783, -1.4654067)
-collision_layer = 5
-
-[node name="Log7" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 2.1599436, 7.8575783, -1.2556969)
-collision_layer = 5
-
-[node name="Log6" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, 1.5512557)
-collision_layer = 5
-
-[node name="Log5" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.16344956, -0.05014117, 0.98527676, -0.35565817, 0.92855626, 0.10625551, -0.9202126, -0.3677891, 0.13393894, -0.14989826, 1.1800601, -0.1803168)
-collision_layer = 5
-
-[node name="Log3" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(0.3230586, 0, -0.946379, 0, 1, 0, 0.946379, 0, 0.3230586, -0.15730749, 1.3771147, -0.31641757)
-collision_layer = 5
-
-[node name="Log4" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(-0.28644097, 0, -0.95809793, 0, 1, 0, 0.95809793, 0, -0.28644097, 0.09440826, 1.1554941, -0.23951545)
-collision_layer = 5
-
-[node name="Log8" parent="." instance=ExtResource("19_2lwo6")]
-transform = Transform3D(-0.69940114, -0.6742896, -0.23700628, -0.6386186, 0.7384671, -0.2164089, 0.32094356, 0, -0.94709855, 1.8740011, 7.709411, -1.8773029)
-collision_layer = 5
-
-[node name="Plank1" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.052492987, -0.35253978, -0.9343234, 0.76681805, 0.585122, -0.26386076, 0.63971454, -0.73030686, 0.2396189, 0.024460178, 1.4039445, -0.27697498)
-
-[node name="Plank5" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.389862, -0.7511506, -0.5327108, 2.4838915, 7.312153, -1.911587)
-
-[node name="Plank6" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(-0.50989985, 0.30562282, -0.8041123, 0.76681805, 0.585122, -0.26386076, 0.389862, -0.7511506, -0.5327108, -0.32189023, 7.0820045, -1.2010946)
-
-[node name="Plank7" parent="." instance=ExtResource("20_ns4al")]
-transform = Transform3D(0.6284914, 0.47373757, -0.61690444, -0.12778735, 0.8452356, 0.5188912, 0.76724786, -0.24728599, 0.59176034, -0.5428893, 7.2940397, -0.7350259)
-
-[node name="Plank2" parent="." instance=ExtResource("21_pnbqt")]
-transform = Transform3D(0.10975168, 0, 0.99395895, 0, 1, 0, -0.99395895, 0, 0.10975168, -0.12027167, 1.346784, -0.15921015)
-collision_layer = 5
-
-[node name="Plank3" parent="." instance=ExtResource("22_yd7v6")]
-transform = Transform3D(0.46089578, 0.12639274, -0.87840754, -0.37970483, 0.9227177, -0.06646062, 0.8021219, 0.36416683, 0.4732685, 0.06040298, 1.3761469, -0.26452947)
-collision_layer = 5
