@@ -151,7 +151,7 @@ func _physics_process(delta: float) -> void:
 	
 	update_player_verticle(delta)
 	update_player_horizontel(delta)
-	apply_push_forces(push_shape_cast)
+	#apply_push_forces(push_shape_cast)
 	move_and_slide()
 
 func update_cam_state(delta: float) -> void:

@@ -30,19 +30,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2510928567179
+metadata/creation_stamp = 12617070571369
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2whnr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2510962121613
+metadata/creation_stamp = 12617104126317
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2lwo6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2510995676047
+metadata/creation_stamp = 12617137680759
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ns4al"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2511029230481
+metadata/creation_stamp = 12617171164688
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -328,24 +328,31 @@ transform = Transform3D(0.076514035, 0.24034664, 0.967667, -0.01894523, 0.970687
 
 [node name="Log2" parent="." instance=ExtResource("18_2whnr")]
 transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0, 7.8575783, -1.4654067)
+collision_layer = 5
 
 [node name="Log7" parent="." instance=ExtResource("18_2whnr")]
 transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 2.1599436, 7.8575783, -1.2556969)
+collision_layer = 5
 
 [node name="Log6" parent="." instance=ExtResource("18_2whnr")]
 transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, -1.2276964)
+collision_layer = 5
 
 [node name="Log5" parent="." instance=ExtResource("18_2whnr")]
 transform = Transform3D(0.16344956, -0.05014117, 0.98527676, -0.35565817, 0.92855626, 0.10625551, -0.9202126, -0.3677891, 0.13393894, -0.14989826, 1.1800601, -0.1803168)
+collision_layer = 5
 
 [node name="Log3" parent="." instance=ExtResource("19_2lwo6")]
 transform = Transform3D(0.3230586, 0, -0.946379, 0, 1, 0, 0.946379, 0, 0.3230586, -0.15730749, 1.3771147, -0.31641757)
+collision_layer = 5
 
 [node name="Log4" parent="." instance=ExtResource("19_2lwo6")]
 transform = Transform3D(-0.28644097, 0, -0.95809793, 0, 1, 0, 0.95809793, 0, -0.28644097, 0.09440826, 1.1554941, -0.23951545)
+collision_layer = 5
 
 [node name="Log8" parent="." instance=ExtResource("19_2lwo6")]
 transform = Transform3D(-0.69940114, -0.6742896, -0.23700628, -0.6386186, 0.7384671, -0.2164089, 0.32094356, 0, -0.94709855, 1.8740011, 7.709411, -1.8773029)
+collision_layer = 5
 
 [node name="Plank1" parent="." instance=ExtResource("20_ns4al")]
 transform = Transform3D(-0.052492987, -0.35253978, -0.9343234, 0.76681805, 0.585122, -0.26386076, 0.63971454, -0.73030686, 0.2396189, 0.024460178, 1.4039445, -0.27697498)
@@ -361,6 +368,8 @@ transform = Transform3D(0.6284914, 0.47373757, -0.61690444, -0.12778735, 0.84523
 
 [node name="Plank2" parent="." instance=ExtResource("21_pnbqt")]
 transform = Transform3D(0.10975168, 0, 0.99395895, 0, 1, 0, -0.99395895, 0, 0.10975168, -0.12027167, 1.346784, -0.15921015)
+collision_layer = 5
 
 [node name="Plank3" parent="." instance=ExtResource("22_yd7v6")]
 transform = Transform3D(0.46089578, 0.12639274, -0.87840754, -0.37970483, 0.9227177, -0.06646062, 0.8021219, 0.36416683, 0.4732685, 0.06040298, 1.3761469, -0.26452947)
+collision_layer = 5

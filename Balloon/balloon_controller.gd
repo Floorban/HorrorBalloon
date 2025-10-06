@@ -88,9 +88,8 @@ func _apply_horizontal_force() -> void:
 
 	var final_tilt: Vector3 = _compute_weighted_tilt()
 	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
-
-	horizontal_dir = Vector3(-final_tilt.z, 0.0, -final_tilt.x).normalized()
-
+	var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
+	horizontal_dir = (global_transform.basis * local_dir).normalized()
 	if horizontal_dir.length() > move_threshold:
 		var target_force = horizontal_dir * horizontal_force
 		apply_central_force(target_force)
