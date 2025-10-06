@@ -24,19 +24,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512086195066
+metadata/creation_stamp = 2512421739287
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512119749500
+metadata/creation_stamp = 2512455293721
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512153303934
+metadata/creation_stamp = 2512488848155
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512186858368
+metadata/creation_stamp = 2512522402589
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
