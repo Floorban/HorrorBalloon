@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cwgpq5tlg8mvn"
-path="res://.godot/imported/Compass.blend-2262204dc6664da7316bf7bd44fcafb4.scn"
+path="res://.godot/imported/Compass.blend-82f52116763f9f56d769bb7fe80fed72.scn"
 
 [deps]
 
-source_file="res://Balloon/objects/Compass.blend"
-dest_files=["res://.godot/imported/Compass.blend-2262204dc6664da7316bf7bd44fcafb4.scn"]
+source_file="res://balloon/objects/Compass.blend"
+dest_files=["res://.godot/imported/Compass.blend-82f52116763f9f56d769bb7fe80fed72.scn"]
 
 [params]
 

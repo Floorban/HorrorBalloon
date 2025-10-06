@@ -24,19 +24,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_q3h3j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512421739287
+metadata/creation_stamp = 25771683004080
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512455293721
+metadata/creation_stamp = 25771716468317
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512488848155
+metadata/creation_stamp = 25771750112952
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2512522402589
+metadata/creation_stamp = 25771783646296
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -56,6 +56,7 @@ max_tilt_angle = 10.0
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="Bottom" type="CharacterBody3D" parent="Body" groups=["balloon_ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021961998, 0)
 collision_layer = 1073741825
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]

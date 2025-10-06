@@ -1,4 +1,4 @@
-#extends RigidBody3D
+extends RigidBody3D
 #
 #@export var SFX_Impact: String = "event:/SFX/Interactables/Impact/Can"
 #
