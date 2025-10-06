@@ -38,6 +38,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 mesh = ExtResource("1_sicut")
 skeleton = NodePath("../..")
 script = ExtResource("2_0qg0s")
+SFX_Release = "event:/Balloon/Release"
 
 [node name="TempretureBar" parent="." instance=ExtResource("3_lr4rp")]
 transform = Transform3D(1, 0, 0, 0, 0.99517274, -0.09813872, 0, 0.09813872, 0.99517274, 0, 0.66668046, -0.580222)
