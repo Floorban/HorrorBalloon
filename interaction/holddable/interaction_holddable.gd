@@ -19,7 +19,7 @@ func _ready() -> void:
 	object_ref.global_position = _get_ground()
 
 func _process(_delta: float) -> void:
-	if not is_occupied: return
+	if not is_occupied or inspectable: return
 	object_ref.global_position = player_hand.global_position
 	object_ref.global_rotation = player_hand.global_rotation
 
@@ -98,6 +98,7 @@ func drop():
 	object_ref.global_rotation = player.global_rotation
 	is_occupied = false
 	can_interact = true
+	player.interaction_controller.is_focused = true
 	player.interaction_controller.interaction_component = null
 	player.interaction_controller._unfocus()
 	player.interaction_controller.interaction_ui_clear()
