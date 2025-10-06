@@ -140,7 +140,7 @@ func update_player_horizontel(delta: float) -> void:
 		current_speed = move_toward(current_speed, max_speed, acceleration * delta)
 	else:
 		current_speed = move_toward(current_speed, 0, current_speed)
-
+	
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed * 0.8
 
@@ -148,7 +148,6 @@ func _physics_process(delta: float) -> void:
 	if is_dead: return
 	update_player_state()
 	update_cam_movement(delta)
-	
 	update_player_verticle(delta)
 	update_player_horizontel(delta)
 	#apply_push_forces(push_shape_cast)
@@ -268,7 +267,7 @@ func update_cam_movement(delta: float) -> void:
 		head_bobbing_current_intensity = head_bobbing_sprinting_intensity
 		head_bobbing_index += head_bobbing_sprinting_speed * delta
 	elif player_state == PlayerState.VIEWING:
-		can_move = false
+		#can_move = false
 		current_sensitivity = current_sensitivity / 2.0
 		
 		var relative_yaw = rotation_degrees.y - viewing_yaw_origin

@@ -69,6 +69,7 @@ func interact() -> void:
 
 func go_to_exit() -> void:
 	if not player: return
+	player.can_move = true
 	player.set_viewing_mode()
 	player.global_transform.origin = target_pos
 	is_interacting = false
@@ -76,6 +77,7 @@ func go_to_exit() -> void:
 
 func hold_edge() -> void:
 	if not player: return
+	player.can_move = false
 	player.set_viewing_mode(viewing_offet, viewing_zoom)
 	hold_time = 0.0
 

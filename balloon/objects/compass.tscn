@@ -46,7 +46,7 @@ weight = 1.0
 inspectable = true
 zoom_position_offset = Vector3(-0.08, 0.18, -0.15)
 zoom_rotation_offset = Vector3(10, 15, 0)
-zoom_speed = 0.1
+zoom_speed = 8.0
 ui_set = Array[ExtResource("5_ebgub")]([SubResource("Resource_bwogo"), SubResource("Resource_00nns")])
 object_ref = NodePath("..")
 
