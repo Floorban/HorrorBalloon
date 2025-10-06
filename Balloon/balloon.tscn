@@ -30,19 +30,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12617070571369
+metadata/creation_stamp = 11037814384136
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2whnr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12617104126317
+metadata/creation_stamp = 11037847938562
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_2lwo6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12617137680759
+metadata/creation_stamp = 11037881494697
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ns4al"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12617171164688
+metadata/creation_stamp = 11037915047428
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -75,7 +75,7 @@ transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0.5064939, 0.
 
 [node name="Oven" parent="Body" instance=ExtResource("4_t01tp")]
 unique_name_in_owner = true
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.064734146, 0)
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0.05198991, 0)
 skeleton = NodePath("..")
 
 [node name="Model" type="Node3D" parent="Body"]
@@ -335,7 +335,7 @@ transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73
 collision_layer = 5
 
 [node name="Log6" parent="." instance=ExtResource("18_2whnr")]
-transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, -1.2276964)
+transform = Transform3D(0.73372984, 0, -0.67944133, 0, 1, 0, 0.67944133, 0, 0.73372984, 0.11057407, 0.85814154, 1.5512557)
 collision_layer = 5
 
 [node name="Log5" parent="." instance=ExtResource("18_2whnr")]

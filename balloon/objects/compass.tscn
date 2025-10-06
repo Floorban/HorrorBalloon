@@ -43,6 +43,7 @@ shape = SubResource("CylinderShape3D_vsxwu")
 script = ExtResource("4_cv74v")
 fuel_amount = 50.0
 weight = 1.0
+inspectable = true
 zoom_position_offset = Vector3(-0.08, 0.18, -0.15)
 zoom_rotation_offset = Vector3(10, 15, 0)
 zoom_speed = 0.1

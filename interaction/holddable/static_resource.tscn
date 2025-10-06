@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://jw4wvqitrlog"]
+[gd_scene load_steps=9 format=3 uid="uid://dw05xmlfdyee8"]
 
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="1_2lgop"]
 [ext_resource type="ArrayMesh" uid="uid://bfliashiuet1k" path="res://assets/stolen/props/pole_001.obj" id="2_7jdjg"]

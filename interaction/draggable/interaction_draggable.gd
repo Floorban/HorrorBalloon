@@ -33,7 +33,7 @@ func _input(event) -> void:
 
 	if rotating and event is InputEventMouseMotion:
 		var mouse_motion : Vector2 = event.relative
-		var rot_x := -mouse_motion.y * rotation_speed
+		var rot_x := mouse_motion.y * rotation_speed
 		var rot_y := mouse_motion.x * rotation_speed
 		object_ref.global_rotate(Vector3.UP, rot_y)
 		object_ref.global_rotate(Vector3.RIGHT, rot_x)

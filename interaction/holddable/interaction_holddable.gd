@@ -7,6 +7,7 @@ class_name InteractionHolddable
 @export var fuel_amount: float = 50.0
 @export var weight: float = 1.0
 
+@export var inspectable := false
 var is_zoomed_in := false
 @export var zoom_position_offset := Vector3(-0.08, 0.18, -0.15)
 @export var zoom_rotation_offset := Vector3(10, 15, 0) 
@@ -24,11 +25,6 @@ func preInteract(hand: Marker3D, target: Node = null) -> void:
 func postInteract() -> void:
 	pass
 
-#func _physics_process(_delta: float) -> void:
-	#if not is_occupied: return
-	#object_ref.global_position = player_hand.global_position
-	#object_ref.global_rotation = player_hand.global_rotation
-
 func _input(event: InputEvent) -> void:
 	if not is_occupied: return
 	if event.is_action_pressed("primary"):
@@ -39,7 +35,7 @@ func _input(event: InputEvent) -> void:
 		zoom_out()
 
 func zoom_in() -> void:
-	if not object_ref or is_zoomed_in:
+	if not object_ref or is_zoomed_in or not inspectable:
 		return
 	is_zoomed_in = true
 	var target_pos = player_hand.to_global(zoom_position_offset)
@@ -59,7 +55,7 @@ func zoom_in() -> void:
 	player.set_viewing_mode(Vector3.ZERO, 0.7)
 
 func zoom_out() -> void:
-	if not object_ref or not is_zoomed_in:
+	if not object_ref or not is_zoomed_in or not inspectable:
 		return
 
 	is_zoomed_in = false
@@ -93,7 +89,7 @@ func drop():
 	else:
 		object_ref.reparent(balloon.balloon_body)
 	object_ref.global_position = ground_pos
-	object_ref.global_rotation = Vector3.ZERO
+	object_ref.global_rotation = player.global_rotation
 	is_occupied = false
 	can_interact = true
 	player.interaction_controller.interaction_component = null
