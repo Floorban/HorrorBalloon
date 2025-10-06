@@ -1,12 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn7oxoa3un034"]
+[gd_scene load_steps=12 format=3 uid="uid://bn7oxoa3un034"]
 
 [ext_resource type="Material" uid="uid://32ryg20oq57a" path="res://assets/balloon/Basket/Basket.tres" id="1_5awjs"]
 [ext_resource type="ArrayMesh" uid="uid://bhuro663tj2p7" path="res://assets/balloon/Basket/Meshes/BasketDoor.res" id="2_ecxay"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="3_ecxay"]
 [ext_resource type="Script" uid="uid://cd5r32b01sm8a" path="res://interaction/door/interaction_door.gd" id="4_8bll4"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_yn8f0"]
+[ext_resource type="Texture2D" uid="uid://462nbhhg2r4k" path="res://assets/ui/mouse_v_drag.png" id="6_vw4ra"]
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="7_17rrd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_exksr"]
 points = PackedVector3Array(0.16903639, 1.7525549, 0.6333998, 0.147483, 1.7525549, 0.6333998, 0.2219646, 1.742948, 0.6333998, 0.16903639, 1.7525549, -0.63352376, 0.147483, 1.7525549, -0.63352376, 0.09797212, 1.7417473, 0.6333998, 0.2219646, 1.742948, -0.63352376, 0.26071224, 1.7170441, 0.6333998, 0.09797212, 1.7417473, -0.63352376, 0.06172692, 1.7124122, 0.6333998, 0.26071224, 1.7170441, -0.63352376, 0.2748659, 1.6815332, 0.6333998, 0.06172692, 1.7124122, -0.63352376, 0.048461232, 1.672441, 0.6333998, 0.2748659, 1.6815332, -0.63352376, 0.2748659, 1.6353862, 0.6333998, 0.048461232, 1.672441, -0.63352376, -2.3841858e-07, -1.4901161e-08, 0.6333998, 0.2748659, 1.6353862, -0.63352376, 0.21994649, 0.147533, 0.6333998, -2.3841858e-07, -1.4901161e-08, -0.63352376, 0.08416827, 0.011150735, 0.6333998, 0.21994649, 0.147533, -0.63352376, 0.20318276, 0.09109304, 0.6333998, 0.08416827, 0.011150735, -0.63352376, 0.15552852, 0.04323059, 0.6333998, 0.20318276, 0.09109304, -0.63352376, 0.15552852, 0.04323059, -0.63352376)
+
+[sub_resource type="Resource" id="Resource_6t6kr"]
+script = ExtResource("5_yn8f0")
+icon = ExtResource("6_vw4ra")
+prompt = "Drag"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_qdayi"]
+script = ExtResource("5_yn8f0")
+icon = ExtResource("7_17rrd")
+prompt = "Don't stand on it"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8bll4"]
+size = Vector3(0.23022461, 0.021484375, 0.19824219)
 
 [node name="BasketDoor" type="CharacterBody3D"]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
@@ -25,8 +43,9 @@ shape = SubResource("ConvexPolygonShape3D_exksr")
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("pivot_point", "object_ref") instance=ExtResource("3_ecxay")]
 script = ExtResource("4_8bll4")
 pivot_point = NodePath("..")
-door_smoothing = 80.0
+door_smoothing = 200.0
 is_locked = false
+ui_set = Array[ExtResource("5_yn8f0")]([SubResource("Resource_6t6kr"), SubResource("Resource_qdayi")])
 object_ref = NodePath("..")
 maximum_rotation = 95.0
 
@@ -38,3 +57,12 @@ event_guid = "{c5c8aee1-f3da-4bed-b8bb-ab0f1803660a}"
 
 [node name="NormalCheckRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, 1, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.9899326, 0.14154056, 0, -0.14154056, 0.9899326, 0, 0, 0, 1, 0.16413479, -0.03428927, 0)
+shape = SubResource("BoxShape3D_8bll4")
+
+[connection signal="body_entered" from="Area3D" to="InteractionComponent" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="InteractionComponent" method="_on_area_3d_body_exited"]

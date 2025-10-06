@@ -111,7 +111,7 @@ default_resource = NodePath("Env/Resource")
 [node name="AudioManager" parent="." instance=ExtResource("2_wk3pi")]
 
 [node name="Player" parent="." instance=ExtResource("3_n4swq")]
-transform = Transform3D(0.9946667, 0, -0.10313976, 0, 1, 0, 0.10313958, 0, 0.9946668, -1.6263871, -0.5675286, -17.828093)
+transform = Transform3D(0.9946667, 0, -0.10313976, 0, 1, 0, 0.10313958, 0, 0.9946668, 2.6505578, -0.5675286, -17.828093)
 
 [node name="Balloon" parent="." instance=ExtResource("2_gw050")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -7.7998595, -0.4296556, -17.69156)

@@ -42,7 +42,7 @@ func _process(delta):
 		door_angle += door_velocity
 		
 		if is_locked:
-			var lock_wiggle: float = 0.02
+			var lock_wiggle: float = 0.05
 			door_angle = clamp(door_angle, starting_rotation, starting_rotation+lock_wiggle)
 			pivot_point.rotation.z = door_angle
 			
@@ -64,7 +64,7 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		door_input_active = true
-		var delta: float = event.relative.y * 0.002
+		var delta: float = event.relative.y * 0.0013
 		if not is_front:
 			delta = -delta
 		# Simulate resistance to small motions
@@ -158,3 +158,11 @@ func update_door_sounds(_delta: float) -> void:
 		## Stop completely once inaudible
 		#if new_vol < 0.001:
 			#primary_audio_player.stop()
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is PlayerController:
+		is_locked = true
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body is PlayerController:
+		unlock()
