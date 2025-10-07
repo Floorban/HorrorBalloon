@@ -17,8 +17,9 @@ var objs_to_burn: Array[InteractionComponent] = []
 var total_weight : float
 
 ## -- Sound Settings --
-@export var SFX_Flame: String
+@export var SFX_Fire: String
 @export var SFX_Release: String
+var i_Fire: FmodEvent = null
 
 ## -- Particle Settings -- 
 @onready var flame: GPUParticles3D = $Flame
@@ -45,8 +46,7 @@ func _process(delta: float) -> void:
 			flame.emitting = true
 			flame2.emitting = true
 			if !is_burning:
-				FmodServer.play_one_shot(SFX_Flame)
-				print("byurrrn")
+				Audio.play(SFX_Fire, global_transform)
 				is_burning = true
 			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
 	else:
@@ -62,7 +62,7 @@ func execute(_percentage: float) -> void:
 	## for cooling
 	if _percentage >= 0.99:
 		burning_rate = cooling_rate
-		FmodServer.play_one_shot_attached(SFX_Release, self)
+		Audio.play(SFX_Release, global_transform)
 		smoke.emitting = true
 	else:
 		smoke.emitting = false

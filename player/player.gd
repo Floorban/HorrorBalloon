@@ -353,16 +353,16 @@ func updatePlayerSound(_player_state: PlayerState) -> void:
 	if step_is_playing: return
 	step_is_playing = true
 	
-	FmodServer.play_one_shot_with_params(SFX_StepR, {"volume": step_volume})
+	Audio.play(SFX_StepR, global_transform, "volume", step_volume)
 	await get_tree().create_timer(step_gap).timeout
 
-	FmodServer.play_one_shot_with_params(SFX_StepL, {"volume": step_volume})
+	Audio.play(SFX_StepL, global_transform, "volume", step_volume)
 	await get_tree().create_timer(step_gap).timeout
 	step_is_playing = false
 
 func play_crouch_sound(stance: String):
 	if is_crouching: return
 	is_crouching = true
-	FmodServer.play_one_shot_with_params(SFX_Crouch, {"stance": stance})
+	Audio.play(SFX_Crouch, global_transform, "stance", stance)
 	await get_tree().create_timer(0.3).timeout
 	is_crouching = false

@@ -131,7 +131,6 @@ func update_door_sounds(_delta: float) -> void:
 	# Check if the player opened the door.
 	if abs(door_angle - starting_rotation) > shut_angle_threshold:
 		##TODO: Optimize
-		$"../Audio/SFX_DoorClose".play()
 
 		door_opened = true
 	

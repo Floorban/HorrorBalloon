@@ -1,5 +1,5 @@
 extends InteractionComponent
-class_name InteractionInspect
+#class_name InteractionInspect
 
 var is_zoomed_in := false
 @export var zoom_position_offset := Vector3(-0.08, 0.18, -0.15)

@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
+Audio="*res://sound/audiomanager/audio_manager.tscn"
 
 [display]
 

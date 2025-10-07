@@ -1,5 +1,4 @@
 extends Node3D
-class_name AudioManager
 
 ## -- Banks Settings -- 
 var bank_list: Dictionary
@@ -17,6 +16,10 @@ var master_bus: FmodBus
 var ambient_bus: FmodBus
 var music_bus: FmodBus
 var sfx_bus: FmodBus
+
+## -- Playback Settings --
+const PLAYING = FmodServer.FMOD_STUDIO_PLAYBACK_PLAYING
+const STOPPED = FmodServer.FMOD_STUDIO_PLAYBACK_STOPPED
 
 ## -- Developer Settings --
 @export var developer_mode: bool = false
@@ -57,3 +60,29 @@ func initiate(emitter: FmodEventEmitter3D) -> FmodEventEmitter3D:
 	emitter.auto_release = false
 	emitter.play()
 	return emitter
+
+func check_state(instance: FmodEvent):
+	var state = instance.get_playback_state()
+	return state
+
+func play(sound_path: String, object_transform: Transform3D = global_transform, parameter: String = "", value: Variant = null):
+	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
+	instance.set_3d_attributes(object_transform)
+	
+	if value is float: instance.set_parameter_by_name(parameter, value)
+	if value is String: instance.set_parameter_by_name_with_label(parameter, value, false)
+	else: pass
+	
+	instance.start()
+	instance.release()
+	return instance
+
+func play_instance(sound_path: String, object: Node) -> FmodEvent:
+	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
+	instance.set_3d_attributes(object.global_transform)
+	instance.start()
+	return instance
+
+func clear_instance(instance: FmodEvent):
+	instance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
+	instance.release()
