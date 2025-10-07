@@ -20,6 +20,9 @@ var prev_door_angle: float = 0.0                 # angle of the door on the prev
 @export var is_locked: bool = false
 var was_just_unlocked: bool = false
 
+## Sound Settings
+@export var SFX_Close: String
+
 func _ready():
 	super._ready()
 	starting_rotation = pivot_point.rotation.z
@@ -143,7 +146,7 @@ func update_door_sounds(_delta: float) -> void:
 			#print("stop!")
 		door_opened = false
 		
-		$"../Audio/SFX_DoorClose".play()
+		Audio.play(SFX_Close)
 		
 		notify_nodes(0)
 

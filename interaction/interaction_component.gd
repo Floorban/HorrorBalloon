@@ -23,6 +23,9 @@ var previous_mouse_position: Vector2
 var last_velocity: Vector3 = Vector3.ZERO
 var contact_velocity_threshold: float = 1.0
 
+## -- Sound Settings -- 
+@export var SFX_Interact: String
+
 func _ready() -> void:
 	pass
 
@@ -34,6 +37,7 @@ func preInteract(_hand: Marker3D, _target: Node = null) -> void:
 func interact() -> void:
 	if not can_interact:
 		return
+		#Audio.play(SFX_Interact, global_transform)
 
 ## Alternate interaction using secondary button
 func auxInteract() -> void:

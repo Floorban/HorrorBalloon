@@ -35,6 +35,10 @@ var horizontal_dir: Vector3 = Vector3.ZERO
 var tilt_tween: Tween = null
 var tilt_damping := 0.5
 
+## Sound Settings
+@export var SFX_Engine: String
+@export var SFX_Land: String
+
 func _ready() -> void:
 	objs_in_balloon.clear()
 	if obj_in_balloon_area:
@@ -98,7 +102,7 @@ func _apply_horizontal_force() -> void:
 		player.apply_player_camera_sway(final_tilt)
 
 func _on_land() -> void:
-	$Audio/SFX_Land.play_one_shot()
+	Audio.play(SFX_Land, global_transform)
 	is_grounded = true
 	linear_velocity = Vector3.ZERO
 	sleeping = true
@@ -107,7 +111,7 @@ func _on_land() -> void:
 	print("Balloon landed")
 
 func _on_takeoff() -> void:
-	$Audio/SFX_Engine.play_one_shot()
+	Audio.play(SFX_Engine, global_transform)
 	is_grounded = false
 	sleeping = false
 	linear_velocity.y = vertical_base_force * 0.1
@@ -254,10 +258,3 @@ func execute(percentage: float) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
-
-func _exit_tree() -> void:
-	$Audio/SFX_Engine.stop()
-	$Audio/SFX_Land.stop()
-	
-	$Audio/SFX_Engine.queue_free()
-	$Audio/SFX_Land.queue_free()

@@ -22,10 +22,15 @@ var last_seen_time: float = 0.0
 @export var _max_trauma := 2.5
 var _trauma_timer := 0.0
 
+## -- Sound Settings -- 
+@export var SFX_Jumpscare: String
+@export var SFX_Screech: String
+
 func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().physics_frame
 	set_physics_process(true)
+	Audio.play(SFX_Screech, global_transform)
 
 func _process(delta: float) -> void:
 	_trauma_timer -= delta
@@ -80,14 +85,4 @@ func reached_target():
 	found_target = true
 	reached_player.emit()
 	animation_player.play("ATK")
-	play_jumpscare()
-
-func play_jumpscare():
-	$Audio/Jumpscare.play_one_shot()
-
-func _exit_tree() -> void:
-	$Audio/Jumpscare.stop()
-	$Audio/Jumpscare.queue_free()
-	
-	$Audio/Screech.stop()
-	$Audio/Screech.queue_free()
+	Audio.play(SFX_Jumpscare)

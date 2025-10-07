@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwu5pcoyk8yal"]
 
-[node name="AmbienceLevel1" type="Node3D"]
+[node name="AmbienceOutside" type="Node3D"]
 
 [node name="Euphoria" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/Ambient/Atmosphere/Euphoria"

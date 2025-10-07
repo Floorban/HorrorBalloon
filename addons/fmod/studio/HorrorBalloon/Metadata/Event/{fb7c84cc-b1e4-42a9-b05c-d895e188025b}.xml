@@ -5,7 +5,7 @@
 			<value>Jumpscare</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{7efe2ed1-9130-4de7-a31c-8e7863c3e916}</destination>
@@ -57,6 +57,9 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{c8caff65-e2f7-4b66-81f1-c1e740d38608}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
 		<property name="maximumDistance">
 			<value>150</value>
 		</property>
@@ -129,7 +132,6 @@
 	<object class="MixerBusEffectChain" id="{accda183-32ae-4b2d-9c84-8e617b55b0f1}">
 		<relationship name="effects">
 			<destination>{351299cf-ab34-40cf-b082-01b542507dc3}</destination>
-			<destination>{ee71efa4-5f24-4ff7-b49c-21e07320c164}</destination>
 			<destination>{63ebafcd-4965-44d2-9efc-5983d3632fe5}</destination>
 		</relationship>
 	</object>
@@ -150,7 +152,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{12fc19bf-ce27-4e4d-940d-b76981e6d6ed}" />
 	<object class="MixerBusFader" id="{351299cf-ab34-40cf-b082-01b542507dc3}" />
-	<object class="SpatialiserEffect" id="{ee71efa4-5f24-4ff7-b49c-21e07320c164}" />
 	<object class="DistortionEffect" id="{63ebafcd-4965-44d2-9efc-5983d3632fe5}">
 		<property name="level">
 			<value>0.799999952</value>

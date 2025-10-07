@@ -45,26 +45,6 @@ func load_banks() -> void:
 	bank_list["balloon_bank"] = FmodServer.load_bank(BALLOON_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	bank_list["outside_bank"] = FmodServer.load_bank(OUTSIDE_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 
-func cache(emitter: FmodEventEmitter3D, emit_position: Vector3) -> FmodEventEmitter3D:
-	emitter.global_position = emit_position
-	emitter.allow_fadeout = true
-	emitter.attached = true
-	emitter.auto_release = false
-	emitter.play()
-	emitter.paused = true
-	return emitter
-
-func initiate(emitter: FmodEventEmitter3D) -> FmodEventEmitter3D:
-	emitter.allow_fadeout = true
-	emitter.attached = true
-	emitter.auto_release = false
-	emitter.play()
-	return emitter
-
-func check_state(instance: FmodEvent):
-	var state = instance.get_playback_state()
-	return state
-
 func play(sound_path: String, object_transform: Transform3D = global_transform, parameter: String = "", value: Variant = null):
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
 	instance.set_3d_attributes(object_transform)

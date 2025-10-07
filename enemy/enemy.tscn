@@ -16,6 +16,8 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_5anih")
 _shake_radius = 80.0
+SFX_Jumpscare = "event:/SFX/Creature/Jumpscare"
+SFX_Screech = "event:/SFX/Creature/Screech"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21775484, 3.0905104, -0.1547885)
@@ -129,32 +131,5 @@ script = ExtResource("5_gc7sf")
 [node name="Searching" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("7_2fq87")
 _search_radius = 20.0
-
-[node name="Audio" type="Node3D" parent="." index="6"]
-
-[node name="Jumpscare" type="FmodEventEmitter3D" parent="Audio" index="0"]
-event_name = "event:/SFX/Creature/Jumpscare"
-event_guid = "{fb7c84cc-b1e4-42a9-b05c-d895e188025b}"
-
-[node name="Screech" type="FmodEventEmitter3D" parent="Audio" index="1"]
-event_name = "event:/SFX/Creature/Screech"
-event_guid = "{b275a6a0-add5-493e-ab60-a7ff406b58bc}"
-autoplay = true
-fmod_parameters/Guilt/id = 4256971246356586296
-fmod_parameters/Guilt = 0.0
-fmod_parameters/Guilt/variant_type = 3
-fmod_parameters/Terror/id = 3036147465765160926
-fmod_parameters/Terror = 0.0
-fmod_parameters/Terror/variant_type = 3
-fmod_parameters/Hatred/id = 4207641875689573159
-fmod_parameters/Hatred = 0.0
-fmod_parameters/Hatred/variant_type = 3
-fmod_parameters/Status/id = -131682236173088112
-fmod_parameters/Status = "Idle"
-fmod_parameters/Status/labels = PackedStringArray("Idle", "Chasing")
-fmod_parameters/Status/variant_type = 4
-fmod_parameters/Anxiety/id = 3910553063797741933
-fmod_parameters/Anxiety = 0.0
-fmod_parameters/Anxiety/variant_type = 3
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="StateMachine/Chasing" method="_on_animation_player_current_animation_changed"]
