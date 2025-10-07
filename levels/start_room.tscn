@@ -1,13 +1,16 @@
-[gd_scene load_steps=38 format=3 uid="uid://teq6yccg8gfb"]
+[gd_scene load_steps=46 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
-[ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://assets/stolen/Survival/Textures/Rock.jpg" id="2_cfm6c"]
+[ext_resource type="Texture2D" uid="uid://b8osx38sxj324" path="res://assets/buildings/Tiles/Tile_Col.png" id="2_lbl2g"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="3_n085v"]
+[ext_resource type="Texture2D" uid="uid://ca777xkryllaw" path="res://assets/buildings/Tiles/Tile_Mask.png" id="3_nrwmh"]
 [ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="4_421my"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="4_886i1"]
+[ext_resource type="Texture2D" uid="uid://bqxlwgriu3nyh" path="res://assets/buildings/Tiles/Tile_Height.png" id="4_b7lh3"]
 [ext_resource type="PackedScene" uid="uid://coo4eh02kt2xq" path="res://balloon/climb_edge.tscn" id="4_g25at"]
 [ext_resource type="ArrayMesh" uid="uid://brs1h7m35g41b" path="res://assets/stolen/props/plank_007.obj" id="5_4wh7y"]
 [ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="5_g25at"]
+[ext_resource type="Texture2D" uid="uid://b3ao4anbg65l7" path="res://assets/buildings/Tiles/Tile_Norm.png" id="5_qa8uy"]
 [ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="6_4b5ck"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="7_6ioy8"]
 [ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="7_fc33q"]
@@ -18,22 +21,38 @@
 [ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="10_iqv37"]
 [ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="11_ylhff"]
 [ext_resource type="PackedScene" uid="uid://d1ffaam5q4ph" path="res://balloon/objects/compass.tscn" id="18_8qil6"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_wkf7w"]
-size = Vector2(7, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n085v"]
-albedo_color = Color(0.8217887, 0.82178867, 0.82178867, 1)
-albedo_texture = ExtResource("2_cfm6c")
-uv1_scale = Vector3(8, 8, 8)
+[ext_resource type="ArrayMesh" uid="uid://crylirsrfeqmv" path="res://assets/buildings/Tiles/Corner.res" id="19_1gkh7"]
+[ext_resource type="Material" uid="uid://lrjmblof8ets" path="res://assets/buildings/Tiles/Bricks.tres" id="20_qgske"]
+[ext_resource type="ArrayMesh" uid="uid://cyq3wcxe20kw2" path="res://assets/buildings/Tiles/Door.res" id="21_of2nw"]
+[ext_resource type="ArrayMesh" uid="uid://2rsp5wncgdsh" path="res://assets/buildings/Tiles/Pillar.res" id="22_lbl2g"]
+[ext_resource type="ArrayMesh" uid="uid://bu2nchn7bmc2q" path="res://assets/buildings/Tiles/Wall.res" id="23_nrwmh"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8qil6"]
 points = PackedVector3Array(-3.5, 0, -1.5, -3.5, 0, 1.5, 3.5, 0, -1.5, 3.5, 0, 1.5)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_cfm6c"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_anh53"]
+size = Vector2(7, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yqwo"]
+albedo_texture = ExtResource("2_lbl2g")
+roughness_texture = ExtResource("3_nrwmh")
+roughness_texture_channel = 3
+normal_enabled = true
+normal_texture = ExtResource("5_qa8uy")
+ao_enabled = true
+ao_light_affect = 0.1
+ao_texture = ExtResource("3_nrwmh")
+ao_texture_channel = 1
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_b7lh3")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cet7r"]
 size = Vector2(2, 5)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_n085v"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_suc3y"]
 size = Vector2(1.5, 1.95)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wkf7w"]
@@ -101,30 +120,30 @@ skeleton = NodePath("../..")
 [node name="Ground" type="Node3D" parent="Church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007103145, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Church/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -2.007, -0.5000801)
-mesh = SubResource("PlaneMesh_wkf7w")
-skeleton = NodePath("../../RoomColliders")
-surface_material_override/0 = SubResource("StandardMaterial3D_n085v")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Church/Ground"]
 collision_layer = 2147483649
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Church/Ground/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -2.007, -0.5000801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -2.0202918, -0.5000801)
 shape = SubResource("ConvexPolygonShape3D_8qil6")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Church/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9924784, -2.007, -0.49267277)
-mesh = SubResource("PlaneMesh_cfm6c")
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Church/Ground"]
+transform = Transform3D(0.7473038, 0, 0, 0, 1, 0, 0, 0, 1, -0.5722798, -2.007, -0.5000801)
+mesh = SubResource("PlaneMesh_anh53")
 skeleton = NodePath("../../RoomColliders")
-surface_material_override/0 = SubResource("StandardMaterial3D_n085v")
+surface_material_override/0 = SubResource("StandardMaterial3D_5yqwo")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Church/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.717536, -2.007, -0.48152643)
-mesh = SubResource("PlaneMesh_n085v")
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Church/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9924784, -2.007, -0.49267277)
+mesh = SubResource("PlaneMesh_cet7r")
 skeleton = NodePath("../../RoomColliders")
-surface_material_override/0 = SubResource("StandardMaterial3D_n085v")
+surface_material_override/0 = SubResource("StandardMaterial3D_5yqwo")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Church/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.717536, -2.007, -0.48152643)
+mesh = SubResource("PlaneMesh_suc3y")
+skeleton = NodePath("../../RoomColliders")
+surface_material_override/0 = SubResource("StandardMaterial3D_5yqwo")
 
 [node name="RoomColliders" type="StaticBody3D" parent="Church"]
 
@@ -273,5 +292,160 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6707592, -0.31480348, 0.031
 
 [node name="Compass" parent="." instance=ExtResource("18_8qil6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2825825, -1.892015, -0.7970441)
+
+[node name="Corner" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 5.379861, -1.0138941, -1.5760003)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9999999, 0, 4.371138e-08, 0, 1, 0, -4.371138e-08, 0, -0.9999999, 5.379861, -1.0138941, 0.42399967)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 5.379861, 0.96919274, -1.5760003)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner12" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9999999, 0, 4.371138e-08, 0, 1, 0, -4.371138e-08, 0, -0.9999999, 5.379861, 0.96919274, 0.42399967)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner3" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.1054274e-15, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 7.1054274e-15, 2.1906505, -0.9902317, 1.0235242)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner4" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.1054274e-15, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 7.1054274e-15, 2.197281, 1.006462, 1.0235242)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner13" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9999999, 0, 4.3711378e-08, 0, 1, 0, -4.3711378e-08, 0, -0.9999999, 3.9558475, -0.99023163, 2.006579)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner14" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9999999, 0, 4.3711378e-08, 0, 1, 0, -4.3711378e-08, 0, -0.9999999, 3.9558475, 1.006462, 2.0132093)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner15" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.742276e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 8.742276e-08, 2.1913083, -0.99023163, 2.0098941)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner16" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.742276e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 8.742276e-08, 2.1846778, 1.006462, 2.0098941)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner17" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 0, -1.3113414e-07, 0, 1, 0, 1.3113414e-07, 0, 0.9999999, 2.1913087, -0.99023163, -3.1058912)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner18" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 0, -1.3113414e-07, 0, 1, 0, 1.3113414e-07, 0, 0.9999999, 2.1846783, 1.006462, -3.1058912)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner19" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.7484552e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -1.7484552e-07, 3.9560041, -0.99023163, -3.105891)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner20" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.7484552e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -1.7484552e-07, 3.9493737, 1.006462, -3.105891)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 3.9440348, -0.99023163, 0.41610825)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 3.9440348, 1.006462, 0.40947783)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 3.94735, -0.99023163, -1.5716261)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner10" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, 3.9407196, 1.006462, -1.5716261)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 3.981869e-15, -1.042, 8.742278e-08, 1.042, 0, -1, 9.1094535e-08, 4.5547267e-08, 2.1906505, -0.99023163, -2.1077383)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Corner6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 3.981869e-15, -1.042, 8.742278e-08, 1.042, 0, -1, 9.1094535e-08, 4.5547267e-08, 2.209191, 1.0865588, -2.1077383)
+mesh = ExtResource("19_1gkh7")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0289025, -0.98166406, -0.54720664)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("21_of2nw")
+
+[node name="Pillar" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0383554, -0.99808073, 0.7007151)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("22_lbl2g")
+
+[node name="Pillar3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0383554, 0.96344733, 0.7007151)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("22_lbl2g")
+
+[node name="Pillar2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0383554, -0.99808073, -1.8131714)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("22_lbl2g")
+
+[node name="Pillar4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0383554, 1.0085771, -1.8131714)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("22_lbl2g")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -1.7984406, -0.9931241, 1.1067202)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -1.7984406, -0.9931241, -2.1682172)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, 0.20263183, -0.9931241, 1.1067202)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -1.7984529, 1.0085362, 1.1067836)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.1088736, 1.0085362, -0.54950416)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, 0.20261955, 1.0085362, 1.1067836)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, 0.20263183, -0.9931241, -2.1895795)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -1.7984406, 1.0112555, -2.1682172)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="Wall9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, 0.20263183, 1.0112555, -2.1895795)
+material_override = ExtResource("20_qgske")
+mesh = ExtResource("23_nrwmh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62827253, 1.1787267, -0.624777)
+light_color = Color(0.70243406, 0.3931238, 0.30727777, 1)
+omni_range = 10.0
 
 [editable path="ClimbEdge"]
