@@ -1,6 +1,9 @@
 extends InteractionComponent
 class_name InteractionWindow
 
+# References
+@onready var root: Node3D
+
 # Window Variables
 var window_height: float = 0.0
 var window_velocity: float = 0.0
@@ -28,6 +31,7 @@ var maximum_height: float
 
 func _ready():
 	super._ready()
+	root= get_parent()
 	starting_height = object_ref.position.y
 	maximum_height = starting_height + max_height_offset
 	object_ref.position.y = maximum_height
@@ -101,6 +105,6 @@ func update_window_sounds(_delta: float) -> void:
 	
 	# Detect if window closed again
 	if window_opened and abs(window_height - starting_height) < close_snap_range:
+		if window_opened: Audio.play(SFX_Close, root.global_transform)
 		window_opened = false
 		notify_nodes(0)
-		Audio.play(SFX_Close, self.global_transform)

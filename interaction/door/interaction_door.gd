@@ -2,6 +2,10 @@ extends InteractionComponent
 class_name InteractionDoor
 
 @export_category("Door Settings")
+
+# References
+@onready var root: Node3D
+
 # Door Variables
 @onready var normal_check_ray: RayCast3D = $"../NormalCheckRay"
 @export var pivot_point: Node3D
@@ -25,6 +29,7 @@ var was_just_unlocked: bool = false
 
 func _ready():
 	super._ready()
+	root = get_parent()
 	starting_rotation = pivot_point.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
 	nodes_to_affect.append(get_tree().get_first_node_in_group("balloon").oven)
@@ -144,9 +149,9 @@ func update_door_sounds(_delta: float) -> void:
 			#secondary_audio_player.play()
 			#primary_audio_player.stop()
 			#print("stop!")
+		if door_opened: Audio.play(SFX_Close, root.global_transform)
 		door_opened = false
 		
-		Audio.play(SFX_Close)
 		
 		notify_nodes(0)
 
