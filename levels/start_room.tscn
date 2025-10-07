@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://teq6yccg8gfb"]
+[gd_scene load_steps=38 format=3 uid="uid://teq6yccg8gfb"]
 
 [ext_resource type="ArrayMesh" uid="uid://doplupf124pm2" path="res://assets/buildings/church.res" id="1_wkf7w"]
 [ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://assets/stolen/Survival/Textures/Rock.jpg" id="2_cfm6c"]
@@ -26,6 +26,9 @@ size = Vector2(7, 3)
 albedo_color = Color(0.8217887, 0.82178867, 0.82178867, 1)
 albedo_texture = ExtResource("2_cfm6c")
 uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8qil6"]
+points = PackedVector3Array(-3.5, 0, -1.5, -3.5, 0, 1.5, 3.5, 0, -1.5, 3.5, 0, 1.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cfm6c"]
 size = Vector2(2, 5)
@@ -103,6 +106,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -2.007, -0.500080
 mesh = SubResource("PlaneMesh_wkf7w")
 skeleton = NodePath("../../RoomColliders")
 surface_material_override/0 = SubResource("StandardMaterial3D_n085v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Church/Ground"]
+collision_layer = 2147483649
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Church/Ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50355446, -2.007, -0.5000801)
+shape = SubResource("ConvexPolygonShape3D_8qil6")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Church/Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9924784, -2.007, -0.49267277)

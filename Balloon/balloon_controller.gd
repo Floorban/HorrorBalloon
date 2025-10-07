@@ -13,11 +13,21 @@ var _is_reparenting := false
 var is_grounded := false
 var ground_check_enabled := true
 var ground_disable_timer := 0.0
+@onready var tilt_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
+@onready var tilt_check_2: RayCast3D = $TiltCheck/TiltCheck_2
+@onready var tilt_check_3: RayCast3D = $TiltCheck/TiltCheck_3
+@onready var tilt_check_4: RayCast3D = $TiltCheck/TiltCheck_4
+@onready var tilt_check_5: RayCast3D = $TiltCheck/TiltCheck_5
+var t2 := false
+var t3 := false
+var t4 := false
+var t5 := false
+var is_tilted := false
 
 # weight / objects in balloon
 var objs_in_balloon: Dictionary = {}
 var total_weight: float = 0.0
-var player_weight: float = 10.0
+var player_weight: float = 5.0
 
 # vertical
 const GRAVITY := 4.0
@@ -31,7 +41,7 @@ var move_threshold := 0.1
 var horizontal_dir: Vector3 = Vector3.ZERO
 
 # tilt
-@export var max_tilt_angle := 8.0
+@export var max_tilt_angle := 10.0
 var tilt_tween: Tween = null
 var tilt_damping := 0.5
 
@@ -52,6 +62,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	lv.y = clamp(lv.y, -5, 3)
 	state.linear_velocity = lv
 
+func tilt_checked(ray:RayCast3D) -> bool:
+	return ray.is_colliding()
+
 func _physics_process(delta: float) -> void:
 	if not ground_check_enabled:
 		ground_disable_timer -= delta
@@ -62,8 +75,19 @@ func _physics_process(delta: float) -> void:
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
 	
-	if not is_grounded:
+	t2 = tilt_checked(tilt_check_2)
+	t3 = tilt_checked(tilt_check_3)
+	t4 = tilt_checked(tilt_check_4)
+	t5 = tilt_checked(tilt_check_5)
+	if t2 and t3 and t4 and t5:
+		is_tilted = true
+	else:
+		is_tilted = false
+
+	if not is_tilted:
 		apply_central_force(Vector3.DOWN * GRAVITY)
+	else:
+		linear_velocity.y = 0.0
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
@@ -80,13 +104,13 @@ func _apply_vertical_force() -> void:
 		return
 
 	var fuel_mult : float = oven.get_fuel_percentage() if oven and oven.has_method("get_fuel_percentage") else 0.0
-	vertical_force = vertical_base_force * fuel_mult # - (GRAVITY * total_weight * 0.05)
+	vertical_force = vertical_base_force * fuel_mult - (GRAVITY * total_weight * 0.05)
 	apply_central_force(Vector3.UP * vertical_force)
 
 func _apply_horizontal_force() -> void:
 	# Stop horizontal motion if grounded
 	if is_grounded:
-		_tilt_to(Vector3.ZERO, tilt_damping * 2.0)
+		_tilt_to(Vector3.FORWARD * 0.1, tilt_damping * 2.0)
 		horizontal_dir = Vector3.ZERO
 		return
 

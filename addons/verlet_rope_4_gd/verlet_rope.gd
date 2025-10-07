@@ -455,7 +455,7 @@ func draw_curve() -> void:
 	if _camera == null:
 		_camera = _get_camera()
 		if _camera == null:
-			print("Warning: No camera found for rope rendering")
+			#print("Warning: No camera found for rope rendering")
 			return
 
 	var camera_position: Vector3 = _camera.global_position

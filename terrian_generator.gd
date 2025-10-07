@@ -96,9 +96,7 @@ func generate_collision():
 	clear_collision()
 	create_trimesh_collision()
 	var static_body = get_child(0) as StaticBody3D
-	if static_body:
-		static_body.set_collision_layer_value(31,true)
-		static_body.set_collision_layer_value(32,true)
+	if static_body: static_body.set_collision_layer_value(32,true)
 
 func clear_collision():
 	if get_child_count() > 0:

@@ -11,8 +11,8 @@ shader = ExtResource("1_6nr1p")
 shader_parameter/terrian_grass = ExtResource("2_dsafs")
 shader_parameter/terrian_rock = ExtResource("3_kvbh1")
 shader_parameter/min_grass_height = 0.3
-shader_parameter/max_rock_height = 1.115
-shader_parameter/uvscale = Vector2(50, 50)
+shader_parameter/max_rock_height = 0.35
+shader_parameter/uvscale = Vector2(500, 500)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dsafs"]
 _surfaces = [{
