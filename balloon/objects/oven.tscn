@@ -2,9 +2,9 @@
 
 [ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="1_sicut"]
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://Balloon/objects/oven.gd" id="2_0qg0s"]
-[ext_resource type="PackedScene" uid="uid://dwgh8g4a3r8ns" path="res://Balloon/tempreture_bar.tscn" id="3_lr4rp"]
+[ext_resource type="PackedScene" path="res://Balloon/tempreture_bar.tscn" id="3_lr4rp"]
 [ext_resource type="PackedScene" uid="uid://d147nb65gyp54" path="res://interaction/door/oven_door.tscn" id="3_w7bsp"]
-[ext_resource type="PackedScene" uid="uid://docr5nmdss3qf" path="res://Balloon/altitude_bar.tscn" id="4_brhjr"]
+[ext_resource type="PackedScene" path="res://Balloon/altitude_bar.tscn" id="4_brhjr"]
 [ext_resource type="PackedScene" uid="uid://btfewaxmhb78v" path="res://Balloon/smoke.tscn" id="6_6mct1"]
 [ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://Balloon/fuel_bar.tscn" id="6_sicut"]
 [ext_resource type="PackedScene" uid="uid://blfnyuhr4qq41" path="res://Balloon/oven_lever.tscn" id="8_brhjr"]

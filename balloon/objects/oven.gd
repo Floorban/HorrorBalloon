@@ -7,7 +7,7 @@ var current_fuel: float = 0.0
 var fule_conversion_rate: float = 1.0
 var burning_rate : float
 var defualt_burning_rate := 0.5
-var cooling_rate := 5.0
+var cooling_rate := 8.0
 var is_burning: bool
 
 @onready var fuel_bar: ProgressBar = %FuelBar
@@ -46,13 +46,14 @@ func _process(delta: float) -> void:
 			flame.emitting = true
 			flame2.emitting = true
 			if !is_burning:
-				Audio.play(SFX_Fire, global_transform)
+				i_Fire = Audio.play_instance(SFX_Fire, global_transform)
 				is_burning = true
 			current_fuel = max(current_fuel - burning_rate * delta, 0.0)
 	else:
 		flame.emitting = false
 		flame2.emitting = false
 		smoke.emitting = false
+		Audio.clear_instance(i_Fire)
 		is_burning = false
 	
 	if fuel_bar:

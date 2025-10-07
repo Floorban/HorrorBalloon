@@ -67,7 +67,7 @@ func game_over() -> void:
 	# 	player.trauma = 2.0
 	# 	player.play_death_animation(enemy._eye.global_position)
 	# 	enemy.play_jumpscare()
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file(main_scene_path)
 
 func _on_dead_zone_body_entered(body: Node3D) -> void:

@@ -57,12 +57,14 @@ func play(sound_path: String, object_transform: Transform3D = global_transform, 
 	instance.release()
 	return instance
 
-func play_instance(sound_path: String, object: Node) -> FmodEvent:
+func play_instance(sound_path: String, object_transform: Transform3D) -> FmodEvent:
+	if sound_path == null: push_error("audio missing")
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
-	instance.set_3d_attributes(object.global_transform)
+	instance.set_3d_attributes(object_transform)
 	instance.start()
 	return instance
 
 func clear_instance(instance: FmodEvent):
+	if instance == null: return
 	instance.stop(FmodServer.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 	instance.release()
