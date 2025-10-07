@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bwu5pcoyk8yal"]
+[gd_scene load_steps=0 format=3 uid="uid://bwu5pcoyk8yal"]
 
 [node name="AmbienceOutside" type="Node3D"]
 
