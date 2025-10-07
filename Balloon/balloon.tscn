@@ -25,19 +25,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60837976990923
+metadata/creation_stamp = 8187398944536
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60838010545363
+metadata/creation_stamp = 8187432498969
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60838044099720
+metadata/creation_stamp = 8187466053403
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 60838077654209
+metadata/creation_stamp = 8187499607838
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -51,6 +51,8 @@ collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
+vertical_base_force = 9.0
+max_tilt_angle = 8.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
 
@@ -210,7 +212,7 @@ transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15
 transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
 
 [node name="StaticResource2" parent="Body" instance=ExtResource("2_snxhu")]
-transform = Transform3D(0.08550364, 0, 0.14345078, 0, 0.167, 0, -0.14345078, 0, 0.08550364, 0.213114, 0.19811766, -0.15937078)
+transform = Transform3D(0.08550364, 0, 0.14345078, 0, 0.167, 0, -0.14345078, 0, 0.08550364, 0.17215507, 0.19811766, 0.30672646)
 
 [node name="StaticResource7" parent="Body" instance=ExtResource("2_snxhu")]
 transform = Transform3D(0.08550364, 0, 0.14345078, 0, 0.167, 0, -0.14345078, 0, 0.08550364, -0.017499674, 0.19811766, -0.015160295)
@@ -225,16 +227,16 @@ transform = Transform3D(-0.022433465, 0, -0.16548637, 0, 0.16700003, 0, 0.165486
 transform = Transform3D(-0.14253859, -0.03845895, 0.07805559, -0.040659435, 0.16188096, 0.005511826, -0.07693227, -0.014299683, -0.14753288, -0.017028611, 0.19678903, -0.01526584)
 
 [node name="StaticResource3" parent="Body" instance=ExtResource("2_snxhu")]
-transform = Transform3D(-0.16579467, 0, 0.020028135, 0, 0.167, 0, -0.020028135, 0, -0.16579467, 0.29985327, 0.17591816, 0.20317368)
+transform = Transform3D(-0.16579467, 0, 0.020028135, 0, 0.167, 0, -0.020028135, 0, -0.16579467, 0.20547925, 0.17591816, 0.20317368)
 
 [node name="StaticResource4" parent="Body" instance=ExtResource("2_snxhu")]
-transform = Transform3D(-0.077171475, 0, 0.14809984, 0, 0.167, 0, -0.14809984, 0, -0.077171475, 0.3338611, 0.17591815, -0.24644415)
+transform = Transform3D(-0.077171475, 0, 0.14809984, 0, 0.167, 0, -0.14809984, 0, -0.077171475, 0.2653606, 0.17591815, 0.2196531)
 
 [node name="StaticResource5" parent="Body" instance=ExtResource("2_snxhu")]
-transform = Transform3D(-0.16536665, 0, 0.02329964, 0, 0.167, 0, -0.02329964, 0, -0.16536665, -0.22136919, 0.17591815, 0.005420407)
+transform = Transform3D(-0.16536665, 0, 0.02329964, 0, 0.167, 0, -0.02329964, 0, -0.16536665, 0.18219864, 0.17591815, 0.47151765)
 
 [node name="StaticResource6" parent="Body" instance=ExtResource("2_snxhu")]
-transform = Transform3D(-0.15513387, 0, -0.06182624, 0, 0.167, 0, 0.06182624, 0, -0.15513387, -0.11272591, 0.17591815, 0.32705003)
+transform = Transform3D(-0.15513387, 0, -0.06182624, 0, 0.167, 0, 0.06182624, 0, -0.15513387, 0.2908419, 0.17591815, 0.12764665)
 
 [node name="ObjInBalloonArea" type="Area3D" parent="Body"]
 unique_name_in_owner = true

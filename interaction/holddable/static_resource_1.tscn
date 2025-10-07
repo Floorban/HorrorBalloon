@@ -13,4 +13,4 @@ collision_mask = 3221225472
 shape = SubResource("BoxShape3D_n403w")
 
 [node name="InteractionComponent" parent="." index="2"]
-inspectable = false
+weight = 2.0

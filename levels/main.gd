@@ -24,6 +24,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	objective_progress()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		game_over()
+
 func _get_random_point(area_size: float, avoid_radius: float = 70.0) -> Vector3:
 	var half := area_size / 2.0
 	var x := 0.0
@@ -59,10 +63,10 @@ func objective_progress():
 
 func game_over() -> void:
 	print("game over")
-	if player and enemy:
-		player.trauma = 2.0
-		player.play_death_animation(enemy._eye.global_position)
-		enemy.play_jumpscare()
+	# if player and enemy:
+	# 	player.trauma = 2.0
+	# 	player.play_death_animation(enemy._eye.global_position)
+	# 	enemy.play_jumpscare()
 	await get_tree().create_timer(1.2).timeout
 	get_tree().change_scene_to_file(main_scene_path)
 
