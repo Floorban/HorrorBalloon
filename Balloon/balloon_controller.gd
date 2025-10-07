@@ -203,7 +203,7 @@ func _on_body_entered(body: Node3D) -> void:
 		#call_deferred("_deferred_attach", player)
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
-		if obj is InteractionDraggable or obj is InteractionHolddable:
+		if obj is InteractionHolddable:
 			if not obj.is_occupied:
 				objs_in_balloon[body] = obj.weight
 				_is_reparenting = true

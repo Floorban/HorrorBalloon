@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="ResourceSpawnData" load_steps=6 format=3 uid="uid://b4m53elchbkk"]
+[gd_resource type="Resource" script_class="ResourceSpawnData" load_steps=4 format=3 uid="uid://b4m53elchbkk"]
 
-[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="1_vqx4s"]
 [ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="2_pkpa2"]
-[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="3_d78m0"]
 [ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="4_pkpa2"]
 [ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://levels/ResourceSpawnData/ResourceData/ResourceSpawnData.gd" id="4_uy57p"]
 
 [resource]
 script = ExtResource("4_uy57p")
-scenes = Array[PackedScene]([ExtResource("1_vqx4s"), ExtResource("2_pkpa2"), ExtResource("3_d78m0"), ExtResource("4_pkpa2")])
+scenes = Array[PackedScene]([ExtResource("2_pkpa2"), ExtResource("4_pkpa2")])
 max_spawn = 500
 metadata/_custom_type_script = "uid://ij4fj4p8xqlg"
