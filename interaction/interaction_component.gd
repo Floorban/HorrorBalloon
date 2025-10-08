@@ -51,6 +51,14 @@ func postInteract() -> void:
 	lock_camera = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+## when the controller detect the obj before interact
+func interact_hint() -> void:
+	pass
+
+## when the controller leaves
+func disable_interact_hint() -> void:
+	pass
+
 ## Iterates over a list of nodes that can be interacted with and executes their respective logic
 func notify_nodes(percentage: float) -> void:
 	for node in nodes_to_affect:

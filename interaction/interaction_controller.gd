@@ -181,6 +181,7 @@ func _focus() -> void:
 	highlight_reticle.visible = true
 	interacting_reticle.visible = false
 	interaction_ui_init()
+	if interaction_component: interaction_component.interact_hint()
 
 ## Called when the player is NOT looking at an interactable objects
 func _unfocus() -> void:
@@ -190,8 +191,8 @@ func _unfocus() -> void:
 	default_reticle.visible = true
 	highlight_reticle.visible = false
 	interacting_reticle.visible = false
-	if current_object == null:
-		interaction_ui_clear()
+	if current_object == null: interaction_ui_clear()
+	if interaction_component: interaction_component.disable_interact_hint()
 
 ## Called when the player collects an item
 func _on_item_collected(item: Node):

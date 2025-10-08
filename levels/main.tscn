@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://dfauikegolgu3"]
+[gd_scene load_steps=53 format=4 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
 [ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://d1d00frh5ptoj" path="res://levels/origin.tscn" id="41_vydlj"]
 [ext_resource type="PackedScene" uid="uid://teq6yccg8gfb" path="res://levels/start_room.tscn" id="42_2hoto"]
 [ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="42_l412s"]
+[ext_resource type="PackedScene" uid="uid://qpisonnatfeo" path="res://balloon/control_inputs/button_up.tscn" id="44_4c2mk"]
 [ext_resource type="PackedScene" uid="uid://dedvathhyinbf" path="res://levels/terrian_generator.tscn" id="44_en2ks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
@@ -529,6 +530,9 @@ spawn_point_data = ExtResource("5_f1mgo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.109535, 0, 84.94398)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
+
+[node name="ButtonUp" parent="." instance=ExtResource("44_4c2mk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.579422, 2.227768, -32.51633)
 
 [connection signal="body_entered" from="DeadZone" to="." method="_on_dead_zone_body_entered"]
 [connection signal="body_exited" from="DeadZone" to="." method="_on_dead_zone_body_exited"]
