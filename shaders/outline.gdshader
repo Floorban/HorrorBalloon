@@ -3,7 +3,7 @@ render_mode unshaded;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform vec4 outline_color : source_color;
-uniform float outline_width = 1.0;
+uniform float outline_width = 5.0;
 
 void fragment() {
 	vec4 pixelated_tex = texture(SCREEN_TEXTURE, SCREEN_UV);

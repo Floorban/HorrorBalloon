@@ -23,8 +23,8 @@ var player_weight: float = 5.0
 @export var input_component: Array[BalloonInput]
 
 # vertical
-const GRAVITY := 5.0
-@export var vertical_base_force: float = 10.0
+const GRAVITY := 3.0
+@export var vertical_base_force: float = 100.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
@@ -77,8 +77,6 @@ func _physics_process(delta: float) -> void:
 
 	get_balloon_input()
 	update_balloon_movement()
-	# _apply_vertical_force()
-	# _apply_horizontal_force()
 
 func get_balloon_input() -> Vector3:
 	if input_component.size() == 0:
@@ -106,8 +104,8 @@ func _apply_vertical_force() -> void:
 	if is_grounded:
 		return
 
-	var fuel_mult : float = oven.get_fuel_percentage() if oven and oven.has_method("get_fuel_percentage") else 0.0
-	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y - (GRAVITY * total_weight * 0.05)
+	var fuel_mult : float = oven.get_fuel_percentage() if oven else 0.0
+	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y #- (GRAVITY * total_weight * 0.05)
 	apply_central_force(Vector3.UP * vertical_force)
 
 func _apply_horizontal_force() -> void:
