@@ -8,21 +8,11 @@ signal has_landed
 @onready var oven: Node = %Oven
 
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
-var _is_reparenting := false
+# var _is_reparenting := false
 @onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
 var is_grounded := false
 var ground_check_enabled := true
 var ground_disable_timer := 0.0
-@onready var tilt_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
-@onready var tilt_check_2: RayCast3D = $TiltCheck/TiltCheck_2
-@onready var tilt_check_3: RayCast3D = $TiltCheck/TiltCheck_3
-@onready var tilt_check_4: RayCast3D = $TiltCheck/TiltCheck_4
-@onready var tilt_check_5: RayCast3D = $TiltCheck/TiltCheck_5
-var t2 := false
-var t3 := false
-var t4 := false
-var t5 := false
-var is_tilted := false
 
 # weight / objects in balloon
 var objs_in_balloon: Dictionary = {}
@@ -74,15 +64,6 @@ func _physics_process(delta: float) -> void:
 	var touching_ground := false
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
-	
-	t2 = tilt_checked(tilt_check_2)
-	t3 = tilt_checked(tilt_check_3)
-	t4 = tilt_checked(tilt_check_4)
-	t5 = tilt_checked(tilt_check_5)
-	if t2 and t3 and t4 and t5:
-		is_tilted = true
-	else:
-		is_tilted = false
 
 	if not is_grounded:
 		apply_central_force(Vector3.DOWN * GRAVITY)
@@ -193,8 +174,8 @@ func _tilt_to(target_rot: Vector3, damping: float) -> void:
 	tilt_tween.tween_property(balloon_body, "rotation", target_rot, damping)
 	
 func _on_body_entered(body: Node3D) -> void:
-	if _is_reparenting:
-		return
+	# if _is_reparenting:
+	# 	return
 	if body == player:
 		objs_in_balloon[body] = player_weight
 		#_is_reparenting = true
@@ -202,78 +183,75 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("interactable"):
 		var obj = body.get_node_or_null("InteractionComponent")
 		if obj is InteractionHolddable:
-			if not obj.is_occupied:
-				objs_in_balloon[body] = obj.weight
-				_is_reparenting = true
-				call_deferred("_deferred_attach", body)
+			objs_in_balloon[body] = obj.weight
+			# _is_reparenting = true
+			# call_deferred("_deferred_attach", body)
 	total_weight = _get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
-	if _is_reparenting or not body:
-		return
-	if body == player or body.is_in_group("interactable"):
-		_is_reparenting = true
-		call_deferred("_deferred_deattach", body)
-
+	# if _is_reparenting or not body:
+	# 	return
+	# if body == player or body.is_in_group("interactable"):
+		# _is_reparenting = true
+		# call_deferred("_deferred_deattach", body)
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
-
 	total_weight = _get_all_weights()
 
-func _deferred_attach(body: Node3D) -> void:
-	_is_reparenting = true
-	if not body:
-		_is_reparenting = false
-		return
+# func _deferred_attach(body: Node3D) -> void:
+# 	_is_reparenting = true
+# 	if not body:
+# 		_is_reparenting = false
+# 		return
 
-	if body.get_parent() == self:
-		_is_reparenting = false
-		return
+# 	if body.get_parent() == self:
+# 		_is_reparenting = false
+# 		return
 
-	var old_transform: Transform3D = body.global_transform
+# 	var old_transform: Transform3D = body.global_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = false
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = false
 
-	var parent = body.get_parent()
-	if parent:
-		parent.remove_child(body)
-	balloon_body.add_child(body)
+# 	var parent = body.get_parent()
+# 	if parent:
+# 		parent.remove_child(body)
+# 	balloon_body.add_child(body)
 
-	body.global_transform = old_transform
+# 	body.global_transform = old_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = true
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = true
 
-	_is_reparenting = false
+# 	_is_reparenting = false
 
-func _deferred_deattach(body: Node3D) -> void:
-	_is_reparenting = true
-	if not body:
-		_is_reparenting = false
-		return
+# func _deferred_deattach(body: Node3D) -> void:
+# 	_is_reparenting = true
+# 	if not body:
+# 		_is_reparenting = false
+# 		return
 
-	var current_scene: Node = get_tree().current_scene
-	if body.get_parent() == current_scene:
-		_is_reparenting = false
-		return
+# 	var current_scene: Node = get_tree().current_scene
+# 	if body.get_parent() == current_scene:
+# 		_is_reparenting = false
+# 		return
 
-	var old_transform: Transform3D = body.global_transform
+# 	var old_transform: Transform3D = body.global_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = false
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = false
 
-	var parent = body.get_parent()
-	if parent:
-		parent.remove_child(body)
-	current_scene.add_child(body)
+# 	var parent = body.get_parent()
+# 	if parent:
+# 		parent.remove_child(body)
+# 	current_scene.add_child(body)
 
-	body.global_transform = old_transform
+# 	body.global_transform = old_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = true
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = true
 
-	_is_reparenting = false
+# 	_is_reparenting = false
 
 # Called externally to rotate the balloon with rope
 func execute(percentage: float) -> void:
