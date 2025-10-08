@@ -1,7 +1,7 @@
 [gd_scene load_steps=52 format=4 uid="uid://dfauikegolgu3"]
 
 [ext_resource type="Script" uid="uid://bhjx7n44a5avv" path="res://levels/main.gd" id="1_o6dmv"]
-[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://Balloon/balloon.tscn" id="2_gw050"]
+[ext_resource type="PackedScene" uid="uid://do7002mkdg3un" path="res://balloon/balloon.tscn" id="2_gw050"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://levels/ResourceSpawnData/resource_spawner.tscn" id="2_i3naf"]
 [ext_resource type="PackedScene" uid="uid://x8gnwdt0yplv" path="res://sound/audiomanager/audio_manager.tscn" id="2_wk3pi"]
 [ext_resource type="PackedScene" uid="uid://bwu5pcoyk8yal" path="res://sound/ambience/ambience_outside.tscn" id="3_l412s"]
@@ -40,9 +40,9 @@
 [ext_resource type="PackedScene" uid="uid://c8qvb4yhay683" path="res://levels/island_3.tscn" id="38_05fi1"]
 [ext_resource type="PackedScene" uid="uid://cvra0xi1l8fcx" path="res://interaction/draggable/plank_2.tscn" id="39_l412s"]
 [ext_resource type="PackedScene" path="res://levels/origin.tscn" id="41_vydlj"]
-[ext_resource type="PackedScene" uid="uid://teq6yccg8gfb" path="res://levels/start_room.tscn" id="42_2hoto"]
-[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="42_l412s"]
-[ext_resource type="PackedScene" uid="uid://dedvathhyinbf" path="res://levels/terrian_generator.tscn" id="44_en2ks"]
+[ext_resource type="PackedScene" path="res://levels/start_room.tscn" id="42_2hoto"]
+[ext_resource type="PackedScene" uid="uid://dpp8ug31ccjdx" path="res://interaction/holddable/static_resource_1.tscn" id="42_l412s"]
+[ext_resource type="PackedScene" uid="uid://cr7uruqdedjlb" path="res://levels/terrian_generator.tscn" id="44_en2ks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um0r6"]
 shader = ExtResource("6_bg8b8")
@@ -91,6 +91,8 @@ adjustment_enabled = true
 adjustment_brightness = 1.2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vpyym"]
+vertices = PackedVector3Array(114.8678, 65.42454, -196.43848, 114.8678, 65.42454, -190.43848, 118.8678, 65.42454, -190.43848, 118.8678, 65.42454, -196.43848, -13.132202, 67.92454, -158.43848, -17.132202, 67.92454, -162.43848, -17.132202, 67.92454, -154.43848, -11.132202, 67.92454, -148.43848, -9.132202, 67.92454, -152.43848, -7.132202, 67.92454, -162.43848, -9.132202, 67.92454, -168.43848, -3.1322021, 67.92454, -154.43848, 2.8677979, 67.92454, -154.43848, 0.86779785, 67.92454, -166.43848, -3.1322021, 67.92454, -148.43848, 178.8678, 49.424538, -112.43848, 188.8678, 49.424538, -112.43848, 190.8678, 49.424538, -116.43848, 186.8678, 49.424538, -126.43848, 176.8678, 49.424538, -122.43848, -119.1322, -0.32546377, 73.56152, -117.1322, -0.32546377, 73.56152, -117.1322, -0.32546377, 67.56152, -17.132202, -0.32546377, -100.43848, -5.132202, -0.32546377, -106.43848, -5.132202, -0.32546377, -112.43848, -61.132202, -0.32546377, -102.43848, -53.132202, -0.32546377, -94.43848, -95.1322, -0.32546377, 63.561523, -53.132202, -0.32546377, 55.561523, -49.132202, -0.32546377, 51.561523, -111.1322, -0.32546377, 61.561523, -119.1322, -0.32546377, -112.43848, -79.1322, -0.32546377, -94.43848, -71.1322, -0.32546377, -102.43848, -79.1322, -0.32546377, -82.43848, -71.1322, -0.32546377, -74.43848, 8.867798, -0.32546377, 25.561523, 8.867798, -0.32546377, 15.561523, -63.132202, -0.32546377, -74.43848, 0.86779785, -0.32546377, -80.43848, -9.132202, -0.32546377, -78.43848, -19.132202, -0.32546377, -88.43848, -53.132202, -0.32546377, -82.43848, 2.8677979, -0.32546377, -104.43848, 16.867798, -0.32546377, 11.561523, 24.867798, -0.32546377, 19.561523, 26.867798, -0.32546377, 19.561523, 78.8678, -0.32546377, -80.43848, 86.8678, -0.32546377, -84.43848, 86.8678, -0.32546377, -112.43848, 6.867798, -0.32546377, -84.43848, 76.8678, -0.32546377, -66.43848, 8.867798, -0.32546377, -94.43848, 96.8678, -0.32546377, -84.43848, 118.8678, -0.32546377, -112.43848, 102.8678, -0.32546377, -78.43848, 118.8678, -0.32546377, 19.561523, 96.8678, -0.32546377, -58.438477, 82.8678, -0.32546377, -58.438477, 102.8678, -0.32546377, -64.43848, -71.1322, 51.174538, -98.43848, -75.1322, 51.174538, -94.43848, -69.1322, 51.174538, -90.43848, -63.132202, 51.174538, -92.43848, -59.132202, 51.174538, -96.43848, -75.1322, 51.174538, -82.43848, -71.1322, 51.174538, -78.43848, -67.1322, 51.174538, -84.43848, -57.132202, 51.174538, -82.43848, -61.132202, 51.174538, -86.43848, -1.1322021, 49.424538, -86.43848, 0.86779785, 49.424538, -90.43848, -3.1322021, 49.424538, -98.43848, -13.132202, 49.424538, -96.43848, -11.132202, 49.424538, -86.43848, -7.132202, -0.32546377, -94.43848, -7.132202, -0.32546377, -90.43848, -3.1322021, -0.32546377, -90.43848, -3.1322021, -0.32546377, -94.43848, -65.1322, -0.32546377, -92.43848, -65.1322, -0.32546377, -82.43848, -59.132202, -0.32546377, -84.43848, -59.132202, -0.32546377, -92.43848, -73.1322, -0.32546377, -88.43848, -73.1322, -0.32546377, -84.43848, -67.1322, -0.32546377, -82.43848, 84.8678, 51.174538, -80.43848, 78.8678, 51.174538, -74.43848, 86.8678, 51.174538, -74.43848, 92.8678, 51.174538, -78.43848, 98.8678, 51.174538, -64.43848, 94.8678, 51.174538, -70.43848, 88.8678, 51.174538, -68.43848, 82.8678, 51.174538, -62.438477, 96.8678, 51.174538, -80.43848, 92.8678, -0.32546377, -68.43848, 96.8678, -0.32546377, -70.43848, 94.8678, -0.32546377, -78.43848, 88.8678, -0.32546377, -78.43848, -217.1322, 112.17454, -48.438477, -211.1322, 112.17454, -54.438477, -211.1322, 112.17454, -66.43848, -217.1322, 112.17454, -72.43848, -231.1322, 112.17454, -72.43848, -237.1322, 112.17454, -62.438477, -231.1322, 112.17454, -48.438477, 86.8678, -0.32546377, -66.43848, 92.8678, -0.32546377, -64.43848, 182.8678, 67.92454, -22.438477, 178.8678, 67.92454, -18.438477, 184.8678, 67.92454, -14.438477, 190.8678, 67.92454, -16.438477, 196.8678, 67.92454, -20.438477, 192.8678, 67.92454, -8.438477, 186.8678, 67.92454, -6.4384766, 190.8678, 67.92454, -2.4384766, 196.8678, 67.92454, -6.4384766, 180.8678, 67.92454, -4.4384766, 16.867798, 77.17454, 17.561523, 16.867798, 77.17454, 27.561523, 20.867798, 77.67454, 25.561523, 20.867798, 77.67454, 19.561523, 12.867798, 65.42454, 21.561523, 18.867798, 65.42454, 25.561523, 16.867798, 65.42454, 19.561523, 18.867798, -0.32546377, 29.561523, 32.867798, -0.32546377, 105.56152, 20.867798, -0.32546377, 109.56152, 20.867798, -0.32546377, 113.56152, 118.8678, -0.32546377, 113.56152, 20.867798, -0.32546377, 83.56152, 26.867798, -0.32546377, 83.56152, 34.867798, -0.32546377, 91.56152, 14.867798, -0.32546377, 109.56152, -43.132202, -0.32546377, 113.56152, 14.867798, -0.32546377, 83.56152, 10.867798, -0.32546377, 29.561523, -45.132202, -0.32546377, 55.561523, 8.867798, -0.32546377, 89.56152, 8.867798, -0.32546377, 103.56152, -117.1322, -0.32546377, 81.56152, -119.1322, -0.32546377, 113.56152, -51.132202, -0.32546377, 59.561523, -111.1322, -0.32546377, 87.56152, -99.1322, -0.32546377, 87.56152, -91.1322, -0.32546377, 79.56152, -99.1322, 48.424538, 83.56152, -95.1322, 48.424538, 79.56152, -95.1322, 48.424538, 69.56152, -99.1322, 48.424538, 65.56152, -113.1322, 48.424538, 67.56152, -111.1322, 48.424538, 83.56152, -109.1322, -0.32546377, 71.56152, -101.1322, -0.32546377, 67.56152, -111.1322, -0.32546377, 69.56152, -109.1322, -0.32546377, 77.56152, -109.1322, -0.32546377, 81.56152, -103.1322, -0.32546377, 79.56152, -97.1322, -0.32546377, 77.56152, -99.1322, -0.32546377, 71.56152, 148.8678, 74.42454, 75.56152, 148.8678, 74.42454, 85.56152, 152.8678, 75.17454, 77.56152, -253.1322, 8.424536, 77.56152, -253.1322, 8.424536, 83.56152, -229.1322, 8.424536, 83.56152, -229.1322, 8.424536, 77.56152, -237.1322, 8.674536, 77.56152, 148.8678, 63.174538, 79.56152, 148.8678, 63.174538, 83.56152, 154.8678, 63.174538, 81.56152, 26.867798, 48.424538, 105.56152, 30.867798, 48.424538, 101.56152, 30.867798, 48.424538, 91.56152, 26.867798, 48.424538, 87.56152, 12.867798, 48.424538, 89.56152, 14.867798, 48.424538, 105.56152, 16.867798, -0.32546377, 93.56152, 24.867798, -0.32546377, 89.56152, 14.867798, -0.32546377, 91.56152, 16.867798, -0.32546377, 99.56152, 16.867798, -0.32546377, 103.56152, 22.867798, -0.32546377, 101.56152, 28.867798, -0.32546377, 99.56152, 26.867798, -0.32546377, 93.56152, -29.132202, 50.174538, 135.56152, -29.132202, 50.174538, 123.56152, -33.132202, 50.174538, 119.56152, -47.132202, 50.174538, 121.56152, -45.132202, 50.174538, 137.56152, -69.1322, 63.924538, 247.56152, -63.132202, 63.924538, 261.56152, -51.132202, 63.924538, 273.56152, -35.132202, 63.924538, 281.56152, -13.132202, 63.924538, 283.56152, 22.867798, 63.924538, 201.56152, 8.867798, 63.924538, 187.56152, -5.132202, 63.924538, 181.56152, 8.867798, 63.924538, 275.56152, 24.867798, 63.924538, 259.56152, 30.867798, 63.924538, 243.56152, -45.132202, 63.924538, 185.56152, -65.1322, 63.924538, 205.56152, -71.1322, 63.924538, 225.56152, 30.867798, 63.924538, 217.56152, -341.1322, 25.924536, 191.56152, -339.1322, 25.924536, 197.56152, -333.1322, 25.924536, 195.56152, -335.1322, 25.924536, 189.56152, 204.8678, 50.174538, 193.56152, 192.8678, 50.174538, 191.56152, 186.8678, 50.174538, 197.56152, 188.8678, 50.174538, 209.56152, 204.8678, 50.174538, 209.56152, -207.1322, 15.424536, 213.56152, -207.1322, 15.424536, 225.56152, -169.1322, 15.424536, 225.56152, -169.1322, 15.424536, 213.56152, -205.1322, 1.1745362, 215.56152, -205.1322, 1.1745362, 223.56152, -171.1322, 1.1745362, 223.56152, -171.1322, 1.1745362, 215.56152)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(4, 5, 9), PackedInt32Array(9, 5, 10), PackedInt32Array(10, 13, 9), PackedInt32Array(9, 13, 11), PackedInt32Array(11, 13, 12), PackedInt32Array(7, 8, 14), PackedInt32Array(14, 8, 11), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 19), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(34, 33, 32), PackedInt32Array(32, 33, 35), PackedInt32Array(34, 32, 26), PackedInt32Array(26, 32, 25), PackedInt32Array(36, 31, 22), PackedInt32Array(37, 30, 38), PackedInt32Array(38, 30, 31), PackedInt32Array(38, 31, 39), PackedInt32Array(39, 31, 36), PackedInt32Array(41, 40, 38), PackedInt32Array(43, 27, 42), PackedInt32Array(42, 27, 23), PackedInt32Array(35, 36, 32), PackedInt32Array(32, 36, 22), PackedInt32Array(32, 22, 20), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 39), PackedInt32Array(39, 41, 38), PackedInt32Array(44, 24, 25), PackedInt32Array(47, 46, 45), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 44), PackedInt32Array(50, 44, 25), PackedInt32Array(45, 38, 40), PackedInt32Array(51, 48, 40), PackedInt32Array(40, 48, 52), PackedInt32Array(40, 52, 45), PackedInt32Array(45, 52, 47), PackedInt32Array(53, 44, 48), PackedInt32Array(51, 53, 48), PackedInt32Array(54, 49, 50), PackedInt32Array(54, 50, 56), PackedInt32Array(56, 50, 55), PackedInt32Array(59, 58, 57), PackedInt32Array(56, 55, 60), PackedInt32Array(60, 55, 57), PackedInt32Array(59, 57, 52), PackedInt32Array(52, 57, 47), PackedInt32Array(58, 60, 57), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 64), PackedInt32Array(64, 61, 65), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 63), PackedInt32Array(63, 66, 62), PackedInt32Array(70, 69, 68), PackedInt32Array(68, 69, 67), PackedInt32Array(64, 65, 70), PackedInt32Array(70, 65, 69), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 75), PackedInt32Array(73, 75, 74), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(83, 82, 80), PackedInt32Array(80, 82, 81), PackedInt32Array(86, 85, 84), PackedInt32Array(90, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(92, 91, 93), PackedInt32Array(93, 91, 94), PackedInt32Array(95, 90, 87), PackedInt32Array(90, 95, 92), PackedInt32Array(92, 95, 91), PackedInt32Array(89, 93, 88), PackedInt32Array(88, 93, 94), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 99), PackedInt32Array(102, 101, 100), PackedInt32Array(103, 102, 104), PackedInt32Array(104, 102, 105), PackedInt32Array(105, 102, 106), PackedInt32Array(106, 102, 100), PackedInt32Array(96, 108, 107), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(112, 109, 113), PackedInt32Array(117, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(116, 118, 115), PackedInt32Array(115, 118, 111), PackedInt32Array(111, 118, 110), PackedInt32Array(114, 112, 117), PackedInt32Array(117, 112, 113), PackedInt32Array(122, 121, 119), PackedInt32Array(119, 121, 120), PackedInt32Array(125, 124, 123), PackedInt32Array(126, 46, 47), PackedInt32Array(128, 127, 129), PackedInt32Array(129, 127, 130), PackedInt32Array(132, 131, 126), PackedInt32Array(132, 126, 133), PackedInt32Array(133, 126, 47), PackedInt32Array(133, 47, 57), PackedInt32Array(133, 57, 130), PackedInt32Array(130, 127, 133), PackedInt32Array(128, 129, 134), PackedInt32Array(134, 129, 135), PackedInt32Array(131, 136, 126), PackedInt32Array(126, 136, 137), PackedInt32Array(138, 30, 37), PackedInt32Array(137, 136, 37), PackedInt32Array(37, 136, 139), PackedInt32Array(37, 139, 138), PackedInt32Array(138, 139, 135), PackedInt32Array(140, 134, 135), PackedInt32Array(139, 140, 135), PackedInt32Array(21, 141, 20), PackedInt32Array(20, 141, 142), PackedInt32Array(143, 138, 135), PackedInt32Array(142, 141, 144), PackedInt32Array(142, 144, 145), PackedInt32Array(145, 146, 142), PackedInt32Array(142, 146, 143), PackedInt32Array(142, 143, 135), PackedInt32Array(29, 143, 28), PackedInt32Array(28, 143, 146), PackedInt32Array(148, 147, 149), PackedInt32Array(149, 147, 150), PackedInt32Array(150, 147, 152), PackedInt32Array(150, 152, 151), PackedInt32Array(155, 154, 153), PackedInt32Array(155, 153, 156), PackedInt32Array(157, 155, 156), PackedInt32Array(157, 156, 158), PackedInt32Array(159, 157, 158), PackedInt32Array(158, 160, 159), PackedInt32Array(162, 161, 163), PackedInt32Array(167, 166, 168), PackedInt32Array(168, 166, 164), PackedInt32Array(164, 166, 165), PackedInt32Array(171, 170, 169), PackedInt32Array(173, 172, 174), PackedInt32Array(174, 172, 175), PackedInt32Array(175, 172, 177), PackedInt32Array(175, 177, 176), PackedInt32Array(180, 179, 178), PackedInt32Array(180, 178, 181), PackedInt32Array(182, 180, 181), PackedInt32Array(182, 181, 183), PackedInt32Array(184, 182, 183), PackedInt32Array(183, 185, 184), PackedInt32Array(187, 186, 188), PackedInt32Array(188, 186, 189), PackedInt32Array(189, 186, 190), PackedInt32Array(192, 191, 193), PackedInt32Array(193, 191, 194), PackedInt32Array(194, 191, 195), PackedInt32Array(198, 197, 196), PackedInt32Array(200, 199, 201), PackedInt32Array(201, 199, 195), PackedInt32Array(203, 202, 198), PackedInt32Array(191, 204, 203), PackedInt32Array(201, 196, 205), PackedInt32Array(196, 201, 198), PackedInt32Array(198, 201, 195), PackedInt32Array(198, 195, 203), PackedInt32Array(203, 195, 191), PackedInt32Array(209, 208, 206), PackedInt32Array(206, 208, 207), PackedInt32Array(211, 210, 212), PackedInt32Array(212, 210, 213), PackedInt32Array(213, 210, 214), PackedInt32Array(218, 217, 215), PackedInt32Array(215, 217, 216), PackedInt32Array(222, 221, 219), PackedInt32Array(219, 221, 220)]
 cell_size = 2.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l412s"]
@@ -379,152 +381,152 @@ jitter_amount = 0.5
 [node name="ResourceSpawnPoints" type="Node" parent="."]
 
 [node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.26674, 0, -89.11316)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.342934, 0, -80.47125)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_2" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.00581, 0, -40.206566)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.65362, 0, -62.17091)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.74438, 0, -11.132418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.263428, 0, -1.0387638)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.478516, 0, 19.409712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.20542, 0, 30.695364)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.89961, 0, 43.173325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.237015, 0, 55.48378)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_6" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.91647, 0, 66.67973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.35937, 0, 93.41711)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_7" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.42752, 0, -74.65108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.122353, 0, -72.24342)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_8" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.430153, 0, -64.51185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.543358, 0, -53.656487)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_9" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.13187, 0, -21.996565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.97413, 0, -4.676886)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_10" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.70068, 0, 24.002293)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.440235, 0, 10.848715)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_11" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.680458, 0, 54.823933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.380405, 0, 62.226944)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_12" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.002815, 0, 71.647064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.62429, 0, 93.52294)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_13" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6922965, 0, -73.6625)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2409382, 0, -76.86432)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_14" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.194319, 0, -58.18108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6755085, 0, -42.20977)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("6_duofn")
 
 [node name="ResrouceSpawnPoint_15" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.007429, 0, -6.4522357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6056004, 0, -23.094942)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_16" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.554146, 0, 28.512413)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2150044, 0, 32.018105)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_17" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.428082, 0, 37.11525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3984165, 0, 54.81048)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("4_8a5tp")
 
 [node name="ResrouceSpawnPoint_18" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.952805, 0, 85.819214)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.584355, 0, 78.68374)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_19" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2001, 0, -78.96928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.08555, 0, -87.01676)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_20" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.270287, 0, -47.873997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.28125, 0, -39.354565)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_21" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.85342, 0, -0.0013945624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.051899, 0, -29.538246)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_22" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.48449, 0, 31.42021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.397293, 0, 5.663124)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_23" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.27633, 0, 52.207123)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.621132, 0, 40.233837)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_24" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.45845, 0, 95.602936)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.611853, 0, 95.69712)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_25" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.9156, 0, -90.4589)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.80594, 0, -83.80875)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_26" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.68639, 0, -58.04996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.65249, 0, -46.42646)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_27" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.82293, 0, -25.858631)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.008465, 0, -16.035732)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_28" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.249557, 0, 24.539948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.576767, 0, 14.376332)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_29" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.570015, 0, 54.298527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.361145, 0, 45.2836)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 
 [node name="ResrouceSpawnPoint_30" parent="ResourceSpawnPoints" instance=ExtResource("3_m6gxc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.421165, 0, 78.10045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.225586, 0, 68.48266)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("5_f1mgo")
 

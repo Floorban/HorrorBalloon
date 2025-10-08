@@ -59,7 +59,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var lv = state.linear_velocity
 	lv.x = clamp(lv.x, -2, 2)
 	lv.z = clamp(lv.z, -2, 2)
-	lv.y = clamp(lv.y, -5, 3)
+	lv.y = clamp(lv.y, -4, 3)
 	state.linear_velocity = lv
 
 func tilt_checked(ray:RayCast3D) -> bool:
@@ -84,10 +84,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_tilted = false
 
-	if not is_tilted:
+	if not is_grounded:
 		apply_central_force(Vector3.DOWN * GRAVITY)
-	else:
-		linear_velocity.y = 0.0
 	
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
 [ext_resource type="PackedScene" uid="uid://bn7oxoa3un034" path="res://balloon/basket_door.tscn" id="2_q3h3j"]
-[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="2_snxhu"]
+[ext_resource type="PackedScene" uid="uid://dpp8ug31ccjdx" path="res://interaction/holddable/static_resource_1.tscn" id="2_snxhu"]
 [ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_uro0l"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
@@ -25,19 +25,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8187398944536
+metadata/creation_stamp = 7542113659667
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8187432498969
+metadata/creation_stamp = 7542147212396
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8187466053403
+metadata/creation_stamp = 7542180768528
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 8187499607838
+metadata/creation_stamp = 7542214323219
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -52,7 +52,6 @@ mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
 vertical_base_force = 9.0
-max_tilt_angle = 8.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
 
