@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://lk0gfohjhapu"]
+
+[ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="1_crcnp"]
+[ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="2_2k03q"]
+
+[node name="Input_Wheel" type="Node3D"]
+
+[node name="BalloonInputComponent" parent="." instance=ExtResource("1_crcnp")]
+
+[node name="Wheel" parent="." instance=ExtResource("2_2k03q")]
+
+[node name="InteractionComponent" parent="Wheel/Wheel" index="10" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../../BalloonInputComponent")]
+
+[editable path="Wheel"]

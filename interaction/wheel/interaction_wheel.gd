@@ -14,6 +14,7 @@ func _ready() -> void:
 	super._ready()
 	starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
+	starting_rotation = -maximum_rotation
 	camera = player.player_camera
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,13 +60,13 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_position: Vector2 = event.position
 		if calculate_cross_product(mouse_position) > 0:
-			wheel_rotation += 0.2
+			wheel_rotation += 0.1
 		else:
-			wheel_rotation -= 0.2
+			wheel_rotation -= 0.1
 			
-		object_ref.rotation.z = wheel_rotation *.2
+		object_ref.rotation.z = wheel_rotation * 0.1
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
-		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
+		var percentage: float = abs((object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation))
 			
 		previous_mouse_position = mouse_position
 		
@@ -75,6 +76,7 @@ func _input(event):
 		wheel_rotation = clamp(wheel_rotation, min_wheel_rotation, max_wheel_rotation)
 
 		notify_nodes(percentage)
+		print(percentage)
 
 ## Uses mouse position to determine if the player is moving their mouse in a clockwise or counter-clockwise motion
 func calculate_cross_product(_mouse_position: Vector2) -> float:
