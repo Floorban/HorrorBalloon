@@ -35,6 +35,11 @@ var horizontal_force: Vector2 = Vector2.ZERO
 var move_threshold := 0.1
 var horizontal_dir: Vector2 = Vector2.ZERO
 
+var sprint_boost := 1.0
+var sprint_timer := 0.0
+@export var sprint_duration := 1.0
+@export var sprint_multiplier := 3.0
+
 # rotation
 @export var torque_base_force: float = 0.01
 var rotation_dir: float = 0.0
@@ -81,6 +86,10 @@ func _physics_process(delta: float) -> void:
 	#if not ground_check_enabled and oven.get_fuel_percentage() > 0:
 		#player.trauma = 0.5
 
+	if sprint_timer > 0.0:
+		sprint_timer -= delta
+		if sprint_timer <= 0.0:
+			sprint_boost = 1.0
 	get_balloon_input()
 	update_balloon_movement()
 
@@ -128,19 +137,26 @@ func _apply_horizontal_force() -> void:
 	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 	if weight_based_movement:
 		var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
-		horizontal_dir = Vector2(Vector3(global_transform.basis * local_dir).x,Vector3(global_transform.basis * local_dir).z).normalized()
-		if horizontal_dir.length() > move_threshold:
-			horizontal_force = horizontal_base_force * horizontal_dir
-		#else:
-			#horizontal_force = Vector2.ZERO
+		horizontal_dir = Vector2(
+			Vector3(global_transform.basis * local_dir).x,
+			Vector3(global_transform.basis * local_dir).z).normalized()
 	else:
 		horizontal_dir = Vector2(get_balloon_input().x, get_balloon_input().z)
-		horizontal_force = horizontal_base_force * horizontal_dir
+
+	if horizontal_dir.length() > move_threshold:
+		var sprint_mult = sprint_boost
+		horizontal_force = horizontal_base_force * sprint_mult * horizontal_dir
+	else:
+		horizontal_force = Vector2.ZERO
 	var h_force : Vector3 = Vector3(horizontal_force.x,0.0,horizontal_force.y)
 	apply_central_force(h_force)
 
 	# if player and player.has_method("apply_player_camera_sway"):
 	# 	player.apply_player_camera_sway(final_tilt)
+
+func sprint() -> void:
+	sprint_boost = sprint_multiplier
+	sprint_timer = sprint_duration
 
 func _apply_rotation() -> void:
 	if is_grounded:
@@ -148,9 +164,6 @@ func _apply_rotation() -> void:
 		return
 	rotation_dir = get_balloon_input().w
 	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
-
-func sprint() -> void:
-	apply_central_impulse(Vector3(horizontal_dir.x,0.0,horizontal_dir.y).normalized() * 10.0)
 
 func _on_land() -> void:
 	Audio.play(SFX_Land, global_transform)
