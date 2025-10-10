@@ -67,7 +67,13 @@ height = 100.0
 material = SubResource("StandardMaterial3D_2q8m3")
 
 [node name="Blue" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.11618, 17.778202, -120.796875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.345024, 17.778206, -48.29225)
+radius = 10.0
+height = 100.0
+material = SubResource("StandardMaterial3D_1lrwo")
+
+[node name="Blue2" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.697655, 17.778206, -75.5388)
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_1lrwo")
@@ -90,5 +96,6 @@ radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_ixrca")
 
-[node name="BalloonNavTest" parent="." instance=ExtResource("1_2q8m3")]
+[node name="BalloonNavTest" parent="." node_paths=PackedStringArray("input_component") instance=ExtResource("1_2q8m3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.910034, -57.328804)
+input_component = [null, NodePath("Body/Input_Wheel/BalloonInputComponent")]

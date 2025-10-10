@@ -306,8 +306,10 @@ func set_viewing_mode(target_offset : Vector3 = Vector3(0, 5.0, -0.5), target_zo
 	if player_state != PlayerState.VIEWING:
 		viewing_yaw_origin = rotation_degrees.y
 		player_state = PlayerState.VIEWING
+		can_move = false
 	else:
 		player_state = PlayerState.IDLE_STAND
+		can_move = true
 
 #Push small objects around feet
 func apply_push_forces(push_shape: ShapeCast3D):

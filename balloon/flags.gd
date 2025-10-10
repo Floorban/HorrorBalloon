@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 	var move_dir = follow_owner.horizontal_dir
 	if move_dir.length() > 0.01:
-		var target_yaw = atan2(-move_dir.x, -move_dir.z)
+		var target_yaw = atan2(-move_dir.x, -move_dir.y)
 
 		for flag in my_flags:
 			var current_rot = flag.rotation

@@ -43,8 +43,8 @@ func _input(event):
 			hold_edge()
 			is_occupied = false
 	
-	if is_occupied and event.is_action_pressed("climb"):
-		go_to_exit()
+	#if is_occupied and event.is_action_pressed("climb"):
+		#go_to_exit()
 
 ## Click to to switch
 func preInteract(_hand: Marker3D, _target: Node = null) -> void:
@@ -69,7 +69,6 @@ func interact() -> void:
 
 func go_to_exit() -> void:
 	if not player: return
-	player.can_move = true
 	player.set_viewing_mode()
 	player.global_transform.origin = target_pos
 	is_interacting = false
@@ -77,7 +76,6 @@ func go_to_exit() -> void:
 
 func hold_edge() -> void:
 	if not player: return
-	player.can_move = false
 	player.set_viewing_mode(viewing_offet, viewing_zoom)
 	hold_time = 0.0
 

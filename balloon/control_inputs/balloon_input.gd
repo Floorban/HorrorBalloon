@@ -2,9 +2,9 @@ extends Node
 class_name BalloonInput
 
 @export var oven: Oven
-@export var insensity: float = 10.0
+@export var intensity: float = 10.0
 
-func execute(percentage: float) -> void:
+func execute(percentage: float, primary: bool) -> void:
 	if oven and oven.get_fuel_percentage() > 0.0:
 		oven.consume_fuel(abs(percentage)*0.01)
 

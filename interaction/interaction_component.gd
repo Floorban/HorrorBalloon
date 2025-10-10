@@ -60,7 +60,7 @@ func disable_interact_hint() -> void:
 	pass
 
 ## Iterates over a list of nodes that can be interacted with and executes their respective logic
-func notify_nodes(percentage: float) -> void:
+func notify_nodes(percentage: float, primary: bool = true) -> void:
 	for node in nodes_to_affect:
 		if node and node.has_method("execute"):
-			node.call("execute", percentage)
+			node.call("execute", percentage, primary)

@@ -59,16 +59,16 @@ func _ready() -> void:
 	#if fuel_bar:
 		#fuel_bar.value = current_fuel
 
-func execute(_percentage: float) -> void:
+func execute(percentage: float, primary: bool) -> void:
 	## for cooling
-	if _percentage >= 0.99:
+	if percentage >= 0.99:
 		burning_rate = cooling_rate
 		Audio.play(SFX_Release, global_transform)
 		smoke.emitting = true
 	else:
 		smoke.emitting = false
 		burning_rate = defualt_burning_rate
-		if _percentage <= 0.0:
+		if percentage <= 0.0:
 			for obj in objs_to_burn:
 				current_fuel = min(current_fuel + obj.fuel_amount * fule_conversion_rate, MAX_FUEL)
 				if balloon and balloon.objs_in_balloon.has(obj.object_ref):

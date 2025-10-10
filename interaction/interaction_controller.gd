@@ -112,13 +112,12 @@ func check_potential_interactables() -> void:
 	else:
 		stop_interactions()
 
-
 func _process(delta: float) -> void:
-	if not player.can_move:
-		default_reticle.visible = false
-		highlight_reticle.visible = false
-		interacting_reticle.visible = false
-		return
+	#if player.player_state == player.PlayerState.AIR:
+		#default_reticle.visible = false
+		#highlight_reticle.visible = false
+		#interacting_reticle.visible = false
+		#return
 	# If on the previous frame, keep interacting with it
 	if current_object:
 		if interaction_component:

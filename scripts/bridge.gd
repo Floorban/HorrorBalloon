@@ -7,5 +7,5 @@ func _ready() -> void:
 	starting_rotation = rotation.x
 	final_rotation = deg_to_rad(rad_to_deg(starting_rotation)+final_rotation)
 	
-func execute(percentage: float) -> void:
+func execute(percentage: float, primary: bool) -> void:
 	rotation.x = starting_rotation - percentage*(final_rotation-starting_rotation)

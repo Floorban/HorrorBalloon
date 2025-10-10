@@ -219,7 +219,7 @@ func _tilt_to(target_rot: Vector3, damping: float) -> void:
 	tilt_tween.tween_property(balloon_body, "rotation", target_rot, damping)
 
 # Called externally to rotate the balloon with rope
-func execute(percentage: float) -> void:
+func execute(percentage: float, primary: bool) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
