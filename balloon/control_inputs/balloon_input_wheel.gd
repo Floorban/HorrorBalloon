@@ -12,10 +12,12 @@ func execute(percentage: float, primary: bool) -> void:
 			current_rotation = 0.0
 	else:
 		current_forward = percentage * intensity
-		print(current_forward)
 
 func get_horizontal_input() -> Vector2:
-	return Vector2(-current_forward,0.0)
+	var parent_forward: Vector3 = -get_parent().global_transform.basis.z
+	var forward_2d = Vector2(parent_forward.x, parent_forward.z).normalized()
+	return forward_2d * current_forward
 
 func get_rotation_input() -> float:
+	print(current_rotation)
 	return current_rotation

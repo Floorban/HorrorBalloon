@@ -80,7 +80,6 @@ func _input(event):
 		var min_wheel_rotation = starting_rotation / 0.1
 		var max_wheel_rotation = maximum_rotation / 0.1
 		wheel_rotation = clamp(wheel_rotation, min_wheel_rotation, max_wheel_rotation)
-
 		notify_nodes(percentage, true)
 	else:
 		var percentage: float = 0.0

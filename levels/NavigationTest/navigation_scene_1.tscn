@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cjeriialnx3yy"]
 
-[ext_resource type="PackedScene" uid="uid://bua7ohti10kka" path="res://levels/NavigationTest/balloon_nav_test.tscn" id="1_2q8m3"]
+[ext_resource type="PackedScene" uid="uid://bua7ohti10kka" path="res://levels/NavigationTest/balloon_nav_test_wheel.tscn" id="1_2q8m3"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_1lrwo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lrwo"]
