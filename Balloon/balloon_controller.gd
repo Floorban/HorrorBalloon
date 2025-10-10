@@ -33,6 +33,10 @@ var is_just_land : = false
 var move_threshold := 0.1
 var horizontal_dir: Vector2 = Vector2.ZERO
 
+# rotation
+@export var torque_base_force: float = 0.01
+var rotation_dir: float = 0.0
+
 # tilt
 @export var max_tilt_angle := 10.0
 var tilt_tween: Tween = null
@@ -67,7 +71,7 @@ func _physics_process(delta: float) -> void:
 
 	if not is_grounded:
 		apply_central_force(Vector3.DOWN * GRAVITY)
-	
+
 	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
 		_on_land()
 	if is_grounded and oven.get_fuel_percentage() > 0.1:
@@ -78,12 +82,13 @@ func _physics_process(delta: float) -> void:
 	get_balloon_input()
 	update_balloon_movement()
 
-func get_balloon_input() -> Vector3:
+func get_balloon_input() -> Vector4:
 	if input_component.size() == 0:
-		return Vector3.ZERO
+		return Vector4.ZERO
 
 	var vertical_input: float = 0.0
 	var horizontal_input: Vector2 = Vector2.ZERO
+	var rotation_input: float = 0.0
 
 	for i in input_component.size():
 		var ic = input_component[i]
@@ -91,14 +96,17 @@ func get_balloon_input() -> Vector3:
 			continue
 		vertical_input += ic.get_vertical_input()
 		horizontal_input += ic.get_horizontal_input()
+		rotation_input += ic.get_rotation_input()
 
 	vertical_input = clamp(vertical_input, -1.0, 1.0)
 	horizontal_input = horizontal_input.normalized()
-	return Vector3(horizontal_input.x, vertical_input, horizontal_input.y)
+	#rotation_input = clamp(rotation_input, -1.0, 1.0)
+	return Vector4(horizontal_input.x, vertical_input, horizontal_input.y, rotation_input)
 
 func update_balloon_movement() -> void:
 	_apply_vertical_force()
 	_apply_horizontal_force()
+	_apply_rotation()
 
 func _apply_vertical_force() -> void:
 	if is_grounded:
@@ -126,6 +134,14 @@ func _apply_horizontal_force() -> void:
 
 	# if player and player.has_method("apply_player_camera_sway"):
 	# 	player.apply_player_camera_sway(final_tilt)
+
+func _apply_rotation() -> void:
+	#if is_grounded:
+		#rotation_dir = 0.0
+		#return
+	rotation_dir = get_balloon_input().w
+	print(rotation_dir)
+	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
 
 func _on_land() -> void:
 	Audio.play(SFX_Land, global_transform)

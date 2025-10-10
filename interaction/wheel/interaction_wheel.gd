@@ -76,7 +76,6 @@ func _input(event):
 		wheel_rotation = clamp(wheel_rotation, min_wheel_rotation, max_wheel_rotation)
 
 		notify_nodes(percentage)
-		print(percentage)
 
 ## Uses mouse position to determine if the player is moving their mouse in a clockwise or counter-clockwise motion
 func calculate_cross_product(_mouse_position: Vector2) -> float:
