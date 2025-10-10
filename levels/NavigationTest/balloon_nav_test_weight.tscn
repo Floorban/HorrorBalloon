@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://i1fl4bws2wfr"]
+[gd_scene load_steps=39 format=3 uid="uid://i1fl4bws2wfr"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_iw5rl"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_iw5rl"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_pplau"]
 [ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_j4ttt"]
 [ext_resource type="Script" uid="uid://bd1dhdqfubwrg" path="res://interaction/interaction_ui_data.gd" id="4_wcgku"]
@@ -67,36 +68,39 @@ viewport_path = NodePath("FuelUI/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_ow55n"]
 viewport_path = NodePath("WeightUI/SubViewport")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_abufu"]
-resource_local_to_scene = true
-metadata/creation_stamp = 39401895842468
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_iw5rl"]
 resource_local_to_scene = true
-metadata/creation_stamp = 39401929396912
+metadata/creation_stamp = 57938370774911
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_pplau"]
 resource_local_to_scene = true
-metadata/creation_stamp = 39401962992631
+metadata/creation_stamp = 57938404329345
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_j4ttt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 39401996535872
+metadata/creation_stamp = 57938437883756
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wcgku"]
+resource_local_to_scene = true
+metadata/creation_stamp = 57938471438684
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
 
-[node name="BalloonNavTest_Wheel" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
+[node name="BalloonNavTest_Weight" type="RigidBody3D" groups=["balloon"]]
 collision_layer = 1073741824
 collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_iw5rl")
-input_component = [null, NodePath("")]
 vertical_base_force = 500.0
+weight_based_movement = true
 horizontal_base_force = 1000.0
+max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
+
+[node name="Player" parent="." instance=ExtResource("2_iw5rl")]
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -501,23 +505,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_abufu")
+mesh = SubResource("ImmediateMesh_iw5rl")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_iw5rl")
+mesh = SubResource("ImmediateMesh_pplau")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_pplau")
+mesh = SubResource("ImmediateMesh_j4ttt")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_j4ttt")
+mesh = SubResource("ImmediateMesh_wcgku")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]

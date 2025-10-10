@@ -1,7 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjeriialnx3yy"]
-
-[ext_resource type="PackedScene" uid="uid://bua7ohti10kka" path="res://levels/NavigationTest/balloon_nav_test_wheel.tscn" id="1_2q8m3"]
-[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_1lrwo"]
+[gd_scene load_steps=11 format=3 uid="uid://cjeriialnx3yy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lrwo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,9 +42,6 @@ environment = SubResource("Environment_nabln")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("2_1lrwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.342896, 65.63787, -57.245865)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -95,7 +89,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.302643, 17.778202, 21.587
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_ixrca")
-
-[node name="BalloonNavTest" parent="." node_paths=PackedStringArray("input_component") instance=ExtResource("1_2q8m3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.910034, -57.328804)
-input_component = [null, NodePath("Body/Input_Wheel/BalloonInputComponent")]

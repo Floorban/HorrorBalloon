@@ -1,6 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://bua7ohti10kka"]
+[gd_scene load_steps=46 format=3 uid="uid://bua7ohti10kka"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_sy0r5"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_5ba61"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_oldcj"]
 [ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_ow55n"]
 [ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="3_xrjei"]
@@ -114,6 +115,9 @@ vertical_base_force = 500.0
 horizontal_base_force = 1000.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
+
+[node name="Player" parent="." instance=ExtResource("2_5ba61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7250892, 0)
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
