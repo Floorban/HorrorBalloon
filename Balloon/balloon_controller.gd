@@ -23,13 +23,15 @@ var player_weight: float = 5.0
 @export var input_component: Array[BalloonInput]
 
 # vertical
-const GRAVITY := 3.0
-@export var vertical_base_force: float = 100.0
+const GRAVITY := 0.0
+@export var vertical_base_force: float = 200.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
 # horizontal
-@export var horizontal_base_force: float = 100.0
+@export var weight_based_movement := false
+@export var horizontal_base_force: float = 200.0
+var horizontal_force: Vector2 = Vector2.ZERO
 var move_threshold := 0.1
 var horizontal_dir: Vector2 = Vector2.ZERO
 
@@ -60,24 +62,24 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.linear_velocity = lv
 
 func _physics_process(delta: float) -> void:
-	if not ground_check_enabled:
-		ground_disable_timer -= delta
-		if ground_disable_timer <= 0.0:
-			ground_check_enabled = true
-
-	var touching_ground := false
-	if ground_check_enabled:
-		touching_ground = _check_ground_contacts()
-
-	if not is_grounded:
-		apply_central_force(Vector3.DOWN * GRAVITY)
-
-	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
-		_on_land()
-	if is_grounded and oven.get_fuel_percentage() > 0.1:
-		_on_takeoff()
-	if not ground_check_enabled and oven.get_fuel_percentage() > 0:
-		player.trauma = 0.5
+	#if not ground_check_enabled:
+		#ground_disable_timer -= delta
+		#if ground_disable_timer <= 0.0:
+			#ground_check_enabled = true
+#
+	#var touching_ground := false
+	#if ground_check_enabled:
+		#touching_ground = _check_ground_contacts()
+#
+	#if not is_grounded:
+		#apply_central_force(Vector3.DOWN * GRAVITY)
+#
+	#if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
+		#_on_land()
+	#if is_grounded and oven.get_fuel_percentage() > 0.1:
+		#_on_takeoff()
+	#if not ground_check_enabled and oven.get_fuel_percentage() > 0:
+		#player.trauma = 0.5
 
 	get_balloon_input()
 	update_balloon_movement()
@@ -122,25 +124,29 @@ func _apply_horizontal_force() -> void:
 		_tilt_to(Vector3.FORWARD * 0.1, tilt_damping * 2.0)
 		horizontal_dir = Vector2.ZERO
 		return
-
-	# var final_tilt: Vector3 = _compute_weighted_tilt()
-	# _tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
-	# var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
-	# horizontal_dir = (global_transform.basis * local_dir).normalized()
-	# if horizontal_dir.length() > move_threshold:
-	horizontal_dir = Vector2(get_balloon_input().x, get_balloon_input().z)
-	var target_force : Vector3 = horizontal_base_force * horizontal_dir.length() * Vector3(horizontal_dir.x, 0.0, horizontal_dir.y).normalized()
-	apply_central_force(target_force)
+	if weight_based_movement:
+		var final_tilt: Vector3 = _compute_weighted_tilt()
+		_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
+		var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
+		horizontal_dir = Vector2(Vector3(global_transform.basis * local_dir).x,Vector3(global_transform.basis * local_dir).z).normalized()
+		if horizontal_dir.length() > move_threshold:
+			horizontal_force = horizontal_base_force * horizontal_dir
+		else:
+			horizontal_force = Vector2.ZERO
+	else:
+		horizontal_dir = Vector2(get_balloon_input().x, get_balloon_input().z)
+		horizontal_force = horizontal_base_force * horizontal_dir
+	var h_force : Vector3 = Vector3(horizontal_force.x,0.0,horizontal_force.y)
+	apply_central_force(h_force)
 
 	# if player and player.has_method("apply_player_camera_sway"):
 	# 	player.apply_player_camera_sway(final_tilt)
 
 func _apply_rotation() -> void:
-	#if is_grounded:
-		#rotation_dir = 0.0
-		#return
+	if is_grounded:
+		rotation_dir = 0.0
+		return
 	rotation_dir = get_balloon_input().w
-	print(rotation_dir)
 	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
 
 func _on_land() -> void:

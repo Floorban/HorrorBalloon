@@ -27,19 +27,19 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20862535335695
+metadata/creation_stamp = 29845878821141
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20862568890135
+metadata/creation_stamp = 29845912375575
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nfn1q"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20862602444569
+metadata/creation_stamp = 29845945930008
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 20862635999003
+metadata/creation_stamp = 29845979484631
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -321,6 +321,9 @@ transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.556708
 
 [node name="BalloonInputComponent" parent="Body/Input_Wheel" index="0" node_paths=PackedStringArray("oven")]
 oven = NodePath("../../Oven")
+
+[node name="InteractionComponent" parent="Body/Input_Wheel/Wheel/Wheel" index="10"]
+maximum_rotation = 360.0
 
 [node name="GroundCheck" type="Node3D" parent="."]
 

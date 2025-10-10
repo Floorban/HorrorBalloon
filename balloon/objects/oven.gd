@@ -41,23 +41,23 @@ func _ready() -> void:
 
 	burning_rate = defualt_burning_rate
 
-func _process(_delta: float) -> void:
-	if current_fuel > 0.0:
-			flame.emitting = true
-			flame2.emitting = true
-			if !is_burning:
-				i_Fire = Audio.play_instance(SFX_Fire, global_transform)
-				is_burning = true
-			# current_fuel = max(current_fuel - burning_rate * delta, 0.0)
-	else:
-		flame.emitting = false
-		flame2.emitting = false
-		smoke.emitting = false
-		Audio.clear_instance(i_Fire)
-		is_burning = false
-	
-	if fuel_bar:
-		fuel_bar.value = current_fuel
+#func _process(_delta: float) -> void:
+	#if current_fuel > 0.0:
+			#flame.emitting = true
+			#flame2.emitting = true
+			#if !is_burning:
+				#i_Fire = Audio.play_instance(SFX_Fire, global_transform)
+				#is_burning = true
+			## current_fuel = max(current_fuel - burning_rate * delta, 0.0)
+	#else:
+		#flame.emitting = false
+		#flame2.emitting = false
+		#smoke.emitting = false
+		#Audio.clear_instance(i_Fire)
+		#is_burning = false
+	#
+	#if fuel_bar:
+		#fuel_bar.value = current_fuel
 
 func execute(_percentage: float) -> void:
 	## for cooling
