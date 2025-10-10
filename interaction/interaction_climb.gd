@@ -2,6 +2,7 @@
 extends InteractionComponent
 class_name InteractionClimb
 
+@export var is_pushable: bool = false
 var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
@@ -30,6 +31,11 @@ func _ready() -> void:
 		interact_area.body_exited.connect(_on_player_exited)
 
 func _input(event):
+	if not can_interact: return
+		
+	if is_pushable and event.is_action_pressed("climb"):
+		balloon.sprint()
+	
 	if not is_interacting: return
 
 	## Release to switch

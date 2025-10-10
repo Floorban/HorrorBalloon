@@ -14,6 +14,7 @@ func execute(percentage: float, primary: bool) -> void:
 		current_forward = percentage * intensity
 
 func get_horizontal_input() -> Vector2:
+	# TODO: now it's referencing the same wheel since rotation is only clockwise and counter-clockwise
 	var parent_forward: Vector3 = -get_parent().global_transform.basis.z
 	var forward_2d = Vector2(parent_forward.x, parent_forward.z).normalized()
 	return forward_2d * current_forward

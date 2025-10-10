@@ -1,7 +1,6 @@
 extends InteractionComponent
 class_name InteractionHolddable
 
-@onready var balloon: BalloonController = get_tree().get_first_node_in_group("balloon")
 @onready var interaction_raycast : RayCast3D = player.interaction_controller.placable_raycast
 
 @export var fuel_amount: float = 50.0

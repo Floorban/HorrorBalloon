@@ -1,8 +1,6 @@
 extends InteractionComponent
 class_name InteractionWheel
 
-@onready var balloon : BalloonController = get_tree().get_first_node_in_group("balloon") as BalloonController
-
 # Wheel Variables
 var wheel_kickback: float = 0.0
 var wheel_kick_intensity: float = 0.1

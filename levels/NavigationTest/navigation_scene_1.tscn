@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjeriialnx3yy"]
+[gd_scene load_steps=18 format=3 uid="uid://cjeriialnx3yy"]
+
+[ext_resource type="PackedScene" uid="uid://i1fl4bws2wfr" path="res://levels/NavigationTest/balloon_nav_test_weight.tscn" id="2_hy0ye"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lrwo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -33,6 +35,28 @@ albedo_color = Color(0.3764706, 0.8745098, 0.27450982, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixrca"]
 albedo_color = Color(0.6315797, 0.35401797, 0.63022435, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2q8m3"]
+viewport_path = NodePath("FuelUI/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1lrwo"]
+viewport_path = NodePath("WeightUI/SubViewport")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_hy0ye"]
+resource_local_to_scene = true
+metadata/creation_stamp = 71573449100716
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nabln"]
+resource_local_to_scene = true
+metadata/creation_stamp = 71573482655345
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ixrca"]
+resource_local_to_scene = true
+metadata/creation_stamp = 71573516201441
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_a202p"]
+resource_local_to_scene = true
+metadata/creation_stamp = 71573549764624
 
 [node name="NavigationScene1" type="Node3D"]
 
@@ -89,3 +113,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.302643, 17.778202, 21.587
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_ixrca")
+
+[node name="BalloonNavTest_Weight" parent="." instance=ExtResource("2_hy0ye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="Player" parent="BalloonNavTest_Weight" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.66613, 0)
+
+[node name="FuelUI" parent="BalloonNavTest_Weight/Body/Oven" index="4"]
+texture = SubResource("ViewportTexture_2q8m3")
+
+[node name="WeightUI" parent="BalloonNavTest_Weight/Body/Oven" index="5"]
+texture = SubResource("ViewportTexture_1lrwo")
+
+[node name="BalloonRope_1" parent="BalloonNavTest_Weight/Body/Ropes" index="0"]
+mesh = SubResource("ImmediateMesh_hy0ye")
+
+[node name="BalloonRope_2" parent="BalloonNavTest_Weight/Body/Ropes" index="1"]
+mesh = SubResource("ImmediateMesh_nabln")
+
+[node name="BalloonRope_3" parent="BalloonNavTest_Weight/Body/Ropes" index="2"]
+mesh = SubResource("ImmediateMesh_ixrca")
+
+[node name="BalloonRope_4" parent="BalloonNavTest_Weight/Body/Ropes" index="3"]
+mesh = SubResource("ImmediateMesh_a202p")
+
+[editable path="BalloonNavTest_Weight"]

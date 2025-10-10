@@ -124,15 +124,15 @@ func _apply_horizontal_force() -> void:
 		_tilt_to(Vector3.FORWARD * 0.1, tilt_damping * 2.0)
 		horizontal_dir = Vector2.ZERO
 		return
+	var final_tilt: Vector3 = _compute_weighted_tilt()
+	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 	if weight_based_movement:
-		var final_tilt: Vector3 = _compute_weighted_tilt()
-		_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 		var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
 		horizontal_dir = Vector2(Vector3(global_transform.basis * local_dir).x,Vector3(global_transform.basis * local_dir).z).normalized()
 		if horizontal_dir.length() > move_threshold:
 			horizontal_force = horizontal_base_force * horizontal_dir
-		else:
-			horizontal_force = Vector2.ZERO
+		#else:
+			#horizontal_force = Vector2.ZERO
 	else:
 		horizontal_dir = Vector2(get_balloon_input().x, get_balloon_input().z)
 		horizontal_force = horizontal_base_force * horizontal_dir
@@ -148,6 +148,9 @@ func _apply_rotation() -> void:
 		return
 	rotation_dir = get_balloon_input().w
 	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
+
+func sprint() -> void:
+	apply_central_impulse(Vector3(horizontal_dir.x,0.0,horizontal_dir.y).normalized() * 10.0)
 
 func _on_land() -> void:
 	Audio.play(SFX_Land, global_transform)
