@@ -33,7 +33,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="PlayerGrid" type="CharacterBody3D" groups=["player"]]
 top_level = true
 script = ExtResource("1_oq20q")
 
@@ -190,3 +190,19 @@ layout_mode = 2
 [node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_2jla6")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="WallCheck_Up" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(0, 0, -0.3)
+
+[node name="WallCheck_Down" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(0, 0, 0.3)
+
+[node name="WallCheck_Left" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(-0.3, 0, 0)
+
+[node name="WallCheck_Right" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(0.3, 0, 0)

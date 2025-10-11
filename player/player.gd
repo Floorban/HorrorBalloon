@@ -133,7 +133,7 @@ func update_player_verticle(delta: float) -> void:
 			is_in_air = false
 
 # Movement Logic
-func update_player_horizontel(delta: float) -> void:
+func update_player_horizontal(delta: float) -> void:
 	direction = lerp(direction, get_movement_dir(), delta * 10.0)
 	if direction.length() > 0.01:
 		# Accelerate towards max speed
@@ -149,7 +149,7 @@ func _physics_process(delta: float) -> void:
 	update_player_state()
 	update_cam_movement(delta)
 	update_player_verticle(delta)
-	update_player_horizontel(delta)
+	update_player_horizontal(delta)
 	#apply_push_forces(push_shape_cast)
 	move_and_slide()
 
