@@ -73,19 +73,19 @@ viewport_path = NodePath("WeightUI/SubViewport")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_jgsvv"]
 resource_local_to_scene = true
-metadata/creation_stamp = 50998928325110
+metadata/creation_stamp = 81582065043567
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_sf57j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 50998961872829
+metadata/creation_stamp = 81582098597997
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_y26uo"]
 resource_local_to_scene = true
-metadata/creation_stamp = 50998995434107
+metadata/creation_stamp = 81582132152427
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ulxmy"]
 resource_local_to_scene = true
-metadata/creation_stamp = 50999028985221
+metadata/creation_stamp = 81582165706865
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -101,6 +101,11 @@ horizontal_base_force = 800.0
 max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
+
+[node name="PlayerTopDown" parent="." node_paths=PackedStringArray("current_cam") instance=ExtResource("20_jgsvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36555392, 0)
+top_level = true
+current_cam = NodePath("../SpringArmPivot/Camera3D")
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -119,6 +124,7 @@ size = Vector3(0.95996094, 0.072265625, 0.9794922)
 
 [node name="Ball" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.0553803, 0)
+visible = false
 cast_shadow = 0
 mesh = SubResource("SphereMesh_sy0r5")
 skeleton = NodePath("../../..")
@@ -599,11 +605,6 @@ auto_translate_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022735614, 0.2524948, 0.00085258484)
 shape = SubResource("BoxShape3D_rdoix")
 
-[node name="PlayerTopDown" parent="Body" node_paths=PackedStringArray("current_cam") instance=ExtResource("20_jgsvv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36555392, 0)
-top_level = true
-current_cam = NodePath("../../SpringArmPivot/Camera3D")
-
 [node name="GroundCheck" type="Node3D" parent="."]
 
 [node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
@@ -664,7 +665,7 @@ collision_mask = 2147483648
 hit_from_inside = true
 
 [node name="SpringArmPivot" parent="." instance=ExtResource("19_xtk1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6406956, 0)
 
 [node name="SpringArm3D" parent="SpringArmPivot" index="0"]
 spring_length = 25.0

@@ -24,7 +24,7 @@ size = Vector3(0.9675293, 0.07292175, 0.9849243)
 [sub_resource type="SphereMesh" id="SphereMesh_sy0r5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wdyp"]
-size = Vector3(0.06863403, 0.24382782, 0.43029785)
+size = Vector3(0.14808655, 0.24382782, 0.43029785)
 
 [sub_resource type="Resource" id="Resource_j0nhb"]
 script = ExtResource("5_k1s8v")
@@ -36,25 +36,25 @@ metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 size = Vector3(0.28216553, 0.12805176, 0.3086586)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5m6r2"]
-size = Vector3(0.06863403, 0.24382782, 0.16152191)
+size = Vector3(0.14479065, 0.24382782, 0.52214336)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tjdak"]
-size = Vector3(0.24856567, 0.12805176, 0.3086586)
+size = Vector3(0.24856567, 0.12805176, 0.6169596)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rfk8s"]
-size = Vector3(0.033906937, 0.24169922, 0.4466324)
+size = Vector3(0.11013436, 0.24169922, 0.9080448)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk1uh"]
 size = Vector3(0.26576233, 0.12805176, 0.40628242)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lmpme"]
-size = Vector3(0.033906937, 0.24633789, 0.46738434)
+size = Vector3(0.14834237, 0.24633789, 0.9646244)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ia10"]
 size = Vector3(0.27349854, 0.12805176, 0.43948555)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_agsvp"]
-size = Vector3(0.069, 0.254, 0.474)
+size = Vector3(0.15306568, 0.254, 0.9533999)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7xht"]
 size = Vector3(0.295, 0.128, 0.438)
@@ -70,19 +70,19 @@ viewport_path = NodePath("WeightUI/SubViewport")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_4jc7v"]
 resource_local_to_scene = true
-metadata/creation_stamp = 42111936343947
+metadata/creation_stamp = 74512750197050
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ds82s"]
 resource_local_to_scene = true
-metadata/creation_stamp = 42111969876117
+metadata/creation_stamp = 74512783675071
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_m3vw8"]
 resource_local_to_scene = true
-metadata/creation_stamp = 42112003379014
+metadata/creation_stamp = 74512817277370
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_h5kdj"]
 resource_local_to_scene = true
-metadata/creation_stamp = 42112037006552
+metadata/creation_stamp = 74512850858165
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -99,9 +99,6 @@ horizontal_base_force = 500.0
 max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
-
-[node name="PlayerGrid" parent="." instance=ExtResource("2_4jc7v")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.7953186, 0)
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -133,7 +130,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46443865, -0.0020876527, -
 collision_layer = 5
 
 [node name="SideCollision_1_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_1/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012793541, 0.14798835, 0.0005573034)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04100561, 0.14798835, 0.0005573034)
 shape = SubResource("BoxShape3D_0wdyp")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_1"]
@@ -167,6 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45919922, 0.14787164, 0.42
 collision_layer = 5
 
 [node name="SideCollision_1_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038078308, 0, -0.18031073)
 shape = SubResource("BoxShape3D_5m6r2")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_2"]
@@ -190,7 +188,7 @@ object_ref = NodePath("..")
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/InteractArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012161285, -0.08351381, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121613145, -0.08351381, -0.15415049)
 shape = SubResource("BoxShape3D_tjdak")
 
 [node name="BasketEdge_2_1" type="Node3D" parent="Body/BasketSides"]
@@ -200,7 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50177896, 0.14619547, 0.295
 collision_layer = 5
 
 [node name="SideCollision_2_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_2_1/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03937912)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045570135, 0, -0.27008542)
 shape = SubResource("BoxShape3D_rfk8s")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_2_1"]
@@ -234,7 +232,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49417898, 0.14712462, -0.25
 collision_layer = 5
 
 [node name="SideCollision_2_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge2_2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05537033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00063094497, 0, 0.30399036)
 shape = SubResource("BoxShape3D_lmpme")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge2_2"]
@@ -268,6 +266,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2
 collision_layer = 5
 
 [node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034178346, 0, 0.23970005)
 shape = SubResource("BoxShape3D_agsvp")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_1"]
@@ -301,6 +300,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.26
 collision_layer = 5
 
 [node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0078544915, 0, 0)
 shape = SubResource("BoxShape3D_agsvp")
 
 [node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_2"]
@@ -394,8 +394,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016784698, -0.05177799, 5.5
 shape = SubResource("BoxShape3D_i7xht")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Body/BasketSides"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4249274, 0.10000001, 0.43728766)
-size = Vector3(0.05, 0.15, 0.1854248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4249274, 0.10000001, 0.25756964)
+size = Vector3(0.05, 0.15, 0.54486084)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Body/BasketSides"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4249274, 0.10000001, -0.23152122)
@@ -654,3 +654,7 @@ hit_from_inside = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.48513484, -2.349565)
 collision_mask = 2147483648
 hit_from_inside = true
+
+[node name="PlayerGrid" parent="." instance=ExtResource("2_4jc7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04911399, 0)
+grid_size = 1.7

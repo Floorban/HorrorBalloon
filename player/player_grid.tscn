@@ -192,16 +192,16 @@ layout_mode = 2
 
 [node name="WallCheck_Up" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
-target_position = Vector3(0, 0, -0.3)
+target_position = Vector3(0, 0, -1)
 
 [node name="WallCheck_Down" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
-target_position = Vector3(0, 0, 0.3)
+target_position = Vector3(0, 0, 1)
 
 [node name="WallCheck_Left" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
-target_position = Vector3(-0.3, 0, 0)
+target_position = Vector3(-1, 0, 0)
 
 [node name="WallCheck_Right" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
-target_position = Vector3(0.3, 0, 0)
+target_position = Vector3(1, 0, 0)

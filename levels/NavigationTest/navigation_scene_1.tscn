@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjeriialnx3yy"]
+[gd_scene load_steps=12 format=3 uid="uid://cjeriialnx3yy"]
 
-[ext_resource type="PackedScene" uid="uid://cw5fh27rfdpxb" path="res://levels/NavigationTest/balloon_nav_test_topdown_character.tscn" id="1_2q8m3"]
+[ext_resource type="PackedScene" uid="uid://3vvkgfe2x4i7" path="res://levels/NavigationTest/balloon_nav_test_wasd.tscn" id="1_2q8m3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lrwo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,28 +35,6 @@ albedo_color = Color(0.3764706, 0.8745098, 0.27450982, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixrca"]
 albedo_color = Color(0.6315797, 0.35401797, 0.63022435, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2q8m3"]
-viewport_path = NodePath("FuelUI/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_1lrwo"]
-viewport_path = NodePath("WeightUI/SubViewport")
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_2q8m3"]
-resource_local_to_scene = true
-metadata/creation_stamp = 46531524800832
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_1lrwo"]
-resource_local_to_scene = true
-metadata/creation_stamp = 46531558280895
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_hy0ye"]
-resource_local_to_scene = true
-metadata/creation_stamp = 46531591904482
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nabln"]
-resource_local_to_scene = true
-metadata/creation_stamp = 46531625462822
 
 [node name="NavigationScene1" type="Node3D"]
 
@@ -114,33 +92,5 @@ radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_ixrca")
 
-[node name="BalloonNavTest_Character" parent="." instance=ExtResource("1_2q8m3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.337933, 0)
-
-[node name="FuelUI" parent="BalloonNavTest_Character/Body/Oven" index="4"]
-texture = SubResource("ViewportTexture_2q8m3")
-
-[node name="WeightUI" parent="BalloonNavTest_Character/Body/Oven" index="5"]
-texture = SubResource("ViewportTexture_1lrwo")
-
-[node name="BalloonRope_1" parent="BalloonNavTest_Character/Body/Ropes" index="0"]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999987, 0.20000002)
-mesh = SubResource("ImmediateMesh_2q8m3")
-
-[node name="BalloonRope_2" parent="BalloonNavTest_Character/Body/Ropes" index="1"]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999987, 0.20000002)
-mesh = SubResource("ImmediateMesh_1lrwo")
-
-[node name="BalloonRope_3" parent="BalloonNavTest_Character/Body/Ropes" index="2"]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999987, -0.19999997)
-mesh = SubResource("ImmediateMesh_hy0ye")
-
-[node name="BalloonRope_4" parent="BalloonNavTest_Character/Body/Ropes" index="3"]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999987, -0.19999997)
-mesh = SubResource("ImmediateMesh_nabln")
-
-[node name="PlayerTopDown" parent="BalloonNavTest_Character/Body" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.579073, 0)
-
-[editable path="BalloonNavTest_Character"]
-[editable path="BalloonNavTest_Character/SpringArmPivot"]
+[node name="BalloonNavTest_WASD" parent="." instance=ExtResource("1_2q8m3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.817635, 0)
