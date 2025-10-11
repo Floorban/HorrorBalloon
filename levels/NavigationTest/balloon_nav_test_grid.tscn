@@ -87,7 +87,7 @@ metadata/creation_stamp = 42112037006552
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
 
-[node name="BalloonNavTest_Weight" type="RigidBody3D" groups=["balloon"]]
+[node name="BalloonNavTest_Grid" type="RigidBody3D" groups=["balloon"]]
 collision_layer = 1073741824
 collision_mask = 0
 mass = 10.0
@@ -95,7 +95,7 @@ gravity_scale = 0.0
 script = ExtResource("1_4jc7v")
 vertical_base_force = 500.0
 weight_based_movement = true
-horizontal_base_force = 1000.0
+horizontal_base_force = 500.0
 max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
