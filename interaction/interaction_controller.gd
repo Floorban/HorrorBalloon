@@ -1,6 +1,7 @@
 extends Node
 class_name InteractionController
 
+@export var can_interact: bool = true
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 @onready var placable_raycast: RayCast3D = %PlacableRaycast
 @onready var player: PlayerController = $".."
@@ -113,6 +114,7 @@ func check_potential_interactables() -> void:
 		stop_interactions()
 
 func _process(delta: float) -> void:
+	if not can_interact: return
 	#if player.player_state == player.PlayerState.AIR:
 		#default_reticle.visible = false
 		#highlight_reticle.visible = false

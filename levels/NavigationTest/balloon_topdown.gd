@@ -1,4 +1,5 @@
 extends BalloonController
+class_name BalloonTopDownController
 
 @export var is_streering := false
 @export var current_cam: Camera3D

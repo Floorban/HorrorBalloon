@@ -1,11 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://byrrmhvmqytxi"]
+[gd_scene load_steps=14 format=3 uid="uid://83n0yw8jbvi"]
 
-[ext_resource type="Script" uid="uid://b3y2vmdsgxd7a" path="res://player/player_grid.gd" id="1_oq20q"]
-[ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_cwmtq"]
-[ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="3_uiqnw"]
-[ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="4_s66ka"]
-[ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/ui/tile_0156.png" id="5_u2840"]
-[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_2jla6"]
+[ext_resource type="Script" uid="uid://b48a744iertjq" path="res://player/player_topdown.gd" id="1_dmumn"]
+[ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_6g1y6"]
+[ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="3_5p8op"]
+[ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="4_nym05"]
+[ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/ui/tile_0156.png" id="5_qiw6h"]
+[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_dvuxs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmumn"]
+albedo_color = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dmumn"]
+material = SubResource("StandardMaterial3D_dmumn")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
 radius = 0.05
@@ -33,8 +42,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PlayerGrid" type="CharacterBody3D" groups=["player"]]
-script = ExtResource("1_oq20q")
+[node name="PlayerTopDown" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_dmumn")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -47,7 +56,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
 unique_name_in_owner = true
 cull_mask = 524285
-current = true
 fov = 90.0
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Eyes/Camera3D"]
@@ -78,6 +86,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 unique_name_in_owner = true
 transform = Transform3D(0.90218514, -0.40689725, -0.14316562, 0.08417976, 0.4916058, -0.86673987, 0.42305517, 0.769908, 0.47777185, 0.18839309, -0.20246267, -0.28345287)
 
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5387357, 0)
+mesh = SubResource("CylinderMesh_dmumn")
+
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6450691, 0)
 shape = SubResource("CapsuleShape3D_kqu6x")
@@ -103,12 +115,14 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
 shape = SubResource("SphereShape3D_qjkh3")
 
-[node name="InteractionController" parent="." instance=ExtResource("2_cwmtq")]
+[node name="InteractionController" parent="." instance=ExtResource("2_6g1y6")]
 unique_name_in_owner = true
+can_interact = false
 
 [node name="GUI" type="Node" parent="."]
 
 [node name="ReticleLayer" type="CanvasLayer" parent="GUI"]
+visible = false
 
 [node name="Reticles" type="Control" parent="GUI/ReticleLayer"]
 layout_mode = 3
@@ -124,7 +138,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_uiqnw")
+texture = ExtResource("3_5p8op")
 stretch_mode = 3
 
 [node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
@@ -134,7 +148,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_s66ka")
+texture = ExtResource("4_nym05")
 
 [node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
 unique_name_in_owner = true
@@ -143,7 +157,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("5_u2840")
+texture = ExtResource("5_qiw6h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
 
@@ -178,15 +192,15 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="InteractoinUI1" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_2jla6")]
+[node name="InteractoinUI1" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="InteractoinUI2" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_2jla6")]
+[node name="InteractoinUI2" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_2jla6")]
+[node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
 unique_name_in_owner = true
 layout_mode = 2
 
