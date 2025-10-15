@@ -1,6 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjeriialnx3yy"]
+[gd_scene load_steps=18 format=3 uid="uid://cjeriialnx3yy"]
 
+[ext_resource type="Script" uid="uid://bn3ili7wo8xxd" path="res://levels/NavigationTest/test_main.gd" id="1_1lrwo"]
 [ext_resource type="PackedScene" uid="uid://3vvkgfe2x4i7" path="res://levels/NavigationTest/balloon_nav_test_wasd.tscn" id="1_2q8m3"]
+[ext_resource type="PackedScene" uid="uid://bua7ohti10kka" path="res://levels/NavigationTest/balloon_nav_test_wheel.tscn" id="2_rsfys"]
+[ext_resource type="PackedScene" uid="uid://i1reh82t1lcc" path="res://levels/NavigationTest/balloon_nav_test_grid.tscn" id="3_h63yy"]
+[ext_resource type="PackedScene" uid="uid://i1fl4bws2wfr" path="res://levels/NavigationTest/balloon_nav_test_weight.tscn" id="4_d1uog"]
+[ext_resource type="PackedScene" uid="uid://cw5fh27rfdpxb" path="res://levels/NavigationTest/balloon_nav_test_topdown_character.tscn" id="6_gsfee"]
+[ext_resource type="PackedScene" uid="uid://c3ofy7yv0kdss" path="res://levels/NavigationTest/balloon_nav_test_td_steer.tscn" id="7_rx3lp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1lrwo"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -37,6 +43,8 @@ albedo_color = Color(0.3764706, 0.8745098, 0.27450982, 1)
 albedo_color = Color(0.6315797, 0.35401797, 0.63022435, 1)
 
 [node name="NavigationScene1" type="Node3D"]
+script = ExtResource("1_1lrwo")
+controller_scenes = Array[PackedScene]([ExtResource("2_rsfys"), ExtResource("3_h63yy"), ExtResource("4_d1uog"), ExtResource("1_2q8m3"), ExtResource("6_gsfee"), ExtResource("7_rx3lp")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nabln")
@@ -46,6 +54,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37.65961, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
 size = Vector3(500, 1, 500)
@@ -55,6 +64,7 @@ material = SubResource("StandardMaterial3D_64lmn")
 shape = SubResource("ConcavePolygonShape3D_2q8m3")
 
 [node name="Goals" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37.65961, 0)
 
 [node name="Red" type="CSGCylinder3D" parent="Goals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.40262, 17.778202, 0)
@@ -91,6 +101,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.302643, 17.778202, 21.587
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_ixrca")
-
-[node name="BalloonNavTest_WASD" parent="." instance=ExtResource("1_2q8m3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.817635, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://3vvkgfe2x4i7"]
+[gd_scene load_steps=38 format=3 uid="uid://3vvkgfe2x4i7"]
 
 [ext_resource type="Script" uid="uid://cdyh1vbm0d6yu" path="res://levels/NavigationTest/balloon_topdown.gd" id="1_a8yqp"]
 [ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="3_1rn8g"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="10_aj8p1"]
 [ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="11_re173"]
 [ext_resource type="PackedScene" uid="uid://btfewaxmhb78v" path="res://balloon/smoke.tscn" id="12_v610n"]
-[ext_resource type="PackedScene" uid="uid://dca55ae8akhka" path="res://balloon/fuel_bar.tscn" id="13_u56i0"]
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="14_q8ojn"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="15_ltve5"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="16_wx2ol"]
@@ -64,27 +63,21 @@ size = Vector3(0.295, 0.128, 0.438)
 [sub_resource type="BoxShape3D" id="BoxShape3D_71bfn"]
 size = Vector3(1.0380859, 0.70025635, 1.1279297)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oldcj"]
-viewport_path = NodePath("FuelUI/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ow55n"]
-viewport_path = NodePath("WeightUI/SubViewport")
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_smbq2"]
+resource_local_to_scene = true
+metadata/creation_stamp = 12555615574913
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_to7p1"]
 resource_local_to_scene = true
-metadata/creation_stamp = 3637468306421
+metadata/creation_stamp = 12555649112124
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_a8yqp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 3637501860855
+metadata/creation_stamp = 12555682683840
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1rn8g"]
 resource_local_to_scene = true
-metadata/creation_stamp = 3637535415288
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_ng6rw"]
-resource_local_to_scene = true
-metadata/creation_stamp = 3637568969734
+metadata/creation_stamp = 12555716240039
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -441,45 +434,6 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4482235e-09, 0, -0.19327283)
 visible = false
 
-[node name="FuelUI" type="Sprite3D" parent="Body/Oven"]
-transform = Transform3D(-3, 0, -2.6226832e-07, 0, 3, 0, 2.6226832e-07, 0, -3, -0.03386189, 3.3722892, -0.47793537)
-visible = false
-texture_filter = 0
-texture = SubResource("ViewportTexture_oldcj")
-
-[node name="SubViewport" type="SubViewport" parent="Body/Oven/FuelUI"]
-transparent_bg = true
-size = Vector2i(10, 80)
-
-[node name="FuelBar" parent="Body/Oven/FuelUI/SubViewport" instance=ExtResource("13_u56i0")]
-unique_name_in_owner = true
-
-[node name="WeightUI" type="Sprite3D" parent="Body/Oven"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.0161357, 1.1379201, 0.61032957)
-visible = false
-texture_filter = 0
-texture = SubResource("ViewportTexture_ow55n")
-
-[node name="SubViewport" type="SubViewport" parent="Body/Oven/WeightUI"]
-size = Vector2i(100, 80)
-
-[node name="WeightLabel" type="Label" parent="Body/Oven/WeightUI/SubViewport"]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -67.5
-offset_top = -33.5
-offset_right = 67.5
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Corners" type="Node3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19742998, 0)
 
@@ -511,23 +465,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("15_ltve5")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999985, 0.20000002)
-mesh = SubResource("ImmediateMesh_to7p1")
+mesh = SubResource("ImmediateMesh_smbq2")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("15_ltve5")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999985, 0.20000002)
-mesh = SubResource("ImmediateMesh_a8yqp")
+mesh = SubResource("ImmediateMesh_to7p1")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("15_ltve5")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999985, -0.19999997)
-mesh = SubResource("ImmediateMesh_1rn8g")
+mesh = SubResource("ImmediateMesh_a8yqp")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("15_ltve5")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999985, -0.19999997)
-mesh = SubResource("ImmediateMesh_ng6rw")
+mesh = SubResource("ImmediateMesh_1rn8g")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]

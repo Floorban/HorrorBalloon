@@ -10,10 +10,8 @@ var defualt_burning_rate := 0.5
 var cooling_rate := 8.0
 var is_burning: bool
 
-@onready var fuel_bar: ProgressBar = %FuelBar
 @onready var fuel_area: Area3D = $FuelArea
 var objs_to_burn: Array[InteractionComponent] = []
-@onready var weight_label: Label = %WeightLabel
 var total_weight : float
 
 ## -- Sound Settings --
@@ -33,9 +31,6 @@ func _ready() -> void:
 	if b is BalloonController: balloon = b
 	smoke.emitting = false
 
-	if fuel_bar:
-		fuel_bar.max_value = MAX_FUEL
-		fuel_bar.value = current_fuel
 	fuel_area.body_entered.connect(collect_fuel)
 	fuel_area.body_exited.connect(remove_fuel)
 
@@ -77,7 +72,6 @@ func execute(percentage: float, primary: bool) -> void:
 				obj.get_parent().call_deferred("queue_free")
 			objs_to_burn.clear()
 			total_weight = 0.0
-			weight_label.text = "fuel me"
 
 func get_fuel_percentage() -> float:
 	return current_fuel / MAX_FUEL
@@ -92,7 +86,6 @@ func collect_fuel(body: Node3D) -> void:
 			#body.linear_velocity = Vector3.ZERO
 			objs_to_burn.append(interaction_component)
 			total_weight += interaction_component.weight
-			weight_label.text = "weights: " + str(total_weight)
 
 func remove_fuel(body: Node3D) -> void:
 	if body:
@@ -102,7 +95,5 @@ func remove_fuel(body: Node3D) -> void:
 			
 			if objs_to_burn.is_empty():
 				total_weight = 0.0
-				weight_label.text = "fuel me"
 			else:
 				total_weight -= interaction_component.weight
-				weight_label.text = "weights: " + str(total_weight)
