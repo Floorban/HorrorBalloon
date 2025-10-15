@@ -66,19 +66,19 @@ size = Vector3(1.0380859, 0.70025635, 1.1279297)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_0g6j6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 14950244374347
+metadata/creation_stamp = 34861494654381
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_jgsvv"]
 resource_local_to_scene = true
-metadata/creation_stamp = 14950277928229
+metadata/creation_stamp = 34861528232534
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_sf57j"]
 resource_local_to_scene = true
-metadata/creation_stamp = 14950311502155
+metadata/creation_stamp = 34861561786589
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_y26uo"]
 resource_local_to_scene = true
-metadata/creation_stamp = 14950345057944
+metadata/creation_stamp = 34861595336320
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -90,14 +90,13 @@ mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_0g6j6")
 weight_based_movement = true
-horizontal_base_force = 800.0
+horizontal_base_force = 500.0
 max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
 
 [node name="PlayerTopDown" parent="." node_paths=PackedStringArray("current_cam") instance=ExtResource("20_jgsvv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36555392, 0)
-top_level = true
 current_cam = NodePath("../SpringArmPivot/Camera3D")
 
 [node name="Body" type="Node3D" parent="."]

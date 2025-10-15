@@ -65,19 +65,19 @@ size = Vector3(1.0380859, 0.70025635, 1.1279297)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_smbq2"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12555615574913
+metadata/creation_stamp = 43323838541112
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_to7p1"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12555649112124
+metadata/creation_stamp = 43323872092226
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_a8yqp"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12555682683840
+metadata/creation_stamp = 43323905649973
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1rn8g"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12555716240039
+metadata/creation_stamp = 43323939202125
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -89,6 +89,7 @@ mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_a8yqp")
 current_cam = NodePath("SpringArmPivot/Camera3D")
+horizontal_base_force = 500.0
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)

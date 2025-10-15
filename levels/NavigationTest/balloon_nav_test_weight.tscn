@@ -65,19 +65,19 @@ size = Vector3(1.0380859, 0.70025635, 1.1279297)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_pplau"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12492533244469
+metadata/creation_stamp = 43835157731229
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_j4ttt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12492566798895
+metadata/creation_stamp = 43835191307840
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_wcgku"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12492600334384
+metadata/creation_stamp = 43835224839879
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_hraa5"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12492633907592
+metadata/creation_stamp = 43835258417450
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -90,7 +90,7 @@ gravity_scale = 0.0
 script = ExtResource("1_iw5rl")
 vertical_base_force = 500.0
 weight_based_movement = true
-horizontal_base_force = 1000.0
+horizontal_base_force = 500.0
 max_tilt_angle = 4.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
