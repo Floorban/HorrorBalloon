@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjeriialnx3yy"]
+[gd_scene load_steps=15 format=3 uid="uid://cjeriialnx3yy"]
 
 [ext_resource type="Script" uid="uid://bn3ili7wo8xxd" path="res://levels/NavigationTest/test_main.gd" id="1_1lrwo"]
 [ext_resource type="PackedScene" uid="uid://3vvkgfe2x4i7" path="res://levels/NavigationTest/balloon_nav_test_wasd.tscn" id="1_2q8m3"]
@@ -30,17 +30,8 @@ data = PackedVector3Array(-250, -0.5, 250, -250, -0.5, -250, -250, 0.5, -250, 25
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q8m3"]
 albedo_color = Color(0.6, 0.09019608, 0.17254902, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lrwo"]
-albedo_color = Color(0.3067489, 0.3631542, 0.83917797, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy0ye"]
-albedo_color = Color(0.63731486, 0.5614819, 0.18637574, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nabln"]
 albedo_color = Color(0.3764706, 0.8745098, 0.27450982, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixrca"]
-albedo_color = Color(0.6315797, 0.35401797, 0.63022435, 1)
 
 [node name="NavigationScene1" type="Node3D"]
 script = ExtResource("1_1lrwo")
@@ -66,38 +57,68 @@ shape = SubResource("ConcavePolygonShape3D_2q8m3")
 [node name="Goals" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37.65961, 0)
 
-[node name="Red" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.40262, 17.778202, 0)
+[node name="Lose" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.86444, -0.66363144, -8.239834)
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_2q8m3")
 
-[node name="Blue" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.345024, 17.778206, -48.29225)
+[node name="Lose8" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.9434312, 0.33156842, 0, -0.33156842, 0.9434312, 0, 0, 0, 1, -114.1998, -10.593734, -54.74161)
 radius = 10.0
 height = 100.0
-material = SubResource("StandardMaterial3D_1lrwo")
+material = SubResource("StandardMaterial3D_2q8m3")
 
-[node name="Blue2" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.697655, 17.778206, -75.5388)
+[node name="Lose5" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.97888166, 0.20442772, 0, -0.20303534, 0.97221446, 0.116514735, 0.02381884, -0.11405414, 0.993189, 29.23555, 4.9714546, 56.108437)
 radius = 10.0
 height = 100.0
-material = SubResource("StandardMaterial3D_1lrwo")
+material = SubResource("StandardMaterial3D_2q8m3")
 
-[node name="Yellow" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.11618, 17.778202, 135.49869)
+[node name="Lose6" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.99911255, -2.3283064e-10, -0.042119782, 0.003449767, 0.99664026, 0.08183103, 0.04197827, -0.08190372, 0.9957558, -40.77903, 5.86121, -28.399666)
+radius = 10.0
+height = 76.166016
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Lose9" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.9864118, -0.1588237, -0.042033214, 0.15967825, 0.9870086, 0.01779867, 0.038660295, -0.024268614, 0.9989576, -38.81881, 12.9018955, -75.63289)
+radius = 10.0
+height = 76.166016
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Lose2" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.99968636, 0.025042856, -5.820766e-11, -0.025036646, 0.99943846, -0.022268567, -0.0005576685, 0.022261582, 0.99975204, -23.202003, 40.1147, 6.1374807)
 radius = 10.0
 height = 100.0
-material = SubResource("StandardMaterial3D_hy0ye")
+material = SubResource("StandardMaterial3D_2q8m3")
 
-[node name="Green" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.69086, 17.778202, 21.587791)
+[node name="Lose7" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 0.9991258, -0.041805904, 0, 0.041805904, 0.9991258, 16.667145, -1.9059715, -51.906433)
+radius = 10.0
+height = 124.458984
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Lose3" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 0.97696, 0.21342258, 0, -0.21342258, 0.97696, -22.079407, 17.778202, 81.32477)
+radius = 10.0
+height = 100.0
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Lose10" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 0.99053824, 0.13723709, 0, -0.13723709, 0.99053824, -69.90296, -2.755379, -11.777437)
+radius = 10.0
+height = 100.0
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Lose4" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(0.98474526, 0.07923072, -0.1549173, -0.086378865, 0.99546075, -0.03995742, 0.15104824, 0.052729454, 0.987119, -117.56273, 1.899617, 3.102375)
+radius = 10.0
+height = 100.0
+material = SubResource("StandardMaterial3D_2q8m3")
+
+[node name="Win" type="CSGCylinder3D" parent="Goals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.59793, 56.88129, -56.540176)
 radius = 10.0
 height = 100.0
 material = SubResource("StandardMaterial3D_nabln")
-
-[node name="Purple" type="CSGCylinder3D" parent="Goals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.302643, 17.778202, 21.587791)
-radius = 10.0
-height = 100.0
-material = SubResource("StandardMaterial3D_ixrca")

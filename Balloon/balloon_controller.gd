@@ -133,9 +133,9 @@ func _apply_horizontal_force() -> void:
 		_tilt_to(Vector3.FORWARD * 0.1, tilt_damping * 2.0)
 		horizontal_dir = Vector2.ZERO
 		return
-	var final_tilt: Vector3 = _compute_weighted_tilt()
-	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 	if weight_based_movement:
+		var final_tilt: Vector3 = _compute_weighted_tilt()
+		_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
 		var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
 		horizontal_dir = Vector2(
 			Vector3(global_transform.basis * local_dir).x,

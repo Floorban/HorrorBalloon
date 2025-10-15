@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bua7ohti10kka"]
+[gd_scene load_steps=37 format=3 uid="uid://bua7ohti10kka"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_sy0r5"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_5ba61"]
@@ -16,11 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="14_hb6m5"]
 [ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="15_abmo4"]
 [ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="16_qo2fj"]
-[ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="18_m1fjo"]
-[ext_resource type="Script" uid="uid://d05lgh5d8svv6" path="res://balloon/control_inputs/balloon_input_wheel.gd" id="19_5ba61"]
 [ext_resource type="PackedScene" uid="uid://lk0gfohjhapu" path="res://balloon/control_inputs/input_wheel.tscn" id="19_yqp15"]
-[ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="20_v3y7a"]
-[ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="21_nuylr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
 size = Vector3(0.9675293, 0.07292175, 0.9849243)
@@ -68,34 +64,22 @@ size = Vector3(1.0380859, 0.70025635, 1.1279297)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_m1fjo"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12443023679837
+metadata/creation_stamp = 17145475999171
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_5ba61"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12443057234339
+metadata/creation_stamp = 17145509553581
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_v3y7a"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12443090788752
+metadata/creation_stamp = 17145543107194
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nuylr"]
 resource_local_to_scene = true
-metadata/creation_stamp = 12443124343403
+metadata/creation_stamp = 17145576665497
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
-
-[sub_resource type="Resource" id="Resource_1xyqf"]
-script = ExtResource("4_xw18m")
-icon = ExtResource("5_57ttc")
-prompt = "Hold to interact"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
-[sub_resource type="Resource" id="Resource_rpqei"]
-script = ExtResource("4_xw18m")
-icon = ExtResource("21_nuylr")
-prompt = "Rotate (Counter)Clockwise"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [node name="BalloonNavTest_Wheel" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
 collision_layer = 1073741824
@@ -590,48 +574,6 @@ transform = Transform3D(-6.556709e-09, 0, -0.15000002, 0, 0.15, 0, 0.15000002, 0
 [node name="Wheel" parent="Body/Input_Wheel" index="1"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Input_Wheel2" type="Node3D" parent="Body"]
-transform = Transform3D(-6.556709e-09, 0, 0.15000002, 0, 0.15, 0, -0.15000002, 0, -6.556709e-09, 0.45136327, 0.15382397, 0.023918193)
-
-[node name="BalloonInputComponent" parent="Body/Input_Wheel2" instance=ExtResource("18_m1fjo")]
-script = ExtResource("19_5ba61")
-intensity = 0.5
-
-[node name="Wheel" parent="Body/Input_Wheel2" instance=ExtResource("20_v3y7a")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="InteractionComponent" parent="Body/Input_Wheel2/Wheel/Wheel" index="10" node_paths=PackedStringArray("nodes_to_affect")]
-ui_set = Array[ExtResource("4_xw18m")]([SubResource("Resource_1xyqf"), SubResource("Resource_rpqei")])
-nodes_to_affect = [NodePath("../../../../Input_Wheel/BalloonInputComponent")]
-
-[node name="Input_Wheel3" type="Node3D" parent="Body"]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.051704627, 0.15382397, 0.39769515)
-
-[node name="BalloonInputComponent" parent="Body/Input_Wheel3" instance=ExtResource("18_m1fjo")]
-script = ExtResource("19_5ba61")
-intensity = 0.5
-
-[node name="Wheel" parent="Body/Input_Wheel3" instance=ExtResource("20_v3y7a")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="InteractionComponent" parent="Body/Input_Wheel3/Wheel/Wheel" index="10" node_paths=PackedStringArray("nodes_to_affect")]
-ui_set = Array[ExtResource("4_xw18m")]([SubResource("Resource_1xyqf"), SubResource("Resource_rpqei")])
-nodes_to_affect = [NodePath("../../../../Input_Wheel/BalloonInputComponent")]
-
-[node name="Input_Wheel4" type="Node3D" parent="Body"]
-transform = Transform3D(-0.15, 0, -1.3113417e-08, 0, 0.15, 0, 1.3113417e-08, 0, -0.15, 0.051704627, 0.15382397, -0.37813658)
-
-[node name="BalloonInputComponent" parent="Body/Input_Wheel4" instance=ExtResource("18_m1fjo")]
-script = ExtResource("19_5ba61")
-intensity = 0.5
-
-[node name="Wheel" parent="Body/Input_Wheel4" instance=ExtResource("20_v3y7a")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="InteractionComponent" parent="Body/Input_Wheel4/Wheel/Wheel" index="10" node_paths=PackedStringArray("nodes_to_affect")]
-ui_set = Array[ExtResource("4_xw18m")]([SubResource("Resource_1xyqf"), SubResource("Resource_rpqei")])
-nodes_to_affect = [NodePath("../../../../Input_Wheel/BalloonInputComponent")]
-
 [node name="GroundCheck" type="Node3D" parent="."]
 
 [node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
@@ -693,6 +635,3 @@ hit_from_inside = true
 
 [editable path="Body/Input_Wheel"]
 [editable path="Body/Input_Wheel/Wheel"]
-[editable path="Body/Input_Wheel2/Wheel"]
-[editable path="Body/Input_Wheel3/Wheel"]
-[editable path="Body/Input_Wheel4/Wheel"]

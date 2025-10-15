@@ -82,9 +82,9 @@ func _input(event):
 	else:
 		var percentage: float = 0.0
 		if event.is_action("forward"):
-			percentage += 1.0
-		elif event.is_action("backward"):
 			percentage -= 1.0
+		elif event.is_action("backward"):
+			percentage += 1.0
 		notify_nodes(percentage, false)
 
 ## Uses mouse position to determine if the player is moving their mouse in a clockwise or counter-clockwise motion

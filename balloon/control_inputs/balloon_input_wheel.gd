@@ -20,5 +20,4 @@ func get_horizontal_input() -> Vector2:
 	return forward_2d * current_forward
 
 func get_rotation_input() -> float:
-	print(current_rotation)
 	return current_rotation
