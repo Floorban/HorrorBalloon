@@ -115,6 +115,15 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("primary"):
 		mine_voxel(interaction_controller.hand.global_position, 1.2, 5.0)
+	elif event.is_action_pressed("secondary"):
+		voxel_tool.mode = VoxelTool.MODE_ADD
+		voxel_tool.grow_sphere(interaction_controller.hand.global_position, 1.0, 1.0)
+
+		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		voxel_tool.do_sphere(interaction_controller.hand.global_position, 2.5)
+	elif event.is_action_pressed("ui_accept"):
+		voxel_tool.texture_index = posmod(voxel_tool.texture_index + 1, 3)
+		print("Texture Index: %s" % str(voxel_tool.texture_index))
 
 func world_to_voxel(world_pos: Vector3) -> Vector3:
 	var local_pos = voxel_terrain.to_local(world_pos)
@@ -136,8 +145,8 @@ func mine_voxel(_position: Vector3, radius: float, damage: float):
 		print("Voxel destroyed")
 	else:
 		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-		voxel_tool.texture_index = 2
-		voxel_tool.do_sphere(_position, radius)
+		voxel_tool.texture_index = 0
+		voxel_tool.do_sphere(_position, radius * 1.5)
 		voxel_tool.set_voxel_metadata(voxel_pos, current_hp)
 		print("Voxel HP: %s" % str(current_hp))
 

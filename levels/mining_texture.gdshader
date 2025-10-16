@@ -80,7 +80,7 @@ void vertex() {
     VERTEX = get_transvoxel_position(VERTEX, CUSTOM0);
 
 	v_indices = decode_8bit_vec4(CUSTOM1.x);
-	v_weights = decode_8bit_vec4(CUSTOM1.x)/255.0;
+	v_weights = decode_8bit_vec4(CUSTOM1.y)/255.0;
 	v_pos = VERTEX;
 	v_normal = NORMAL;
 }
