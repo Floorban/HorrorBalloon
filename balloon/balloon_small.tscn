@@ -1,0 +1,228 @@
+[gd_scene load_steps=18 format=3 uid="uid://dsnu03aig57ga"]
+
+[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_rr85g"]
+[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_lmprd"]
+[ext_resource type="PackedScene" uid="uid://bn7oxoa3un034" path="res://balloon/basket_door.tscn" id="3_onecs"]
+[ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="11_bipv8"]
+[ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_uh8tx"]
+[ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="13_ippm3"]
+[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="14_ul8k3"]
+[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="15_h1vhb"]
+[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="16_e04ci"]
+[ext_resource type="PackedScene" uid="uid://ixtexe8ygceo" path="res://balloon/control_inputs/input_button.tscn" id="18_w2kjj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
+size = Vector3(0.9675293, 0.07292175, 0.9849243)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x5dot"]
+resource_local_to_scene = true
+metadata/creation_stamp = 9283504784202
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_rwgqi"]
+resource_local_to_scene = true
+metadata/creation_stamp = 9283538338637
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_vyphr"]
+resource_local_to_scene = true
+metadata/creation_stamp = 9283571893050
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mlero"]
+resource_local_to_scene = true
+metadata/creation_stamp = 9283605447480
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
+size = Vector3(0.96102905, 0.46351624, 0.95084)
+
+[node name="Balloon_Small" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
+collision_layer = 1073741824
+collision_mask = 0
+mass = 10.0
+gravity_scale = 0.0
+script = ExtResource("1_rr85g")
+input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), NodePath("")]
+vertical_base_force = 500.0
+SFX_Engine = "event:/Balloon/Engine"
+SFX_Land = "event:/Balloon/Land"
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="Bottom" type="CharacterBody3D" parent="Body" groups=["balloon_ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.015525838, 0)
+collision_layer = 1073741825
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Body/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021011492, 0)
+size = Vector3(1.7265625, 0.1899414, 1.5332031)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.025814056, 0.023223877)
+shape = SubResource("BoxShape3D_q3h3j")
+
+[node name="BasketSides" parent="Body" instance=ExtResource("2_lmprd")]
+
+[node name="BasketDoor" parent="Body" instance=ExtResource("3_onecs")]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0.50503564, 0.04995463, 0.02389434)
+
+[node name="Model" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011595726, 0)
+
+[node name="Ball" type="MeshInstance3D" parent="Body/Model"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
+mesh = SubResource("SphereMesh_2fgap")
+skeleton = NodePath("../..")
+
+[node name="Corners" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116721, 0)
+
+[node name="Corner_1" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2515573, 0.2851143, 0.30380595)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_1" instance=ExtResource("11_bipv8")]
+transform = Transform3D(0.541043, 0.316137, 0.779314, -0.39235, 0.914518, -0.098592, -0.743865, -0.252421, 0.61883, 0, 0, 0)
+
+[node name="Corner_2" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156286, 0.355, 0.2110959)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_2" instance=ExtResource("11_bipv8")]
+transform = Transform3D(0.668143, -0.30282, 0.679621, -0.0178129, 0.906657, 0.421493, -0.743819, -0.293724, 0.600382, 0, 0, 0)
+
+[node name="Corner_3" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25015783, 0.355, -0.31868297)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_3" instance=ExtResource("11_bipv8")]
+transform = Transform3D(0.756661, -0.296234, 0.582846, 0.408164, 0.910436, -0.0671516, -0.510751, 0.288708, 0.809803, 0, 0, 0)
+
+[node name="Corner_4" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13732725, 0.355, -0.29480857)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_4" instance=ExtResource("11_bipv8")]
+transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.383558, -0.837108, 0.279491, 0.47025, 0, 0, 0)
+
+[node name="Ropes" type="Node3D" parent="Body"]
+
+[node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, 0.20000002)
+mesh = SubResource("ImmediateMesh_x5dot")
+attach_end = NodePath("../../Corners/Corner_1")
+
+[node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, 0.20000002)
+mesh = SubResource("ImmediateMesh_rwgqi")
+skeleton = NodePath("../..")
+attach_end = NodePath("../../Corners/Corner_2")
+
+[node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, -0.19999997)
+mesh = SubResource("ImmediateMesh_vyphr")
+attach_end = NodePath("../../Corners/Corner_3")
+
+[node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, -0.19999997)
+mesh = SubResource("ImmediateMesh_mlero")
+attach_end = NodePath("../../Corners/Corner_4")
+
+[node name="Flags" type="Node3D" parent="Body"]
+
+[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_ippm3")
+attached_rope = NodePath("../../Ropes/BalloonRope_1")
+
+[node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_ippm3")
+attached_rope = NodePath("../../Ropes/BalloonRope_2")
+
+[node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_ippm3")
+attached_rope = NodePath("../../Ropes/BalloonRope_3")
+
+[node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="ObjInBalloonArea" type="Area3D" parent="Body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02864655, 0, 0.019694507)
+disable_mode = 2
+collision_layer = 0
+collision_mask = 5
+gravity_point = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/ObjInBalloonArea"]
+process_mode = 3
+physics_interpolation_mode = 1
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022735614, 0.2524948, 0.00085258484)
+shape = SubResource("BoxShape3D_rdoix")
+
+[node name="Input_Button" parent="Body" instance=ExtResource("18_w2kjj")]
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.16730878, 0.20969586, -0.0882613)
+
+[node name="BalloonInputComponent" parent="Body/Input_Button" index="2" node_paths=PackedStringArray("oven")]
+oven = NodePath("")
+
+[node name="GroundCheck" type="Node3D" parent="."]
+
+[node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16100788, 0)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2536583, 0.16100788, 2.6153243)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974897, 0.16100788, 2.6317258)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7580302, 0.16100788, -2.3905723)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.16100788, -2.349565)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[editable path="Body/Input_Button"]
+[editable path="Body/Input_Button/ButtonInput_UP"]
+[editable path="Body/Input_Button/ButtonInput_DOWN"]

@@ -15,7 +15,7 @@ General/banks_path="res://sound/banks/Desktop"
 [application]
 
 config/name="HorrorBalloon"
-run/main_scene="uid://cjeriialnx3yy"
+run/main_scene="uid://dh0l0p3wpfjkw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

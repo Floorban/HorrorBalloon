@@ -90,6 +90,10 @@ var feet_push_obj_strength := 20.0
 var viewing_offet: Vector3 = Vector3(0, 5.0, -0.5)
 var viewing_zoom: float = 0.8
 
+@export var voxel_terrain : VoxelTerrain
+@onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
+
+
 func player_init() -> void:
 	cam_original_position = player_camera.position
 	cam_original_rotation = player_camera.rotation_degrees
@@ -108,6 +112,34 @@ func _input(event: InputEvent) -> void:
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
+	
+	if event.is_action_pressed("primary"):
+		mine_voxel(interaction_controller.hand.global_position, 1.2, 5.0)
+
+func world_to_voxel(world_pos: Vector3) -> Vector3:
+	var local_pos = voxel_terrain.to_local(world_pos)
+	return Vector3(local_pos.x, local_pos.y, local_pos.z)
+
+func mine_voxel(_position: Vector3, radius: float, damage: float):
+	var voxel_pos = world_to_voxel(_position)
+	var current_hp = voxel_tool.get_voxel_metadata(voxel_pos)
+
+	if current_hp == null:
+		current_hp = 10.0
+
+	current_hp -= damage
+
+	if current_hp <= 0:
+		voxel_tool.mode = VoxelTool.MODE_REMOVE
+		voxel_tool.do_sphere(_position, radius)
+		voxel_tool.set_voxel_metadata(voxel_pos, null)
+		print("Voxel destroyed")
+	else:
+		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		voxel_tool.texture_index = 2
+		voxel_tool.do_sphere(_position, radius)
+		voxel_tool.set_voxel_metadata(voxel_pos, current_hp)
+		print("Voxel HP: %s" % str(current_hp))
 
 func get_movement_dir() -> Vector3:
 	input_dir = Input.get_vector("left", "right", "forward", "backward")

@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://dh0l0p3wpfjkw"]
+
+[ext_resource type="Shader" uid="uid://b8vetxs6xq7y7" path="res://levels/mining_texture.gdshader" id="1_1ryb3"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="1_hq2jq"]
+[ext_resource type="Script" uid="uid://c0cqduxgpc0dq" path="res://levels/voxel_terrain.gd" id="2_7cu7o"]
+[ext_resource type="Texture2D" uid="uid://c4n8og476v1vi" path="res://assets/stolen/psx/Wood_07-512x512.png" id="3_h3lma"]
+[ext_resource type="Texture2D" uid="uid://vq3bp01iok3j" path="res://assets/stolen/psx/Wood_11-512x512.png" id="4_y3qst"]
+[ext_resource type="Texture2D" uid="uid://l4o13xiskein" path="res://assets/stolen/psx/Wood_09-512x512.png" id="5_hsrvp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ryb3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7cu7o"]
+sky_material = SubResource("ProceduralSkyMaterial_1ryb3")
+
+[sub_resource type="Environment" id="Environment_k7kmd"]
+background_mode = 2
+sky = SubResource("Sky_7cu7o")
+ambient_light_color = Color(0.5409905, 0.5409905, 0.5409905, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cu7o"]
+render_priority = 0
+shader = ExtResource("1_1ryb3")
+shader_parameter/u_transition_mask = 0
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_1ryb3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kh51v"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h3lma"]
+fractal_type = 0
+
+[sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_h3lma"]
+graph_data = {
+"connections": [[5, 0, 8, 0], [6, 0, 7, 0], [7, 0, 5, 1], [8, 0, 4, 0], [10, 0, 11, 2], [11, 0, 9, 0]],
+"nodes": {
+"1": {
+"gui_position": Vector2(60, 40),
+"type": "InputX"
+},
+"10": {
+"auto_connect": true,
+"gui_position": Vector2(260, 300),
+"noise": SubResource("FastNoiseLite_h3lma"),
+"type": "Noise3D",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"11": {
+"a": 0.0,
+"b": 1.0,
+"gui_position": Vector2(500, 300),
+"threshold": 0.0,
+"type": "Select"
+},
+"2": {
+"gui_position": Vector2(60, 140),
+"type": "InputY"
+},
+"3": {
+"gui_position": Vector2(60, 240),
+"type": "InputZ"
+},
+"4": {
+"auto_connect": true,
+"gui_position": Vector2(1060, 120),
+"type": "OutputSDF"
+},
+"5": {
+"auto_connect": true,
+"gui_position": Vector2(640, 120),
+"type": "SdfPlane",
+"y": 0.0
+},
+"6": {
+"auto_connect": true,
+"gui_position": Vector2(220, 140),
+"noise": SubResource("FastNoiseLite_kh51v"),
+"type": "Noise2D",
+"x": 0.0,
+"y": 0.0
+},
+"7": {
+"b": 20.0,
+"gui_position": Vector2(440, 140),
+"type": "Multiply"
+},
+"8": {
+"gui_position": Vector2(820, 100),
+"max": 1.0,
+"min": -1.0,
+"type": "Clamp"
+},
+"9": {
+"gui_position": Vector2(919.60004, 290.40002),
+"type": "OutputSingleTexture"
+}
+},
+"version": 2
+}
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7cu7o"]
+texturing_mode = 1
+
+[node name="MiningTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k7kmd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+collision_layer = -2147483647
+material_override = SubResource("ShaderMaterial_7cu7o")
+stream = SubResource("VoxelStreamMemory_1ryb3")
+generator = SubResource("VoxelGeneratorGraph_h3lma")
+mesher = SubResource("VoxelMesherTransvoxel_7cu7o")
+script = ExtResource("2_7cu7o")
+texture1 = ExtResource("4_y3qst")
+texture2 = ExtResource("5_hsrvp")
+texture3 = ExtResource("3_h3lma")
+
+[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("1_hq2jq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5706515, 5.033942, 0)
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2721105, 0)
