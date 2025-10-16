@@ -1,43 +1,45 @@
-[gd_scene load_steps=26 format=3 uid="uid://do7002mkdg3un"]
+[gd_scene load_steps=28 format=3 uid="uid://do7002mkdg3un"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
 [ext_resource type="PackedScene" uid="uid://bn7oxoa3un034" path="res://balloon/basket_door.tscn" id="2_q3h3j"]
-[ext_resource type="PackedScene" uid="uid://dpp8ug31ccjdx" path="res://interaction/holddable/static_resource_1.tscn" id="2_snxhu"]
+[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="2_snxhu"]
 [ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_uro0l"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
-[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
-[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_2.tscn" id="4_cwey4"]
 [ext_resource type="PackedScene" uid="uid://dduhus42o4l1a" path="res://balloon/objects/oven.tscn" id="4_t01tp"]
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="4_uro0l"]
-[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
+[ext_resource type="PackedScene" path="res://flag/Scenes/rope_flag_3.tscn" id="5_fbxog"]
 [ext_resource type="ArrayMesh" uid="uid://bvgjihav87y6j" path="res://assets/balloon/Basket/Meshes/Basket.res" id="12_p5sb2"]
 [ext_resource type="Material" uid="uid://de37j8tbo1c28" path="res://assets/balloon/Basket/Details.tres" id="15_0hh8o"]
 [ext_resource type="ArrayMesh" uid="uid://c2bvqtxmapshk" path="res://assets/balloon/Basket/Meshes/BigPlank.res" id="16_i26vf"]
 [ext_resource type="ArrayMesh" uid="uid://d1xm44d34t0mf" path="res://assets/balloon/Basket/Meshes/CorrugatedMetal.res" id="17_kawdg"]
 [ext_resource type="ArrayMesh" uid="uid://dr5i8jyoobmk2" path="res://assets/balloon/Basket/Meshes/SmallestPlanks.res" id="18_2pii6"]
+[ext_resource type="PackedScene" uid="uid://ixtexe8ygceo" path="res://balloon/control_inputs/input_button.tscn" id="18_exksr"]
 [ext_resource type="ArrayMesh" uid="uid://dvxdcey46abg8" path="res://assets/balloon/Basket/Meshes/SmallPlanks.res" id="19_hex2p"]
+[ext_resource type="PackedScene" uid="uid://lk0gfohjhapu" path="res://balloon/control_inputs/input_wheel.tscn" id="19_x3kbh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
 size = Vector3(0.9675293, 0.07292175, 0.9849243)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_snxhu"]
-resource_local_to_scene = true
-metadata/creation_stamp = 7542113659667
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_exksr"]
-resource_local_to_scene = true
-metadata/creation_stamp = 7542147212396
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_x3kbh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 7542180768528
+metadata/creation_stamp = 29845878821141
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_nwaq6"]
 resource_local_to_scene = true
-metadata/creation_stamp = 7542214323219
+metadata/creation_stamp = 29845912375575
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nfn1q"]
+resource_local_to_scene = true
+metadata/creation_stamp = 29845945930008
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wq7tp"]
+resource_local_to_scene = true
+metadata/creation_stamp = 29845979484631
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
 size = Vector3(0.96102905, 0.46351624, 0.95084)
@@ -45,13 +47,14 @@ size = Vector3(0.96102905, 0.46351624, 0.95084)
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdoix"]
 viewport_path = NodePath("Body/UI/MaxLoadUI/SubViewport")
 
-[node name="Balloon" type="RigidBody3D" groups=["balloon"]]
+[node name="Balloon" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
 collision_layer = 1073741824
 collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_35dws")
-vertical_base_force = 9.0
+input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), NodePath("Body/Input_Wheel/BalloonInputComponent")]
+vertical_base_force = 500.0
 SFX_Engine = "event:/Balloon/Engine"
 SFX_Land = "event:/Balloon/Land"
 
@@ -144,23 +147,23 @@ transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.38
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_snxhu")
+mesh = SubResource("ImmediateMesh_x3kbh")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_exksr")
+mesh = SubResource("ImmediateMesh_nwaq6")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_x3kbh")
+mesh = SubResource("ImmediateMesh_nfn1q")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("3_rdoix")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_nwaq6")
+mesh = SubResource("ImmediateMesh_wq7tp")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -307,6 +310,21 @@ text = "Maximum load: 10 kg"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Input_Button" parent="Body" instance=ExtResource("18_exksr")]
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.16730878, 0.20969586, -0.0882613)
+
+[node name="BalloonInputComponent" parent="Body/Input_Button" index="2" node_paths=PackedStringArray("oven")]
+oven = NodePath("../../Oven")
+
+[node name="Input_Wheel" parent="Body" instance=ExtResource("19_x3kbh")]
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, -0.3883996, 0.15382397, 0)
+
+[node name="BalloonInputComponent" parent="Body/Input_Wheel" index="0" node_paths=PackedStringArray("oven")]
+oven = NodePath("../../Oven")
+
+[node name="InteractionComponent" parent="Body/Input_Wheel/Wheel/Wheel" index="10"]
+maximum_rotation = 360.0
+
 [node name="GroundCheck" type="Node3D" parent="."]
 
 [node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
@@ -365,3 +383,9 @@ hit_from_inside = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.48513484, -2.349565)
 collision_mask = 2147483648
 hit_from_inside = true
+
+[editable path="Body/Input_Button"]
+[editable path="Body/Input_Button/ButtonInput_UP"]
+[editable path="Body/Input_Button/ButtonInput_DOWN"]
+[editable path="Body/Input_Wheel"]
+[editable path="Body/Input_Wheel/Wheel"]

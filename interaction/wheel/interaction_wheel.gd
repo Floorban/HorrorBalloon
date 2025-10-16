@@ -14,14 +14,15 @@ func _ready() -> void:
 	super._ready()
 	starting_rotation = object_ref.rotation.z
 	maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation)+maximum_rotation)
+	starting_rotation = -maximum_rotation
 	camera = player.player_camera
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#if is_interacting:
-		#update_wheel_sounds(delta)
+		#player.can_move = false
 	#else:
-		#stop_wheel_sounds(delta)
+		#player.can_move = true
 		
 	if abs(wheel_kickback) > 0.001:
 		wheel_rotation += wheel_kickback
@@ -49,13 +50,17 @@ func _process(delta: float) -> void:
 
 func preInteract(hand: Marker3D, target: Node = null) -> void:
 	super.preInteract(hand, target)
+	player.set_viewing_mode(Vector3(0,1.2,-0.2),0.9)
 	lock_camera = true
 	previous_mouse_position = get_viewport().get_mouse_position()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+func postInteract() -> void:
+	super.postInteract()
+	player.set_viewing_mode()
+
 func _input(event):
 	if not is_interacting: return
-
 	if event is InputEventMouseMotion:
 		var mouse_position: Vector2 = event.position
 		if calculate_cross_product(mouse_position) > 0:
@@ -63,9 +68,9 @@ func _input(event):
 		else:
 			wheel_rotation -= 0.2
 			
-		object_ref.rotation.z = wheel_rotation *.2
+		object_ref.rotation.z = wheel_rotation * 0.1
 		object_ref.rotation.z = clamp(object_ref.rotation.z, starting_rotation, maximum_rotation)
-		var percentage: float = (object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation)
+		var percentage: float = abs((object_ref.rotation.z - starting_rotation) / (maximum_rotation - starting_rotation))
 			
 		previous_mouse_position = mouse_position
 		
@@ -73,11 +78,19 @@ func _input(event):
 		var min_wheel_rotation = starting_rotation / 0.1
 		var max_wheel_rotation = maximum_rotation / 0.1
 		wheel_rotation = clamp(wheel_rotation, min_wheel_rotation, max_wheel_rotation)
-
-		notify_nodes(percentage)
+		notify_nodes(percentage, true)
+	else:
+		var percentage: float = 0.0
+		if event.is_action("forward"):
+			percentage -= 1.0
+		elif event.is_action("backward"):
+			percentage += 1.0
+		notify_nodes(percentage, false)
 
 ## Uses mouse position to determine if the player is moving their mouse in a clockwise or counter-clockwise motion
 func calculate_cross_product(_mouse_position: Vector2) -> float:
+	if camera == null:
+		camera = get_tree().get_first_node_in_group("player").player_camera
 	var center_position = camera.unproject_position(object_ref.global_transform.origin)
 	var vector_to_previous = previous_mouse_position - center_position
 	var vector_to_current = _mouse_position - center_position

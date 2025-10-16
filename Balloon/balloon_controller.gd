@@ -8,37 +8,41 @@ signal has_landed
 @onready var oven: Node = %Oven
 
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
-var _is_reparenting := false
+# var _is_reparenting := false
 @onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
 var is_grounded := false
 var ground_check_enabled := true
 var ground_disable_timer := 0.0
-@onready var tilt_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
-@onready var tilt_check_2: RayCast3D = $TiltCheck/TiltCheck_2
-@onready var tilt_check_3: RayCast3D = $TiltCheck/TiltCheck_3
-@onready var tilt_check_4: RayCast3D = $TiltCheck/TiltCheck_4
-@onready var tilt_check_5: RayCast3D = $TiltCheck/TiltCheck_5
-var t2 := false
-var t3 := false
-var t4 := false
-var t5 := false
-var is_tilted := false
 
 # weight / objects in balloon
 var objs_in_balloon: Dictionary = {}
 var total_weight: float = 0.0
 var player_weight: float = 5.0
 
+# input component
+@export var input_component: Array[BalloonInput]
+
 # vertical
-const GRAVITY := 4.0
-@export var vertical_base_force: float = 10.0
+const GRAVITY := 0.0
+@export var vertical_base_force: float = 200.0
 var vertical_force: float = 0.0
 var is_just_land : = false
 
 # horizontal
-@export var horizontal_force: float = 10.0
+@export var weight_based_movement := false
+@export var horizontal_base_force: float = 200.0
+var horizontal_force: Vector2 = Vector2.ZERO
 var move_threshold := 0.1
-var horizontal_dir: Vector3 = Vector3.ZERO
+var horizontal_dir: Vector2 = Vector2.ZERO
+
+var sprint_boost := 1.0
+var sprint_timer := 0.0
+@export var sprint_duration := 1.0
+@export var sprint_multiplier := 3.0
+
+# rotation
+@export var torque_base_force: float = 0.01
+var rotation_dir: float = 0.0
 
 # tilt
 @export var max_tilt_angle := 10.0
@@ -57,71 +61,109 @@ func _ready() -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var lv = state.linear_velocity
-	lv.x = clamp(lv.x, -2, 2)
-	lv.z = clamp(lv.z, -2, 2)
-	lv.y = clamp(lv.y, -4, 3)
+	lv.x = clamp(lv.x, -1.5, 1.5)
+	lv.z = clamp(lv.z, -1.5, 1.5)
+	lv.y = clamp(lv.y, -4, 2)
 	state.linear_velocity = lv
 
-func tilt_checked(ray:RayCast3D) -> bool:
-	return ray.is_colliding()
-
 func _physics_process(delta: float) -> void:
-	if not ground_check_enabled:
-		ground_disable_timer -= delta
-		if ground_disable_timer <= 0.0:
-			ground_check_enabled = true
+	#if not ground_check_enabled:
+		#ground_disable_timer -= delta
+		#if ground_disable_timer <= 0.0:
+			#ground_check_enabled = true
+#
+	#var touching_ground := false
+	#if ground_check_enabled:
+		#touching_ground = _check_ground_contacts()
+#
+	#if not is_grounded:
+		#apply_central_force(Vector3.DOWN * GRAVITY)
+#
+	#if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
+		#_on_land()
+	#if is_grounded and oven.get_fuel_percentage() > 0.1:
+		#_on_takeoff()
+	#if not ground_check_enabled and oven.get_fuel_percentage() > 0:
+		#player.trauma = 0.5
 
-	var touching_ground := false
-	if ground_check_enabled:
-		touching_ground = _check_ground_contacts()
-	
-	t2 = tilt_checked(tilt_check_2)
-	t3 = tilt_checked(tilt_check_3)
-	t4 = tilt_checked(tilt_check_4)
-	t5 = tilt_checked(tilt_check_5)
-	if t2 and t3 and t4 and t5:
-		is_tilted = true
-	else:
-		is_tilted = false
+	if sprint_timer > 0.0:
+		sprint_timer -= delta
+		if sprint_timer <= 0.0:
+			sprint_boost = 1.0
+	get_balloon_input()
+	update_balloon_movement()
 
-	if not is_grounded:
-		apply_central_force(Vector3.DOWN * GRAVITY)
-	
-	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
-		_on_land()
-	if is_grounded and oven.get_fuel_percentage() > 0.1:
-		_on_takeoff()
-	if not ground_check_enabled and oven.get_fuel_percentage() > 0:
-		player.trauma = 0.5
+func get_balloon_input() -> Vector4:
+	if input_component.size() == 0:
+		return Vector4.ZERO
 
+	var vertical_input: float = 0.0
+	var horizontal_input: Vector2 = Vector2.ZERO
+	var rotation_input: float = 0.0
+
+	for i in input_component.size():
+		var ic = input_component[i]
+		if not ic:
+			continue
+		vertical_input += ic.get_vertical_input()
+		horizontal_input += ic.get_horizontal_input()
+		rotation_input += ic.get_rotation_input()
+
+	vertical_input = clamp(vertical_input, -1.0, 1.0)
+	horizontal_input = horizontal_input.normalized()
+	#rotation_input = clamp(rotation_input, -1.0, 1.0)
+	return Vector4(horizontal_input.x, vertical_input, horizontal_input.y, rotation_input)
+
+func update_balloon_movement() -> void:
 	_apply_vertical_force()
 	_apply_horizontal_force()
+	_apply_rotation()
 
 func _apply_vertical_force() -> void:
 	if is_grounded:
 		return
 
-	var fuel_mult : float = oven.get_fuel_percentage() if oven and oven.has_method("get_fuel_percentage") else 0.0
-	vertical_force = vertical_base_force * fuel_mult - (GRAVITY * total_weight * 0.05)
+	var fuel_mult : float = oven.get_fuel_percentage() if oven else 0.0
+	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y #- (GRAVITY * total_weight * 0.05)
 	apply_central_force(Vector3.UP * vertical_force)
 
 func _apply_horizontal_force() -> void:
 	# Stop horizontal motion if grounded
 	if is_grounded:
 		_tilt_to(Vector3.FORWARD * 0.1, tilt_damping * 2.0)
-		horizontal_dir = Vector3.ZERO
+		horizontal_dir = Vector2.ZERO
 		return
+	if weight_based_movement:
+		var final_tilt: Vector3 = _compute_weighted_tilt()
+		_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
+		var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
+		horizontal_dir = Vector2(
+			Vector3(global_transform.basis * local_dir).x,
+			Vector3(global_transform.basis * local_dir).z).normalized()
+	else:
+		horizontal_dir = Vector2(get_balloon_input().x, get_balloon_input().z)
 
-	var final_tilt: Vector3 = _compute_weighted_tilt()
-	_tilt_to(Vector3(final_tilt.x, 0.0, -final_tilt.z), tilt_damping)
-	var local_dir = Vector3(final_tilt.z, 0.0, final_tilt.x)
-	horizontal_dir = (global_transform.basis * local_dir).normalized()
 	if horizontal_dir.length() > move_threshold:
-		var target_force = horizontal_dir * horizontal_force
-		apply_central_force(target_force)
+		var sprint_mult = sprint_boost
+		horizontal_force = horizontal_base_force * sprint_mult * horizontal_dir
+	else:
+		horizontal_force = Vector2.ZERO
+	var h_force : Vector3 = Vector3(horizontal_force.x,0.0,horizontal_force.y)
+	apply_central_force(h_force)
 
-	if player and player.has_method("apply_player_camera_sway"):
-		player.apply_player_camera_sway(final_tilt)
+	# if player and player.has_method("apply_player_camera_sway"):
+	# 	player.apply_player_camera_sway(final_tilt)
+
+func sprint() -> void:
+	sprint_boost = sprint_multiplier
+	sprint_timer = sprint_duration
+
+func _apply_rotation() -> void:
+	if is_grounded:
+		rotation_dir = 0.0
+		return
+	rotation_dir = get_balloon_input().w
+	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
 
 func _on_land() -> void:
 	Audio.play(SFX_Land, global_transform)
@@ -191,92 +233,89 @@ func _tilt_to(target_rot: Vector3, damping: float) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(balloon_body, "rotation", target_rot, damping)
-	
+
+# Called externally to rotate the balloon with rope
+func execute(percentage: float, primary: bool) -> void:
+	if tilt_tween: tilt_tween.kill()
+	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
+
 func _on_body_entered(body: Node3D) -> void:
-	if _is_reparenting:
-		return
+	# if _is_reparenting:
+	# 	return
 	if body == player:
 		objs_in_balloon[body] = player_weight
 		#_is_reparenting = true
 		#call_deferred("_deferred_attach", player)
-	if body.is_in_group("interactable"):
-		var obj = body.get_node_or_null("InteractionComponent")
-		if obj is InteractionHolddable:
-			if not obj.is_occupied:
-				objs_in_balloon[body] = obj.weight
-				_is_reparenting = true
-				call_deferred("_deferred_attach", body)
+# if body.is_in_group("interactable"):
+# 	var obj = body.get_node_or_null("InteractionComponent")
+# 	if obj is InteractionHolddable:
+# 		objs_in_balloon[body] = obj.weight
+			# _is_reparenting = true
+			# call_deferred("_deferred_attach", body)
 	total_weight = _get_all_weights()
 
 func _on_body_exited(body: Node3D) -> void:
-	if _is_reparenting or not body:
-		return
-	if body == player or body.is_in_group("interactable"):
-		_is_reparenting = true
-		call_deferred("_deferred_deattach", body)
-
+	# if _is_reparenting or not body:
+	# 	return
+	# if body == player or body.is_in_group("interactable"):
+		# _is_reparenting = true
+		# call_deferred("_deferred_deattach", body)
 	if objs_in_balloon.has(body):
 		objs_in_balloon.erase(body)
-
 	total_weight = _get_all_weights()
 
-func _deferred_attach(body: Node3D) -> void:
-	_is_reparenting = true
-	if not body:
-		_is_reparenting = false
-		return
+# func _deferred_attach(body: Node3D) -> void:
+# 	_is_reparenting = true
+# 	if not body:
+# 		_is_reparenting = false
+# 		return
 
-	if body.get_parent() == self:
-		_is_reparenting = false
-		return
+# 	if body.get_parent() == self:
+# 		_is_reparenting = false
+# 		return
 
-	var old_transform: Transform3D = body.global_transform
+# 	var old_transform: Transform3D = body.global_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = false
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = false
 
-	var parent = body.get_parent()
-	if parent:
-		parent.remove_child(body)
-	balloon_body.add_child(body)
+# 	var parent = body.get_parent()
+# 	if parent:
+# 		parent.remove_child(body)
+# 	balloon_body.add_child(body)
 
-	body.global_transform = old_transform
+# 	body.global_transform = old_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = true
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = true
 
-	_is_reparenting = false
+# 	_is_reparenting = false
 
-func _deferred_deattach(body: Node3D) -> void:
-	_is_reparenting = true
-	if not body:
-		_is_reparenting = false
-		return
+# func _deferred_deattach(body: Node3D) -> void:
+# 	_is_reparenting = true
+# 	if not body:
+# 		_is_reparenting = false
+# 		return
 
-	var current_scene: Node = get_tree().current_scene
-	if body.get_parent() == current_scene:
-		_is_reparenting = false
-		return
+# 	var current_scene: Node = get_tree().current_scene
+# 	if body.get_parent() == current_scene:
+# 		_is_reparenting = false
+# 		return
 
-	var old_transform: Transform3D = body.global_transform
+# 	var old_transform: Transform3D = body.global_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = false
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = false
 
-	var parent = body.get_parent()
-	if parent:
-		parent.remove_child(body)
-	current_scene.add_child(body)
+# 	var parent = body.get_parent()
+# 	if parent:
+# 		parent.remove_child(body)
+# 	current_scene.add_child(body)
 
-	body.global_transform = old_transform
+# 	body.global_transform = old_transform
 
-	if obj_in_balloon_area:
-		obj_in_balloon_area.monitoring = true
+# 	if obj_in_balloon_area:
+# 		obj_in_balloon_area.monitoring = true
 
-	_is_reparenting = false
-
-# Called externally to rotate the balloon with rope
-func execute(percentage: float) -> void:
-	if tilt_tween: tilt_tween.kill()
-	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tilt_tween.tween_property(self, "rotation:y", percentage, 10.0)
+# 	_is_reparenting = false

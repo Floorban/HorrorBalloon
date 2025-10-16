@@ -69,7 +69,7 @@ shape = SubResource("BoxShape3D_7wgt2")
 [node name="InteractionComponent" parent="Wheel" node_paths=PackedStringArray("object_ref") instance=ExtResource("1_45fdq")]
 script = ExtResource("2_5cn1b")
 object_ref = NodePath("../..")
-maximum_rotation = 360.0
+maximum_rotation = 170.0
 
 [node name="Icon" type="Sprite3D" parent="."]
 transform = Transform3D(-0.025, 0, 0, 0, -0.025, 0, 0, 0, -0.025, 0, 0, 0.076906)

@@ -2,6 +2,7 @@
 extends InteractionComponent
 class_name InteractionClimb
 
+@export var is_pushable: bool = false
 var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
@@ -30,6 +31,11 @@ func _ready() -> void:
 		interact_area.body_exited.connect(_on_player_exited)
 
 func _input(event):
+	if not can_interact: return
+		
+	if is_pushable and event.is_action_pressed("climb"):
+		balloon.sprint()
+	
 	if not is_interacting: return
 
 	## Release to switch
@@ -43,8 +49,8 @@ func _input(event):
 			hold_edge()
 			is_occupied = false
 	
-	if is_occupied and event.is_action_pressed("climb"):
-		go_to_exit()
+	#if is_occupied and event.is_action_pressed("climb"):
+		#go_to_exit()
 
 ## Click to to switch
 func preInteract(_hand: Marker3D, _target: Node = null) -> void:
@@ -69,7 +75,6 @@ func interact() -> void:
 
 func go_to_exit() -> void:
 	if not player: return
-	player.can_move = true
 	player.set_viewing_mode()
 	player.global_transform.origin = target_pos
 	is_interacting = false
@@ -77,7 +82,6 @@ func go_to_exit() -> void:
 
 func hold_edge() -> void:
 	if not player: return
-	player.can_move = false
 	player.set_viewing_mode(viewing_offet, viewing_zoom)
 	hold_time = 0.0
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bon5tf7dv844l"]
+
+[ext_resource type="Script" uid="uid://cnfptif4aucnh" path="res://balloon/control_inputs/balloon_input.gd" id="1_jjv7l"]
+
+[node name="BalloonInputComponent" type="Node"]
+script = ExtResource("1_jjv7l")

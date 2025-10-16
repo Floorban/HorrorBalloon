@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj2be6rc0pv5p"]
+
+[ext_resource type="PackedScene" uid="uid://qpisonnatfeo" path="res://balloon/control_inputs/button_up.tscn" id="1_nch35"]
+
+[node name="ButtonInput_DOWN" instance=ExtResource("1_nch35")]
+
+[node name="Mesh" parent="." index="0"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="InteractionComponent" parent="." index="2"]
+direction = -0.8

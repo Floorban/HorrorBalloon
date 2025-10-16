@@ -1,7 +1,8 @@
 class_name InteractionComponent
 extends Node
 
-@onready var player : PlayerController = get_tree().get_first_node_in_group("player")
+@onready var balloon : BalloonController = get_tree().get_first_node_in_group("balloon") as BalloonController
+@onready var player : PlayerController = get_tree().get_first_node_in_group("player") as PlayerController
 
 @export var ui_set: Array[InteractionUIData] = []
 @export var object_ref: Node3D
@@ -51,8 +52,16 @@ func postInteract() -> void:
 	lock_camera = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+## when the controller detect the obj before interact
+func interact_hint() -> void:
+	pass
+
+## when the controller leaves
+func disable_interact_hint() -> void:
+	pass
+
 ## Iterates over a list of nodes that can be interacted with and executes their respective logic
-func notify_nodes(percentage: float) -> void:
+func notify_nodes(percentage: float, primary: bool = true) -> void:
 	for node in nodes_to_affect:
 		if node and node.has_method("execute"):
-			node.call("execute", percentage)
+			node.call("execute", percentage, primary)

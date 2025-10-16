@@ -1,0 +1,221 @@
+[gd_scene load_steps=14 format=3 uid="uid://83n0yw8jbvi"]
+
+[ext_resource type="Script" uid="uid://b48a744iertjq" path="res://player/player_topdown.gd" id="1_dmumn"]
+[ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_6g1y6"]
+[ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="3_5p8op"]
+[ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="4_nym05"]
+[ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/ui/tile_0156.png" id="5_qiw6h"]
+[ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_dvuxs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmumn"]
+albedo_color = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dmumn"]
+material = SubResource("StandardMaterial3D_dmumn")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+radius = 0.05
+height = 1.2901382
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+radius = 0.078125
+height = 0.9067383
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
+radius = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qjkh3"]
+radius = 3.98299
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjkh3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.003519166, 0.0035191693, 0.0035191625, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PlayerTopDown" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_dmumn")
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Eyes" type="Node3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
+unique_name_in_owner = true
+cull_mask = 524285
+fov = 90.0
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
+visible = false
+light_color = Color(0.96, 0.92416, 0.8928, 1)
+light_energy = 0.0
+light_volumetric_fog_energy = 1.5
+light_size = 0.05
+light_bake_mode = 0
+
+[node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="PlacableRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 3221225472
+
+[node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Chest" type="Marker3D" parent="Head/Eyes/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.90218514, -0.40689725, -0.14316562, 0.08417976, 0.4916058, -0.86673987, 0.42305517, 0.769908, 0.47777185, 0.18839309, -0.20246267, -0.28345287)
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5387357, 0)
+mesh = SubResource("CylinderMesh_dmumn")
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6450691, 0)
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45336914, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="StandupCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.5, 0)
+collision_mask = 3221225473
+
+[node name="FeetPushShapeCast" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11201316, 0)
+shape = SubResource("SphereShape3D_g6k8r")
+target_position = Vector3(0, 0, 0)
+collision_mask = 5
+
+[node name="InteractableCheck" type="Area3D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableCheck"]
+shape = SubResource("SphereShape3D_qjkh3")
+
+[node name="InteractionController" parent="." instance=ExtResource("2_6g1y6")]
+unique_name_in_owner = true
+can_interact = false
+
+[node name="GUI" type="Node" parent="."]
+
+[node name="ReticleLayer" type="CanvasLayer" parent="GUI"]
+visible = false
+
+[node name="Reticles" type="Control" parent="GUI/ReticleLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_5p8op")
+stretch_mode = 3
+
+[node name="HighlightReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_nym05")
+
+[node name="InteractingReticle" type="TextureRect" parent="GUI/ReticleLayer/Reticles"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_qiw6h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI"]
+
+[node name="InteractionControlPanel" type="MarginContainer" parent="GUI/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 22
+
+[node name="UIBackground" type="PanelContainer" parent="GUI/CanvasLayer/InteractionControlPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjkh3")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="InteractionControlSpawnRoot" type="VBoxContainer" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="InteractoinUI1" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InteractoinUI2" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_dvuxs")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WallCheck_Up" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="WallCheck_Down" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(0, 0, 1)
+
+[node name="WallCheck_Left" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(-1, 0, 0)
+
+[node name="WallCheck_Right" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37077975, 0)
+target_position = Vector3(1, 0, 0)

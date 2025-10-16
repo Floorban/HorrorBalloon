@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ixtexe8ygceo"]
+
+[ext_resource type="PackedScene" uid="uid://qpisonnatfeo" path="res://balloon/control_inputs/button_up.tscn" id="1_7vjjs"]
+[ext_resource type="PackedScene" uid="uid://cj2be6rc0pv5p" path="res://balloon/control_inputs/button_down.tscn" id="2_mrs8m"]
+[ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="3_cj81o"]
+[ext_resource type="Script" uid="uid://c6x65kaj3u0hk" path="res://balloon/control_inputs/balloon_input_button.gd" id="4_w7ldg"]
+
+[node name="Input_Button" type="Node3D"]
+
+[node name="ButtonInput_UP" parent="." instance=ExtResource("1_7vjjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="InteractionComponent" parent="ButtonInput_UP" index="2" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../BalloonInputComponent")]
+
+[node name="ButtonInput_DOWN" parent="." instance=ExtResource("2_mrs8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+freeze = false
+
+[node name="InteractionComponent" parent="ButtonInput_DOWN" index="2" node_paths=PackedStringArray("nodes_to_affect")]
+nodes_to_affect = [NodePath("../../BalloonInputComponent")]
+
+[node name="BalloonInputComponent" parent="." instance=ExtResource("3_cj81o")]
+script = ExtResource("4_w7ldg")
+
+[editable path="ButtonInput_UP"]
+[editable path="ButtonInput_DOWN"]

@@ -1,6 +1,7 @@
 extends Node
 class_name InteractionController
 
+@export var can_interact: bool = true
 @onready var interaction_raycast: RayCast3D = %InteractionRaycast
 @onready var placable_raycast: RayCast3D = %PlacableRaycast
 @onready var player: PlayerController = $".."
@@ -8,6 +9,7 @@ class_name InteractionController
 var current_object: Object
 var last_potential_object: Object
 var interaction_component: InteractionComponent
+var last_hover_component: InteractionComponent
 
 @onready var hand: Marker3D = %Hand
 @onready var chest: Marker3D = %Chest
@@ -82,8 +84,14 @@ func check_potential_interactables() -> void:
 		if interaction_component:
 			if interaction_component.can_interact == false:
 				return
-				
 			last_potential_object = current_object
+			# Disable hint for previous hover component if different
+			if last_hover_component:
+				if last_hover_component != interaction_component:
+					last_hover_component.disable_interact_hint()
+				else:
+					last_hover_component.interact_hint()
+			last_hover_component = interaction_component
 			_focus()
 			if Input.is_action_just_pressed("primary"):
 				current_object = potential_object
@@ -101,17 +109,17 @@ func check_potential_interactables() -> void:
 				if interaction_component is InteractionDoor:
 					interaction_component.check_player_side(interaction_raycast)
 		else: 
-			# If the object just looked at cant be interacted with, call unfocus
 			stop_interactions()
 	else:
 		stop_interactions()
 
 func _process(delta: float) -> void:
-	if not player.can_move:
-		default_reticle.visible = false
-		highlight_reticle.visible = false
-		interacting_reticle.visible = false
-		return
+	if not can_interact: return
+	#if player.player_state == player.PlayerState.AIR:
+		#default_reticle.visible = false
+		#highlight_reticle.visible = false
+		#interacting_reticle.visible = false
+		#return
 	# If on the previous frame, keep interacting with it
 	if current_object:
 		if interaction_component:
@@ -181,6 +189,7 @@ func _focus() -> void:
 	highlight_reticle.visible = true
 	interacting_reticle.visible = false
 	interaction_ui_init()
+	if interaction_component: interaction_component.interact_hint()
 
 ## Called when the player is NOT looking at an interactable objects
 func _unfocus() -> void:
@@ -190,8 +199,8 @@ func _unfocus() -> void:
 	default_reticle.visible = true
 	highlight_reticle.visible = false
 	interacting_reticle.visible = false
-	if current_object == null:
-		interaction_ui_clear()
+	if current_object == null: interaction_ui_clear()
+	if interaction_component: interaction_component.disable_interact_hint()
 
 ## Called when the player collects an item
 func _on_item_collected(item: Node):

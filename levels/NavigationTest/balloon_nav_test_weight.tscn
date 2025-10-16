@@ -1,0 +1,615 @@
+[gd_scene load_steps=38 format=3 uid="uid://i1fl4bws2wfr"]
+
+[ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_iw5rl"]
+[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_iw5rl"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_pplau"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_j4ttt"]
+[ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="3_wcgku"]
+[ext_resource type="Script" uid="uid://c3br5qbxn4wxm" path="res://balloon/control_inputs/balloon_input_weight.gd" id="4_hraa5"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_wcgku"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="5_hraa5"]
+[ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="6_54y4l"]
+[ext_resource type="Script" uid="uid://op0g3x7fo88x" path="res://balloon/objects/oven.gd" id="7_s0i2r"]
+[ext_resource type="PackedScene" uid="uid://d1sqshmjfpjfq" path="res://balloon/flame.tscn" id="8_qcc1d"]
+[ext_resource type="PackedScene" uid="uid://btfewaxmhb78v" path="res://balloon/smoke.tscn" id="9_g0xo8"]
+[ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="11_cs0xs"]
+[ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_36gjf"]
+[ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="13_txng5"]
+[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="14_ggjnp"]
+[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="15_q27wk"]
+[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="16_6g0tc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
+size = Vector3(0.9675293, 0.07292175, 0.9849243)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sy0r5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wdyp"]
+size = Vector3(0.06863403, 0.24382782, 0.43029785)
+
+[sub_resource type="Resource" id="Resource_j0nhb"]
+script = ExtResource("4_wcgku")
+icon = ExtResource("5_hraa5")
+prompt = "Get On/Off"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
+size = Vector3(0.28216553, 0.12805176, 0.3086586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m6r2"]
+size = Vector3(0.06863403, 0.24382782, 0.16152191)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjdak"]
+size = Vector3(0.24856567, 0.12805176, 0.3086586)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfk8s"]
+size = Vector3(0.033906937, 0.24169922, 0.4466324)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk1uh"]
+size = Vector3(0.26576233, 0.12805176, 0.40628242)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmpme"]
+size = Vector3(0.033906937, 0.24633789, 0.46738434)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ia10"]
+size = Vector3(0.27349854, 0.12805176, 0.43948555)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agsvp"]
+size = Vector3(0.069, 0.254, 0.474)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7xht"]
+size = Vector3(0.295, 0.128, 0.438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71bfn"]
+size = Vector3(1.0380859, 0.70025635, 1.1279297)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_pplau"]
+resource_local_to_scene = true
+metadata/creation_stamp = 43835157731229
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_j4ttt"]
+resource_local_to_scene = true
+metadata/creation_stamp = 43835191307840
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wcgku"]
+resource_local_to_scene = true
+metadata/creation_stamp = 43835224839879
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_hraa5"]
+resource_local_to_scene = true
+metadata/creation_stamp = 43835258417450
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
+size = Vector3(0.96102905, 0.46351624, 0.95084)
+
+[node name="BalloonNavTest_Weight" type="RigidBody3D" groups=["balloon"]]
+collision_layer = 1073741824
+collision_mask = 0
+mass = 10.0
+gravity_scale = 0.0
+script = ExtResource("1_iw5rl")
+vertical_base_force = 500.0
+weight_based_movement = true
+horizontal_base_force = 500.0
+max_tilt_angle = 4.0
+SFX_Engine = "event:/Balloon/Engine"
+SFX_Land = "event:/Balloon/Land"
+
+[node name="Player" parent="." instance=ExtResource("2_iw5rl")]
+
+[node name="Body" type="Node3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="Bottom" type="CharacterBody3D" parent="Body" groups=["balloon_ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.015525838, 0)
+collision_layer = 1073741825
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.025814056, 0.023223877)
+shape = SubResource("BoxShape3D_q3h3j")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Body/Bottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029663086, 0.02466914, 0.023468018)
+size = Vector3(0.95996094, 0.072265625, 0.9794922)
+
+[node name="Ball" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.0553803, 0)
+visible = false
+cast_shadow = 0
+mesh = SubResource("SphereMesh_sy0r5")
+skeleton = NodePath("../../..")
+
+[node name="BasketSides" type="Node3D" parent="Body"]
+
+[node name="BalloonInputComponent" parent="Body/BasketSides" instance=ExtResource("3_wcgku")]
+script = ExtResource("4_hraa5")
+
+[node name="BasketEdge_1_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46443865, -0.0020876527, -0.23020753)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_1_1"]
+collision_layer = 5
+
+[node name="SideCollision_1_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012793541, 0.14798835, 0.0005573034)
+shape = SubResource("BoxShape3D_0wdyp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08933821, 0.063047945, -0.037087202)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10469732, 0.063047945, -0.037087202)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_1_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_1_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02389294, 0.071842775, 0.00550282)
+shape = SubResource("BoxShape3D_5j1qt")
+
+[node name="BasketEdge_1_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45919922, 0.14787164, 0.42558753)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_1_2"]
+collision_layer = 5
+
+[node name="SideCollision_1_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_5m6r2")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08933821, -0.042698503, -0.037087202)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10469732, -0.042698503, -0.037087202)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_1_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_1_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012161285, -0.08351381, 0)
+shape = SubResource("BoxShape3D_tjdak")
+
+[node name="BasketEdge_2_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.50177896, 0.14619547, 0.18242449)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_2_1"]
+collision_layer = 5
+
+[node name="SideCollision_2_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_2_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03937912)
+shape = SubResource("BoxShape3D_rfk8s")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_2_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07191798, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_2_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10329342, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_2_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_2_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_2_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_2_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0049819946, -0.05177799, -0.048811942)
+shape = SubResource("BoxShape3D_bk1uh")
+
+[node name="BasketEdge2_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.49417898, 0.14712462, -0.18069315)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge2_2"]
+collision_layer = 5
+
+[node name="SideCollision_2_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge2_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05537033)
+shape = SubResource("BoxShape3D_lmpme")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge2_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074697584, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge2_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11629173, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge2_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge2_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge2_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge2_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0070495903, -0.05177799, 0.065413475)
+shape = SubResource("BoxShape3D_0ia10")
+
+[node name="BasketEdge4_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.21150614, 0.14380792, -0.44554445)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge4_1"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_agsvp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074697584, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge4_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11629173, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge4_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge4_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016784698, -0.05177799, 5.5879354e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge4_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.2633769, 0.14380792, -0.44554445)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge4_2"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_agsvp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074697584, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge4_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11629173, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge4_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge4_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016784698, -0.05177799, 5.5879354e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge5_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.21150614, 0.14380792, 0.50922525)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge5_1"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge5_1/StaticBody3D"]
+shape = SubResource("BoxShape3D_agsvp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge5_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074697584, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge5_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11629173, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge5_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge5_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge5_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge5_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016784698, -0.05177799, 5.5879354e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge5_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.2633769, 0.14380792, 0.50922525)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge5_2"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge5_2/StaticBody3D"]
+shape = SubResource("BoxShape3D_agsvp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge5_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074697584, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge5_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11629173, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge5_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge5_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_pplau")]
+script = ExtResource("3_j4ttt")
+is_pushable = true
+viewing_offet = Vector3(0, 5, -0.5)
+viewing_zoom = 0.8
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_wcgku")]([SubResource("Resource_j0nhb")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge5_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge5_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016784698, -0.05177799, 5.5879354e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4249274, 0.10000001, 0.43728766)
+size = Vector3(0.05, 0.15, 0.1854248)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4249274, 0.10000001, -0.23152122)
+size = Vector3(0.05, 0.15, 0.44317627)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5293033, 0.10000001, 0.03)
+size = Vector3(0.05, 0.15, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.056870144, 0.10000001, 0.50186443)
+size = Vector3(0.05, 0.15, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Body/BasketSides"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.056870144, 0.10000001, -0.45139903)
+size = Vector3(0.05, 0.15, 1)
+
+[node name="Oven" type="MeshInstance3D" parent="Body"]
+unique_name_in_owner = true
+transform = Transform3D(0.14000002, 0, 0, 0, 0.14000002, 0, 0, 0, 0.14000002, 0.00020430486, 0.051989928, 0.0005186995)
+visible = false
+mesh = ExtResource("6_54y4l")
+script = ExtResource("7_s0i2r")
+SFX_Fire = "event:/Balloon/Fire"
+SFX_Release = "event:/Balloon/Release"
+
+[node name="FuelArea" type="Area3D" parent="Body/Oven"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.061714, 0)
+visible = false
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Oven/FuelArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7755576e-17, 0.025909424, -0.0063476563)
+shape = SubResource("BoxShape3D_71bfn")
+debug_color = Color(0.937255, 0.156863, 0.509804, 1)
+
+[node name="Flame" parent="Body/Oven" instance=ExtResource("8_qcc1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2963667, 0.49066186)
+visible = false
+
+[node name="Flame2" parent="Body/Oven" instance=ExtResource("8_qcc1d")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.6185933e-08, 0.8934559, -0.10840249)
+visible = false
+
+[node name="Smoke" parent="Body/Oven" instance=ExtResource("9_g0xo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4482235e-09, 0, -0.19327283)
+visible = false
+
+[node name="Corners" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19742998, 0)
+
+[node name="Corner_1" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42473024, 0.355, 0.49315727)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_1" instance=ExtResource("11_cs0xs")]
+transform = Transform3D(0.541043, 0.316137, 0.779314, -0.39235, 0.914518, -0.098592, -0.743865, -0.252421, 0.61883, 0, 0, 0)
+
+[node name="Corner_2" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4954381, 0.355, 0.48631462)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_2" instance=ExtResource("11_cs0xs")]
+transform = Transform3D(0.668143, -0.30282, 0.679621, -0.0178129, 0.906657, 0.421493, -0.743819, -0.293724, 0.600382, 0, 0, 0)
+
+[node name="Corner_3" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5045618, 0.355, -0.44069657)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_3" instance=ExtResource("11_cs0xs")]
+transform = Transform3D(0.756661, -0.296234, 0.582846, 0.408164, 0.910436, -0.0671516, -0.510751, 0.288708, 0.809803, 0, 0, 0)
+
+[node name="Corner_4" type="Node3D" parent="Body/Corners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42929205, 0.355, -0.4429774)
+
+[node name="RopeInteraction" parent="Body/Corners/Corner_4" instance=ExtResource("11_cs0xs")]
+transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.383558, -0.837108, 0.279491, 0.47025, 0, 0, 0)
+
+[node name="Ropes" type="Node3D" parent="Body"]
+
+[node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999985, 0.20000002)
+mesh = SubResource("ImmediateMesh_pplau")
+attach_end = NodePath("../../Corners/Corner_1")
+
+[node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999985, 0.20000002)
+mesh = SubResource("ImmediateMesh_j4ttt")
+skeleton = NodePath("../..")
+attach_end = NodePath("../../Corners/Corner_2")
+
+[node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.20000002, 1.5999985, -0.19999997)
+mesh = SubResource("ImmediateMesh_wcgku")
+attach_end = NodePath("../../Corners/Corner_3")
+
+[node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_36gjf")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.19999999, 1.5999985, -0.19999997)
+mesh = SubResource("ImmediateMesh_hraa5")
+attach_end = NodePath("../../Corners/Corner_4")
+
+[node name="Flags" type="Node3D" parent="Body"]
+
+[node name="Flags1" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_txng5")
+attached_rope = NodePath("../../Ropes/BalloonRope_1")
+
+[node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("14_ggjnp")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("14_ggjnp")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("14_ggjnp")]
+transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+
+[node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_txng5")
+attached_rope = NodePath("../../Ropes/BalloonRope_2")
+
+[node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("15_q27wk")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Body/Flags/Flags2" instance=ExtResource("15_q27wk")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Body/Flags/Flags2" instance=ExtResource("15_q27wk")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("15_q27wk")]
+transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+
+[node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
+script = ExtResource("13_txng5")
+attached_rope = NodePath("../../Ropes/BalloonRope_3")
+
+[node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("16_6g0tc")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_2" parent="Body/Flags/Flags3" instance=ExtResource("16_6g0tc")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_3" parent="Body/Flags/Flags3" instance=ExtResource("16_6g0tc")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="RopeFlag_4" parent="Body/Flags/Flags3" instance=ExtResource("16_6g0tc")]
+transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+
+[node name="ObjInBalloonArea" type="Area3D" parent="Body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02864655, 0, 0.019694507)
+visible = false
+disable_mode = 2
+collision_layer = 0
+collision_mask = 5
+gravity_point = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/ObjInBalloonArea"]
+process_mode = 3
+physics_interpolation_mode = 1
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022735614, 0.2524948, 0.00085258484)
+shape = SubResource("BoxShape3D_rdoix")
+
+[node name="GroundCheck" type="Node3D" parent="."]
+
+[node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16100788, 0)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2536583, 0.16100788, 2.6153243)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974897, 0.16100788, 2.6317258)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7580302, 0.16100788, -2.3905723)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.16100788, -2.349565)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 2147483648
+
+[node name="TiltCheck" type="Node3D" parent="."]
+
+[node name="TiltCheck_1" type="RayCast3D" parent="TiltCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48513484, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="TiltCheck_2" type="RayCast3D" parent="TiltCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2536583, 0.48513484, 2.6153243)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="TiltCheck_3" type="RayCast3D" parent="TiltCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974897, 0.48513484, 2.6317258)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="TiltCheck_4" type="RayCast3D" parent="TiltCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7580302, 0.48513484, -2.3905723)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="TiltCheck_5" type="RayCast3D" parent="TiltCheck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.48513484, -2.349565)
+collision_mask = 2147483648
+hit_from_inside = true
