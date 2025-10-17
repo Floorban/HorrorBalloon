@@ -129,38 +129,89 @@ func world_to_voxel(world_pos: Vector3) -> Vector3:
 	var local_pos = voxel_terrain.to_local(world_pos)
 	return Vector3(local_pos.x, local_pos.y, local_pos.z)
 
+func get_nearby_texture_index(voxel_pos: Vector3) -> int:
+	for offset in [
+		Vector3(2,0,0), Vector3(-2,0,0),
+		Vector3(0,2,0), Vector3(0,-2,0),
+		Vector3(0,0,2), Vector3(0,0,-2)]:
+		var neighbor_meta = voxel_tool.get_voxel_metadata(voxel_pos + offset)
+		if typeof(neighbor_meta) == TYPE_DICTIONARY and neighbor_meta.has("tex_id"):
+			return neighbor_meta["tex_id"]
+		elif typeof(neighbor_meta) == TYPE_INT:
+			return neighbor_meta
+	return 0
+
 func mine_voxel(_position: Vector3, radius: float, damage: float):
-	var voxel_pos = world_to_voxel(_position)
-	var current_hp = voxel_tool.get_voxel_metadata(voxel_pos)
+	var int_radius = ceil(radius)
+	var center_voxel: Vector3i = Vector3i(world_to_voxel(_position))
 
-	if current_hp == null:
-		current_hp = 10.0
+	# Temporary store of affected voxels for post-processing
+	var affected_voxels: Array = []
 
-	current_hp -= damage
+	# 1️⃣ Reduce HP / remove the sphere
+	for x in range(-int_radius, int_radius + 1):
+		for y in range(-int_radius, int_radius + 1):
+			for z in range(-int_radius, int_radius + 1):
+				var offset = Vector3i(x, y, z)
+				if offset.length() <= radius:
+					var voxel_pos = center_voxel + offset
+					var meta = voxel_tool.get_voxel_metadata(voxel_pos)
+					var hp := 0.0
+					var tex_id = get_nearby_texture_index(voxel_pos)
 
-	var decal_instance = crack_decal.instantiate()
-	voxel_terrain.add_child(decal_instance)
-	decal_instance.visible = false
+					if typeof(meta) == TYPE_DICTIONARY:
+						if meta.has("hp"):
+							hp = meta["hp"]
+						if meta.has("tex_id"):
+							tex_id = meta["tex_id"]
 
-	if current_hp <= 0:
-		# decal_instance.queue_free()
-		voxel_tool.mode = VoxelTool.MODE_REMOVE
-		voxel_tool.do_sphere(_position, radius)
+					hp -= damage
+
+					if hp <= 0:
+						voxel_tool.mode = VoxelTool.MODE_REMOVE
+						voxel_tool.do_sphere(voxel_pos, 0.5)
+						voxel_tool.set_voxel_metadata(voxel_pos, null)
+						affected_voxels.append({"pos": voxel_pos, "tex_id": tex_id})
+					else:
+						voxel_tool.set_voxel_metadata(voxel_pos, {"hp": hp, "tex_id": tex_id})
+
+	# 2️⃣ Paint the removed voxel and propagate texture + HP to neighbors
+	for voxel_data in affected_voxels:
+		var voxel_pos: Vector3i = voxel_data["pos"]
+		var tex_id: int = voxel_data["tex_id"]
+
+		# Paint the removed voxel
 		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-		var indx = voxel_tool.texture_index
-		voxel_tool.texture_index = indx + 1 if indx < 2 else 0
-		voxel_tool.do_sphere(_position, radius * 2)
-		voxel_tool.set_voxel_metadata(voxel_pos, null)
-		print("Voxel destroyed")
-	else:
-		decal_instance.visible = true
-		decal_instance.global_position = _position
-		# voxel_tool.mode = VoxelTool.MODE_REMOVE
-		# voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-		# voxel_tool.texture_index = 1
-		# voxel_tool.do_sphere(_position, radius * 1.5)
-		voxel_tool.set_voxel_metadata(voxel_pos, current_hp)
-		print("Voxel HP: %s" % str(current_hp))
+		voxel_tool.texture_index = tex_id
+		voxel_tool.texture_opacity = 1.0
+		voxel_tool.texture_falloff = 0.4
+		voxel_tool.do_sphere(Vector3(voxel_pos.x, voxel_pos.y, voxel_pos.z), 0.5)
+
+		# Update surrounding neighbors
+		for nx in range(-1, 2):
+			for ny in range(-1, 2):
+				for nz in range(-1, 2):
+					if nx == 0 and ny == 0 and nz == 0:
+						continue
+					var neighbor_pos = voxel_pos + Vector3i(nx, ny, nz)
+					var neighbor_meta = voxel_tool.get_voxel_metadata(neighbor_pos)
+					
+					# Only update if the neighbor exists
+					if neighbor_meta == null:
+						# adjust HP based on texture type
+						var new_hp = 10.0  # default
+						match tex_id:
+							0:
+								new_hp = 5.0   # moss/grass
+							1:
+								new_hp = 10.0  # dirt
+							2:
+								new_hp = 20.0  # rock
+							_:
+								new_hp = 10.0
+						
+						voxel_tool.set_voxel_metadata(neighbor_pos, {"hp": new_hp, "tex_id": tex_id})
+
 
 func get_movement_dir() -> Vector3:
 	input_dir = Input.get_vector("left", "right", "forward", "backward")

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_g6k8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
-radius = 0.05
+radius = 0.111816406
 height = 1.2901382
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
@@ -45,7 +45,7 @@ crack_decal = ExtResource("2_boad6")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7994213, 0)
 
 [node name="Eyes" type="Node3D" parent="Head"]
 unique_name_in_owner = true
@@ -196,3 +196,5 @@ layout_mode = 2
 [node name="InteractoinUI3" parent="GUI/CanvasLayer/InteractionControlPanel/UIBackground/MarginContainer/InteractionControlSpawnRoot" instance=ExtResource("6_g6k8r")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="VoxelViewer" type="VoxelViewer" parent="."]
