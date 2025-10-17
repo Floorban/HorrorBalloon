@@ -9,5 +9,5 @@ voxel_type = "rock"
 neighbors = Array[ExtResource("1_wiubk")]([ExtResource("2_ktx7h"), null])
 min_height = -50.0
 max_height = -30.0
-base_hp = 15.0
+base_hp = 5.0
 metadata/_custom_type_script = "uid://brerktk8lflgb"

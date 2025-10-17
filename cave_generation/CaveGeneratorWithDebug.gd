@@ -1,4 +1,5 @@
 extends Node3D
+class_name CaveGenerator
 
 @export var voxel_data: Array[CaveVoxelData] = []
 @export var voxel_terrain : VoxelTerrain
@@ -124,11 +125,58 @@ func paint_textures_by_height():
 
 		# paint the voxel
 		voxel_tool.texture_index = voxel_copy.texture_index
+		# voxel_tool.texture_opacity = 0.5
+		# voxel_tool.texture_falloff = 0.4
 		voxel_tool.do_sphere(pos, get_removal_size(3.0))
 
 		# assign metadata
 		var voxel_pos: Vector3i = Vector3i(world_to_voxel(pos))
 		voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_copy.duplicate(true)})
+
+# func paint_textures_by_height():
+# 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+# 	var paint_radius := 10.0
+
+# 	random_walk_positions.shuffle()
+
+# 	for walk_position: Vector3 in random_walk_positions:
+# 		if current_walker.display_speed > 0:
+# 			await get_tree().create_timer(current_walker.display_speed).timeout
+
+# 		current_walker.global_position = walk_position
+
+# 		# Raycast to find the actual voxel to paint
+# 		var raycast_result: VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 30)
+# 		if raycast_result == null:
+# 			continue  # skip if nothing hit
+
+# 		var voxel_pos: Vector3i = Vector3i(world_to_voxel(raycast_result.position))
+# 		var voxel_meta = voxel_tool.get_voxel_metadata(voxel_pos)
+# 		var voxel_obj: CaveVoxelData = null
+
+# 		if voxel_meta != null and voxel_meta.has("type"):
+# 			voxel_obj = voxel_meta["type"]
+# 		else:
+# 			# pick all voxel_data matching height at the hit point
+# 			var matching_voxels: Array = []
+# 			for v in voxel_data:
+# 				if raycast_result.position.y >= v.min_height and raycast_result.position.y <= v.max_height:
+# 					matching_voxels.append(v)
+
+# 			if matching_voxels.size() > 0:
+# 				voxel_obj = matching_voxels[randi() % matching_voxels.size()]
+# 			else:
+# 				voxel_obj = voxel_data[0]
+
+# 			voxel_obj = voxel_obj.duplicate(true)
+# 			voxel_obj.current_hp = voxel_obj.base_hp
+# 			voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_obj})
+
+# 		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+# 		voxel_tool.texture_index = voxel_obj.texture_index
+# 		# voxel_tool.texture_opacity = 1.0
+# 		# voxel_tool.texture_falloff = 0.4
+# 		voxel_tool.do_sphere(raycast_result.position, paint_radius)
 
 func world_to_voxel(world_pos: Vector3) -> Vector3:
 	var local_pos = voxel_terrain.to_local(world_pos)

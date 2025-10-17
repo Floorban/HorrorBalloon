@@ -11,56 +11,49 @@ class_name CaveVoxelData
 @export var ores: Dictionary = {}
 
 var current_hp: float = 0.0
+var chance: float = 1.0  # used for weighted random selection among neighbors
 
 func _init():
-    current_hp = base_hp
+	current_hp = base_hp
 
 func get_hp() -> float:
-    return current_hp
+	return current_hp
 
 func set_hp(value: float) -> void:
-    current_hp = max(value, 0.0)
+	current_hp = max(value, 0.0)
 
-# func get_random_neighbor() -> CaveVoxelData:
-#     var total = 0.0
-#     for n in neighbors:
-#         total += n.chance
-#     var r = randf() * total
-#     for n in neighbors:
-#         r -= n.chance
-#         if r <= 0:
-#             return n
-#     return neighbors[0] if neighbors.size() > 0 else self
+#func get_random_neighbor() -> CaveVoxelData:
+	#var total = 0.0
+	#for n in neighbors:
+		#total += n.chance
+	#var r = randf() * total
+	#for n in neighbors:
+		#r -= n.chance
+		#if r <= 0:
+			#return n
+	#return neighbors[0] if neighbors.size() > 0 else self
 
 func get_random_neighbor() -> CaveVoxelData:
-    if neighbors.size() == 0:
-        return self  # no neighbors, fallback
+	if neighbors.size() == 0:
+		return self 
 
-    # sum of chances, default to 1 if not set
-    var total = 0.0
-    for n in neighbors:
-        if n.has("chance"):
-            total += n.chance
-        else:
-            total += 1.0
+	var valid_neighbors: Array = []
+	for n in neighbors:
+		if n != null:
+			valid_neighbors.append(n)
 
-    var r = randf() * total
-    for n in neighbors:
-        var c = n.chance if n.has("chance") else 1.0
-        r -= c
-        if r <= 0:
-            return n
+	if valid_neighbors.is_empty():
+		return self
 
-    # fallback if something went wrong
-    return neighbors[randi() % neighbors.size()]
+	return valid_neighbors[randi() % valid_neighbors.size()]
 
 func get_random_ore() -> String:
-    var total = 0.0
-    for p in ores.values():
-        total += p
-    var r = randf() * total
-    for ore in ores.keys():
-        r -= ores[ore]
-        if r <= 0:
-            return ore
-    return ""  # no ore
+	var total = 0.0
+	for p in ores.values():
+		total += p
+	var r = randf() * total
+	for ore in ores.keys():
+		r -= ores[ore]
+		if r <= 0:
+			return ore
+	return ""  # no ore

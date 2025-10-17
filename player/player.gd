@@ -195,7 +195,7 @@ func mine_voxel(_position: Vector3, radius: float, damage: float):
 		# paint the destroyed voxel again for safety
 		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
 		voxel_tool.texture_index = voxel_obj.texture_index
-		voxel_tool.do_sphere(Vector3(voxel_pos.x, voxel_pos.y, voxel_pos.z), radius)
+		voxel_tool.do_sphere(Vector3(voxel_pos.x, voxel_pos.y, voxel_pos.z), radius * 2.0)
 
 		for nx in range(-1, 2):
 			for ny in range(-1, 2):
