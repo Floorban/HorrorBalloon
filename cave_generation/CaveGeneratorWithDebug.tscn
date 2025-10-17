@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://hik4wbxfsq2p"]
+[gd_scene load_steps=7 format=3 uid="uid://hik4wbxfsq2p"]
 
 [ext_resource type="Script" uid="uid://cl0scwmhoy16j" path="res://cave_generation/CaveGeneratorWithDebug.gd" id="1_byicc"]
+[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://cave_generation/cave_voxel_data/cave_voxel_data.gd" id="2_045mv"]
 [ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://cave_generation/cave_walker.tscn" id="2_pvqeu"]
+[ext_resource type="Resource" uid="uid://bofa5msjgpm2w" path="res://cave_generation/cave_voxel_data/voxel_dirt.tres" id="3_tynfl"]
+[ext_resource type="Resource" uid="uid://4pdyy24cm4pr" path="res://cave_generation/cave_voxel_data/voxel_grass.tres" id="4_8df2w"]
+[ext_resource type="Resource" uid="uid://b1eitinpbqp23" path="res://cave_generation/cave_voxel_data/voxel_rock.tres" id="5_va4bg"]
 
 [node name="CaveGeneratorWithDebug" type="Node3D" node_paths=PackedStringArray("walkers")]
 script = ExtResource("1_byicc")
+voxel_data = Array[ExtResource("2_045mv")]([ExtResource("3_tynfl"), ExtResource("4_8df2w"), ExtResource("5_va4bg")])
 walkers = [NodePath("CaveWalker")]
 
 [node name="CaveWalker" parent="." instance=ExtResource("2_pvqeu")]

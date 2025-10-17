@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CaveVoxelData" load_steps=3 format=3 uid="uid://b1eitinpbqp23"]
+
+[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://cave_generation/cave_voxel_data/cave_voxel_data.gd" id="1_wiubk"]
+[ext_resource type="Resource" uid="uid://bofa5msjgpm2w" path="res://cave_generation/cave_voxel_data/voxel_dirt.tres" id="2_ktx7h"]
+
+[resource]
+script = ExtResource("1_wiubk")
+voxel_type = "rock"
+neighbors = Array[ExtResource("1_wiubk")]([ExtResource("2_ktx7h"), null])
+min_height = -50.0
+max_height = -30.0
+base_hp = 15.0
+metadata/_custom_type_script = "uid://brerktk8lflgb"

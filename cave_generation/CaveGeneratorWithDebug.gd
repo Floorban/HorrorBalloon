@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var voxel_data: Array[CaveVoxelData] = []
 @export var voxel_terrain : VoxelTerrain
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
@@ -14,7 +15,6 @@ var current_walker_index : int = 0
 @export var do_voxel_addition : bool = true
 
 var random_walk_positions : Array[Vector3] = []
-
 @onready var noise := FastNoiseLite.new()
 
 func _ready() -> void:
@@ -107,36 +107,28 @@ func do_sphere_addition(at_point: bool = false, global_point: Vector3 = Vector3.
 
 func paint_textures_by_height():
 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-	# voxel_tool.texture_opacity = 1.0
-	# voxel_tool.texture_falloff = 0.5
 
 	for pos in random_walk_positions:
-		var height = pos.y
-		var n = noise.get_noise_3d(pos.x, pos.y, pos.z)
+		# collect all voxel_data that match this height
+		var matching_voxels: Array = []
+		for v in voxel_data:
+			if pos.y >= v.min_height and pos.y <= v.max_height:
+				matching_voxels.append(v)
 
-		var tex_id = 0
-		if height + n * 10 < -20.0:
-			tex_id = 0  # moss/grass
-		elif height + n * 10 < 10.0:
-			tex_id = 1  # dirt
+		# pick one randomly if multiple, otherwise fallback
+		var voxel_copy: CaveVoxelData = null
+		if matching_voxels.size() > 0:
+			voxel_copy = matching_voxels[randi() % matching_voxels.size()]
 		else:
-			tex_id = 2  # rock
+			voxel_copy = voxel_data[0] # fallback to first element
 
-		if randf() < 0.1:
-			tex_id = randi_range(0, 2)
+		# paint the voxel
+		voxel_tool.texture_index = voxel_copy.texture_index
+		voxel_tool.do_sphere(pos, get_removal_size(3.0))
 
-		voxel_tool.texture_index = tex_id
-		voxel_tool.do_sphere(pos, get_removal_size(5.0))
-
-		var int_radius = ceil(current_walker.removal_size * 1.5)
-		for x in range(-int_radius, int_radius+1):
-			for y in range(-int_radius, int_radius+1):
-				for z in range(-int_radius, int_radius+1):
-					if Vector3(x, y, z).length() <= current_walker.removal_size * 1.5:
-						var voxel_pos: Vector3i = Vector3i(world_to_voxel(pos + Vector3(x, y, z)))
-						voxel_tool.set_voxel_metadata(voxel_pos, {
-							"hp": 15.0,
-							"tex_id": tex_id})
+		# assign metadata
+		var voxel_pos: Vector3i = Vector3i(world_to_voxel(pos))
+		voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_copy.duplicate(true)})
 
 func world_to_voxel(world_pos: Vector3) -> Vector3:
 	var local_pos = voxel_terrain.to_local(world_pos)

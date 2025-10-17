@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://b8vetxs6xq7y7" path="res://cave_generation/mining_texture.gdshader" id="1_k7kmd"]
 [ext_resource type="Script" uid="uid://c0cqduxgpc0dq" path="res://cave_generation/voxel_terrain.gd" id="2_1uw80"]
 [ext_resource type="Texture2D" uid="uid://brtk7d7pyxcnb" path="res://assets/stolen/128x128/Dirt/Dirt_09-128x128.png" id="4_4abmv"]
-[ext_resource type="Texture2D" uid="uid://yh2odcug8hh0" path="res://assets/stolen/128x128/Stone/Stone_11-128x128.png" id="5_1uw80"]
+[ext_resource type="Texture2D" uid="uid://ccmnqji8rqk8j" path="res://assets/stolen/128x128/Tile/Tile_12-128x128.png" id="5_7aybk"]
 [ext_resource type="Texture2D" uid="uid://c3tivilmr87xp" path="res://assets/stolen/128x128/Stone/Stone_05-128x128.png" id="5_ou8ce"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="7_hsrvp"]
 [ext_resource type="PackedScene" uid="uid://hik4wbxfsq2p" path="res://cave_generation/CaveGeneratorWithDebug.tscn" id="7_y3qst"]
@@ -51,18 +51,18 @@ data = {
 "width": 128
 }
 
-[sub_resource type="Texture2DArray" id="Texture2DArray_ou8ce"]
+[sub_resource type="Texture2DArray" id="Texture2DArray_ouc2d"]
 _images = Array[Image]([SubResource("Image_7aybk"), SubResource("Image_4abmv"), SubResource("Image_ou8ce")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3qst"]
 render_priority = 0
 shader = ExtResource("1_k7kmd")
 shader_parameter/u_transition_mask = 0
-shader_parameter/u_texture_array = SubResource("Texture2DArray_ou8ce")
+shader_parameter/u_texture_array = SubResource("Texture2DArray_ouc2d")
 shader_parameter/uv_scale = 0.20000000624012
-shader_parameter/grass_height = -10.0
+shader_parameter/grass_height = -0.2
 shader_parameter/rock_height = 0.0
-shader_parameter/paint_strength = 1.0
+shader_parameter/paint_strength = 0.5
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_1ryb3"]
 
@@ -90,7 +90,7 @@ mesher = SubResource("VoxelMesherTransvoxel_7cu7o")
 script = ExtResource("2_1uw80")
 texture1 = ExtResource("5_ou8ce")
 texture2 = ExtResource("4_4abmv")
-texture3 = ExtResource("5_1uw80")
+texture3 = ExtResource("5_7aybk")
 
 [node name="CaveGeneratorWithDebug" parent="." node_paths=PackedStringArray("voxel_terrain", "walkers") instance=ExtResource("7_y3qst")]
 voxel_terrain = NodePath("../VoxelTerrain")
@@ -99,8 +99,7 @@ rock_preload = ExtResource("7_hsrvp")
 
 [node name="CaveWalker2" parent="CaveGeneratorWithDebug" instance=ExtResource("8_7aybk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.116847, 0.79885674, 0)
-random_walk_length = 50
-removal_size = 2.0
+removal_size = 3.0
 y_range = Vector2(-0.1, 0.2)
 
 [node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("9_7aybk")]
