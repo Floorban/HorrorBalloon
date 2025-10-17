@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu4l41uoyyif"]
+
+[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/Islands/Rock.png" id="1_eyx78"]
+[ext_resource type="Texture2D" uid="uid://5hcihf20jfai" path="res://assets/stolen/cracks_tex.png" id="2_eyx78"]
+
+[node name="CrackedDecal" type="Decal"]
+size = Vector3(1, 0.8, 1)
+texture_albedo = ExtResource("1_eyx78")
+texture_normal = ExtResource("2_eyx78")
+albedo_mix = 0.0
+upper_fade = 0.017494375
+lower_fade = 0.016898455
+distance_fade_enabled = true
+distance_fade_begin = 5.0

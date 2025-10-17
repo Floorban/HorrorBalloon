@@ -92,7 +92,7 @@ var viewing_zoom: float = 0.8
 
 @export var voxel_terrain : VoxelTerrain
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
-
+@export var crack_decal : PackedScene
 
 func player_init() -> void:
 	cam_original_position = player_camera.position
@@ -138,15 +138,27 @@ func mine_voxel(_position: Vector3, radius: float, damage: float):
 
 	current_hp -= damage
 
+	var decal_instance = crack_decal.instantiate()
+	voxel_terrain.add_child(decal_instance)
+	decal_instance.visible = false
+
 	if current_hp <= 0:
+		# decal_instance.queue_free()
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(_position, radius)
+		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		var indx = voxel_tool.texture_index
+		voxel_tool.texture_index = indx + 1 if indx < 2 else 0
+		voxel_tool.do_sphere(_position, radius * 2)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
 		print("Voxel destroyed")
 	else:
-		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-		voxel_tool.texture_index = 0
-		voxel_tool.do_sphere(_position, radius * 1.5)
+		decal_instance.visible = true
+		decal_instance.global_position = _position
+		# voxel_tool.mode = VoxelTool.MODE_REMOVE
+		# voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		# voxel_tool.texture_index = 1
+		# voxel_tool.do_sphere(_position, radius * 1.5)
 		voxel_tool.set_voxel_metadata(voxel_pos, current_hp)
 		print("Voxel HP: %s" % str(current_hp))
 

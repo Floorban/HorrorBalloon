@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=13 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="PackedScene" uid="uid://bu4l41uoyyif" path="res://cracked_decal.tscn" id="2_boad6"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="3_qjkh3"]
@@ -40,6 +41,7 @@ script = ExtResource("1_oul6g")
 SFX_StepR = "event:/SFX/Girl/Step/Right"
 SFX_StepL = "event:/SFX/Girl/Step/Left"
 SFX_Crouch = "event:/SFX/Girl/Crouch"
+crack_decal = ExtResource("2_boad6")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true

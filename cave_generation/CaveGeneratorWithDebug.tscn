@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://hik4wbxfsq2p"]
+
+[ext_resource type="Script" uid="uid://cl0scwmhoy16j" path="res://cave_generation/CaveGeneratorWithDebug.gd" id="1_byicc"]
+[ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://cave_generation/cave_walker.tscn" id="2_pvqeu"]
+
+[node name="CaveGeneratorWithDebug" type="Node3D" node_paths=PackedStringArray("walkers")]
+script = ExtResource("1_byicc")
+walkers = [NodePath("CaveWalker")]
+
+[node name="CaveWalker" parent="." instance=ExtResource("2_pvqeu")]
+random_walk_length = 200
+y_range = Vector2(-0.5, 0.1)
+z_range = Vector2(-0.3, 0.3)
