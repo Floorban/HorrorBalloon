@@ -17,5 +17,4 @@ func get_walker_range() -> Vector3:
 	return Vector3(
 		randf_range(x_range.x, x_range.y),
 		randf_range(y_range.x, y_range.y),
-		randf_range(z_range.x, z_range.y)
-	)
+		randf_range(z_range.x, z_range.y))

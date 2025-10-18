@@ -1,8 +1,7 @@
 extends Node3D
 class_name CaveGenerator
 
-@export var voxel_data: Array[CaveVoxelData] = []
-@export var voxel_terrain : VoxelTerrain
+@export var voxel_terrain : Voxel
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
 @export var show_walker : bool = true
@@ -16,6 +15,7 @@ var current_walker_index : int = 0
 @export var do_voxel_addition : bool = true
 
 var random_walk_positions : Array[Vector3] = []
+var affected_voxels: Array[Vector3i] = []
 @onready var noise := FastNoiseLite.new()
 
 func _ready() -> void:
@@ -39,8 +39,9 @@ func finish_walk():
 		random_walk()
 	else:
 		await get_tree().process_frame
-		paint_textures_by_height()
+		set_voxel_meta_data()
 	random_walk_positions.clear()
+	affected_voxels.clear()
 
 func random_walk():
 	if not current_walker:
@@ -92,8 +93,20 @@ func wall_additions_pass():
 	finish_walk()
 
 func do_sphere_removal():
+	var radius = get_removal_size()
 	voxel_tool.mode = VoxelTool.MODE_REMOVE
-	voxel_tool.do_sphere(current_walker.global_position, get_removal_size())
+	voxel_tool.do_sphere(current_walker.global_position, radius)
+
+	# record all voxels near the surface
+	var voxel_center = Vector3i(CaveConstants.world_to_voxel(voxel_terrain, current_walker.global_position))
+	var int_r = ceil(radius)
+	for x in range(-int_r, int_r + 1):
+		for y in range(-int_r, int_r + 1):
+			for z in range(-int_r, int_r + 1):
+				var voxel_pos = voxel_center + Vector3i(x, y, z)
+				if Vector3(x, y, z).length() <= radius:
+					if not affected_voxels.has(voxel_pos):
+						affected_voxels.append(voxel_pos)
 
 func do_sphere_addition(at_point: bool = false, global_point: Vector3 = Vector3.ZERO):
 	voxel_tool.mode = VoxelTool.MODE_ADD
@@ -106,81 +119,23 @@ func do_sphere_addition(at_point: bool = false, global_point: Vector3 = Vector3.
 
 	voxel_tool.do_sphere(pos, get_removal_size(1) / 1.5)
 
-func paint_textures_by_height():
-	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+func set_voxel_meta_data():
+	if affected_voxels.is_empty():
+		print("No affected voxels recorded!")
+		return
 
-	for pos in random_walk_positions:
-		# collect all voxel_data that match this height
-		var matching_voxels: Array = []
-		for v in voxel_data:
-			if pos.y >= v.min_height and pos.y <= v.max_height:
-				matching_voxels.append(v)
+	for voxel_pos in affected_voxels:
+		var world_y = voxel_pos.y
+		var tex_id = get_texture_for_height(world_y)
+		var meta_byte = CaveConstants.encode_meta(tex_id, 0)
 
-		# pick one randomly if multiple, otherwise fallback
-		var voxel_copy: CaveVoxelData = null
-		if matching_voxels.size() > 0:
-			voxel_copy = matching_voxels[randi() % matching_voxels.size()]
-		else:
-			voxel_copy = voxel_data[0] # fallback to first element
+		voxel_tool.set_voxel_metadata(voxel_pos, {"meta": meta_byte})
 
-		# paint the voxel
-		voxel_tool.texture_index = voxel_copy.texture_index
-		# voxel_tool.texture_opacity = 0.5
-		# voxel_tool.texture_falloff = 0.4
-		voxel_tool.do_sphere(pos, get_removal_size(3.0))
-
-		# assign metadata
-		var voxel_pos: Vector3i = Vector3i(world_to_voxel(pos))
-		voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_copy.duplicate(true)})
-
-# func paint_textures_by_height():
-# 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-# 	var paint_radius := 10.0
-
-# 	random_walk_positions.shuffle()
-
-# 	for walk_position: Vector3 in random_walk_positions:
-# 		if current_walker.display_speed > 0:
-# 			await get_tree().create_timer(current_walker.display_speed).timeout
-
-# 		current_walker.global_position = walk_position
-
-# 		# Raycast to find the actual voxel to paint
-# 		var raycast_result: VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 30)
-# 		if raycast_result == null:
-# 			continue  # skip if nothing hit
-
-# 		var voxel_pos: Vector3i = Vector3i(world_to_voxel(raycast_result.position))
-# 		var voxel_meta = voxel_tool.get_voxel_metadata(voxel_pos)
-# 		var voxel_obj: CaveVoxelData = null
-
-# 		if voxel_meta != null and voxel_meta.has("type"):
-# 			voxel_obj = voxel_meta["type"]
-# 		else:
-# 			# pick all voxel_data matching height at the hit point
-# 			var matching_voxels: Array = []
-# 			for v in voxel_data:
-# 				if raycast_result.position.y >= v.min_height and raycast_result.position.y <= v.max_height:
-# 					matching_voxels.append(v)
-
-# 			if matching_voxels.size() > 0:
-# 				voxel_obj = matching_voxels[randi() % matching_voxels.size()]
-# 			else:
-# 				voxel_obj = voxel_data[0]
-
-# 			voxel_obj = voxel_obj.duplicate(true)
-# 			voxel_obj.current_hp = voxel_obj.base_hp
-# 			voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_obj})
-
-# 		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-# 		voxel_tool.texture_index = voxel_obj.texture_index
-# 		# voxel_tool.texture_opacity = 1.0
-# 		# voxel_tool.texture_falloff = 0.4
-# 		voxel_tool.do_sphere(raycast_result.position, paint_radius)
-
-func world_to_voxel(world_pos: Vector3) -> Vector3:
-	var local_pos = voxel_terrain.to_local(world_pos)
-	return Vector3(local_pos.x, local_pos.y, local_pos.z)
+func get_texture_for_height(y: float) -> int:
+	for v in voxel_terrain.voxel_data:
+		if y >= v.min_height and y <= v.max_height:
+			return v.texture_index
+	return voxel_terrain.voxel_data[0].texture_index
 
 func get_removal_size(variance : float = 1.0) -> float:
 	var removal_size : float = current_walker.removal_size
