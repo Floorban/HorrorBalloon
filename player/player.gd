@@ -114,7 +114,7 @@ func _input(event: InputEvent) -> void:
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	
 	if event.is_action_pressed("primary"):
-		mine_voxel(interaction_controller.hand.global_position, 1.2, 5.0)
+		mine_voxel(interaction_controller.hand.global_position, 1.2, "")
 	# elif event.is_action_pressed("secondary"):
 	# 	voxel_tool.mode = VoxelTool.MODE_ADD
 	# 	voxel_tool.grow_sphere(interaction_controller.hand.global_position, 1.0, 1.0)
@@ -144,71 +144,80 @@ func get_nearby_texture_index(voxel_pos: Vector3, fallback_voxel: CaveVoxelData 
 		return fallback_voxel.texture_index
 	return voxel_tool.texture_index
 
-func mine_voxel(_position: Vector3, radius: float, damage: float):
-	var int_radius = ceil(radius)
-	var center_voxel: Vector3i = Vector3i(world_to_voxel(_position))
-	var affected_voxels: Array = []
+func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
+	var voxel_pos: Vector3i = Vector3i(CaveConstants.world_to_voxel(voxel_terrain, world_pos))
+	var meta = voxel_tool.get_voxel_metadata(voxel_pos)
 
-	for x in range(-int_radius - 5, int_radius + 6):
-		for y in range(-int_radius -5, int_radius + 6):
-			for z in range(-int_radius -5, int_radius + 6):
-				var offset = Vector3i(x, y, z)
-				if offset.length() <= radius:
-					var voxel_pos = center_voxel + offset
-					var voxel_meta = voxel_tool.get_voxel_metadata(voxel_pos)
-					var voxel_obj: CaveVoxelData = null
+	var voxel_id: int = 0
 
-					if voxel_meta != null and voxel_meta.has("type"):
-						voxel_obj = voxel_meta["type"]
-					else:
-						# create one based on nearby voxel_data
-						voxel_obj = CaveVoxelData.new()
-						voxel_obj.texture_index = get_nearby_texture_index(voxel_pos, voxel_obj)
-						voxel_obj.current_hp = voxel_obj.base_hp
-						voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_obj})
+	if meta != null and meta.has("id"):
+		voxel_id = meta["id"]
+	else:
+		voxel_id = 0  # default rock
 
-					# reduce HP
-					voxel_obj.current_hp -= damage
-					if voxel_obj.current_hp <= 0:
-						voxel_tool.mode = VoxelTool.MODE_REMOVE
-						voxel_tool.do_sphere(voxel_pos, radius)
-						voxel_tool.set_voxel_metadata(voxel_pos, null)
+	# check id
+	if voxel_id < 0 or voxel_id >= voxel_terrain.voxel_data.size():
+		print("invalid voxel id:", voxel_id)
+		return
 
-						# Paint the destroyed voxel
-						voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-						voxel_tool.texture_index = voxel_obj.texture_index
-						# voxel_tool.texture_opacity = 1.0
-						# voxel_tool.texture_falloff = 0.4
-						voxel_tool.do_sphere(voxel_pos, radius)
+	# get voxel data
+	var voxel_data: CaveVoxelData = voxel_terrain.voxel_data[voxel_id]
 
-						# store for neighbor propagation
-						affected_voxels.append({"pos": voxel_pos, "voxel": voxel_obj})
-					else:
-						# update metadata
-						voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_obj})
-	# neighbors
-	for voxel_data_dict in affected_voxels:
-		var voxel_pos: Vector3i = voxel_data_dict["pos"]
-		var voxel_obj: CaveVoxelData = voxel_data_dict["voxel"]
+	# check tool type
+	if voxel_data.tool_type != "" and voxel_data.tool_type != tool_type:
+		print("wrong tool, need:", voxel_data.tool_type)
+		return
 
-		# paint the destroyed voxel again for safety
-		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-		voxel_tool.texture_index = voxel_obj.texture_index
-		voxel_tool.do_sphere(Vector3(voxel_pos.x, voxel_pos.y, voxel_pos.z), radius * 2.0)
+	# get current damage
+	var damage: int = 0
+	if meta != null and meta.has("damage"):
+		damage = meta["damage"]
 
-		for nx in range(-1, 2):
-			for ny in range(-1, 2):
-				for nz in range(-1, 2):
-					if nx == 0 and ny == 0 and nz == 0:
-						continue
-					var neighbor_pos = voxel_pos + Vector3i(nx, ny, nz)
-					var neighbor_meta = voxel_tool.get_voxel_metadata(neighbor_pos)
+	damage += 1 # TODO: add tool power
 
-					if neighbor_meta == null or not neighbor_meta.has("type"):
-						# create a new voxel based on the destroyed voxel's neighbors
-						var neighbor_voxel: CaveVoxelData = voxel_obj.get_random_neighbor().duplicate(true)
-						neighbor_voxel.current_hp = neighbor_voxel.base_hp
-						voxel_tool.set_voxel_metadata(neighbor_pos, {"type": neighbor_voxel})
+	print("Mining voxel at:", voxel_pos, "ID:", voxel_id, "Texture:", voxel_data.texture_index, "Current damage:", damage, "Max HP:", voxel_data.base_hp)
+
+	if damage >= voxel_data.base_hp:
+		# fully destroyed
+		voxel_tool.mode = VoxelTool.MODE_REMOVE
+		voxel_tool.do_sphere(world_pos, radius)
+		voxel_tool.set_voxel_metadata(voxel_pos, null)
+
+		# repaint and set meta data to neibours
+		var neighbor_positions = CaveConstants.get_nearby_voxel_positions(voxel_pos)
+		for n_pos in neighbor_positions:
+			var n_meta = voxel_tool.get_voxel_metadata(n_pos)
+			if n_meta == null or not n_meta.has("id"):
+				var new_neighbor_id = voxel_data.get_random_neighbor()
+				if new_neighbor_id >= 0 and new_neighbor_id < voxel_terrain.voxel_data.size():
+					voxel_tool.set_voxel_metadata(n_pos, {
+						"id": new_neighbor_id,
+						"pos": n_pos,
+						"damage": 0
+					})
+					
+					var new_neighbor_voxel = voxel_terrain.voxel_data[new_neighbor_id]
+					voxel_tool.texture_index = new_neighbor_voxel.texture_index
+					voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+					voxel_tool.do_sphere(Vector3(n_pos), radius)
+	else:
+		# update metadata and repaint
+		voxel_tool.set_voxel_metadata(voxel_pos, {
+			"id": voxel_id,
+			"pos": voxel_pos,
+			"damage": damage
+		})
+
+func paint_tunnel_falloff(center: Vector3, radius: float, texture_id: int):
+	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+
+	var steps = 4
+	for i in range(steps):
+		var blend_radius = radius + i * 2.0
+		var falloff = 1.0 - float(i) / float(steps)
+		voxel_tool.texture_index = texture_id
+		voxel_tool.texture_opacity = falloff
+		voxel_tool.do_sphere(center, blend_radius)
 
 func get_movement_dir() -> Vector3:
 	input_dir = Input.get_vector("left", "right", "forward", "backward")

@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://b8vetxs6xq7y7" path="res://cave_generation/mining_texture.gdshader" id="1_k7kmd"]
 [ext_resource type="Script" uid="uid://c0cqduxgpc0dq" path="res://cave_generation/voxel_terrain.gd" id="2_1uw80"]
 [ext_resource type="Texture2D" uid="uid://wub715ixr4gb" path="res://assets/stolen/Stone/Stone_05-128x128.png" id="3_ouc2d"]
-[ext_resource type="Texture2D" uid="uid://dcexwjhuje65j" path="res://assets/stolen/Stone/Stone_01-128x128.png" id="4_ouc2d"]
+[ext_resource type="Texture2D" uid="uid://fj6y3ccml3f5" path="res://assets/stolen/128x128/Dirt/Dirt_01-128x128.png" id="4_ouc2d"]
 [ext_resource type="Texture2D" uid="uid://dvkkph8af6vne" path="res://assets/stolen/Dirt/Dirt_19-128x128.png" id="5_ouc2d"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="7_hsrvp"]
 [ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://cave_generation/cave_voxel_data/cave_voxel_data.gd" id="7_ouc2d"]
@@ -64,7 +64,7 @@ shader = ExtResource("1_k7kmd")
 shader_parameter/u_transition_mask = 0
 shader_parameter/u_texture_array = SubResource("Texture2DArray_3m0kn")
 shader_parameter/uv_scale = 0.20000000624012
-shader_parameter/paint_strength = 0.01
+shader_parameter/paint_strength = 0.1
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_1ryb3"]
 
@@ -81,6 +81,7 @@ environment = SubResource("Environment_k7kmd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.5
 shadow_enabled = true
 
 [node name="VoxelTerrain" type="VoxelTerrain" parent="."]

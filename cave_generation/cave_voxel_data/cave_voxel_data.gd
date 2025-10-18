@@ -9,8 +9,24 @@ class_name CaveVoxelData
 @export var min_height: float
 @export var max_height: float
 
-@export var neighbors: Array[CaveVoxelData] = []
+# neighbors dictionary: key = id, value = chance weight
+@export var neighbor_chances: Dictionary = {}
 @export var ores: Dictionary = {}
+
+func get_random_neighbor() -> int:
+	var total_weight = 0.0
+	for weight in neighbor_chances.values():
+		total_weight += weight
+
+	if total_weight == 0:
+		return texture_index
+
+	var r = randf() * total_weight
+	for neighbor_index in neighbor_chances.keys():
+		r -= neighbor_chances[neighbor_index]
+		if r <= 0:
+			return neighbor_index
+	return texture_index  # neibor is self is no neibors
 
 func get_random_ore() -> String:
 	var total = 0.0

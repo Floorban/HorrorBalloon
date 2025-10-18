@@ -9,5 +9,7 @@ texture_index = 2
 base_hp = 2
 min_height = -30.0
 max_height = 50.0
-neighbors = Array[ExtResource("1_h1hgc")]([null])
+neighbor_chances = {
+1: 0.4
+}
 metadata/_custom_type_script = "uid://brerktk8lflgb"
