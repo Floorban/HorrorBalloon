@@ -103,6 +103,7 @@ rock_preload = ExtResource("7_hsrvp")
 [node name="CaveWalker2" parent="CaveGeneratorWithDebug" instance=ExtResource("8_7aybk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.116847, 0.79885674, 0)
 random_walk_length = 200
+display_speed = 0.001
 x_range = Vector2(-0.3, 0.3)
 y_range = Vector2(-0.1, 0.2)
 

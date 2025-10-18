@@ -6,6 +6,6 @@
 script = ExtResource("1_l0hap")
 texture_index = 1
 neighbors = Array[ExtResource("1_l0hap")]([null])
-min_height = -15.0
-max_height = 0.0
+min_height = -50.0
+max_height = -10.0
 metadata/_custom_type_script = "uid://brerktk8lflgb"

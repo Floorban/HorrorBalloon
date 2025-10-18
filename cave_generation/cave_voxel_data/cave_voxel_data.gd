@@ -4,8 +4,8 @@ class_name CaveVoxelData
 @export var voxel_type: String = "dirt"
 @export var texture_index: int = 0
 @export var neighbors: Array[CaveVoxelData] = []
-@export var min_height: float = -1000
-@export var max_height: float = 1000
+@export var min_height: float
+@export var max_height: float
 
 @export var base_hp: float = 10.0
 @export var ores: Dictionary = {}

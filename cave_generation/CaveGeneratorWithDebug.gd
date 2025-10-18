@@ -75,20 +75,20 @@ func random_walk():
 		wall_additions_pass()
 
 func wall_additions_pass():
-	for walk_position : Vector3 in random_walk_positions:
-		if current_walker.display_speed > 0:
-			await get_tree().create_timer(current_walker.display_speed).timeout
+	# for walk_position : Vector3 in random_walk_positions:
+	# 	if current_walker.display_speed > 0:
+	# 		await get_tree().create_timer(current_walker.display_speed).timeout
 
-		var raycast_result : VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 20)
-		current_walker.global_position = walk_position
+	# 	var raycast_result : VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 20)
+	# 	current_walker.global_position = walk_position
 
-		if raycast_result and current_walker.tresure_chance > randf():
-			current_walker.ray.look_at(raycast_result.position)
-			var new_instance : Node3D = [rock_preload].pick_random().instantiate()
-			self.add_child(new_instance)
-			new_instance.global_position = raycast_result.position
-			new_instance.scale = new_instance.scale * randf_range(0.5, 2.0)
-			new_instance.look_at(new_instance.global_position + raycast_result.normal)
+	# 	if raycast_result and current_walker.tresure_chance > randf():
+	# 		current_walker.ray.look_at(raycast_result.position)
+	# 		var new_instance : Node3D = [rock_preload].pick_random().instantiate()
+	# 		self.add_child(new_instance)
+	# 		new_instance.global_position = raycast_result.position
+	# 		new_instance.scale = new_instance.scale * randf_range(0.5, 2.0)
+	# 		new_instance.look_at(new_instance.global_position + raycast_result.normal)
 
 	finish_walk()
 
@@ -121,15 +121,24 @@ func do_sphere_addition(at_point: bool = false, global_point: Vector3 = Vector3.
 
 func set_voxel_meta_data():
 	if affected_voxels.is_empty():
-		print("No affected voxels recorded!")
 		return
 
-	for voxel_pos in affected_voxels:
-		var world_y = voxel_pos.y
-		var tex_id = get_texture_for_height(world_y)
-		var meta_byte = CaveConstants.encode_meta(tex_id, 0)
+	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+	voxel_tool.texture_opacity = 1.0
+	voxel_tool.texture_falloff = 0.5  # 0.0 is no blending painting
 
+	for voxel_pos in affected_voxels:
+		var voxel_pos_i = Vector3i(round(voxel_pos.x), round(voxel_pos.y), round(voxel_pos.z))
+		var tex_id = get_texture_for_height(voxel_pos_i.y)
+		# var world_y = voxel_pos.y
+		# var tex_id = get_texture_for_height(world_y)
+
+		var meta_byte = CaveConstants.encode_meta(tex_id, 0)
 		voxel_tool.set_voxel_metadata(voxel_pos, {"meta": meta_byte})
+
+		voxel_tool.texture_index = tex_id
+		var world_pos =  CaveConstants.world_to_voxel(voxel_terrain, Vector3(voxel_pos))
+		voxel_tool.do_sphere(world_pos, 2.0)
 
 func get_texture_for_height(y: float) -> int:
 	for v in voxel_terrain.voxel_data:
