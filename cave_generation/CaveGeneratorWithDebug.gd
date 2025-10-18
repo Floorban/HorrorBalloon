@@ -52,8 +52,7 @@ func random_walk():
 		current_walker.global_position.y = clampf(
 			current_walker.global_position.y,
 			-1000,
-			voxel_terrain.generator.height - ceiling_thickness_m
-		)
+			voxel_terrain.generator.height - ceiling_thickness_m)
 
 		if i % 2 == 0:
 			random_walk_positions.append(current_walker.global_position)
@@ -125,25 +124,33 @@ func set_voxel_meta_data():
 
 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
 	voxel_tool.texture_opacity = 1.0
-	voxel_tool.texture_falloff = 0.5  # 0.0 is no blending painting
+	voxel_tool.texture_falloff = 0.0  # 0.0 is no blending painting
 
 	for voxel_pos in affected_voxels:
-		var voxel_pos_i = Vector3i(round(voxel_pos.x), round(voxel_pos.y), round(voxel_pos.z))
-		var tex_id = get_texture_for_height(voxel_pos_i.y)
-		# var world_y = voxel_pos.y
-		# var tex_id = get_texture_for_height(world_y)
+		var world_y = voxel_pos.y 
+		var tex_id = get_texture_for_height(world_y)
 
-		var meta_byte = CaveConstants.encode_meta(tex_id, 0)
-		voxel_tool.set_voxel_metadata(voxel_pos, {"meta": meta_byte})
+		if voxel_tool.get_voxel(voxel_pos) != 0: # 0 = air
+			voxel_tool.set_voxel_metadata(voxel_pos, {
+				"id": tex_id,
+				"pos": voxel_pos,
+				"damage": 0
+				})
 
-		voxel_tool.texture_index = tex_id
-		var world_pos =  CaveConstants.world_to_voxel(voxel_terrain, Vector3(voxel_pos))
-		voxel_tool.do_sphere(world_pos, 2.0)
+			voxel_tool.texture_index = tex_id
+			var world_pos =  CaveConstants.world_to_voxel(voxel_terrain, Vector3(voxel_pos))
+			voxel_tool.do_sphere(world_pos, 1.2)
 
 func get_texture_for_height(y: float) -> int:
+	var matching_voxels: Array = []
 	for v in voxel_terrain.voxel_data:
 		if y >= v.min_height and y <= v.max_height:
-			return v.texture_index
+			matching_voxels.append(v)
+
+	if matching_voxels.size() > 0:
+		var chosen = matching_voxels[randi() % matching_voxels.size()]
+		return chosen.texture_index
+
 	return voxel_terrain.voxel_data[0].texture_index
 
 func get_removal_size(variance : float = 1.0) -> float:

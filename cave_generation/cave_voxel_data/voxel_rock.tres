@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_wiubk")
 voxel_type = "rock"
-neighbors = Array[ExtResource("1_wiubk")]([ExtResource("2_ktx7h"), null])
+base_hp = 3
 min_height = -10000.0
 max_height = -5000.0
-base_hp = 5.0
+neighbors = Array[ExtResource("1_wiubk")]([ExtResource("2_ktx7h"), null])
 metadata/_custom_type_script = "uid://brerktk8lflgb"

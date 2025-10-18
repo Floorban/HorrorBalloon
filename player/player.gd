@@ -186,7 +186,6 @@ func mine_voxel(_position: Vector3, radius: float, damage: float):
 					else:
 						# update metadata
 						voxel_tool.set_voxel_metadata(voxel_pos, {"type": voxel_obj})
-
 	# neighbors
 	for voxel_data_dict in affected_voxels:
 		var voxel_pos: Vector3i = voxel_data_dict["pos"]
@@ -210,7 +209,6 @@ func mine_voxel(_position: Vector3, radius: float, damage: float):
 						var neighbor_voxel: CaveVoxelData = voxel_obj.get_random_neighbor().duplicate(true)
 						neighbor_voxel.current_hp = neighbor_voxel.base_hp
 						voxel_tool.set_voxel_metadata(neighbor_pos, {"type": neighbor_voxel})
-
 
 func get_movement_dir() -> Vector3:
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
