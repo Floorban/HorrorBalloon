@@ -11,6 +11,6 @@ base_hp = 2
 min_height = -10.0
 max_height = 5.0
 neighbor_chances = {
-1: 0.4
+2: 0.15
 }
 metadata/_custom_type_script = "uid://brerktk8lflgb"

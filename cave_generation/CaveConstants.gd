@@ -3,9 +3,9 @@ extends Node
 class_name CaveConstants
 
 const LAYER_RANGE : Array[Vector2i] = [
-	Vector2(30, 50),     # rock
-	Vector2(10, 15),		  # grass
-	Vector2(15, 30),	  # dirt
+	Vector2(35, 60),      # rock
+	Vector2(20, 25),	  # grass
+	Vector2(25, 35),	  # dirt
 	Vector2(-250, -150),  # gold, dirt and rock
 	Vector2(-350, -250),  # ruby, rock
 	Vector2(-500, -350)   # diamond, rock and non-destructable

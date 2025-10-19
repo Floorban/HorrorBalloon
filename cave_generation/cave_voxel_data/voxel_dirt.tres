@@ -8,4 +8,7 @@ script = ExtResource("1_l0hap")
 texture_index = 2
 min_height = -15.0
 max_height = -5.0
+neighbor_chances = {
+0: 0.05
+}
 metadata/_custom_type_script = "uid://brerktk8lflgb"

@@ -9,4 +9,7 @@ voxel_type = "rock"
 base_hp = 3
 min_height = -50.0
 max_height = -30.0
+neighbor_chances = {
+3: 0.1
+}
 metadata/_custom_type_script = "uid://brerktk8lflgb"

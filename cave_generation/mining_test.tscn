@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://hik4wbxfsq2p" path="res://cave_generation/CaveGeneratorWithDebug.tscn" id="7_y3qst"]
 [ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://cave_generation/cave_walker.tscn" id="8_7aybk"]
 [ext_resource type="Resource" uid="uid://4pdyy24cm4pr" path="res://cave_generation/cave_voxel_data/voxel_grass.tres" id="8_e5yhn"]
+[ext_resource type="PackedScene" uid="uid://bvvrror6xtuo1" path="res://cave_generation/flying_camera.tscn" id="9_7aybk"]
 [ext_resource type="Resource" uid="uid://bofa5msjgpm2w" path="res://cave_generation/cave_voxel_data/voxel_dirt.tres" id="9_g11l6"]
 [ext_resource type="Resource" uid="uid://b1eitinpbqp23" path="res://cave_generation/cave_voxel_data/voxel_rock.tres" id="10_3m0kn"]
 [ext_resource type="Resource" uid="uid://q35rdmm1nfhq" path="res://cave_generation/cave_voxel_data/voxel_none.tres" id="11_g11l6"]
-[ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="13_ouc2d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ryb3"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -66,7 +66,7 @@ shader = ExtResource("1_k7kmd")
 shader_parameter/u_transition_mask = 0
 shader_parameter/u_texture_array = SubResource("Texture2DArray_ouc2d")
 shader_parameter/uv_scale = 0.20000000624012
-shader_parameter/paint_strength = 0.15
+shader_parameter/paint_strength = 0.3
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_1ryb3"]
 
@@ -110,7 +110,6 @@ display_speed = 0.001
 x_range = Vector2(-0.3, 0.3)
 y_range = Vector2(-0.5, 0.2)
 
-[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("13_ouc2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.917942, 6.863682, 0)
-floor_stop_on_slope = true
+[node name="FlyingCamera" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("9_7aybk")]
+sensitivity = 0.25
 voxel_terrain = NodePath("../VoxelTerrain")

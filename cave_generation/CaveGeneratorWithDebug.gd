@@ -176,7 +176,7 @@ func paint_voxel_and_neighbors(voxel_pos: Vector3i, radius: float):
 
 func get_texture_for_height(y: float) -> int:
 	if y > -2:
-		return  voxel_terrain.voxel_data.size() - 1 # none
+		return  voxel_terrain.voxel_data.size() - 1# none
 
 	var matching_voxels: Array = []
 	for v in voxel_terrain.voxel_data:

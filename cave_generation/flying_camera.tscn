@@ -4,6 +4,7 @@
 
 [node name="FlyingCamera" type="Camera3D"]
 script = ExtResource("1_ms6ou")
+sensitivity = null
 
 [node name="VoxelViewer" type="VoxelViewer" parent="."]
 
