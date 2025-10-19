@@ -46,7 +46,7 @@ var player_state: PlayerState = PlayerState.IDLE_STAND
 const walking_speed: float = 2.0
 const sprinting_speed: float = 3.0
 const crouching_speed: float = 1.0
-const crouching_depth: float = -0.7
+const crouching_depth: float = -0.5
 var can_move := true
 var current_speed: float
 var max_speed: float
@@ -63,9 +63,9 @@ var is_in_air: bool = false
 const head_bobbing_sprinting_speed: float = 14.0
 const head_bobbing_walking_speed: float = 10.0
 const head_bobbing_crouching_speed: float = 8.0
-const head_bobbing_sprinting_intensity: float = 0.2
-const head_bobbing_walking_intensity: float = 0.1
-const head_bobbing_crouching_intensity: float = 0.05
+const head_bobbing_sprinting_intensity: float = 0.12
+const head_bobbing_walking_intensity: float = 0.08
+const head_bobbing_crouching_intensity: float = 0.03
 var head_bobbing_current_intensity: float = 0.0
 var head_bobbing_vector: Vector2 = Vector2.ZERO
 var head_bobbing_index: float = 0.0
@@ -102,6 +102,8 @@ func player_init() -> void:
 func _ready() -> void:
 	player_init()
 
+@onready var dig_cast : RayCast3D = %DigCast
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
@@ -113,8 +115,6 @@ func _input(event: InputEvent) -> void:
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	
-	if event.is_action_pressed("primary"):
-		mine_voxel(interaction_controller.hand.global_position, 1.2, "")
 	# elif event.is_action_pressed("secondary"):
 	# 	voxel_tool.mode = VoxelTool.MODE_ADD
 	# 	voxel_tool.grow_sphere(interaction_controller.hand.global_position, 1.0, 1.0)
@@ -125,27 +125,8 @@ func _input(event: InputEvent) -> void:
 	# 	voxel_tool.texture_index = posmod(voxel_tool.texture_index + 1, 3)
 	# 	print("Texture Index: %s" % str(voxel_tool.texture_index))
 
-func world_to_voxel(world_pos: Vector3) -> Vector3:
-	var local_pos = voxel_terrain.to_local(world_pos)
-	return Vector3(local_pos.x, local_pos.y, local_pos.z)
-
-func get_nearby_texture_index(voxel_pos: Vector3, fallback_voxel: CaveVoxelData = null) -> int:
-	for offset in [
-		Vector3(2,0,0), Vector3(-2,0,0),
-		Vector3(0,2,0), Vector3(0,-2,0),
-		Vector3(0,0,2), Vector3(0,0,-2)]:
-		var neighbor_meta = voxel_tool.get_voxel_metadata(voxel_pos + offset)
-		if neighbor_meta != null and neighbor_meta.has("type"):
-			var neighbor_voxel: CaveVoxelData = neighbor_meta["type"]
-			if neighbor_voxel != null:
-				return neighbor_voxel.texture_index
-
-	if fallback_voxel != null:
-		return fallback_voxel.texture_index
-	return voxel_tool.texture_index
-
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
-	var voxel_pos: Vector3i = Vector3i(CaveConstants.world_to_voxel(voxel_terrain, world_pos))
+	var voxel_pos: Vector3 = Vector3(CaveConstants.world_to_voxel(voxel_terrain, world_pos))
 	var meta = voxel_tool.get_voxel_metadata(voxel_pos)
 
 	var voxel_id: int = 0
@@ -153,7 +134,17 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	if meta != null and meta.has("id"):
 		voxel_id = meta["id"]
 	else:
-		voxel_id = 0  # default rock
+		var dist_xz = Vector2(voxel_pos.x, voxel_pos.z).distance_to(Vector2(voxel_terrain.global_position.x, voxel_terrain.global_position.z))
+		if voxel_pos.y <= -30:
+			voxel_id = 0  # rock layer
+		elif dist_xz < 10:
+			voxel_id = 0  # inner rock
+		elif dist_xz < 15:
+			voxel_id = 1  # dirt
+		elif dist_xz < 30:
+			voxel_id = 2  # grass
+		else:
+			voxel_id = 0  # fallback rock
 
 	# check id
 	if voxel_id < 0 or voxel_id >= voxel_terrain.voxel_data.size():
@@ -175,49 +166,68 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 
 	damage += 1 # TODO: add tool power
 
-	print("Mining voxel at:", voxel_pos, "ID:", voxel_id, "Texture:", voxel_data.texture_index, "Current damage:", damage, "Max HP:", voxel_data.base_hp)
+	print("ID:", voxel_id, " Current damage:", damage, " Max HP:", voxel_data.base_hp)
 
 	if damage >= voxel_data.base_hp:
 		# fully destroyed
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(world_pos, radius)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
-
-		# repaint and set meta data to neibours
-		var neighbor_positions = CaveConstants.get_nearby_voxel_positions(voxel_pos)
-		for n_pos in neighbor_positions:
-			var n_meta = voxel_tool.get_voxel_metadata(n_pos)
-			if n_meta == null or not n_meta.has("id"):
-				var new_neighbor_id = voxel_data.get_random_neighbor()
-				if new_neighbor_id >= 0 and new_neighbor_id < voxel_terrain.voxel_data.size():
-					voxel_tool.set_voxel_metadata(n_pos, {
-						"id": new_neighbor_id,
-						"pos": n_pos,
-						"damage": 0
-					})
-					
-					var new_neighbor_voxel = voxel_terrain.voxel_data[new_neighbor_id]
-					voxel_tool.texture_index = new_neighbor_voxel.texture_index
-					voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-					voxel_tool.do_sphere(Vector3(n_pos), radius)
+		paint_neighbor(voxel_pos, radius, voxel_data)
 	else:
-		# update metadata and repaint
+		# update meta and repaint cracked voxel
 		voxel_tool.set_voxel_metadata(voxel_pos, {
 			"id": voxel_id,
 			"pos": voxel_pos,
-			"damage": damage
+			"damage": damage,
 		})
 
-func paint_tunnel_falloff(center: Vector3, radius: float, texture_id: int):
-	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		# voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		# voxel_tool.texture_index = voxel_data.texture_index
+		# voxel_tool.do_sphere(world_pos, 0.1)
 
-	var steps = 4
-	for i in range(steps):
-		var blend_radius = radius + i * 2.0
-		var falloff = 1.0 - float(i) / float(steps)
-		voxel_tool.texture_index = texture_id
-		voxel_tool.texture_opacity = falloff
-		voxel_tool.do_sphere(center, blend_radius)
+func paint_neighbor(center_pos: Vector3, radius: float, voxel_data: CaveVoxelData):
+	var neighbors = CaveConstants.get_nearby_voxel_positions(center_pos)
+	for n_pos in neighbors:
+		var n_voxel = voxel_tool.get_voxel(n_pos)
+		if n_voxel == 0:
+			continue
+		var n_meta = voxel_tool.get_voxel_metadata(n_pos)
+		if n_meta != null and n_meta.has("id"):
+			continue
+
+		var dist_xz = Vector2(n_pos.x, n_pos.z).distance_to(Vector2(voxel_terrain.global_position.x, voxel_terrain.global_position.z))
+		var layer_tex_id = get_texture_for_horizontal_distance(dist_xz)
+		if dist_xz <= 10:
+			layer_tex_id = voxel_data.texture_index
+		elif n_pos.y < -30:
+			layer_tex_id = 0
+
+		if layer_tex_id < 0 or layer_tex_id >= voxel_terrain.voxel_data.size():
+			continue
+
+		voxel_tool.set_voxel_metadata(n_pos, {
+			"id": layer_tex_id,
+			"pos": n_pos,
+			"damage": 0
+		})
+
+		var target_voxel_data: CaveVoxelData = voxel_terrain.voxel_data[layer_tex_id]
+		voxel_tool.texture_index = target_voxel_data.texture_index
+		voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
+		voxel_tool.texture_opacity = 1.0
+		voxel_tool.texture_falloff = 0.0  # no blending
+
+		voxel_tool.do_sphere(n_pos, radius)
+
+func get_texture_for_horizontal_distance(dist_xz: float) -> int:
+	for i in range(CaveConstants.LAYER_RANGE.size()):
+		var _range = CaveConstants.LAYER_RANGE[i]
+		if dist_xz >= abs(_range.x) and dist_xz <= abs(_range.y):
+			if i < voxel_terrain.voxel_data.size():
+				return voxel_terrain.voxel_data[i].texture_index
+			break
+	return voxel_terrain.voxel_data[0].texture_index
 
 func get_movement_dir() -> Vector3:
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -299,6 +309,10 @@ func cam_shake() -> void:
 	player_camera.rotation_degrees = cam_original_rotation + _rotation
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("primary"):
+		if dig_cast.is_colliding():
+			var collision_point: Vector3 = dig_cast.get_collision_point()
+			mine_voxel(collision_point, 1.0, "pickaxe")
 	updatecam_shake(delta)
 	update_cam_state(delta)
 

@@ -15,7 +15,7 @@ var current_walker_index : int = 0
 @export var do_voxel_addition : bool = true
 
 var random_walk_positions : Array[Vector3] = []
-var affected_voxels: Array[Vector3i] = []
+var affected_voxels: Array[Vector3] = []
 @onready var noise := FastNoiseLite.new()
 
 func _ready() -> void:
@@ -38,7 +38,6 @@ func finish_walk():
 		current_walker = walkers[current_walker_index]
 		random_walk()
 	else:
-		await get_tree().process_frame
 		set_voxel_meta_data()
 	random_walk_positions.clear()
 	affected_voxels.clear()
@@ -74,21 +73,30 @@ func random_walk():
 		wall_additions_pass()
 
 func wall_additions_pass():
-	# for walk_position : Vector3 in random_walk_positions:
-	# 	if current_walker.display_speed > 0:
-	# 		await get_tree().create_timer(current_walker.display_speed).timeout
+	for walk_position : Vector3 in random_walk_positions:
+		if current_walker.display_speed > 0:
+			await get_tree().create_timer(current_walker.display_speed).timeout
 
-	# 	var raycast_result : VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 20)
-	# 	current_walker.global_position = walk_position
+		var raycast_result : VoxelRaycastResult = voxel_tool.raycast(walk_position, get_random_direction(true), 20)
+		if not raycast_result:
+			continue
 
-	# 	if raycast_result and current_walker.tresure_chance > randf():
-	# 		current_walker.ray.look_at(raycast_result.position)
-	# 		var new_instance : Node3D = [rock_preload].pick_random().instantiate()
-	# 		self.add_child(new_instance)
-	# 		new_instance.global_position = raycast_result.position
-	# 		new_instance.scale = new_instance.scale * randf_range(0.5, 2.0)
-	# 		new_instance.look_at(new_instance.global_position + raycast_result.normal)
+		current_walker.global_position = walk_position
 
+		# compare height to cave layer ranges to decide ore type
+		var height_y = raycast_result.position.y
+		var ore_voxel: CaveVoxelData = get_voxel_data_for_height(height_y)
+
+		if ore_voxel and ore_voxel.ores.size() > 0 and current_walker.tresure_chance > randf():
+			var ore_data: OreData = ore_voxel.get_random_ore()
+			if ore_data:
+				var ore_scene: PackedScene = ore_data.get_random_scene()
+				if ore_scene:
+					var ore_instance: Node3D = ore_scene.instantiate()
+					self.add_child(ore_instance)
+					ore_instance.global_position = raycast_result.position
+					ore_instance.look_at(ore_instance.global_position + raycast_result.normal)
+					ore_instance.scale *= randf_range(0.5, 1.5)
 	finish_walk()
 
 func do_sphere_removal():
@@ -97,12 +105,12 @@ func do_sphere_removal():
 	voxel_tool.do_sphere(current_walker.global_position, radius)
 
 	# record all voxels near the surface
-	var voxel_center = Vector3i(CaveConstants.world_to_voxel(voxel_terrain, current_walker.global_position))
-	var int_r = ceil(radius)
+	var voxel_center = Vector3(CaveConstants.world_to_voxel(voxel_terrain, current_walker.global_position))
+	var int_r = radius
 	for x in range(-int_r, int_r + 1):
 		for y in range(-int_r, int_r + 1):
 			for z in range(-int_r, int_r + 1):
-				var voxel_pos = voxel_center + Vector3i(x, y, z)
+				var voxel_pos = voxel_center + Vector3(x, y, z)
 				if Vector3(x, y, z).length() <= radius:
 					if not affected_voxels.has(voxel_pos):
 						affected_voxels.append(voxel_pos)
@@ -116,7 +124,7 @@ func do_sphere_addition(at_point: bool = false, global_point: Vector3 = Vector3.
 	else:
 		pos = current_walker.global_position
 
-	voxel_tool.do_sphere(pos, get_removal_size(1) / 1.5)
+	voxel_tool.do_sphere(pos, get_removal_size(1) / 2.0)
 
 func set_voxel_meta_data():
 	if affected_voxels.is_empty():
@@ -124,22 +132,47 @@ func set_voxel_meta_data():
 
 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
 	voxel_tool.texture_opacity = 1.0
-	voxel_tool.texture_falloff = 0.0  # 0.0 is no blending painting
+	voxel_tool.texture_falloff = 0.0  # no blending
 
 	for voxel_pos in affected_voxels:
-		var world_y = voxel_pos.y 
-		var tex_id = get_texture_for_height(world_y)
+		paint_voxel_and_neighbors(voxel_pos, 1.0)
 
-		if voxel_tool.get_voxel(voxel_pos) != 0: # 0 = air
-			voxel_tool.set_voxel_metadata(voxel_pos, {
-				"id": tex_id,
-				"pos": voxel_pos,
+func paint_voxel_and_neighbors(voxel_pos: Vector3i, radius: float):
+	if voxel_tool.get_voxel(voxel_pos) == 0:
+		return
+
+	var meta = voxel_tool.get_voxel_metadata(voxel_pos)
+	var tex_id = get_texture_for_height(voxel_pos.y)
+
+	if meta == null or not meta.has("id"):
+		voxel_tool.set_voxel_metadata(voxel_pos, {
+			"id": tex_id,
+			"pos": voxel_pos,
+			"damage": 0
+		})
+
+		voxel_tool.texture_index = tex_id
+		var world_pos = voxel_terrain.to_global(Vector3(voxel_pos)) # + Vector3.ONE * 0.5
+		voxel_tool.do_sphere(world_pos, radius)
+
+	var neighbors = CaveConstants.get_nearby_voxel_positions(voxel_pos)
+	for n_pos in neighbors:
+		var n_meta = voxel_tool.get_voxel_metadata(n_pos)
+		if n_meta == null or not n_meta.has("id"):
+			var n_tex_id = tex_id
+			if voxel_terrain.voxel_data.size() > tex_id:
+				var voxel_data = voxel_terrain.voxel_data[tex_id]
+				if voxel_data and voxel_data.neighbor_chances.size() > 0:
+					n_tex_id = voxel_data.get_random_neighbor()
+
+			voxel_tool.set_voxel_metadata(n_pos, {
+				"id": n_tex_id,
+				"pos": n_pos,
 				"damage": 0
-				})
-
-			voxel_tool.texture_index = tex_id
-			var world_pos =  CaveConstants.world_to_voxel(voxel_terrain, Vector3(voxel_pos))
-			voxel_tool.do_sphere(world_pos, 1.2)
+			})
+			voxel_tool.texture_index = voxel_terrain.voxel_data[n_tex_id].texture_index
+			var n_world_pos = voxel_terrain.to_global(Vector3(n_pos)) # + Vector3.ONE * 0.5
+			voxel_tool.do_sphere(n_world_pos, radius)
 
 func get_texture_for_height(y: float) -> int:
 	var matching_voxels: Array = []
@@ -148,10 +181,16 @@ func get_texture_for_height(y: float) -> int:
 			matching_voxels.append(v)
 
 	if matching_voxels.size() > 0:
-		var chosen = matching_voxels[randi() % matching_voxels.size()]
+		var chosen: CaveVoxelData = matching_voxels.pick_random()
 		return chosen.texture_index
 
 	return voxel_terrain.voxel_data[0].texture_index
+
+func get_voxel_data_for_height(y: float) -> CaveVoxelData:
+	for v in voxel_terrain.voxel_data:
+		if y >= v.min_height and y <= v.max_height:
+			return v
+	return null
 
 func get_removal_size(variance : float = 1.0) -> float:
 	var removal_size : float = current_walker.removal_size

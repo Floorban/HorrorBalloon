@@ -13,7 +13,7 @@ radius = 0.111816406
 height = 1.2901382
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
-radius = 0.078125
+radius = 0.11328125
 height = 0.9067383
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g6k8r"]
@@ -36,7 +36,8 @@ corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 top_level = true
-floor_max_angle = 1.3962634
+floor_stop_on_slope = false
+floor_max_angle = 1.0471976
 script = ExtResource("1_oul6g")
 SFX_StepR = "event:/SFX/Girl/Step/Right"
 SFX_StepL = "event:/SFX/Girl/Step/Left"
@@ -65,6 +66,11 @@ light_energy = 0.0
 light_volumetric_fog_energy = 1.5
 light_size = 0.05
 light_bake_mode = 0
+
+[node name="DigCast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.007594824, 0)
+target_position = Vector3(0, 0, -2)
 
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
