@@ -125,6 +125,14 @@ func _input(event: InputEvent) -> void:
 	# 	voxel_tool.texture_index = posmod(voxel_tool.texture_index + 1, 3)
 	# 	print("Texture Index: %s" % str(voxel_tool.texture_index))
 
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("primary"):
+		if dig_cast.is_colliding():
+			var collision_point: Vector3 = dig_cast.get_collision_point()
+			mine_voxel(collision_point, 1.0, "pickaxe")
+	updatecam_shake(delta)
+	update_cam_state(delta)
+
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	var voxel_pos: Vector3 = Vector3(CaveConstants.world_to_voxel(voxel_terrain, world_pos))
 	var meta = voxel_tool.get_voxel_metadata(voxel_pos)
@@ -135,13 +143,16 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 		voxel_id = meta["id"]
 	else:
 		var dist_xz = Vector2(voxel_pos.x, voxel_pos.z).distance_to(Vector2(voxel_terrain.global_position.x, voxel_terrain.global_position.z))
-		if voxel_pos.y <= -30:
+
+		if voxel_pos.y < -50:
+			voxel_id = voxel_terrain.voxel_data.size() - 1
+		elif voxel_pos.y <= -30:
 			voxel_id = 0  # rock layer
-		elif dist_xz < 10:
+		elif dist_xz < CaveConstants.LAYER_RANGE[1].x:
 			voxel_id = 0  # inner rock
-		elif dist_xz < 15:
+		elif dist_xz < CaveConstants.LAYER_RANGE[1].y:
 			voxel_id = 1  # dirt
-		elif dist_xz < 30:
+		elif dist_xz < CaveConstants.LAYER_RANGE[0].x:
 			voxel_id = 2  # grass
 		else:
 			voxel_id = 0  # fallback rock
@@ -198,8 +209,12 @@ func paint_neighbor(center_pos: Vector3, radius: float, voxel_data: CaveVoxelDat
 
 		var dist_xz = Vector2(n_pos.x, n_pos.z).distance_to(Vector2(voxel_terrain.global_position.x, voxel_terrain.global_position.z))
 		var layer_tex_id = get_texture_for_horizontal_distance(dist_xz)
-		if dist_xz <= 10:
+		if dist_xz <= CaveConstants.LAYER_RANGE[1].x:
 			layer_tex_id = voxel_data.texture_index
+		elif dist_xz > CaveConstants.LAYER_RANGE[0].y:
+			layer_tex_id = voxel_terrain.voxel_data.size() - 1
+		elif n_pos.y < -50:
+			layer_tex_id = voxel_terrain.voxel_data.size() - 1
 		elif n_pos.y < -30:
 			layer_tex_id = 0
 
@@ -307,14 +322,6 @@ func cam_shake() -> void:
 	
 	player_camera.position = cam_original_position + _offset
 	player_camera.rotation_degrees = cam_original_rotation + _rotation
-
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("primary"):
-		if dig_cast.is_colliding():
-			var collision_point: Vector3 = dig_cast.get_collision_point()
-			mine_voxel(collision_point, 1.0, "pickaxe")
-	updatecam_shake(delta)
-	update_cam_state(delta)
 
 func update_player_state() -> void:
 	moving = (input_dir != Vector2.ZERO)
