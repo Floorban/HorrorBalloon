@@ -82,8 +82,8 @@ func check_potential_interactables() -> void:
 				break
 			node = node.get_parent()
 		if interaction_component:
-			if interaction_component.can_interact == false:
-				return
+			#if interaction_component.can_interact == false:
+				#return
 			last_potential_object = current_object
 			# Disable hint for previous hover component if different
 			if last_hover_component:

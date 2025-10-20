@@ -11,7 +11,7 @@ extends Node
 
 # Common Variables
 var is_occupied := false
-var can_interact: bool = true
+var can_interact: bool = false
 var is_interacting: bool = false
 var has_interacted: bool = false
 
@@ -38,7 +38,6 @@ func preInteract(_hand: Marker3D, _target: Node = null) -> void:
 func interact() -> void:
 	if not can_interact:
 		return
-		#Audio.play(SFX_Interact, global_transform)
 
 ## Alternate interaction using secondary button
 func auxInteract() -> void:
@@ -54,11 +53,11 @@ func postInteract() -> void:
 
 ## when the controller detect the obj before interact
 func interact_hint() -> void:
-	pass
+	can_interact = true
 
 ## when the controller leaves
 func disable_interact_hint() -> void:
-	pass
+	can_interact = false
 
 ## Iterates over a list of nodes that can be interacted with and executes their respective logic
 func notify_nodes(percentage: float, primary: bool = true) -> void:

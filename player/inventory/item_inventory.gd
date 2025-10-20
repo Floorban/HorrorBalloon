@@ -14,7 +14,6 @@ func _init() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("secondary"):
-		print("a")
 		drop_item(selecting_slot)
 
 func add_item(item: ItemData) -> bool:
@@ -23,6 +22,7 @@ func add_item(item: ItemData) -> bool:
 			hotbar[i] = item
 			inventory_changed.emit()
 			slot_selected.emit(i)
+			selecting_slot = i
 			return true
 	return false
 
@@ -32,7 +32,7 @@ func select_slot(index : int):
 
 func spawn_item_instance(item: ItemData):
 	var item_instance = item.instance_scene.instantiate()
-	item_instance.get_node_or_null("interactable").item_data = item
+	item_instance.get_node_or_null("InteractionComponent").item_data = item
 	get_tree().current_scene.add_child(item_instance)
 	item_drop.emit(item_instance)
 
@@ -40,6 +40,10 @@ func drop_item(slot_index : int):
 	if hotbar[slot_index]:
 		var dropped_item = hotbar[slot_index]
 		spawn_item_instance(dropped_item)
-		hotbar[slot_index] == null
+		hotbar[slot_index] = null
+		inventory_changed.emit()
 		if slot_index == selecting_slot:
 			slot_selected.emit(selecting_slot)
+
+func get_current_item() -> ItemData:
+	return hotbar[selecting_slot]

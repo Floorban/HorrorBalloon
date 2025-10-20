@@ -121,19 +121,29 @@ func _input(event: InputEvent) -> void:
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("primary"):
-		if dig_cast.is_colliding():
-			var collision_point: Vector3 = dig_cast.get_collision_point()
-			mine_voxel(collision_point, 0.9, "pickaxe")
 	updatecam_shake(delta)
 	update_cam_state(delta)
+
+func _physics_process(delta: float) -> void:
+	if is_dead: return
+	if Input.is_action_pressed("primary") and ItemInventory.get_current_item() != null:
+		if dig_cast.is_colliding():
+			var collision_point: Vector3 = dig_cast.get_collision_point()
+			mine_voxel(collision_point, 0.9, ItemInventory.get_current_item().item_name)
+	update_player_state()
+	update_cam_movement(delta)
+	update_player_verticle(delta)
+	update_player_horizontal(delta)
+	#apply_push_forces(push_shape_cast)
+	move_and_slide()
 
 func unfreeze_player():
 	can_move = true
 
 func drop_from_player(item):
+	var up = transform.basis.y.normalized()
 	var forward = -transform.basis.z.normalized()
-	var drop_pos = global_position + forward * 2.0
+	var drop_pos = global_position + forward*0.5 + up*0.5
 	item.global_position = drop_pos
 
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
@@ -285,15 +295,6 @@ func update_player_horizontal(delta: float) -> void:
 	
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed * 0.8
-
-func _physics_process(delta: float) -> void:
-	if is_dead: return
-	update_player_state()
-	update_cam_movement(delta)
-	update_player_verticle(delta)
-	update_player_horizontal(delta)
-	#apply_push_forces(push_shape_cast)
-	move_and_slide()
 
 func update_cam_state(delta: float) -> void:
 	if is_dead: return

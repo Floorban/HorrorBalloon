@@ -1,23 +1,22 @@
 extends InteractionComponent
 class_name InteractionPickup
 
-@onready var mesh_instance = %MeshInstance
 @export var item_data : ItemData
 
 func _ready() -> void:
 	Global.game_start.connect(unfreeze_obj)
-	if object_ref is RigidBody3D:
-		object_ref.freeze = true
 	object_ref.name = item_data.item_name
 	spawn_mesh_with_col(item_data.mesh_scene)
 
-func preInteract(hand: Marker3D, target: Node = null) -> void:
-	super.preInteract(hand, target)
-	_pickup_interact()
+func _input(event: InputEvent) -> void:
+	if not can_interact:
+		return 
+	if event.is_action_pressed("pickup"):
+		_pickup_interact()
 
 func _pickup_interact():
 	if ItemInventory.add_item(item_data):
-		call_deferred("queue_free")
+		object_ref.call_deferred("queue_free")
 	else:
 		print("inventory is fulll")
 

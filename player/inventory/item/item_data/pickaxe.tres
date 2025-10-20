@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dw5aycacpyvvh"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dw5aycacpyvvh"]
 
 [ext_resource type="Texture2D" uid="uid://r8yjfd8ib2s" path="res://player/inventory/item/sPickaxe1.png" id="1_xqqkt"]
-[ext_resource type="PackedScene" uid="uid://81k8ypvxmskm" path="res://assets/stolen/mineral/short_pickaxe.glb" id="2_6lhva"]
+[ext_resource type="PackedScene" uid="uid://clg1e46g7g1h2" path="res://player/inventory/item/item_pickup.tscn" id="2_h3a86"]
+[ext_resource type="PackedScene" uid="uid://cq0eeiqk54w00" path="res://assets/stolen/mineral/PickAxeV1.fbx" id="3_6lhva"]
 [ext_resource type="Script" uid="uid://b0j5d3v7hvtvt" path="res://player/inventory/item/item_data/item_data.gd" id="3_h3a86"]
 
 [resource]
 script = ExtResource("3_h3a86")
 item_name = "pickaxe"
 icon = ExtResource("1_xqqkt")
-mesh_scene = ExtResource("2_6lhva")
+mesh_scene = ExtResource("3_6lhva")
+instance_scene = ExtResource("2_h3a86")
 metadata/_custom_type_script = "uid://b0j5d3v7hvtvt"
