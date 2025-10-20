@@ -129,7 +129,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("primary"):
 		if dig_cast.is_colliding():
 			var collision_point: Vector3 = dig_cast.get_collision_point()
-			mine_voxel(collision_point, 1.0, "pickaxe")
+			mine_voxel(collision_point, 0.9, "pickaxe")
 	updatecam_shake(delta)
 	update_cam_state(delta)
 
@@ -197,7 +197,7 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 		# voxel_tool.texture_index = voxel_data.texture_index
 		# voxel_tool.do_sphere(world_pos, 0.1)
 
-func paint_neighbor(center_pos: Vector3, radius: float, voxel_data: CaveVoxelData):
+func paint_neighbor(center_pos: Vector3i, radius: float, voxel_data: CaveVoxelData):
 	var neighbors = CaveConstants.get_nearby_voxel_positions(center_pos)
 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
 	voxel_tool.texture_opacity = 1.0
