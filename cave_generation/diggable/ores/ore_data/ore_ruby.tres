@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="OreData" load_steps=3 format=3 uid="uid://cc4na3lvdte7i"]
 
 [ext_resource type="PackedScene" uid="uid://bsrhc7ej1f7yj" path="res://cave_generation/diggable/ores/ore_scenes/ore_instance.tscn" id="1_dxct2"]
-[ext_resource type="Script" uid="uid://hc1h77s4hr8" path="res://cave_generation/diggable/ores/ore_data.gd" id="2_nv5uh"]
+[ext_resource type="Script" uid="uid://hc1h77s4hr8" path="res://cave_generation/diggable/ores/ore_data/ore_data.gd" id="2_nv5uh"]
 
 [resource]
 script = ExtResource("2_nv5uh")

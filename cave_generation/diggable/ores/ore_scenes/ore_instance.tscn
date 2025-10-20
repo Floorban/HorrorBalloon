@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://bsrhc7ej1f7yj"]
+[gd_scene load_steps=15 format=4 uid="uid://bsrhc7ej1f7yj"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_7paq6"]
 [ext_resource type="Script" uid="uid://05k62dt5wpb5" path="res://cave_generation/diggable/ores/ore_scenes/ore_instance.gd" id="1_lm0rd"]
 [ext_resource type="Script" uid="uid://oxxbnqbxp8pc" path="res://cave_generation/diggable/interaction_diggable.gd" id="3_556me"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_xnxgl"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="5_n6dsa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi3wo"]
 resource_name = "Showcase_Grey"
@@ -90,11 +92,17 @@ points = PackedVector3Array(-5.9750247, -0.17295694, 3.231481, -4.564729, 1.8971
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lm0rd"]
 points = PackedVector3Array(0.5015211, -5.0680666, 9.068246, 1.6709738, -4.623837, 9.104061, 0.645761, -3.8815508, 11.402454, 0.6402135, -3.8792667, 11.404011, -0.65350723, -4.561028, 9.237978, -3.1133518, -3.3779383, 7.436325, -2.1369588, -3.7753468, 7.570242, 0.1431408, -2.7658377, 2.1995404, 0.76337194, -2.534016, 2.2166693, 5.320242, -0.07305193, 8.724111, 3.027938, -1.2218826, 11.704546, 0.65130854, -3.8792667, 11.402454, 1.5578008, -1.1693513, 0.036622047, 3.340828, -2.531732, 6.9816294, 1.2981691, 0.9261794, 14.941916, 1.2881832, 0.92275333, 14.941916, 1.2793069, 0.9261794, 14.943474, -2.6151695, -2.8354983, 9.490241, -5.202611, 0.04799795, 7.5422134, -1.8429315, -0.5458312, -0.8213823, -1.2049475, -1.0037646, -0.56756246, 0.564765, -1.57247, 0.116037965, 5.8739014, 1.0015502, 8.325473, 5.2403555, 1.5040207, 10.821627, 5.237027, 1.4983106, 10.823184, 3.684784, -1.4125929, 5.407324, 1.9716582, -0.18154001, -0.05525142, 3.9022532, -0.91697407, 5.380852, 1.3014975, 0.9341731, 14.940359, 1.2981691, 0.9433093, 14.940359, 1.2804165, 0.9433093, 14.941916, 1.2759781, 0.93531513, 14.941916, -4.26838, 1.5063047, 10.298416, -5.461133, 1.5965209, 7.2556925, -1.963871, 0.25697994, -0.9646425, 5.547697, 2.231461, 8.319244, 5.2381363, 1.5085883, 10.821627, -1.4978652, 0.93645716, -0.91637003, -0.7156415, 1.0929084, -0.7014797, 1.5644579, 0.81083965, -0.109752595, -1.0618172, 5.829836, 11.527028, 1.2892928, 0.94787693, 14.940359, 5.233698, 1.5120144, 10.823184, -1.0673647, 5.83212, 11.525471, -1.0740218, 5.8286934, 11.525471, -1.076241, 5.8229837, 11.527028, -4.26949, 1.5131564, 10.296859, -3.5105662, 3.9684105, 5.9632363, -4.266161, 1.5188665, 10.296859, -2.151383, 6.0125523, 8.826884, -4.5657363, 2.9006605, 7.3522377, 3.1710682, 4.220788, 8.171312, 0.44049644, 6.196411, 9.06046, 3.5172443, 4.157979, 6.296472, -2.7494235, 4.355541, 6.0551095, -0.87097645, 6.5983877, 8.724111, 0.03662491, 2.5672026, 1.8133605, 0.5736413, 1.2276616, -0.09262365, 2.7150488, 4.6159124, 6.3603163)
 
-[node name="Ore_Instance" type="StaticBody3D"]
+[sub_resource type="Resource" id="Resource_xnxgl"]
+script = ExtResource("4_xnxgl")
+icon = ExtResource("5_n6dsa")
+prompt = "Mine it!"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[node name="Ore_Instance" type="RigidBody3D"]
 script = ExtResource("1_lm0rd")
 
 [node name="Crystal_Brown" type="Node3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
 
 [node name="Crystal_Brown_Showcase_Grey_0" type="MeshInstance3D" parent="Crystal_Brown"]
 mesh = SubResource("ArrayMesh_h0yom")
@@ -105,11 +113,11 @@ mesh = SubResource("ArrayMesh_lm0rd")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -2.8212997e-07, 1, 0, -1, -2.8212997e-07, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_h0yom")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -2.8212997e-07, 1, 0, -1, -2.8212997e-07, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_lm0rd")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_7paq6")]
@@ -121,4 +129,5 @@ drag_step = 0.2
 max_drag_distance = 0.6
 min_drag_distance = -0.3
 drag_smoothness = 1.0
+ui_set = Array[ExtResource("4_xnxgl")]([SubResource("Resource_xnxgl")])
 object_ref = NodePath("..")

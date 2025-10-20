@@ -88,16 +88,11 @@ func wall_additions_pass():
 		var ore_voxel: CaveVoxelData = get_voxel_data_for_height(height_y)
 
 		if ore_voxel and ore_voxel.ores.size() > 0 and current_walker.tresure_chance > randf():
-			var ore_data: OreData = ore_voxel.get_random_ore()
-			if ore_data:
-				var ore_scene: PackedScene = ore_data.get_random_scene()
-				if ore_scene:
-					var ore_instance: Node3D = ore_scene.instantiate()
-					self.add_child(ore_instance)
-					ore_instance.global_position = raycast_result.position
-					ore_instance.look_at(ore_instance.global_position + raycast_result.normal)
-					ore_instance.scale *= randf_range(0.5, 1.5)
-	# finish_walk()
+			var ore_instance : Node3D = ore_voxel.spawn_ore(voxel_terrain, self)
+			ore_instance.global_position = raycast_result.position
+			ore_instance.look_at(ore_instance.global_position + raycast_result.normal)
+			ore_instance.scale *= randf_range(0.5, 1.5)
+	finish_walk()
 
 func do_sphere_removal():
 	var radius = get_removal_size()

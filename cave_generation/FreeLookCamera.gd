@@ -27,6 +27,7 @@ var _e = false
 var _shift = false
 var _alt = false
 
+signal voxel_dug(world_pos: Vector3)
 @export var voxel_terrain : Voxel
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 @onready var dig_cast : RayCast3D = $DigCast
@@ -77,7 +78,7 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 
 	damage += 1 # TODO: add tool power
 
-	print("ID:", voxel_id, " Current damage:", damage, " Max HP:", voxel_data.base_hp)
+	# print("ID:", voxel_id, " Current damage:", damage, " Max HP:", voxel_data.base_hp)
 
 	if damage >= voxel_data.base_hp:
 		# fully destroyed
@@ -85,6 +86,7 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 		voxel_tool.do_sphere(voxel_pos, radius)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
 		paint_neighbor(voxel_pos, radius*0.85, voxel_data)
+		emit_signal("voxel_dug", world_pos)
 	else:
 		# update meta and repaint cracked voxel
 		voxel_tool.set_voxel_metadata(voxel_pos, {

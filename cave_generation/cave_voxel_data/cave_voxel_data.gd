@@ -36,9 +36,13 @@ func get_random_ore() -> OreData:
 	var ore = ores.pick_random()
 	return ore
 
-func spawn_ore(parent: Node3D) -> void:
+func spawn_ore(voxel: Voxel, parent: Node3D) -> Node3D:
 	var ro = get_random_ore()
 	if ro == null:
-		return
+		return null
 	var o = ro.get_random_scene().instantiate()
+	if o is OreInstance: 
+		o.voxel_terrain = voxel
+		o.ore_data = ro
 	parent.add_child(o)
+	return o
