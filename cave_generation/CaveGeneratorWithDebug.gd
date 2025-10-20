@@ -97,7 +97,7 @@ func wall_additions_pass():
 					ore_instance.global_position = raycast_result.position
 					ore_instance.look_at(ore_instance.global_position + raycast_result.normal)
 					ore_instance.scale *= randf_range(0.5, 1.5)
-	finish_walk()
+	# finish_walk()
 
 func do_sphere_removal():
 	var radius = get_removal_size()

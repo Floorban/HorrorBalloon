@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://7g4bltlgt16a"]
+
+[ext_resource type="PackedScene" uid="uid://btvtsou6qm2ef" path="res://assets/stolen/free_cartoon_crystals.glb" id="1_6camx"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_6camx")]

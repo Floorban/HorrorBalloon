@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_tw5bq")
-ore_scenes = ExtResource("1_wy7vj")
+ore_scenes = Array[PackedScene]([ExtResource("1_wy7vj")])
 weight = 5.0
 value = 5
 metadata/_custom_type_script = "uid://hc1h77s4hr8"

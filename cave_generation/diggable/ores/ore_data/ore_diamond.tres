@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ocdk4")
-ore_scenes = ExtResource("1_uw5xt")
+ore_scenes = Array[PackedScene]([ExtResource("1_uw5xt")])
 ore_type = 5
 weight = 25.0
 value = 100

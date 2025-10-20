@@ -13,14 +13,6 @@ class_name InteractionDiggable
 var rotating: bool = false
 var rotation_speed: float = 0.001
 
-func _ready() -> void:
-	super._ready()
-	weight = object_ref.mass if object_ref else weight
-	if object_ref and object_ref.has_signal("body_entered"):
-		object_ref.connect("body_entered", Callable(self, "_fire_default_collision"))
-		object_ref.contact_monitor = true
-		object_ref.max_contacts_reported = 1
-
 func _input(event) -> void:
 	if not is_interacting: return
 	
