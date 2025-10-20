@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 FmodManager="*res://addons/fmod/FmodManager.gd"
 Audio="*res://sound/audiomanager/audio_manager.tscn"
 Global="*res://global.gd"
+ItemInventory="*res://player/inventory/item_inventory.tscn"
 
 [display]
 

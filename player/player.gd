@@ -92,6 +92,9 @@ var viewing_zoom: float = 0.8
 
 @export var voxel_terrain : VoxelTerrain
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
+
+signal voxel_dug(world_pos: Vector3)
+@onready var dig_cast : RayCast3D = %DigCast
 @export var crack_decal : PackedScene
 
 func player_init() -> void:
@@ -101,8 +104,7 @@ func player_init() -> void:
 
 func _ready() -> void:
 	player_init()
-
-@onready var dig_cast : RayCast3D = %DigCast
+	ItemInventory.item_drop.connect(drop_from_player)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -114,16 +116,6 @@ func _input(event: InputEvent) -> void:
 			rotate_y(deg_to_rad(-mouse_input.x * current_sensitivity))
 			head.rotate_x(deg_to_rad(-mouse_input.y * current_sensitivity))
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
-	
-	# elif event.is_action_pressed("secondary"):
-	# 	voxel_tool.mode = VoxelTool.MODE_ADD
-	# 	voxel_tool.grow_sphere(interaction_controller.hand.global_position, 1.0, 1.0)
-
-	# 	voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
-	# 	voxel_tool.do_sphere(interaction_controller.hand.global_position, 2.5)
-	# elif event.is_action_pressed("ui_accept"):
-	# 	voxel_tool.texture_index = posmod(voxel_tool.texture_index + 1, 3)
-	# 	print("Texture Index: %s" % str(voxel_tool.texture_index))
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("primary"):
@@ -132,6 +124,11 @@ func _process(delta: float) -> void:
 			mine_voxel(collision_point, 0.9, "pickaxe")
 	updatecam_shake(delta)
 	update_cam_state(delta)
+
+func drop_from_player(item):
+	var forward = -transform.basis.z.normalized()
+	var drop_pos = global_position + forward * 2.0
+	item.global_position = drop_pos
 
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	var voxel_pos: Vector3 = CaveConstants.world_to_voxel(voxel_terrain, world_pos)
@@ -177,14 +174,16 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 
 	damage += 1 # TODO: add tool power
 
-	print("ID:", voxel_id, " Current damage:", damage, " Max HP:", voxel_data.base_hp)
+	#print("ID:", voxel_id, " Current damage:", damage, " Max HP:", voxel_data.base_hp)
 
 	if damage >= voxel_data.base_hp:
 		# fully destroyed
+		# satisfying clang sfx here
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(voxel_pos, radius)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
 		paint_neighbor(voxel_pos, radius*0.9, voxel_data)
+		emit_signal("voxel_dug", world_pos)
 	else:
 		# update meta and repaint cracked voxel
 		voxel_tool.set_voxel_metadata(voxel_pos, {
@@ -192,7 +191,8 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 			"pos": voxel_pos,
 			"damage": damage,
 		})
-
+		# paint broken decal or change texture here
+		# clang sfx here
 		# voxel_tool.mode = VoxelTool.MODE_TEXTURE_PAINT
 		# voxel_tool.texture_index = voxel_data.texture_index
 		# voxel_tool.do_sphere(world_pos, 0.1)

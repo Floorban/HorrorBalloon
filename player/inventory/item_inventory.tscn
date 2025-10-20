@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdngux6co8mrv"]
+
+[ext_resource type="PackedScene" uid="uid://chroi3i4syq0v" path="res://player/inventory/item_slot.tscn" id="1_skekj"]
+[ext_resource type="Script" uid="uid://bd6la5q6mfuov" path="res://player/inventory/item_inventory.gd" id="1_t0uoa"]
+[ext_resource type="Script" uid="uid://didta0kaytfb8" path="res://player/inventory/hotbar.gd" id="2_pha32"]
+[ext_resource type="Shortcut" uid="uid://mxuco517ry4s" path="res://player/inventory/item/inventory_shorcuts/shorcut_1.tres" id="4_vabju"]
+[ext_resource type="Shortcut" uid="uid://b6ox8sp08rjsk" path="res://player/inventory/item/inventory_shorcuts/shorcut_2.tres" id="5_fv2l7"]
+[ext_resource type="Shortcut" uid="uid://dclpc4nlwf0wn" path="res://player/inventory/item/inventory_shorcuts/shorcut_3.tres" id="6_fv2l7"]
+
+[node name="ItemInventory" type="Node"]
+script = ExtResource("1_t0uoa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_pha32")
+
+[node name="Slot" parent="CanvasLayer/Hotbar" instance=ExtResource("1_skekj")]
+layout_mode = 2
+shortcut = ExtResource("4_vabju")
+
+[node name="Slot2" parent="CanvasLayer/Hotbar" instance=ExtResource("1_skekj")]
+layout_mode = 2
+shortcut = ExtResource("5_fv2l7")
+
+[node name="Slot3" parent="CanvasLayer/Hotbar" instance=ExtResource("1_skekj")]
+layout_mode = 2
+shortcut = ExtResource("6_fv2l7")

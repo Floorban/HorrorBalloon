@@ -4,7 +4,7 @@ class_name Voxel
 
 signal voxel_removed(removed_pos: Vector3)
 
-@export var player : FreeLookCamera
+@export var player : PlayerController
 
 @export var texture_rock : Texture2D
 @export var texture_grass : Texture2D
