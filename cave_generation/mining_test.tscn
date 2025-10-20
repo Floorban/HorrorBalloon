@@ -133,8 +133,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4531765, 8.062285)
 [node name="InteractionComponent" parent="Item_Pickup" index="1"]
 item_data = ExtResource("18_t6icn")
 
-[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("18_t37xi")]
+[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain", "cave_gen") instance=ExtResource("18_t37xi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0473757, 9.702076)
 voxel_terrain = NodePath("../VoxelTerrain")
+cave_gen = NodePath("../CaveGeneratorWithDebug")
 
 [editable path="Item_Pickup"]

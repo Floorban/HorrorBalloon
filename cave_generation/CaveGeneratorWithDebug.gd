@@ -1,6 +1,8 @@
 extends Node3D
 class_name CaveGenerator
 
+signal finish_gen
+
 @export var voxel_terrain : Voxel
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
@@ -39,6 +41,7 @@ func finish_walk():
 		random_walk()
 	else:
 		set_voxel_meta_data()
+		finish_gen.emit()
 	random_walk_positions.clear()
 	affected_voxels.clear()
 

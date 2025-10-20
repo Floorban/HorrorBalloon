@@ -66,7 +66,7 @@ func perform_interactions(target: InteractionComponent) -> void:
 			stop_interactions()
 
 func stop_interactions() -> void:
-	if current_object and not interaction_component is InteractionHolddable:
+	if current_object: # and not interaction_component is InteractionHolddable
 		current_object = null
 	_unfocus()
 

@@ -12,8 +12,9 @@ func _init() -> void:
 	for i in hotbar_size:
 		hotbar.append(null)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("secondary"):
+		print("a")
 		drop_item(selecting_slot)
 
 func add_item(item: ItemData) -> bool:

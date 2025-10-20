@@ -92,12 +92,14 @@ var viewing_zoom: float = 0.8
 
 @export var voxel_terrain : VoxelTerrain
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
+@export var cave_gen : CaveGenerator
 
 signal voxel_dug(world_pos: Vector3)
 @onready var dig_cast : RayCast3D = %DigCast
 @export var crack_decal : PackedScene
 
 func player_init() -> void:
+	can_move = false
 	cam_original_position = player_camera.position
 	cam_original_rotation = player_camera.rotation_degrees
 	base_head_y = head.position.y
@@ -105,6 +107,7 @@ func player_init() -> void:
 func _ready() -> void:
 	player_init()
 	ItemInventory.item_drop.connect(drop_from_player)
+	cave_gen.finish_gen.connect(unfreeze_player)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -124,6 +127,9 @@ func _process(delta: float) -> void:
 			mine_voxel(collision_point, 0.9, "pickaxe")
 	updatecam_shake(delta)
 	update_cam_state(delta)
+
+func unfreeze_player():
+	can_move = true
 
 func drop_from_player(item):
 	var forward = -transform.basis.z.normalized()
