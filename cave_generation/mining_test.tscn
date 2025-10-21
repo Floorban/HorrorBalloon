@@ -70,14 +70,14 @@ data = {
 "width": 128
 }
 
-[sub_resource type="Texture2DArray" id="Texture2DArray_wcl34"]
+[sub_resource type="Texture2DArray" id="Texture2DArray_pvkvp"]
 _images = Array[Image]([SubResource("Image_t6icn"), SubResource("Image_48ncb"), SubResource("Image_51r8r"), SubResource("Image_wcl34")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3qst"]
 render_priority = 0
 shader = ExtResource("1_k7kmd")
 shader_parameter/u_transition_mask = 0
-shader_parameter/u_texture_array = SubResource("Texture2DArray_wcl34")
+shader_parameter/u_texture_array = SubResource("Texture2DArray_pvkvp")
 shader_parameter/uv_scale = 0.20000000624012
 shader_parameter/paint_strength = 0.3
 
@@ -124,7 +124,22 @@ x_range = Vector2(-0.3, 0.3)
 y_range = Vector2(-0.5, 0.2)
 
 [node name="Ore_Instance" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("13_g11l6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786762, -8.421576, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5265558, -0.13828397, 9.466597)
+ore_data = ExtResource("16_3m0kn")
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="Ore_Instance2" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("13_g11l6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.212194, -0.13828397, 9.466597)
+ore_data = ExtResource("16_3m0kn")
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="Ore_Instance3" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("13_g11l6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.036789, 0.22465706, 9.068112)
+ore_data = ExtResource("16_3m0kn")
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="Ore_Instance4" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("13_g11l6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6799363, -0.24119425, 9.531062)
 ore_data = ExtResource("16_3m0kn")
 voxel_terrain = NodePath("../VoxelTerrain")
 

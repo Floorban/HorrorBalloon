@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://luy7w0qfph84"]
+[gd_scene load_steps=14 format=3 uid="uid://luy7w0qfph84"]
 
 [ext_resource type="Script" uid="uid://chmo46pkxaexp" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://bu4l41uoyyif" path="res://cracked_decal.tscn" id="2_boad6"]
 [ext_resource type="Texture2D" uid="uid://dgh3ul6rjlkgi" path="res://assets/ui/white_reticle.png" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://bnvad8jy4rflu" path="res://interaction/interaction_controller.tscn" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://d1jemmogcuxvf" path="res://assets/ui/tile_0155.png" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://0k5uywx5pim7" path="res://player/view_model.gd" id="3_rgyib"]
 [ext_resource type="Texture2D" uid="uid://bgj2lgeergj4y" path="res://assets/ui/tile_0156.png" id="4_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://cgy2ke6mlhmar" path="res://player/interaction_ui.tscn" id="6_g6k8r"]
 
@@ -70,7 +71,7 @@ light_bake_mode = 0
 [node name="DigCast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.007594824, 0)
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -1.5)
 
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
@@ -90,6 +91,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.319835)
 [node name="Chest" type="Marker3D" parent="Head/Eyes/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(0.90218514, -0.40689725, -0.14316562, 0.08417976, 0.4916058, -0.86673987, 0.42305517, 0.769908, 0.47777185, 0.18839309, -0.20246267, -0.28345287)
+
+[node name="ViewModel" type="Node3D" parent="Head/Eyes/Camera3D"]
+transform = Transform3D(-0.046583474, 0, 0.9989144, 0, 1, 0, -0.9989144, 0, -0.046583474, 0.36643085, -0.15862322, -0.49013507)
+script = ExtResource("3_rgyib")
 
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6450691, 0)

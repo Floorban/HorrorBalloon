@@ -140,11 +140,15 @@ func _physics_process(delta: float) -> void:
 func unfreeze_player():
 	can_move = true
 
-func drop_from_player(item):
+func drop_from_player(item: RigidBody3D):
 	var up = transform.basis.y.normalized()
 	var forward = -transform.basis.z.normalized()
-	var drop_pos = global_position + forward*0.5 + up*0.5
+	var right = transform.basis.x.normalized()
+	var drop_pos = global_position + forward * 0.4 + up * 0.4 + right * 0.3
 	item.global_position = drop_pos
+	item.sleeping = false
+	var throw_force = (forward + up*0.8)
+	item.apply_impulse(throw_force, throw_force)
 
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	var voxel_pos: Vector3 = CaveConstants.world_to_voxel(voxel_terrain, world_pos)
