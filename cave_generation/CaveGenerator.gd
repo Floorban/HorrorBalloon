@@ -12,7 +12,6 @@ signal finish_gen
 
 var current_walker_index : int = 0
 @export var ceiling_thickness_m : int = 5
-@export var rock_preload : PackedScene
 @export var do_wall_decoration_step : bool = true
 @export var do_voxel_addition : bool = true
 
@@ -41,6 +40,7 @@ func finish_walk():
 		random_walk()
 	else:
 		set_voxel_meta_data()
+		generate_ores()
 		finish_gen.emit()
 	random_walk_positions.clear()
 	affected_voxels.clear()
@@ -171,6 +171,96 @@ func paint_voxel_and_neighbors(voxel_pos: Vector3i, radius: float):
 			voxel_tool.texture_index = voxel_terrain.voxel_data[n_tex_id].texture_index
 			var n_world_pos = voxel_terrain.to_global(Vector3(n_pos)) # + Vector3.ONE * 0.5
 			voxel_tool.do_sphere(n_world_pos, radius)
+
+func generate_ores():
+	if affected_voxels.is_empty():
+		return
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+
+	for voxel_pos in affected_voxels:
+		var world_pos = voxel_terrain.to_global(Vector3(voxel_pos))
+		var y = world_pos.y
+		var dist_xz = Vector2(world_pos.x, world_pos.z).distance_to(Vector2(voxel_terrain.global_position.x, voxel_terrain.global_position.z))
+		# spawn ores inside rock
+		var voxel_id = voxel_tool.get_voxel(voxel_pos)
+		if voxel_id == 0:  # assuming 0 = air, skip
+			continue
+		var ore_type = get_ore_type_for_depth(y, dist_xz)
+		if ore_type == -1:
+			continue
+		# depth-based chance
+		var spawn_chance = get_ore_spawn_chance(ore_type, y)
+		if rng.randf() < spawn_chance:
+			spawn_ore_cluster(voxel_pos, ore_type, rng)
+
+func spawn_ore_cluster(center_voxel: Vector3i, ore_type: int, rng: RandomNumberGenerator):
+	var cluster_size = rng.randi_range(3, 6)
+	var ore_voxel_id = ore_type_to_voxel_id(ore_type)
+
+	for i in range(cluster_size):
+		var offset = Vector3i(
+			rng.randi_range(-1, 1),
+			rng.randi_range(-1, 1),
+			rng.randi_range(-1, 1)
+		)
+		var target = center_voxel + offset
+		if voxel_tool.get_voxel(target) != 0:  # inside solid material
+			voxel_tool.set_voxel(target, ore_voxel_id)
+
+func ore_type_to_voxel_id(ore_type: int) -> int:
+	match ore_type:
+		CaveConstants.ORE_TYPE.COPPER:
+			return 3
+		CaveConstants.ORE_TYPE.TIN:
+			return 4
+		CaveConstants.ORE_TYPE.IRON:
+			return 5
+		CaveConstants.ORE_TYPE.GOLD:
+			return 6
+		CaveConstants.ORE_TYPE.RUBY:
+			return 7
+		CaveConstants.ORE_TYPE.DIAMOND:
+			return 8
+		_:
+			return 0
+
+func get_ore_type_for_depth(y: float, dist_xz: float) -> int:
+	# return -1 if no ore should spawn
+	if y > -100:
+		return -1
+	else:
+		return CaveConstants.ORE_TYPE.COPPER
+	
+	#if y < CaveConstants.LAYER_RANGE[5].x:  # deepest
+		#return CaveConstants.ORE_TYPE.DIAMOND
+	#elif y < CaveConstants.LAYER_RANGE[4].x:
+		#return CaveConstants.ORE_TYPE.RUBY
+	#elif y < CaveConstants.LAYER_RANGE[3].x:
+		#return CaveConstants.ORE_TYPE.GOLD
+	#elif y < -200:
+		#return CaveConstants.ORE_TYPE.IRON
+	#elif y < -100:
+		#return CaveConstants.ORE_TYPE.TIN
+	#else:
+		#return CaveConstants.ORE_TYPE.COPPER
+
+func get_ore_spawn_chance(ore_type: int, y: float) -> float:
+	match ore_type:
+		CaveConstants.ORE_TYPE.COPPER:
+			return 0.95  # 5%
+		CaveConstants.ORE_TYPE.TIN:
+			return 0.04
+		CaveConstants.ORE_TYPE.IRON:
+			return 0.03
+		CaveConstants.ORE_TYPE.GOLD:
+			return 0.015
+		CaveConstants.ORE_TYPE.RUBY:
+			return 0.01
+		CaveConstants.ORE_TYPE.DIAMOND:
+			return 0.005
+		_:
+			return 0.0
 
 func get_texture_for_height(y: float) -> int:
 	if y > -2:

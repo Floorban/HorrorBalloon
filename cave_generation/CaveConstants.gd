@@ -2,6 +2,9 @@
 extends Node
 class_name CaveConstants
 
+const CAVE_WIDTH := 20.0
+const CAVE_TOP := -5.0
+
 const LAYER_RANGE : Array[Vector2i] = [
 	Vector2(35, 60),      # rock
 	Vector2(20, 25),	  # grass

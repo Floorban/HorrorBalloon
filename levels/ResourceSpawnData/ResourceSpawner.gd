@@ -3,7 +3,7 @@ extends Node3D
 class_name ResourceSpawner
 
 @export var resource_spawn_data: Array[ResourceSpawnData] = []
-@onready var spawn_points := $"../ResourceSpawnPoints"
+@export var spawn_points : Node
 var resource_spawn_points: Array[SpawnPoint] = []
 
 @export var generate_preview: bool = false:
@@ -74,25 +74,30 @@ func poisson_sample_points(area_size := 400.0, min_distance := 30.0, max_attempt
 			_spawn_points.remove_at(spawn_index)
 	return points
 
+var max__spawn_attempts := 50
+
 func distribute_spawn_points(points: Array[SpawnPoint], _map_size := 400.0, _jitter := 0.3):
 	if points.is_empty(): return
-	var count := points.size()
-	var grid_side := int(ceil(sqrt(count))) # smallest square grid that can fit all points
-	var spacing := _map_size / grid_side
 	var half_map := _map_size / 2.0
-	
-	var i := 0
-	for x in grid_side:
-		for z in grid_side:
-			if i >= count:
-				return
-			var sp := points[i]
-			var base_x := -half_map + x * spacing + spacing * 0.5
-			var base_z := -half_map + z * spacing + spacing * 0.5
-			var jitter_x := randf_range(-spacing * _jitter, spacing * _jitter)
-			var jitter_z := randf_range(-spacing * _jitter, spacing * _jitter)
-			sp.global_position = Vector3(base_x + jitter_x, 0.0, base_z + jitter_z) + global_position
-			i += 1
+	var center := global_position
+
+	for sp in points:
+		var valid := false
+		var attempt := 0
+
+		while not valid and attempt < max__spawn_attempts:
+			attempt += 1
+			var rand_x = randf_range(-half_map, half_map)
+			var rand_y = randf_range(-half_map, half_map)
+			var rand_z = randf_range(-half_map, half_map)
+			var candidate_pos = Vector3(rand_x, rand_y, rand_z) + center
+			# retry if fail spawn conditions:
+			var dist_to_center := candidate_pos.distance_to(center)
+			if candidate_pos.y < CaveConstants.CAVE_TOP and dist_to_center > CaveConstants.CAVE_WIDTH:
+				valid = true
+				sp.global_position = candidate_pos
+		if not valid:
+			push_warning("spawn point failed to find valid position after %d attempts" % max__spawn_attempts)
 
 func spawn_resources() -> void:
 	_get_spawn_points()
@@ -147,8 +152,9 @@ func generate_resources() -> void:
 			if data.scenes == null:
 				remaining[idx] = 0
 				continue
-
-			var instance = data.scenes.pick_random().instantiate()
+			
+			# add anther weight-bsed scene selection here later (based on ore spawn condition)
+			var instance = data.scenes.pick_random().instantiate() 
 			point.add_child(instance)
 
 			instance.global_position = point.global_position + Vector3(
