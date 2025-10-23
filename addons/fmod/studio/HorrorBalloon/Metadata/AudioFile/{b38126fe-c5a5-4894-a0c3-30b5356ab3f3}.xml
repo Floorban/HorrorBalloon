@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{b38126fe-c5a5-4894-a0c3-30b5356ab3f3}">
 		<property name="assetPath">
-			<value>s_Creature_Jumpscare.ogg</value>
+			<value>Sound Effects/s_Creature_Jumpscare.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

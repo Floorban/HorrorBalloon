@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{e9301abc-5b9a-49c1-b5b8-790b8de64418}">
 		<property name="assetPath">
-			<value>s_Step_Metal.mp3</value>
+			<value>Sound Effects/s_Step_Metal.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

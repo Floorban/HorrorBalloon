@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{89a1b242-edc0-481a-ab07-a1a4e64bf40b}">
 		<property name="assetPath">
-			<value>s_Shuffle_6.mp3</value>
+			<value>Sound Effects/s_Shuffle_6.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

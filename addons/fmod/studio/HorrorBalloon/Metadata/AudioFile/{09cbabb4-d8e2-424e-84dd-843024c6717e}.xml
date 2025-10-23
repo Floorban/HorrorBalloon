@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{09cbabb4-d8e2-424e-84dd-843024c6717e}">
 		<property name="assetPath">
-			<value>s_Impact_Can.wav</value>
+			<value>Sound Effects/s_Impact_Can.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

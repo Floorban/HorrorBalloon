@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{6289946b-1a4d-43bc-a3c8-d5e11394f57a}">
 		<property name="assetPath">
-			<value>s_Radar_Detect.mp3</value>
+			<value>Sound Effects/s_Radar_Detect.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

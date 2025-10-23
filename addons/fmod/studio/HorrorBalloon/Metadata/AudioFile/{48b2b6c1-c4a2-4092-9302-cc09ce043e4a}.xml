@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{48b2b6c1-c4a2-4092-9302-cc09ce043e4a}">
 		<property name="assetPath">
-			<value>s_Player_Crouch.ogg</value>
+			<value>Sound Effects/s_Player_Crouch.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{8df59712-c9db-40cd-84ae-8d52273c2a94}">
+		<property name="name">
+			<value>Darkness</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6633d1ed-9a62-492a-84f0-daa7f682277e}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{bf0d7c7b-789a-42db-9184-28b6d7e20d05}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{bf0d7c7b-789a-42db-9184-28b6d7e20d05}">
+		<property name="minimum">
+			<value>-1</value>
+		</property>
+		<property name="maximum">
+			<value>0</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

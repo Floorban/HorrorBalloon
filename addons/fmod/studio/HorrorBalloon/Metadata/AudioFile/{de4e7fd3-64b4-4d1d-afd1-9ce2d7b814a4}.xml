@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{de4e7fd3-64b4-4d1d-afd1-9ce2d7b814a4}">
 		<property name="assetPath">
-			<value>s_Oven_Gas_Release.mp3</value>
+			<value>Sound Effects/s_Oven_Gas_Release.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

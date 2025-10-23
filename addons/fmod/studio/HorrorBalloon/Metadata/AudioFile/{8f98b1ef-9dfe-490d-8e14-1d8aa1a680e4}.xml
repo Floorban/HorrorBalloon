@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{887fb44d-a4a5-4351-a7e9-3c335084c798}">
+	<object class="AudioFile" id="{8f98b1ef-9dfe-490d-8e14-1d8aa1a680e4}">
 		<property name="assetPath">
-			<value>Ambience/a_Dazed.ogg</value>
+			<value>Sound Effects/s_Creature_1.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
