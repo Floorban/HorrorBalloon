@@ -5,6 +5,7 @@
 
 [node name="CaveGenerator" type="Node3D" node_paths=PackedStringArray("walkers")]
 script = ExtResource("1_byicc")
+show_walker = false
 walkers = [NodePath("CaveWalker")]
 
 [node name="CaveWalker" parent="." instance=ExtResource("2_pvqeu")]

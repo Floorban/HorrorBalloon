@@ -1,8 +1,7 @@
 extends RigidBody3D
 class_name OreInstance
 
-@export var ore_data : OreData
-@export var voxel_terrain : Voxel
+var voxel_terrain : Voxel
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
 var mine_times : int
@@ -26,8 +25,8 @@ func _on_voxel_removed(removed_pos: Vector3) -> void:
 	# 	print("s", voxel_pos.distance_to(removed_pos))
 	# 	return
 
-	mine_times += 1
-	if mine_times >= ore_data.hardness:
+	mine_times -= 1
+	if mine_times <= 0:
 		start_falling()
 
 func _is_supported(check_pos: Vector3) -> bool:
@@ -50,3 +49,6 @@ func start_falling():
 	print("Ore at ", voxel_pos, " lost support — falling.")
 	is_falling = true
 	freeze = false
+
+func init_ore_data(times_to_hit : int):
+	mine_times = times_to_hit

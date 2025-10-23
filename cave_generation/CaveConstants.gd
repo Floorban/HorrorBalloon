@@ -2,10 +2,12 @@
 extends Node
 class_name CaveConstants
 
-const CAVE_WIDTH := 20.0
+const CAVE_MIN_WIDTH := 20.0
+const CAVE_MAX_WIDTH := 100.0
 const CAVE_TOP := -5.0
+const CAVE_BOTTOM := -100.0
 
-const LAYER_RANGE : Array[Vector2i] = [
+const LAYER_RANGE : Array[Vector2] = [
 	Vector2(35, 60),      # rock
 	Vector2(20, 25),	  # grass
 	Vector2(25, 35),	  # dirt
@@ -15,6 +17,8 @@ const LAYER_RANGE : Array[Vector2i] = [
 ]
 
 enum ORE_TYPE {
+	NONE,
+	ROCK,
 	COPPER,
 	TIN,
 	IRON,
@@ -38,15 +42,23 @@ static func get_nearby_voxel_positions(center: Vector3i) -> Array[Vector3i]:
 				neighbors.append(neighbor_pos)
 	return neighbors
 
-# static func get_nearby_voxel_positions(center: Vector3, jitter: float = 0.0) -> Array[Vector3]:
-# 	var neighbors: Array[Vector3] = []
-# 	for nx in range(-1, 2):
-# 		for ny in range(-1, 2):
-# 			for nz in range(-1, 2):
-# 				if nx == 0 and ny == 0 and nz == 0:
-# 					continue
-# 				var offset = Vector3(nx, ny, nz)
-# 				if jitter > 0.0:
-# 					offset += Vector3(randf_range(-jitter, jitter), randf_range(-jitter, jitter), randf_range(-jitter, jitter))
-# 				neighbors.append(center + offset)
-# 	return neighbors
+static func get_ore_type_at(depth: float, dist_to_center: float) -> ORE_TYPE:
+	# Higher depth = rarer ores
+	if depth > -500:
+		if randf() < 0.005 and depth < -400:
+			return ORE_TYPE.DIAMOND
+		elif randf() < 0.01 and depth < -300:
+			return ORE_TYPE.RUBY
+		elif randf() < 0.02 and depth < -200:
+			return ORE_TYPE.GOLD
+		elif randf() < 0.04 and depth < -100:
+			return ORE_TYPE.IRON
+		elif randf() < 0.08 and depth < -50:
+			return ORE_TYPE.TIN
+		elif randf() < 0.1 and depth < -25:
+			return ORE_TYPE.COPPER
+
+	if dist_to_center > CAVE_MIN_WIDTH * 0.9:
+		return ORE_TYPE.ROCK
+
+	return ORE_TYPE.NONE

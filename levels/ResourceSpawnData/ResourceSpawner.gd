@@ -93,7 +93,7 @@ func distribute_spawn_points(points: Array[SpawnPoint], _map_size := 400.0, _jit
 			var candidate_pos = Vector3(rand_x, rand_y, rand_z) + center
 			# retry if fail spawn conditions:
 			var dist_to_center := candidate_pos.distance_to(center)
-			if candidate_pos.y < CaveConstants.CAVE_TOP and dist_to_center > CaveConstants.CAVE_WIDTH:
+			if candidate_pos.y < CaveConstants.CAVE_TOP and dist_to_center > CaveConstants.CAVE_MIN_WIDTH:
 				valid = true
 				sp.global_position = candidate_pos
 		if not valid:
