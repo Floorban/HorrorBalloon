@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="ParameterPreset" id="{ecdcb0d1-c6df-4fb6-afc7-c6afa53468c4}">
+	<object class="ParameterPreset" id="{f0764c85-5fe5-4982-be52-2aface42c7f1}">
 		<property name="name">
-			<value>terrain</value>
+			<value>Crit</value>
 		</property>
 		<relationship name="folder">
-			<destination>{cd43d5c0-4fc1-464a-9dc0-18fbfa2ff896}</destination>
+			<destination>{a1c591f4-6c20-45ba-807f-9bda5c6b75c6}</destination>
 		</relationship>
 		<relationship name="parameter">
-			<destination>{5c58f71c-0477-4dac-aabe-0c9b00bf5673}</destination>
+			<destination>{a10747d8-a13a-43a1-b966-1e427b675b47}</destination>
 		</relationship>
 	</object>
-	<object class="GameParameter" id="{5c58f71c-0477-4dac-aabe-0c9b00bf5673}">
+	<object class="GameParameter" id="{a10747d8-a13a-43a1-b966-1e427b675b47}">
 		<property name="parameterType">
 			<value>2</value>
 		</property>
@@ -19,11 +19,11 @@
 			<value>2</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>default</value>
-			<value>grass</value>
+			<value>False</value>
+			<value>True</value>
 		</property>
 		<property name="initialValue">
-			<value>1</value>
+			<value>0</value>
 		</property>
 	</object>
 </objects>
