@@ -40,9 +40,6 @@ top_level = true
 floor_stop_on_slope = false
 floor_max_angle = 1.0471976
 script = ExtResource("1_oul6g")
-SFX_StepR = "event:/SFX/Girl/Step/Right"
-SFX_StepL = "event:/SFX/Girl/Step/Left"
-SFX_Crouch = "event:/SFX/Girl/Crouch"
 crack_decal = ExtResource("2_boad6")
 
 [node name="Head" type="Node3D" parent="."]

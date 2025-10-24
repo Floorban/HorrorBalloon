@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8w2gamulm18f"
+path="res://.godot/imported/s_Impact_Can.ogg-f3a50b782f4c4b527afee76b94c0b2a5.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/fmod/studio/HorrorBalloon/Assets/Sound Effects/s_Impact_Can.ogg"
+dest_files=["res://.godot/imported/s_Impact_Can.ogg-f3a50b782f4c4b527afee76b94c0b2a5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

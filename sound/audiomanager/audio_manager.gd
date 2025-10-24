@@ -40,10 +40,11 @@ func _physics_process(_delta: float) -> void:
 	if player != null: listener.global_transform = player.global_transform
 
 func load_banks() -> void:
-	bank_list["master_strings_bank"] = FmodServer.load_bank(MASTER_STRINGS_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	bank_list["master_bank"] = FmodServer.load_bank(MASTER_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	bank_list["balloon_bank"] = FmodServer.load_bank(BALLOON_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	bank_list["outside_bank"] = FmodServer.load_bank(OUTSIDE_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	pass
+	#bank_list["master_strings_bank"] = FmodServer.load_bank(MASTER_STRINGS_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	#bank_list["master_bank"] = FmodServer.load_bank(MASTER_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	#bank_list["balloon_bank"] = FmodServer.load_bank(BALLOON_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	#bank_list["outside_bank"] = FmodServer.load_bank(OUTSIDE_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 
 func play(sound_path: String, object_transform: Transform3D = global_transform, parameter: String = "", value: Variant = null):
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://nhdjyepc7h5f"
+path="res://.godot/imported/s_Creature_Jumpscare.ogg-c921b283e9e25565ff260cc456298119.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/fmod/studio/HorrorBalloon/Assets/Sound Effects/s_Creature_Jumpscare.ogg"
+dest_files=["res://.godot/imported/s_Creature_Jumpscare.ogg-c921b283e9e25565ff260cc456298119.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

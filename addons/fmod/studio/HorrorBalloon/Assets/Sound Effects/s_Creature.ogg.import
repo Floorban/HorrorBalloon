@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://m0dkgnfccxl2"
+path="res://.godot/imported/s_Creature.ogg-8941213c913f0d39148a1135d7f06b91.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/fmod/studio/HorrorBalloon/Assets/Sound Effects/s_Creature.ogg"
+dest_files=["res://.godot/imported/s_Creature.ogg-8941213c913f0d39148a1135d7f06b91.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
