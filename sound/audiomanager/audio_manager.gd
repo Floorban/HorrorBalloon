@@ -74,7 +74,11 @@ func create_instance(sound_path: String, object_transform: Transform3D = global_
 	if object_transform != global_transform: instance.set_3d_attributes(object_transform)
 	return instance
 
-func play_instance(sound_path: String, object_transform: Transform3D) -> FmodEvent:
+func play_instance(instance: FmodEvent) -> void:
+	if instance == null: push_error("play_instance() error: FMOD: instance not found -> " % instance)
+	instance.start()
+
+func start_instance(sound_path: String, object_transform: Transform3D) -> FmodEvent:
 	if sound_path == null: push_error("play_instance() error: FMOD: path not found -> " % sound_path)
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
 	instance.set_3d_attributes(object_transform)

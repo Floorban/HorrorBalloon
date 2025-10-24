@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bapmf36vxey6i"
+path="res://.godot/imported/s_Impact_Grain.ogg-264f1c1e1061fe077b41dd6860a9270f.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/fmod/studio/HorrorBalloon/Assets/Sound Effects/s_Impact_Grain.ogg"
+dest_files=["res://.godot/imported/s_Impact_Grain.ogg-264f1c1e1061fe077b41dd6860a9270f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
