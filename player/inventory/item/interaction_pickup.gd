@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not can_interact:
+		
 		return 
 	if event.is_action_pressed("pickup"):
 		_pickup_interact()

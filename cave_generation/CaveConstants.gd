@@ -18,6 +18,8 @@ const LAYER_RANGE : Array[Vector2] = [
 
 enum ORE_TYPE {
 	NONE,
+	Grass,
+	Dirt,
 	ROCK,
 	COPPER,
 	TIN,

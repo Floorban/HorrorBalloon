@@ -133,10 +133,11 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return
-	if Input.is_action_pressed("primary") and ItemInventory.get_current_item() != null:
+	if Input.is_action_just_pressed("primary") and ItemInventory.get_current_item() != null:
 		if dig_cast.is_colliding():
 			var collision_point: Vector3 = dig_cast.get_collision_point()
 			mine_voxel(collision_point, 0.9, ItemInventory.get_current_item().item_name)
+	
 	update_player_state()
 	update_cam_movement(delta)
 	update_player_verticle(delta)
@@ -156,6 +157,15 @@ func drop_from_player(item: RigidBody3D):
 	item.sleeping = false
 	var throw_force = (forward + up*0.8)
 	item.apply_impulse(throw_force, throw_force)
+
+func get_current_tool() -> ItemData:
+	var tool = ItemInventory.get_current_item()
+	if tool == null:
+		dig_cast.target_position.z = 0.0
+		return null
+	else:
+		dig_cast.target_position.z = tool
+		return ItemInventory.get_current_item()
 
 func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	var voxel_pos: Vector3 = CaveConstants.world_to_voxel(voxel_terrain, world_pos)
@@ -194,8 +204,6 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 		# print("wrong tool, need:", voxel_data.tool_type)
 		return
 	
-	i_Mine.set_parameter_by_name_with_label("Material", voxel_data.voxel_type, false) #TODO: voxel_data.voxel_type adjustments
-	
 	# get current damage
 	var damage: int = 0
 	if meta != null and meta.has("damage"):
@@ -207,7 +215,7 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 
 	if damage >= voxel_data.base_hp:
 		# fully destroyed
-		i_Mine = Audio.play2D(SFX_Mine)
+		FmodServer.play_one_shot_with_params(SFX_Mine, {"Material":voxel_data.voxel_type})
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(voxel_pos, radius)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
