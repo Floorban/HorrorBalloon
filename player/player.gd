@@ -12,6 +12,9 @@ signal player_fall
 @onready var interaction_controller: InteractionController = %InteractionController
 
 # Audio Settings
+@export var SFX_Mine: String
+var i_Mine: FmodEvent
+
 @export var SFX_StepR: String
 @export var SFX_StepL: String
 @export var SFX_Crouch: String
@@ -104,8 +107,12 @@ func player_init() -> void:
 	cam_original_rotation = player_camera.rotation_degrees
 	base_head_y = head.position.y
 
+func audio_init() -> void:
+	i_Mine = Audio.create_instance(SFX_Mine)
+
 func _ready() -> void:
 	player_init()
+	audio_init()
 	ItemInventory.item_drop.connect(drop_from_player)
 	cave_gen.finish_gen.connect(unfreeze_player)
 
@@ -186,7 +193,9 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 	if voxel_data.tool_type != "" and voxel_data.tool_type != tool_type:
 		# print("wrong tool, need:", voxel_data.tool_type)
 		return
-
+	
+	i_Mine.set_parameter_by_name_with_label("Material", voxel_data.voxel_type, false) #TODO: voxel_data.voxel_type adjustments
+	
 	# get current damage
 	var damage: int = 0
 	if meta != null and meta.has("damage"):
@@ -198,7 +207,7 @@ func mine_voxel(world_pos: Vector3, radius: float, tool_type: String):
 
 	if damage >= voxel_data.base_hp:
 		# fully destroyed
-		# satisfying clang sfx here
+		i_Mine = Audio.play2D(SFX_Mine)
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(voxel_pos, radius)
 		voxel_tool.set_voxel_metadata(voxel_pos, null)
@@ -511,3 +520,5 @@ func play_crouch_sound(stance: String):
 	#Audio.play(SFX_Crouch, global_transform, "stance", stance)
 	await get_tree().create_timer(0.3).timeout
 	is_crouching = false
+
+func _exit_tree() -> void: Audio.clear_instance(i_Mine)

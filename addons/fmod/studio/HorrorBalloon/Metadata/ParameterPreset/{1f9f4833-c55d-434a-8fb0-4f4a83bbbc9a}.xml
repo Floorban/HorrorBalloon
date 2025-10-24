@@ -19,10 +19,10 @@
 			<value>4</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>Default</value>
-			<value>Stone</value>
-			<value>Metal</value>
-			<value>Diamond</value>
+			<value>dirt</value>
+			<value>rock</value>
+			<value>metal</value>
+			<value>grass</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>

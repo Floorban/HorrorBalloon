@@ -40,13 +40,23 @@ func _physics_process(_delta: float) -> void:
 	if player != null: listener.global_transform = player.global_transform
 
 func load_banks() -> void:
-	pass
-	#bank_list["master_strings_bank"] = FmodServer.load_bank(MASTER_STRINGS_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	#bank_list["master_bank"] = FmodServer.load_bank(MASTER_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	#bank_list["balloon_bank"] = FmodServer.load_bank(BALLOON_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	#bank_list["outside_bank"] = FmodServer.load_bank(OUTSIDE_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	bank_list["master_strings_bank"] = FmodServer.load_bank(MASTER_STRINGS_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	bank_list["master_bank"] = FmodServer.load_bank(MASTER_BANK, FmodServer.FMOD_STUDIO_LOAD_BANK_NORMAL)
 
-func play(sound_path: String, object_transform: Transform3D = global_transform, parameter: String = "", value: Variant = null):
+func play2D(sound_path: String, parameter: String = "", value: Variant = null) -> FmodEvent:
+	if sound_path == null: push_error("play2D() error: FMOD: path not found -> " % sound_path)
+	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
+	
+	if value is float: instance.set_parameter_by_name(parameter, value)
+	if value is String: instance.set_parameter_by_name_with_label(parameter, value, false)
+	else: pass
+	
+	instance.start()
+	instance.release()
+	return instance
+
+func play3D(sound_path: String, object_transform: Transform3D = global_transform, parameter: String = "", value: Variant = null) -> FmodEvent:
+	if sound_path == null: push_error("play3D() error: FMOD: path not found -> " % sound_path)
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
 	instance.set_3d_attributes(object_transform)
 	
@@ -58,8 +68,14 @@ func play(sound_path: String, object_transform: Transform3D = global_transform, 
 	instance.release()
 	return instance
 
+func create_instance(sound_path: String, object_transform: Transform3D = global_transform) -> FmodEvent:
+	if sound_path == null: push_error("play_instance() error: FMOD: path not found -> " % sound_path)
+	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
+	if object_transform != global_transform: instance.set_3d_attributes(object_transform)
+	return instance
+
 func play_instance(sound_path: String, object_transform: Transform3D) -> FmodEvent:
-	if sound_path == null: push_error("audio missing")
+	if sound_path == null: push_error("play_instance() error: FMOD: path not found -> " % sound_path)
 	var instance: FmodEvent = FmodServer.create_event_instance(sound_path)
 	instance.set_3d_attributes(object_transform)
 	instance.start()

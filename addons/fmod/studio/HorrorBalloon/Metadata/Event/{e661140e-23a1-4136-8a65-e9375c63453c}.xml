@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{e661140e-23a1-4136-8a65-e9375c63453c}">
 		<property name="name">
-			<value>Mining</value>
+			<value>Mine</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -40,6 +40,9 @@
 			<destination>{0e6406c9-7fb1-4d9b-89b8-f80b1c6a0fa5}</destination>
 			<destination>{3a7ad2ed-aa3c-48a0-8c24-c6e7fdd7582f}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{00d2e805-4f58-43bd-88bd-1bd9fe537de2}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{3465a29e-7d03-4aa1-b283-05b433b0ca04}">
 		<relationship name="masterBus">
@@ -68,7 +71,11 @@
 			<destination>{a0f3faae-5985-4b73-b58b-f6912fa13ce2}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{4d24e306-9888-42a2-9f19-f0c649ff7caa}" />
+	<object class="EventAutomatableProperties" id="{4d24e306-9888-42a2-9f19-f0c649ff7caa}">
+		<property name="maxVoices">
+			<value>4</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{878eb692-70e4-4d3c-a6dd-8445d7ce1b39}" />
 	<object class="GroupTrack" id="{ed7317e3-ed54-4d7f-bdb9-ced9ae20d261}">
 		<relationship name="automationTracks">
