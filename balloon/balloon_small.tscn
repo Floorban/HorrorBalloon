@@ -52,8 +52,6 @@ mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_rr85g")
 input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), null]
-SFX_Engine = "event:/Balloon/Engine"
-SFX_Land = "event:/Balloon/Land"
 vertical_base_force = 500.0
 
 [node name="Body" type="Node3D" parent="."]

@@ -1,65 +1,32 @@
 extends RigidBody3D
 class_name BalloonController
 
-signal has_landed
-
 @onready var player: PlayerController = get_tree().get_first_node_in_group("player")
 @onready var balloon_body: Node3D = $Body
-@onready var oven: Node = %Oven
 
-@onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
-# var _is_reparenting := false
-@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
-var is_grounded := false
-var ground_check_enabled := true
-var ground_disable_timer := 0.0
-
-# weight / objects in balloon
-var objs_in_balloon: Dictionary = {}
-var total_weight: float = 0.0
-var player_weight: float = 5.0
-
-# input component
-@export var input_component: Array[BalloonInput]
-
-# tilt
-@export var max_tilt_angle := 10.0
-var tilt_tween: Tween = null
-var tilt_damping := 0.5
-
-## Sound Settings
+##--- sound settings ---
 @export var SFX_Engine: String
 @export var SFX_Land: String
 
-func _ready() -> void:
-	objs_in_balloon.clear()
-	if obj_in_balloon_area:
-		obj_in_balloon_area.body_entered.connect(_on_body_entered)
-		obj_in_balloon_area.body_exited.connect(_on_body_exited)
+#func _ready() -> void:
+	#objs_in_balloon.clear()
+	#if obj_in_balloon_area:
+		#obj_in_balloon_area.body_entered.connect(_on_body_entered)
+		#obj_in_balloon_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(delta: float) -> void:
-	if not ground_check_enabled:
-		ground_disable_timer -= delta
-		if ground_disable_timer <= 0.0:
-			ground_check_enabled = true
-
+	_check_ground_cd_timer(delta) # -> updates ground_check_enabled'
 	var touching_ground := false
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
-
-	if not is_grounded:
-		apply_central_force(Vector3.DOWN * GRAVITY)
-
-	if not is_grounded and touching_ground and linear_velocity.y <= 0.1:
-		_on_land()
-	if is_grounded and oven.get_fuel_percentage() > 0.1:
-		_on_takeoff()
-	if not ground_check_enabled and oven.get_fuel_percentage() > 0:
-		player.trauma = 0.5
-
 	get_balloon_input()
+	update_balloon_states(touching_ground)
 	update_balloon_movement()
 
+##--- balloon control input component ---
+@export var input_component: Array[BalloonInput]
+
+##--- vector4's 'x,y,z' for movement (vector3), 'w' for rotation parameter
 func get_balloon_input() -> Vector4:
 	if input_component.size() == 0:
 		return Vector4.ZERO
@@ -81,27 +48,39 @@ func get_balloon_input() -> Vector4:
 	#rotation_input = clamp(rotation_input, -1.0, 1.0)
 	return Vector4(horizontal_input.x, vertical_input, horizontal_input.y, rotation_input)
 
-#--- balloon movement and rotation ---
+##--- handle fuel ---
+var max_fuel = 100.0
+var current_fuel = 0.0
+var burning_rate = 0.5
+
+func get_balloon_fuel() -> bool:
+	return true if current_fuel > 0 else false
+
+func consume_fuel(amount: float) -> void:
+	current_fuel = max(current_fuel - amount * burning_rate, 0.0)
+
+##--- balloon movement and rotation ---
 func update_balloon_movement() -> void:
 	_apply_vertical_force()
 	_apply_horizontal_force()
 	_apply_rotation()
 
-#--- vertical ---
-const GRAVITY := 0.0
+##--- vertical ---
+#const GRAVITY := 0.0
+@onready var oven: Oven = %Oven
+
 @export var vertical_base_force: float = 200.0
 var vertical_force: float = 0.0
-var is_just_land : = false
 
 func _apply_vertical_force() -> void:
 	if is_grounded:
 		return
 
-	var fuel_mult : float = oven.get_fuel_percentage() if oven else 0.0
+	var fuel_mult : float = 1.0 if oven and oven.get_fuel() else 0.0
 	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y #- (GRAVITY * total_weight * 0.05)
 	apply_central_force(Vector3.UP * vertical_force)
 
-#--- horizontal ---
+##--- horizontal ---
 @export var weight_based_movement := false
 @export var horizontal_base_force: float = 200.0
 var horizontal_force: Vector2 = Vector2.ZERO
@@ -134,7 +113,7 @@ func _apply_horizontal_force() -> void:
 	# if player and player.has_method("apply_player_camera_sway"):
 	# 	player.apply_player_camera_sway(final_tilt)
 
-#--- rotate the transform (not using torque force) ---
+##--- rotate the transform (not using torque force) ---
 @export var torque_base_force: float = 0.01
 var rotation_dir: float = 0.0
 
@@ -145,7 +124,7 @@ func _apply_rotation() -> void:
 	rotation_dir = get_balloon_input().w
 	global_rotate(Vector3.UP, rotation_dir * torque_base_force)
 
-#--- balloon max (linear and angular) speed based on rigidbody, since movement is using add force ---
+##--- balloon max (linear and angular) speed based on rigidbody, since movement is using add force ---
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var lv = state.linear_velocity
 	lv.x = clamp(lv.x, -1.5, 1.5)
@@ -159,7 +138,24 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	av.z = clamp(av.z, -1.5, 1.5)
 	state.angular_velocity = av
 
-#--- taking off and landing with rays detection ---
+##--- taking off and landing with rays detection ---
+signal has_landed
+var is_just_land : = false
+
+@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
+var is_grounded := false
+var ground_check_enabled := true
+var ground_disable_timer := 0.0
+
+##--- manage transition
+func update_balloon_states(touching_ground : bool) -> void:
+	if not is_grounded and touching_ground: # and linear_velocity.y <= 0.1
+		_on_land()
+	if is_grounded and get_balloon_input().y > 0.5:
+		_on_takeoff()
+	if not ground_check_enabled and get_balloon_input().y > 0.0:
+		player.trauma = 0.5
+
 func _on_land() -> void:
 	#Audio.play(SFX_Land, global_transform)
 	is_grounded = true
@@ -191,7 +187,19 @@ func _check_ground_contacts() -> bool:
 				return true
 	return false
 
-#--- tilting visual feedback based on weight ---
+func _check_ground_cd_timer(delta: float) -> void:
+	if not ground_check_enabled:
+		ground_disable_timer -= delta
+		if ground_disable_timer <= 0.0:
+			ground_check_enabled = true
+
+##--- obj weight ---
+@onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
+# var _is_reparenting := false
+var objs_in_balloon: Dictionary = {}
+var total_weight: float = 0.0
+var player_weight: float = 5.0
+
 func _get_all_weights() -> float:
 	var sum: float = 0.0
 	for val in objs_in_balloon.values():
@@ -225,12 +233,17 @@ func _compute_weighted_tilt() -> Vector3:
 
 	return Vector3.ZERO
 
+##--- tilting visual feedback based on weight ---
+@export var max_tilt_angle := 10.0
+var tilt_tween: Tween = null
+var tilt_damping := 0.5
+
 func _tilt_to(target_rot: Vector3, damping: float) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tilt_tween.tween_property(balloon_body, "rotation", target_rot, damping)
 
-# called externally to control the balloon
+## called externally to control the balloon (only rotation now)
 func execute(percentage: float, _primary: bool) -> void:
 	if tilt_tween: tilt_tween.kill()
 	tilt_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
