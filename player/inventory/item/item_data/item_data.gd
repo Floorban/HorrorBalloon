@@ -6,3 +6,6 @@ class_name ItemData
 @export var mesh_scene : PackedScene
 
 @export var instance_scene : PackedScene
+
+func use_item() -> void:
+	print(item_name, "is being used")

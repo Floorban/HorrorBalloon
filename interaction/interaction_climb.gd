@@ -2,7 +2,6 @@
 extends InteractionComponent
 class_name InteractionClimb
 
-@export var is_pushable: bool = false
 var hold_to_switch: bool = true
 var hold_time: float = 0.0
 var hold_duration: float = 0.3
@@ -30,60 +29,66 @@ func _ready() -> void:
 		interact_area.body_entered.connect(_on_player_entered)
 		interact_area.body_exited.connect(_on_player_exited)
 
-func _input(event):
-	if not can_interact: return
-		
-	if is_pushable and event.is_action_pressed("climb"):
-		balloon.sprint()
-	
-	if not is_interacting: return
-
-	## Release to switch
-	if hold_to_switch:
-		if is_occupied and event.is_action_released("primary"):
-			hold_edge()
-			is_occupied = false
-			is_interacting = false
-	## Click again to switch
-	elif is_occupied and event.is_action_pressed("primary"):
-			hold_edge()
-			is_occupied = false
-	
+#func _input(event):
+	#if not can_interact or not is_interacting: return
+	### Release to switch
+	#if hold_to_switch:
+		#if is_occupied and event.is_action_released("primary"):
+			#hold_edge()
+			#is_occupied = false
+			#is_interacting = false
+	### Click again to switch
+	#elif is_occupied and event.is_action_pressed("primary"):
+			#hold_edge()
+			#is_occupied = false
+	#
 	#if is_occupied and event.is_action_pressed("climb"):
 		#go_to_exit()
 
 ## Click to to switch
-func preInteract(_hand: Marker3D, _target: Node = null) -> void:
-	super.preInteract(_hand, _target) ## put it before the mode check otherwise can't be detected as is_interacting when hold_to_switch mode
-	if hold_to_switch: return
-
-	if not is_occupied:   
-		hold_edge()
-		is_occupied = true
+#func preInteract(_hand: Marker3D, _target: Node = null) -> void:
+	#super.preInteract(_hand, _target) ## put it before the mode check otherwise can't be detected as is_interacting when hold_to_switch mode
+	#if hold_to_switch: return
+#
+	#if not is_occupied:   
+		#hold_edge()
+		#is_occupied = true
 
 ## Hold to switch
-func interact() -> void:
-	if not hold_to_switch: return
-	
-	super.interact()
-	if is_interacting:
-		hold_time += get_process_delta_time()
+#func interact() -> void:
+	#if not hold_to_switch: return
+	#
+	#super.interact()
+	#if is_interacting:
+		#hold_time += get_process_delta_time()
+#
+		#if hold_time >= hold_duration and not is_occupied:
+			#hold_edge()
+			#is_occupied = true
 
-		if hold_time >= hold_duration and not is_occupied:
-			hold_edge()
-			is_occupied = true
+func postInteract() -> void:
+	super.postInteract()
+	if can_interact:
+		go_to_exit()
+
+func interact_hint() -> void:
+	pass
+
+## when the controller leaves
+func disable_interact_hint() -> void:
+	pass
 
 func go_to_exit() -> void:
 	if not player: return
-	player.set_viewing_mode()
+	#player.set_viewing_mode()
 	player.global_transform.origin = target_pos
 	is_interacting = false
 	is_occupied = false
 
-func hold_edge() -> void:
-	if not player: return
-	player.set_viewing_mode(viewing_offet, viewing_zoom)
-	hold_time = 0.0
+#func hold_edge() -> void:
+	#if not player: return
+	#player.set_viewing_mode(viewing_offet, viewing_zoom)
+	#hold_time = 0.0
 
 func _on_player_entered(body: Node3D) -> void:
 	if body is PlayerController:

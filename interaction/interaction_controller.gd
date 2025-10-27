@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func perform_interactions(target: InteractionComponent) -> void:
 	# Update reticle
-	if interaction_component.is_interacting:
+	if interaction_component.is_interacting and interaction_component.can_interact:
 		default_reticle.visible = false
 		highlight_reticle.visible = false
 		interacting_reticle.visible = true
@@ -92,7 +92,10 @@ func check_potential_interactables() -> void:
 				else:
 					last_hover_component.interact_hint()
 			last_hover_component = interaction_component
-			_focus()
+			if interaction_component.can_interact:
+				_focus()
+			else:
+				_unfocus()
 			if Input.is_action_just_pressed("primary"):
 				current_object = potential_object
 				if interaction_component is InteractionHolddable:

@@ -1,8 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://dsnu03aig57ga"]
+[gd_scene load_steps=39 format=3 uid="uid://dsnu03aig57ga"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_rr85g"]
-[ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_lmprd"]
-[ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="11_bipv8"]
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_w3mnl"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_ytavt"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_1pdmh"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="5_w0it3"]
+[ext_resource type="Texture2D" uid="uid://462nbhhg2r4k" path="res://assets/ui/mouse_v_drag.png" id="6_c6k7u"]
+[ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="7_k2sdq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_uh8tx"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="13_ippm3"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="14_ul8k3"]
@@ -15,35 +19,93 @@ top_radius = 0.3
 bottom_radius = 0.3
 height = 0.03
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kouht"]
+points = PackedVector3Array(0.057098106, 0.01833333, 0.3047619, -0.057098106, -0.019761905, -0.3047619, -0.09522317, -0.019761905, -0.2952157, 0.09522317, -0.019761905, 0.2952157, 0.2952157, 0.01833333, -0.09522317, -0.3047619, 0.01833333, -0.057098106, -0.26663682, -0.019761905, 0.16186745, 0.3047619, -0.019761905, 0.057098106, -0.057098106, 0.01833333, -0.3047619, 0.19044635, -0.019761905, -0.24760412, -0.19044635, 0.01833333, 0.24760412, 0.24760412, 0.01833333, 0.19044635, -0.26663682, -0.019761905, -0.16186745, 0.12380206, 0.01833333, -0.2856695, -0.09522317, -0.019761905, 0.2952157, -0.19044635, 0.01833333, -0.24760412, 0.2856695, -0.019761905, -0.12380206, -0.2856695, 0.01833333, 0.12380206, -0.3047619, -0.019761905, 0.057098106, 0.19044635, -0.019761905, 0.24760412, 0.24760412, 0.01833333, -0.19044635, 0.3047619, 0.01833333, 0.057098106, 0.057098106, -0.019761905, -0.3047619, -0.057098106, 0.01833333, 0.3047619, 0.16186745, 0.01833333, 0.26663682, 0.26663682, -0.019761905, 0.16186745, -0.26663682, 0.01833333, -0.16186745, -0.19044635, -0.019761905, -0.24760412, -0.19044635, -0.019761905, 0.24760412, -0.3047619, -0.019761905, -0.057098106, 0.3047619, -0.019761905, -0.057098106, -0.057098106, -0.019761905, 0.3047619)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wdyp"]
+size = Vector3(0.030273438, 0.3015625, 0.267)
+
+[sub_resource type="Resource" id="Resource_j0nhb"]
+script = ExtResource("4_1pdmh")
+icon = ExtResource("5_w0it3")
+prompt = "Get On"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_0ia10"]
+script = ExtResource("4_1pdmh")
+icon = ExtResource("6_c6k7u")
+prompt = "Peak"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_iqv37"]
+script = ExtResource("4_1pdmh")
+icon = ExtResource("7_k2sdq")
+prompt = "Cross"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5j1qt"]
+size = Vector3(0.088134766, 0.12805176, 0.23632813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m6r2"]
+size = Vector3(0.037109375, 0.30029297, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjdak"]
+size = Vector3(0.08105469, 0.12805176, 0.23632813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfk8s"]
+size = Vector3(0.032958984, 0.29858398, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk1uh"]
+size = Vector3(0.08227539, 0.12805176, 0.23632813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmpme"]
+size = Vector3(0.03491211, 0.30029297, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ia10"]
+size = Vector3(0.08105469, 0.12805176, 0.23632813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agsvp"]
+size = Vector3(0.034057617, 0.2995758, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7xht"]
+size = Vector3(0.08203125, 0.12805176, 0.23632813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3mnl"]
+size = Vector3(0.033447266, 0.29953384, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytavt"]
+size = Vector3(0.034179688, 0.29974747, 0.26660156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pdmh"]
+size = Vector3(0.036132813, 0.30072403, 0.26660156)
+
 [sub_resource type="TorusMesh" id="TorusMesh_p68pd"]
 inner_radius = 0.3
 outer_radius = 0.35
 rings = 8
 ring_segments = 8
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
-size = Vector3(0.9675293, 0.07292175, 0.9849243)
-
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_7g0gd"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w3mnl"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2715325396163
+metadata/creation_stamp = 102366787584666
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_l5rlh"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ytavt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2715358950597
+metadata/creation_stamp = 102366821139099
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_p68pd"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_1pdmh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2715392505031
+metadata/creation_stamp = 102366854693534
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_7g66e"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w0it3"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2715426059465
+metadata/creation_stamp = 102366888247986
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rdoix"]
-size = Vector3(0.96102905, 0.46351624, 0.95084)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kouht"]
+height = 0.62841797
+radius = 0.3569336
 
 [node name="Balloon_Small" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
 collision_layer = 1073741824
@@ -52,7 +114,9 @@ mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_rr85g")
 input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), null]
-vertical_base_force = 500.0
+vertical_base_force = 10.0
+horizontal_base_force = 100.0
+max_tilt_angle = 15.0
 
 [node name="Body" type="Node3D" parent="."]
 
@@ -63,20 +127,284 @@ collision_layer = 1073741825
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Bottom"]
 mesh = SubResource("CylinderMesh_l5rlh")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body/Bottom"]
-transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0.1, 0)
-mesh = SubResource("TorusMesh_p68pd")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Bottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029312134, 0.025814056, 0.023223877)
-shape = SubResource("BoxShape3D_q3h3j")
+shape = SubResource("ConvexPolygonShape3D_kouht")
 
-[node name="BasketSides" parent="Body" instance=ExtResource("2_lmprd")]
+[node name="BasketSides" type="Node3D" parent="Body"]
+
+[node name="BasketEdge_1_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.9205048, 0, -0.3907311, 0, 1, 0, 0.3907311, 0, 0.9205048, -0.28410935, -0.047726616, -0.12158583)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_1_1"]
+collision_layer = 5
+
+[node name="SideCollision_1_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_1/StaticBody3D"]
+transform = Transform3D(0.9999999, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 0.9999999, 0.00851199, 0.16770881, 0.0039753094)
+shape = SubResource("BoxShape3D_0wdyp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057148404, 0.063047945, 0.0016073398)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056882814, 0.063047945, 0.0016073398)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_1_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_1_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008835971, 0.071842775, 0.0055029467)
+shape = SubResource("BoxShape3D_5j1qt")
+
+[node name="BasketEdge_1_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.92050487, 0, 0.39073113, 0, 1, 0, -0.39073113, 0, 0.92050487, -0.27799234, 0.088884234, 0.11489742)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_1_2"]
+collision_layer = 5
+
+[node name="SideCollision_1_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.030029297, 0)
+shape = SubResource("BoxShape3D_5m6r2")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06677756, -0.042698503, -0.0070992005)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_1_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047910377, -0.042698503, -0.0070991996)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_1_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_1_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_1_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004917681, -0.08351381, 0)
+shape = SubResource("BoxShape3D_tjdak")
+
+[node name="BasketEdge_2_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.92050487, 0, -0.39073113, 0, 1, 0, 0.39073113, 0, 0.92050487, 0.27671832, 0.0881218, 0.11461644)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge_2_1"]
+collision_layer = 5
+
+[node name="SideCollision_2_1" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_2_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03186035, 0)
+shape = SubResource("BoxShape3D_rfk8s")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge_2_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0479331, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge_2_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.059966557, -0.0772613, 9.313226e-10)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge_2_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge_2_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_2_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge_2_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00017520785, -0.05177799, 2.2351742e-08)
+shape = SubResource("BoxShape3D_bk1uh")
+
+[node name="BasketEdge2_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.92050487, 0, 0.39073113, 0, 1, 0, -0.39073113, 0, 0.92050487, 0.27711368, 0.079806924, -0.11529824)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge2_2"]
+collision_layer = 5
+
+[node name="SideCollision_2_2" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge2_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03930664, 0)
+shape = SubResource("BoxShape3D_lmpme")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge2_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046671778, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge2_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05153601, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge2_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge2_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge2_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge2_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017090142, -0.05177799, -5.2154064e-08)
+shape = SubResource("BoxShape3D_0ia10")
+
+[node name="BasketEdge3_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-0.39073116, 0, 0.92050487, 0, 1, 0, -0.92050487, 0, -0.39073116, -0.11404486, 0.08881849, -0.27716574)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge3_1"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge3_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0004272461, 0.03099823, 1.4901161e-08)
+shape = SubResource("BoxShape3D_agsvp")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge3_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047664776, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge3_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054527786, -0.0772613, 1.8626451e-09)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge3_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge3_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge3_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge3_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030507445, -0.05177799, 4.4703484e-08)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge3_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.39073107, 0, 0.92050487, 0, 1, 0, -0.92050487, 0, 0.39073107, 0.114102185, 0.07845396, -0.27608484)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge3_2"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge3_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.040784836, 0)
+shape = SubResource("BoxShape3D_w3mnl")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge3_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048180997, -0.0772613, -9.313226e-10)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge3_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056126293, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge3_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge3_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge3_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge3_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028763176, -0.05177799, 5.355105e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge4_1" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(-0.39073116, 0, -0.92050487, 0, 1, 0, 0.92050487, 0, -0.39073116, -0.114216164, 0.077687144, 0.27618954)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge4_1"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042020798, 0)
+shape = SubResource("BoxShape3D_ytavt")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04766482, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge4_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056163467, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge4_1"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge4_1" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_1/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004616797, -0.05177799, -7.450581e-09)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="BasketEdge4_2" type="Node3D" parent="Body/BasketSides"]
+transform = Transform3D(0.39073107, 0, -0.92050487, 0, 1, 0, 0.92050487, 0, 0.39073107, 0.11490482, 0.089573756, 0.2764059)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Body/BasketSides/BasketEdge4_2"]
+collision_layer = 5
+
+[node name="SideCollision_3" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.029813766, 0)
+shape = SubResource("BoxShape3D_1pdmh")
+
+[node name="Exit1" type="Marker3D" parent="Body/BasketSides/BasketEdge4_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046498224, -0.0772613, 0)
+
+[node name="Exit2" type="Marker3D" parent="Body/BasketSides/BasketEdge4_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05198487, -0.0772613, 0)
+
+[node name="NormalCheckRay" type="RayCast3D" parent="Body/BasketSides/BasketEdge4_2"]
+target_position = Vector3(0, 5, 0)
+
+[node name="InteractionComponent" parent="Body/BasketSides/BasketEdge4_2" node_paths=PackedStringArray("object_ref") instance=ExtResource("2_w3mnl")]
+script = ExtResource("3_ytavt")
+viewing_offet = Vector3(0, 1, -0.1)
+viewing_zoom = 0.95
+_hold_to_switch = false
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+object_ref = NodePath("..")
+
+[node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/BasketSides/BasketEdge4_2/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021424592, -0.05177799, 0)
+shape = SubResource("BoxShape3D_i7xht")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body/BasketSides"]
+transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 1, 0, 0.12000932, 0)
+mesh = SubResource("TorusMesh_p68pd")
+skeleton = NodePath("../../Bottom")
 
 [node name="Model" type="Node3D" parent="Body"]
 
 [node name="Ball" type="MeshInstance3D" parent="Body/Model"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.5, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
 mesh = SubResource("SphereMesh_2fgap")
 skeleton = NodePath("../..")
 
@@ -84,50 +412,38 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.116721, 0)
 
 [node name="Corner_1" type="Node3D" parent="Body/Corners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2515573, 0.2851143, 0.30380595)
-
-[node name="RopeInteraction" parent="Body/Corners/Corner_1" instance=ExtResource("11_bipv8")]
-transform = Transform3D(0.541043, 0.316137, 0.779314, -0.39235, 0.914518, -0.098592, -0.743865, -0.252421, 0.61883, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22455056, 0.2851143, 0.22329813)
 
 [node name="Corner_2" type="Node3D" parent="Body/Corners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156286, 0.355, 0.2110959)
-
-[node name="RopeInteraction" parent="Body/Corners/Corner_2" instance=ExtResource("11_bipv8")]
-transform = Transform3D(0.668143, -0.30282, 0.679621, -0.0178129, 0.906657, 0.421493, -0.743819, -0.293724, 0.600382, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22385761, 0.31202608, 0.22405022)
 
 [node name="Corner_3" type="Node3D" parent="Body/Corners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25015783, 0.355, -0.31868297)
-
-[node name="RopeInteraction" parent="Body/Corners/Corner_3" instance=ExtResource("11_bipv8")]
-transform = Transform3D(0.756661, -0.296234, 0.582846, 0.408164, 0.910436, -0.0671516, -0.510751, 0.288708, 0.809803, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23182692, 0.3202989, -0.22858632)
 
 [node name="Corner_4" type="Node3D" parent="Body/Corners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13732725, 0.355, -0.29480857)
-
-[node name="RopeInteraction" parent="Body/Corners/Corner_4" instance=ExtResource("11_bipv8")]
-transform = Transform3D(0.539355, 0.278116, 0.794826, 0.0913627, 0.918987, -0.383558, -0.837108, 0.279491, 0.47025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22960168, 0.32052368, -0.22665395)
 
 [node name="Ropes" type="Node3D" parent="Body"]
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_7g0gd")
+mesh = SubResource("ImmediateMesh_w3mnl")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_l5rlh")
+mesh = SubResource("ImmediateMesh_ytavt")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_p68pd")
+mesh = SubResource("ImmediateMesh_1pdmh")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_7g66e")
+mesh = SubResource("ImmediateMesh_w0it3")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -137,45 +453,45 @@ script = ExtResource("13_ippm3")
 attached_rope = NodePath("../../Ropes/BalloonRope_1")
 
 [node name="Flag_1" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
-transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e-09, -0.05, -0.04924039, -0.008682398, 3.7951967e-10, 0, -0.432378, 0)
 
 [node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
-transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e-09, -0.05, -0.04924039, -0.008682398, 3.7951967e-10, 0, -0.432378, 0)
 
 [node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
-transform = Transform3D(-0.017364798, 0.0984808, -4.3047317e-09, 0, -4.3711395e-09, -0.1, -0.0984808, -0.017364798, 7.5903933e-10, 0, -0.432378, 0)
+transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e-09, -0.05, -0.04924039, -0.008682398, 3.7951967e-10, 0, -0.432378, 0)
 
 [node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("13_ippm3")
 attached_rope = NodePath("../../Ropes/BalloonRope_2")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
 
 [node name="RopeFlag_2" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
 
 [node name="RopeFlag_3" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
 
 [node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.0939693, -0.034202, 1.49502e-09, 0, -4.37114e-09, -0.1, 0.034202, -0.0939693, 4.10753e-09, 0, 0, 0)
+transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
 
 [node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("13_ippm3")
 attached_rope = NodePath("../../Ropes/BalloonRope_3")
 
 [node name="RopeFlag_1" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="RopeFlag_2" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="RopeFlag_3" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="RopeFlag_4" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.15, -2.26494e-08, 9.90036e-16, 0, -6.55671e-09, -0.15, 2.26494e-08, -0.15, 6.55671e-09, 0, 0, 0)
+transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="ObjInBalloonArea" type="Area3D" parent="Body"]
 unique_name_in_owner = true
@@ -189,42 +505,46 @@ gravity_point = true
 process_mode = 3
 physics_interpolation_mode = 1
 auto_translate_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022735614, 0.2524948, 0.00085258484)
-shape = SubResource("BoxShape3D_rdoix")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027769089, 0.24674797, -0.019908547)
+shape = SubResource("CylinderShape3D_kouht")
 
 [node name="Input_Button" parent="Body" instance=ExtResource("18_w2kjj")]
-transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.16730878, 0.20969586, -0.0882613)
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.020914108, 0.20969586, -0.26151073)
+
+[node name="BalloonInputComponent" parent="Body/Input_Button" index="2" node_paths=PackedStringArray("balloon")]
+balloon = NodePath("../../..")
+intensity = 2.0
 
 [node name="GroundCheck" type="Node3D" parent="."]
 
 [node name="GroundCheck_1" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16100788, 0)
-target_position = Vector3(0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04278563, 0)
+target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2536583, 0.16100788, 2.6153243)
-target_position = Vector3(0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2269957, 0.04278563, 0.24077147)
+target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974897, 0.16100788, 2.6317258)
-target_position = Vector3(0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2322967, 0.04278563, 0.23215792)
+target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7580302, 0.16100788, -2.3905723)
-target_position = Vector3(0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23640716, 0.04278563, -0.22776493)
+target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
 
 [node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3131738, 0.16100788, -2.349565)
-target_position = Vector3(0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23537028, 0.04278563, -0.23668317)
+target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
 
 [editable path="Body/Input_Button"]

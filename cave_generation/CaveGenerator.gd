@@ -3,6 +3,8 @@ class_name CaveGenerator
 
 signal finish_gen
 
+@export var can_generate := false
+
 @export var voxel_terrain : Voxel
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
@@ -20,6 +22,7 @@ var affected_voxels: Array[Vector3] = []
 @onready var noise := FastNoiseLite.new()
 
 func _ready() -> void:
+	if not can_generate: return
 	setup()
 	if show_walker and current_walker:
 		current_walker.show()

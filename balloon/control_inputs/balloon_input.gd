@@ -1,12 +1,12 @@
 extends Node
 class_name BalloonInput
 
-@export var oven: Oven
+@export var balloon: BalloonController
 @export var intensity: float = 10.0
 
 func execute(percentage: float, primary: bool) -> void:
-	if oven and oven.get_fuel_percentage() > 0.0:
-		oven.consume_fuel(abs(percentage)*0.01)
+	if balloon and balloon.get_balloon_fuel():
+		balloon.consume_fuel(abs(percentage)*0.01)
 
 func get_vertical_input() -> float:
 	return 0.0

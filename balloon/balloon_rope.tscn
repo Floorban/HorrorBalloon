@@ -3,17 +3,17 @@
 [ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4_gd/materials/rope_default.material" id="1_re6vc"]
 [ext_resource type="Script" uid="uid://csu7ttil0x0l0" path="res://addons/verlet_rope_4_gd/verlet_rope.gd" id="2_mnoqc"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_ivbyg"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_re6vc"]
 resource_local_to_scene = true
-metadata/creation_stamp = 81544433717148
+metadata/creation_stamp = 102002638111456
 
 [node name="BalloonRope" type="MeshInstance3D"]
 material_override = ExtResource("1_re6vc")
-mesh = SubResource("ImmediateMesh_ivbyg")
+mesh = SubResource("ImmediateMesh_re6vc")
 skeleton = NodePath("../../..")
 script = ExtResource("2_mnoqc")
-rope_length = 8.0
-rope_width = 0.08
+rope_length = 2.2
+rope_width = 0.03
 simulation_particles = 20
 use_visible_on_screen_notifier = false
 iterations = 5

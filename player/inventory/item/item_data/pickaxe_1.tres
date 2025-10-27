@@ -6,15 +6,11 @@
 [sub_resource type="Resource" id="Resource_h3a86"]
 script = ExtResource("1_fgvcg")
 mat_name = "Default"
-depth = 2.2
-darkness = -0.155
 metadata/_custom_type_script = "uid://vlwt5tnda4b4"
 
 [sub_resource type="Resource" id="Resource_va2wx"]
 script = ExtResource("1_fgvcg")
 mat_name = "Rock"
-depth = 4.76
-darkness = 1.325
 metadata/_custom_type_script = "uid://vlwt5tnda4b4"
 
 [resource]
