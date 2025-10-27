@@ -21,9 +21,11 @@ func _physics_process(delta: float) -> void:
 	var touching_ground := false
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
+		
 	get_balloon_input()
 	update_balloon_states(touching_ground)
 	update_balloon_movement()
+	#push_away_from_wall(delta)
 
 ##--- balloon control input component ---
 @export var input_component: Array[BalloonInput]
@@ -156,19 +158,23 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 ##--- taking off and landing with rays detection ---
 signal has_landed
-var is_just_land : = false
 
-@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5]
+@onready var ground_checks := [%GroundCheck_1, %GroundCheck_2, %GroundCheck_3, %GroundCheck_4, %GroundCheck_5,
+%WallCheck_1, %WallCheck_2, %WallCheck_3, %WallCheck_4, %WallCheck_5, %WallCheck_6, %WallCheck_7, %WallCheck_8
+]
 var is_grounded := false
 var ground_check_enabled := true
 var ground_disable_timer := 0.0
 
-##--- manage transition
+##--- manage transition ---
 func update_balloon_states(touching_ground : bool) -> void:
-	if not is_grounded and touching_ground: # and linear_velocity.y <= 0.1
+	if not is_grounded and touching_ground:
 		_on_land()
-	if is_grounded and get_balloon_input().y > 0.5:
-		_on_takeoff()
+	if is_grounded:
+		if not touching_ground:
+			_on_takeoff(-0.1)
+		if get_balloon_input().y > 0.5:
+			_on_takeoff(vertical_base_force * 0.1 - (GRAVITY * total_weight * WEIGHT_MULT))
 	if not ground_check_enabled and get_balloon_input().y > 0.0:
 		#taking off feedback here
 		pass
@@ -183,11 +189,11 @@ func _on_land() -> void:
 	has_landed.emit()
 	print("Balloon landed")
 
-func _on_takeoff() -> void:
+func _on_takeoff(init_speed : float) -> void:
 	#Audio.play(SFX_Engine, global_transform)
 	is_grounded = false
 	sleeping = false
-	linear_velocity.y = vertical_base_force * 0.01
+	linear_velocity.y = init_speed
 	print("Balloon taking off")
 	ground_check_enabled = false
 	ground_disable_timer = 1.0
@@ -210,15 +216,61 @@ func _check_ground_cd_timer(delta: float) -> void:
 		if ground_disable_timer <= 0.0:
 			ground_check_enabled = true
 
+## --- balloon wall collision ---
+@onready var wall_checks := [%WallCheck_1, %WallCheck_2, %WallCheck_3, %WallCheck_4, %WallCheck_5, %WallCheck_6, %WallCheck_7, %WallCheck_8]
+var is_colliding_wall := false
+var wall_push_strength := 50.0
+var wall_push_smooth := 8.0
+var current_push := Vector3.ZERO 
+
+func _check_wall_contacts() -> bool:
+	for i in wall_checks.size():
+		var gc = wall_checks[i]
+		if not gc:
+			continue
+		gc.force_raycast_update()
+		if gc.is_colliding():
+			var col = gc.get_collider()
+			if col and col != self:
+				return true
+	return false
+
+func _get_wall_contact() -> Vector3:
+	for ray in wall_checks:
+		if ray.is_colliding():
+			var normal = ray.get_collision_normal()
+			return normal
+	return Vector3.ZERO
+
+func push_away_from_wall(delta: float) -> void:
+	if is_grounded:
+		return
+
+	var hit_normal = Vector3.ZERO
+	var hit_point = Vector3.ZERO
+
+	if _check_wall_contacts():
+		is_colliding_wall = true
+		var from_point = (global_position - hit_point).normalized()
+		var push_dir = (from_point + hit_normal).normalized()
+
+		var target_push = push_dir * wall_push_strength
+		current_push = current_push.lerp(target_push, delta * wall_push_smooth)
+		global_position += current_push * delta
+	else:
+		is_colliding_wall = false
+		current_push = current_push.lerp(Vector3.ZERO, delta * wall_push_smooth)
+
 ##--- obj weight ---
 @onready var obj_in_balloon_area: Area3D = %ObjInBalloonArea
 # var _is_reparenting := false
 var objs_in_balloon: Dictionary = {}
 var total_weight: float = 0.0
 var player_weight: float = 5.0
+var balloon_weight: float = 1.0
 
 func _get_all_weights() -> float:
-	var sum: float = 0.0
+	var sum: float = balloon_weight
 	for val in objs_in_balloon.values():
 		sum += float(val)
 	return sum

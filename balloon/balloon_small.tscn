@@ -74,35 +74,35 @@ ring_segments = 8
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_7g66e"]
+resource_local_to_scene = true
+metadata/creation_stamp = 111576925526182
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w3mnl"]
+resource_local_to_scene = true
+metadata/creation_stamp = 111576959085450
+
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ytavt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 29094494431487
+metadata/creation_stamp = 111576992642295
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1pdmh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 29094527976757
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_w0it3"]
-resource_local_to_scene = true
-metadata/creation_stamp = 29094561625227
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_c6k7u"]
-resource_local_to_scene = true
-metadata/creation_stamp = 29094595181268
+metadata/creation_stamp = 111577026202247
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kouht"]
 height = 0.62841797
 radius = 0.3569336
 
 [node name="Balloon_Small" type="RigidBody3D" node_paths=PackedStringArray("input_component") groups=["balloon"]]
-collision_layer = 1073741824
+collision_layer = 1073741825
 collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_rr85g")
 input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), NodePath("Body/Input_Horizontal/BalloonInputComponent")]
-vertical_base_force = 10.0
-horizontal_base_force = 50.0
+vertical_base_force = 5.0
+horizontal_base_force = 10.0
 max_tilt_angle = 15.0
 
 [node name="Body" type="Node3D" parent="."]
@@ -422,23 +422,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22960168, 0.32052368, -0.2
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.0229967, 0.20000002)
-mesh = SubResource("ImmediateMesh_ytavt")
+mesh = SubResource("ImmediateMesh_7g66e")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.0229967, 0.20000002)
-mesh = SubResource("ImmediateMesh_1pdmh")
+mesh = SubResource("ImmediateMesh_w3mnl")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.0229967, -0.19999997)
-mesh = SubResource("ImmediateMesh_w0it3")
+mesh = SubResource("ImmediateMesh_ytavt")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.0229967, -0.19999997)
-mesh = SubResource("ImmediateMesh_c6k7u")
+mesh = SubResource("ImmediateMesh_1pdmh")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -508,30 +508,93 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04278563, 0)
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
+hit_from_inside = true
 
 [node name="GroundCheck_2" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2269957, 0.04278563, 0.24077147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21812832, 0.04278563, 0.21579973)
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
+hit_from_inside = true
 
 [node name="GroundCheck_3" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2322967, 0.04278563, 0.23215792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21576017, 0.04278563, 0.21141653)
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
+hit_from_inside = true
 
 [node name="GroundCheck_4" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23640716, 0.04278563, -0.22776493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21315631, 0.04278563, -0.21460274)
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
+hit_from_inside = true
 
 [node name="GroundCheck_5" type="RayCast3D" parent="GroundCheck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23537028, 0.04278563, -0.23668317)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21446222, 0.04278563, -0.21673168)
 target_position = Vector3(0, -0.1, 0)
 collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck" type="Node3D" parent="."]
+
+[node name="WallCheck_1" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(0.90630776, 0, 0.42261827, 0, 1, 0, -0.42261827, 0, 0.90630776, 0.24125099, 0.04278563, -0.095336854)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_2" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(0.90630776, 0, -0.42261827, 0, 1, 0, 0.42261827, 0, 0.90630776, 0.24483332, 0.04278563, 0.09234486)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_3" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(0.42261824, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, 0.42261824, 0.09609804, 0.04278563, 0.2375534)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_4" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(-0.42261833, 0, -0.90630776, 0, 1, 0, 0.90630776, 0, -0.42261833, -0.10034706, 0.04278563, 0.23328894)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_5" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(-0.90630776, 0, -0.42261833, 0, 1, 0, 0.42261833, 0, -0.90630776, -0.22953586, 0.04278563, 0.09633142)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_6" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(0.4226182, 0, 0.90630776, 0, 1, 0, -0.90630776, 0, 0.4226182, 0.1031449, 0.04278563, -0.23797664)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_7" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(-0.4226183, 0, 0.9063077, 0, 1, 0, -0.9063077, 0, -0.4226183, -0.10539018, 0.04278563, -0.23511933)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
+
+[node name="WallCheck_8" type="RayCast3D" parent="WallCheck"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9063077, 0, 0.4226183, 0, 1, 0, -0.4226183, 0, -0.9063077, -0.22608724, 0.04278563, -0.09862459)
+target_position = Vector3(0.1, 0, 0)
+collision_mask = 2147483648
+hit_from_inside = true
 
 [editable path="Body/Input_Button"]
 [editable path="Body/Input_Button/ButtonInput_UP"]

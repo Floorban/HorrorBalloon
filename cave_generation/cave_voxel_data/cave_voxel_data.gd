@@ -43,6 +43,6 @@ func spawn_ore(voxel: Voxel, parent: Node3D) -> Node3D:
 	var o = ro.get_random_scene().instantiate()
 	if o is OreInstance: 
 		o.voxel_terrain = voxel
-		o.ore_data = ro
+		#o.ore_data = ro
 	parent.add_child(o)
 	return o

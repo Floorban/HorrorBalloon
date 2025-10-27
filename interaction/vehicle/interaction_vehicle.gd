@@ -39,10 +39,8 @@ func _physics_process(delta):
 	notify_nodes(right, false)
 
 func _input(event):
-	if can_interact and event.is_action_pressed("pickup"):
-		enter_vehicle()
 	if not is_occupied: return
-	if event.is_action_pressed("pickup") or event.is_action_pressed("primary"):
+	if event.is_action_pressed("pickup"):
 		exit_vehicle()
 
 func preInteract(_hand: Marker3D, _target: Node = null) -> void:
@@ -59,12 +57,15 @@ func enter_vehicle() -> void:
 	if not is_occupied and can_interact:   
 		player.set_viewing_mode(viewing_offet, viewing_zoom)
 		is_occupied = true
+		can_interact = false
 
 func exit_vehicle() -> void:
 	if not player: return
 	player.set_viewing_mode()
 	is_interacting = false
 	is_occupied = false
+	await get_tree().create_timer(0.3).timeout
+	can_interact = true
 
 func _on_player_entered(body: Node3D) -> void:
 	if body is PlayerController:
