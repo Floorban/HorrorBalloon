@@ -55,12 +55,14 @@ func perform_interactions(target: InteractionComponent) -> void:
 		interaction_component.postInteract()
 		_unfocus()
 		return
-	if Input.is_action_just_pressed("secondary"):
+	var primary_button = target.primary_button
+	var secondary_button = target.secondary_button
+	if Input.is_action_just_pressed(secondary_button):
 		target.auxInteract()
 		stop_interactions()
-	elif Input.is_action_pressed("primary"):
+	elif Input.is_action_pressed(primary_button):
 		target.interact()
-	else:
+	elif Input.is_action_just_released(primary_button):
 		target.postInteract()
 		if not interaction_component is InteractionHolddable:
 			stop_interactions()
@@ -96,7 +98,7 @@ func check_potential_interactables() -> void:
 				_focus()
 			else:
 				_unfocus()
-			if Input.is_action_just_pressed("primary"):
+			if Input.is_action_just_pressed(interaction_component.primary_button):
 				current_object = potential_object
 				if interaction_component is InteractionHolddable:
 					interaction_component.preInteract(chest, current_object)

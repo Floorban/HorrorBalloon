@@ -5,16 +5,16 @@
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_re6vc"]
 resource_local_to_scene = true
-metadata/creation_stamp = 102002638111456
+metadata/creation_stamp = 28317189315448
 
 [node name="BalloonRope" type="MeshInstance3D"]
 material_override = ExtResource("1_re6vc")
 mesh = SubResource("ImmediateMesh_re6vc")
 skeleton = NodePath("../../..")
 script = ExtResource("2_mnoqc")
-rope_length = 2.2
-rope_width = 0.03
-simulation_particles = 20
+rope_length = 1.2
+rope_width = 0.02
+simulation_particles = 15
 use_visible_on_screen_notifier = false
 iterations = 5
 preprocess_iterations = 10

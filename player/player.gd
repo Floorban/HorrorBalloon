@@ -428,7 +428,7 @@ func update_cam_movement(delta: float) -> void:
 		head_bobbing_index += head_bobbing_sprinting_speed * delta
 	elif player_state == PlayerState.VIEWING:
 		#can_move = false
-		current_sensitivity = current_sensitivity / 2.0
+		current_sensitivity = current_sensitivity / 1.5
 		
 		var relative_yaw = rotation_degrees.y - viewing_yaw_origin
 		relative_yaw = fposmod(relative_yaw + 180.0, 360.0) - 180.0
@@ -438,15 +438,15 @@ func update_cam_movement(delta: float) -> void:
 		eyes.position.y = lerp(eyes.position.y, viewing_offet.y, delta*lerp_speed/4.0)
 		eyes.position.z = lerp(eyes.position.z, viewing_offet.z, delta*lerp_speed/4.0)
 		player_camera.fov = lerp(player_camera.fov, base_fov * viewing_zoom, delta*lerp_speed/2.0)
-		
-	head_bobbing_vector.y = sin(head_bobbing_index)
-	head_bobbing_vector.x = (sin(head_bobbing_index/2.0))
-	if moving:
-		eyes.position.y = lerp(eyes.position.y , head_bobbing_vector.y*(head_bobbing_current_intensity/2.0),delta*lerp_speed)
-		eyes.position.x = lerp(eyes.position.x , head_bobbing_vector.x*(head_bobbing_current_intensity),delta*lerp_speed)
-	else:
-		eyes.position.y = lerp(eyes.position.y , 0.0 ,delta*lerp_speed)
-		eyes.position.x = lerp(eyes.position.x , 0.0 ,delta*lerp_speed)
+	if player_state != PlayerState.VIEWING:
+		head_bobbing_vector.y = sin(head_bobbing_index)
+		head_bobbing_vector.x = (sin(head_bobbing_index/2.0))
+		if moving:
+			eyes.position.y = lerp(eyes.position.y , head_bobbing_vector.y*(head_bobbing_current_intensity/2.0),delta*lerp_speed)
+			eyes.position.x = lerp(eyes.position.x , head_bobbing_vector.x*(head_bobbing_current_intensity),delta*lerp_speed)
+		else:
+			eyes.position.y = lerp(eyes.position.y , 0.0 ,delta*lerp_speed)
+			eyes.position.x = lerp(eyes.position.x , 0.0 ,delta*lerp_speed)
 
 func lock_player_camera(locked: bool) -> void:
 	if locked:

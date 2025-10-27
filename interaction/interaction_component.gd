@@ -4,6 +4,9 @@ extends Node
 @onready var balloon : BalloonController = get_tree().get_first_node_in_group("balloon") as BalloonController
 @onready var player : PlayerController = get_tree().get_first_node_in_group("player") as PlayerController
 
+@export var primary_button : String = "primary"
+@export var secondary_button : String = "secondary"
+
 @export var ui_set: Array[InteractionUIData] = []
 @export var object_ref: Node3D
 @export var nodes_to_affect: Array[Node]

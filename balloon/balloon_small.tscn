@@ -1,11 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://dsnu03aig57ga"]
+[gd_scene load_steps=36 format=3 uid="uid://dsnu03aig57ga"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_rr85g"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_w3mnl"]
 [ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_ytavt"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_1pdmh"]
-[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="5_w0it3"]
-[ext_resource type="Texture2D" uid="uid://462nbhhg2r4k" path="res://assets/ui/mouse_v_drag.png" id="6_c6k7u"]
 [ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="7_k2sdq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_uh8tx"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="13_ippm3"]
@@ -25,18 +23,6 @@ points = PackedVector3Array(0.057098106, 0.01833333, 0.3047619, -0.057098106, -0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wdyp"]
 size = Vector3(0.030273438, 0.3015625, 0.267)
-
-[sub_resource type="Resource" id="Resource_j0nhb"]
-script = ExtResource("4_1pdmh")
-icon = ExtResource("5_w0it3")
-prompt = "Get On"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
-
-[sub_resource type="Resource" id="Resource_0ia10"]
-script = ExtResource("4_1pdmh")
-icon = ExtResource("6_c6k7u")
-prompt = "Peak"
-metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
 
 [sub_resource type="Resource" id="Resource_iqv37"]
 script = ExtResource("4_1pdmh")
@@ -90,19 +76,19 @@ ring_segments = 8
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ytavt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 15103370107454
+metadata/creation_stamp = 29094494431487
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1pdmh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 15103403581586
+metadata/creation_stamp = 29094527976757
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w0it3"]
 resource_local_to_scene = true
-metadata/creation_stamp = 15103437136010
+metadata/creation_stamp = 29094561625227
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_c6k7u"]
 resource_local_to_scene = true
-metadata/creation_stamp = 15103470690427
+metadata/creation_stamp = 29094595181268
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kouht"]
 height = 0.62841797
@@ -157,7 +143,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_1"]
@@ -190,7 +177,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_1_2"]
@@ -223,7 +211,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge_2_1"]
@@ -256,7 +245,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge2_2"]
@@ -289,7 +279,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge3_1"]
@@ -322,7 +313,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge3_2"]
@@ -355,7 +347,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_1"]
@@ -388,7 +381,8 @@ script = ExtResource("3_ytavt")
 viewing_offet = Vector3(0, 1, -0.1)
 viewing_zoom = 0.95
 _hold_to_switch = false
-ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_j0nhb"), SubResource("Resource_0ia10"), SubResource("Resource_iqv37")])
+primary_button = "climb"
+ui_set = Array[ExtResource("4_1pdmh")]([SubResource("Resource_iqv37")])
 object_ref = NodePath("..")
 
 [node name="InteractArea" type="Area3D" parent="Body/BasketSides/BasketEdge4_2"]
@@ -405,7 +399,7 @@ skeleton = NodePath("../../Bottom")
 [node name="Model" type="Node3D" parent="Body"]
 
 [node name="Ball" type="MeshInstance3D" parent="Body/Model"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.5, 0)
 mesh = SubResource("SphereMesh_2fgap")
 skeleton = NodePath("../..")
 
@@ -427,23 +421,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22960168, 0.32052368, -0.2
 [node name="Ropes" type="Node3D" parent="Body"]
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, 0.20000002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.0229967, 0.20000002)
 mesh = SubResource("ImmediateMesh_ytavt")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, 0.20000002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.0229967, 0.20000002)
 mesh = SubResource("ImmediateMesh_1pdmh")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, -0.19999997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.0229967, -0.19999997)
 mesh = SubResource("ImmediateMesh_w0it3")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, -0.19999997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.0229967, -0.19999997)
 mesh = SubResource("ImmediateMesh_c6k7u")
 attach_end = NodePath("../../Corners/Corner_4")
 
@@ -459,9 +453,6 @@ transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e
 [node name="Flag_2" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
 transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e-09, -0.05, -0.04924039, -0.008682398, 3.7951967e-10, 0, -0.432378, 0)
 
-[node name="Flag_3" parent="Body/Flags/Flags1" instance=ExtResource("14_ul8k3")]
-transform = Transform3D(-0.008682398, 0.04924039, -2.1523658e-09, 0, -2.1855695e-09, -0.05, -0.04924039, -0.008682398, 3.7951967e-10, 0, -0.432378, 0)
-
 [node name="Flags2" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("13_ippm3")
 attached_rope = NodePath("../../Ropes/BalloonRope_2")
@@ -472,12 +463,6 @@ transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e
 [node name="RopeFlag_2" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
 transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
 
-[node name="RopeFlag_3" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
-
-[node name="RopeFlag_4" parent="Body/Flags/Flags2" instance=ExtResource("15_h1vhb")]
-transform = Transform3D(-0.04698464, -0.017100988, 7.4750794e-10, 0, -2.1855695e-09, -0.05, 0.017100988, -0.04698464, 2.0537638e-09, 0, 0, 0)
-
 [node name="Flags3" type="Node3D" parent="Body/Flags" node_paths=PackedStringArray("attached_rope")]
 script = ExtResource("13_ippm3")
 attached_rope = NodePath("../../Ropes/BalloonRope_3")
@@ -486,12 +471,6 @@ attached_rope = NodePath("../../Ropes/BalloonRope_3")
 transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="RopeFlag_2" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
-
-[node name="RopeFlag_3" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
-transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
-
-[node name="RopeFlag_4" parent="Body/Flags/Flags3" instance=ExtResource("16_e04ci")]
 transform = Transform3D(-0.1, -1.509958e-08, 6.6002364e-16, 0, -4.371139e-09, -0.1, 1.509958e-08, -0.1, 4.371139e-09, 0, 0, 0)
 
 [node name="ObjInBalloonArea" type="Area3D" parent="Body"]
@@ -510,7 +489,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027769089, 0.24674797, -0.
 shape = SubResource("CylinderShape3D_kouht")
 
 [node name="Input_Button" parent="Body" instance=ExtResource("18_w2kjj")]
-transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.0001745522, 0.21811612, 0.036156833)
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.0001745522, 0.320315, 0.036156833)
 
 [node name="BalloonInputComponent" parent="Body/Input_Button" index="2" node_paths=PackedStringArray("balloon")]
 balloon = NodePath("../../..")

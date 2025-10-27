@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	forward = clamp(forward, -1.0, 1.0)
 	right = clamp(right, -1.0, 1.0)
-	print(forward)
+
 	notify_nodes(forward, true)
 	notify_nodes(right, false)
 

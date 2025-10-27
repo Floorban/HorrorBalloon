@@ -76,7 +76,8 @@ func update_balloon_movement() -> void:
 	_apply_rotation()
 
 ##--- vertical ---
-const GRAVITY := 10.0
+const GRAVITY := 9.8
+const WEIGHT_MULT := 0.01
 
 @export var vertical_base_force: float = 200.0
 var vertical_force: float = 0.0
@@ -86,7 +87,7 @@ func _apply_vertical_force() -> void:
 		return
 
 	var fuel_mult : float = 1.0 if get_balloon_fuel() else 0.0
-	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y - (GRAVITY * total_weight * 0.05)
+	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y - (GRAVITY * total_weight * WEIGHT_MULT)
 	apply_central_force(Vector3.UP * vertical_force)
 
 ##--- horizontal ---
@@ -175,9 +176,10 @@ func update_balloon_states(touching_ground : bool) -> void:
 func _on_land() -> void:
 	#Audio.play(SFX_Land, global_transform)
 	is_grounded = true
+	var cam_shake = abs(linear_velocity.y / 2) + 0.1
+	player.trauma = clamp(cam_shake, 0.2, 0.5)
 	linear_velocity = Vector3.ZERO
 	sleeping = true
-	player.trauma = 0.3
 	has_landed.emit()
 	print("Balloon landed")
 
