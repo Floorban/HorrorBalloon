@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsnu03aig57ga"]
+[gd_scene load_steps=40 format=3 uid="uid://dsnu03aig57ga"]
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_rr85g"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_w3mnl"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_uh8tx"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="13_ippm3"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="14_ul8k3"]
+[ext_resource type="PackedScene" uid="uid://36s84n4fjy1i" path="res://balloon/control_inputs/input_horizontal.tscn" id="14_ytavt"]
 [ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="15_h1vhb"]
 [ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="16_e04ci"]
 [ext_resource type="PackedScene" uid="uid://ixtexe8ygceo" path="res://balloon/control_inputs/input_button.tscn" id="18_w2kjj"]
@@ -87,21 +88,21 @@ ring_segments = 8
 
 [sub_resource type="SphereMesh" id="SphereMesh_2fgap"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_w3mnl"]
-resource_local_to_scene = true
-metadata/creation_stamp = 102366787584666
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ytavt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 102366821139099
+metadata/creation_stamp = 15103370107454
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1pdmh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 102366854693534
+metadata/creation_stamp = 15103403581586
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w0it3"]
 resource_local_to_scene = true
-metadata/creation_stamp = 102366888247986
+metadata/creation_stamp = 15103437136010
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_c6k7u"]
+resource_local_to_scene = true
+metadata/creation_stamp = 15103470690427
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kouht"]
 height = 0.62841797
@@ -113,9 +114,9 @@ collision_mask = 0
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_rr85g")
-input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), null]
+input_component = [NodePath("Body/Input_Button/BalloonInputComponent"), NodePath("Body/Input_Horizontal/BalloonInputComponent")]
 vertical_base_force = 10.0
-horizontal_base_force = 100.0
+horizontal_base_force = 50.0
 max_tilt_angle = 15.0
 
 [node name="Body" type="Node3D" parent="."]
@@ -427,23 +428,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22960168, 0.32052368, -0.2
 
 [node name="BalloonRope_1" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_w3mnl")
+mesh = SubResource("ImmediateMesh_ytavt")
 attach_end = NodePath("../../Corners/Corner_1")
 
 [node name="BalloonRope_2" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, 0.20000002)
-mesh = SubResource("ImmediateMesh_ytavt")
+mesh = SubResource("ImmediateMesh_1pdmh")
 skeleton = NodePath("../..")
 attach_end = NodePath("../../Corners/Corner_2")
 
 [node name="BalloonRope_3" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_1pdmh")
+mesh = SubResource("ImmediateMesh_w0it3")
 attach_end = NodePath("../../Corners/Corner_3")
 
 [node name="BalloonRope_4" parent="Body/Ropes" node_paths=PackedStringArray("attach_end") instance=ExtResource("12_uh8tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 1.6000001, -0.19999997)
-mesh = SubResource("ImmediateMesh_w0it3")
+mesh = SubResource("ImmediateMesh_c6k7u")
 attach_end = NodePath("../../Corners/Corner_4")
 
 [node name="Flags" type="Node3D" parent="Body"]
@@ -509,11 +510,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027769089, 0.24674797, -0.
 shape = SubResource("CylinderShape3D_kouht")
 
 [node name="Input_Button" parent="Body" instance=ExtResource("18_w2kjj")]
-transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.020914108, 0.20969586, -0.26151073)
+transform = Transform3D(0.10000001, 0, 0, 0, 0.10000001, 0, 0, 0, 0.10000001, 0.0001745522, 0.21811612, 0.036156833)
 
 [node name="BalloonInputComponent" parent="Body/Input_Button" index="2" node_paths=PackedStringArray("balloon")]
 balloon = NodePath("../../..")
 intensity = 2.0
+
+[node name="Input_Horizontal" parent="Body" instance=ExtResource("14_ytavt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15022372, 0)
+
+[node name="BalloonInputComponent" parent="Body/Input_Horizontal" index="0" node_paths=PackedStringArray("balloon")]
+balloon = NodePath("../../..")
 
 [node name="GroundCheck" type="Node3D" parent="."]
 
@@ -550,3 +557,4 @@ collision_mask = 2147483648
 [editable path="Body/Input_Button"]
 [editable path="Body/Input_Button/ButtonInput_UP"]
 [editable path="Body/Input_Button/ButtonInput_DOWN"]
+[editable path="Body/Input_Horizontal"]

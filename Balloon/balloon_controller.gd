@@ -9,6 +9,7 @@ class_name BalloonController
 @export var SFX_Land: String
 
 func _ready() -> void:
+	input_init()
 	objs_in_balloon.clear()
 	if obj_in_balloon_area:
 		obj_in_balloon_area.body_entered.connect(_on_body_entered)
@@ -16,7 +17,7 @@ func _ready() -> void:
 	refill(max_fuel)
 
 func _physics_process(delta: float) -> void:
-	_check_ground_cd_timer(delta) # -> updates ground_check_enabled'
+	_check_ground_cd_timer(delta) # -> updates ground_check_enabled
 	var touching_ground := false
 	if ground_check_enabled:
 		touching_ground = _check_ground_contacts()
@@ -28,6 +29,11 @@ func _physics_process(delta: float) -> void:
 @export var input_component: Array[BalloonInput]
 
 ##--- vector4's 'x,y,z' for movement (vector3), 'w' for rotation parameter
+func input_init() -> void:
+	if input_component.size() <= 0: return
+	for input in input_component:
+		input.balloon = self
+
 func get_balloon_input() -> Vector4:
 	if input_component.size() == 0:
 		return Vector4.ZERO
@@ -70,7 +76,7 @@ func update_balloon_movement() -> void:
 	_apply_rotation()
 
 ##--- vertical ---
-#const GRAVITY := 0.0
+const GRAVITY := 10.0
 
 @export var vertical_base_force: float = 200.0
 var vertical_force: float = 0.0
@@ -80,7 +86,7 @@ func _apply_vertical_force() -> void:
 		return
 
 	var fuel_mult : float = 1.0 if get_balloon_fuel() else 0.0
-	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y #- (GRAVITY * total_weight * 0.05)
+	vertical_force = vertical_base_force * fuel_mult * get_balloon_input().y - (GRAVITY * total_weight * 0.05)
 	apply_central_force(Vector3.UP * vertical_force)
 
 ##--- horizontal ---

@@ -74,7 +74,6 @@ func postInteract() -> void:
 func interact_hint() -> void:
 	pass
 
-## when the controller leaves
 func disable_interact_hint() -> void:
 	pass
 

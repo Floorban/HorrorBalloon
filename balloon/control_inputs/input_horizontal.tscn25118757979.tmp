@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://36s84n4fjy1i"]
+
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_xsxkv"]
+[ext_resource type="Script" uid="uid://br5twpc6j43ao" path="res://interaction/vehicle/interaction_vehicle.gd" id="2_rt0pk"]
+[ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="3_rt0pk"]
+[ext_resource type="Script" uid="uid://361xif12gf3c" path="res://balloon/control_inputs/balloon_input_wasd.gd" id="4_epjju"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_cg35t"]
+[ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="6_r5mbv"]
+
+[sub_resource type="Resource" id="Resource_0b22b"]
+script = ExtResource("5_cg35t")
+icon = ExtResource("6_r5mbv")
+prompt = "wasd"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cg35t"]
+albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_epjju"]
+material = SubResource("StandardMaterial3D_cg35t")
+size = Vector3(0.05, 0.3, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rt0pk"]
+size = Vector3(0.05, 0.3, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epjju"]
+size = Vector3(0.12524414, 0.15039063, 0.12890625)
+
+[node name="Input_Horizontal" type="StaticBody3D"]
+collision_layer = 5
+
+[node name="BalloonInputComponent" parent="." instance=ExtResource("3_rt0pk")]
+script = ExtResource("4_epjju")
+forward_back_threshold = 0.05
+left_right_threshold = 0.05
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("interact_area", "object_ref", "nodes_to_affect") instance=ExtResource("1_xsxkv")]
+script = ExtResource("2_rt0pk")
+viewing_offet = Vector3(0, 0, 0)
+viewing_zoom = 0.95
+interact_area = NodePath("../InteractArea")
+ui_set = Array[ExtResource("5_cg35t")]([SubResource("Resource_0b22b")])
+object_ref = NodePath("..")
+nodes_to_affect = [NodePath("../BalloonInputComponent")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_epjju")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rt0pk")
+
+[node name="InteractArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013846159, -0.0002894178, 7.081777e-05)
+shape = SubResource("BoxShape3D_epjju")
