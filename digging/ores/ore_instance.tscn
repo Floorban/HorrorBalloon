@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrhc7ej1f7yj"]
+
+[ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_7paq6"]
+[ext_resource type="Script" uid="uid://05k62dt5wpb5" path="res://digging/ores/ore_instance.gd" id="1_lm0rd"]
+[ext_resource type="Script" uid="uid://bdu2qbklbvv2u" path="res://inventory/item/interaction_pickup.gd" id="3_lm0rd"]
+
+[node name="Ore_Instance" type="RigidBody3D"]
+freeze = true
+script = ExtResource("1_lm0rd")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_7paq6")]
+script = ExtResource("3_lm0rd")
+item_data = null
+primary_button = "pickup"
+object_ref = NodePath("..")

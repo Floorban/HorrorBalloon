@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_rr85g"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_w3mnl"]
-[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_ytavt"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_types/interaction_climb.gd" id="3_ytavt"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_1pdmh"]
 [ext_resource type="Texture2D" uid="uid://d0oj7ksp72kwc" path="res://assets/ui/SPACE.png" id="7_k2sdq"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="12_uh8tx"]

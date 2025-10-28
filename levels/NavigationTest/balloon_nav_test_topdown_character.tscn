@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="2_jgsvv"]
 [ext_resource type="Script" uid="uid://c3br5qbxn4wxm" path="res://balloon/control_inputs/balloon_input_weight.gd" id="3_sf57j"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="4_y26uo"]
-[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="5_ulxmy"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_types/interaction_climb.gd" id="5_ulxmy"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="6_usvoc"]
 [ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="7_jgib7"]
 [ext_resource type="ArrayMesh" uid="uid://chox1271ovhs1" path="res://assets/balloon/Oven/Oven.res" id="8_farmf"]

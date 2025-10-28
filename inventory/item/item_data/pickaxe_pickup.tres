@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://dbxp417n85fxb"]
 
 [ext_resource type="Script" uid="uid://b0j5d3v7hvtvt" path="res://inventory/item/item_data/item_data.gd" id="1_4kdom"]
-[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="1_waafq"]
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://assets/icon.svg" id="1_waafq"]
 [ext_resource type="PackedScene" uid="uid://clg1e46g7g1h2" path="res://inventory/item/item_pickup.tscn" id="2_waafq"]
 [ext_resource type="PackedScene" uid="uid://cq0eeiqk54w00" path="res://assets/stolen/mineral/PickAxeV1.fbx" id="3_8xx6q"]
 

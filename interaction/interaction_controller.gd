@@ -29,7 +29,7 @@ var is_focused: bool = false
 #@onready var interaction_ui_scene: PackedScene = preload("uid://cgy2ke6mlhmar")
 @onready var interactoin_uis : Array[Control] = [%InteractoinUI1, %InteractoinUI2, %InteractoinUI3]
 
-@onready var outline_material: Material = preload("res://materials/item_highlighter.tres")
+@onready var outline_material: Material = preload("uid://b4b17eh7lxdcq")
 
 func ui_init() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -40,5 +40,6 @@ func spawn_mesh_with_col(scene) -> Node3D:
 	return inst
 
 func unfreeze_obj():
-	if object_ref is RigidBody3D:
-		object_ref.freeze = false
+	pass
+	#if object_ref is RigidBody3D:
+		#object_ref.freeze = false

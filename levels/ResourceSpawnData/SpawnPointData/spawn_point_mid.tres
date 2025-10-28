@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="SpawnPointData" load_steps=2 format=3 uid="uid://b400rwpv001ve"]
-
-[ext_resource type="Script" uid="uid://b6pybvw21txbb" path="res://levels/ResourceSpawnData/SpawnPointData/SpawnPointData.gd" id="1_cj7py"]
-
-[resource]
-script = ExtResource("1_cj7py")
-spawn_count = 10
-metadata/_custom_type_script = "uid://b6pybvw21txbb"

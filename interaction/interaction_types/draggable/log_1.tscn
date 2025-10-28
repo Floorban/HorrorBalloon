@@ -1,0 +1,57 @@
+[gd_scene load_steps=14 format=3 uid="uid://dl6jy8rehrgdk"]
+
+[ext_resource type="Script" uid="uid://d147qtvkw5t0d" path="res://sound/impact/impact_sound.gd" id="1_fgl1q"]
+[ext_resource type="Texture2D" uid="uid://q7u1nkxjg73b" path="res://assets/stolen/psx/Wood_19-512x512.png" id="1_wa4m8"]
+[ext_resource type="ArrayMesh" uid="uid://bfliashiuet1k" path="res://assets/stolen/props/pole_001.obj" id="2_0k1tm"]
+[ext_resource type="Script" uid="uid://ctic8vqw085e2" path="res://interaction/interaction_types/draggable/interaction_draggable.gd" id="3_j6m3c"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="5_3qh3i"]
+[ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="6_3qh3i"]
+[ext_resource type="Texture2D" uid="uid://b6hk3xhtgseyb" path="res://assets/ui/mouse_right_button.png" id="7_jle51"]
+[ext_resource type="Texture2D" uid="uid://c3kiqqhiwopwf" path="res://assets/ui/mouse_scroll.png" id="8_vr6gl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55hvx"]
+albedo_texture = ExtResource("1_wa4m8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qh3i"]
+size = Vector3(0.24121094, 0.5900879, 0.14193726)
+
+[sub_resource type="Resource" id="Resource_11scr"]
+script = ExtResource("5_3qh3i")
+icon = ExtResource("8_vr6gl")
+prompt = "Distance"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_67s4j"]
+script = ExtResource("5_3qh3i")
+icon = ExtResource("6_3qh3i")
+prompt = "+ R = Rotate"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[sub_resource type="Resource" id="Resource_157fb"]
+script = ExtResource("5_3qh3i")
+icon = ExtResource("7_jle51")
+prompt = "Throw"
+metadata/_custom_type_script = "uid://bd1dhdqfubwrg"
+
+[node name="Log1" type="RigidBody3D" groups=["interactable"]]
+collision_layer = 1073741828
+collision_mask = 0
+linear_damp = 1.0
+angular_damp = 10.0
+script = ExtResource("1_fgl1q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.030179545, -0.25)
+material_override = SubResource("StandardMaterial3D_55hvx")
+mesh = ExtResource("2_0k1tm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.032035626, 0.002563477)
+shape = SubResource("BoxShape3D_3qh3i")
+
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
+script = ExtResource("3_j6m3c")
+fuel_amount = 25.0
+ui_set = Array[ExtResource("5_3qh3i")]([SubResource("Resource_11scr"), SubResource("Resource_67s4j"), SubResource("Resource_157fb")])
+object_ref = NodePath("..")
+metadata/_custom_type_script = "uid://dl7lykc4qndpo"

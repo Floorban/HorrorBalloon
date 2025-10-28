@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://tiuvx0k65ogd"]
+
+[ext_resource type="PackedScene" uid="uid://dw05xmlfdyee8" path="res://interaction/interaction_types/holddable/static_resource.tscn" id="1_qli2p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n403w"]
+size = Vector3(0.5673828, 0.1953125, 0.15820313)
+
+[node name="StaticResource1" instance=ExtResource("1_qli2p")]
+collision_layer = 3221225476
+collision_mask = 3221225472
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_n403w")
+
+[node name="InteractionComponent" parent="." index="2"]
+weight = 2.0

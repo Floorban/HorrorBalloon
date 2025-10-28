@@ -93,7 +93,7 @@ var feet_push_obj_strength := 20.0
 var viewing_offet: Vector3 = Vector3(0, 5.0, -0.5)
 var viewing_zoom: float = 0.8
 
-@export var voxel_terrain : VoxelTerrain
+@onready var voxel_terrain : Voxel = get_tree().get_first_node_in_group("terrain")
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 @export var cave_gen : CaveGenerator
 

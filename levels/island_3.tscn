@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cgil2vtb0asbc" path="res://levels/island_base.tscn" id="1_adhss"]
 [ext_resource type="Texture2D" uid="uid://blo1ja3oxj50x" path="res://assets/environment/islands/grass.png" id="2_5bbdx"]
-[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="3_7rbuo"]
-[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="4_7352d"]
-[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="5_e3x70"]
-[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/draggable/plank_1.tscn" id="6_4f81l"]
-[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/draggable/plank_3.tscn" id="7_ng3gd"]
+[ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/interaction_types/draggable/log_1.tscn" id="3_7rbuo"]
+[ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/interaction_types/draggable/log_2.tscn" id="4_7352d"]
+[ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/interaction_types/draggable/log_3.tscn" id="5_e3x70"]
+[ext_resource type="PackedScene" uid="uid://bdi4tb4kffd6k" path="res://interaction/interaction_types/draggable/plank_1.tscn" id="6_4f81l"]
+[ext_resource type="PackedScene" uid="uid://mifrhimmyol5" path="res://interaction/interaction_types/draggable/plank_3.tscn" id="7_ng3gd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yltjh"]
 albedo_color = Color(0.62152386, 0.62152386, 0.6215238, 1)

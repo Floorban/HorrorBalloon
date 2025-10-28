@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://qhvj2quki6w6"]
+
+[ext_resource type="Script" uid="uid://c3p8g6ii4lbqy" path="res://resource_spawn/resource_spawner.gd" id="1_iltcb"]
+[ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://resource_spawn/resource_data/resource_spawn_data.gd" id="2_3ciss"]
+[ext_resource type="Resource" uid="uid://c3xux6rno2v3v" path="res://resource_spawn/resource_data/ore_resource.tres" id="5_6g3ox"]
+
+[node name="ResourceSpawner" type="Node3D"]
+script = ExtResource("1_iltcb")
+resource_spawn_data = Array[ExtResource("2_3ciss")]([ExtResource("5_6g3ox")])

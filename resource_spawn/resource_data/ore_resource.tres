@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceSpawnData" load_steps=3 format=3 uid="uid://c3xux6rno2v3v"]
+
+[ext_resource type="PackedScene" uid="uid://b6hsvpuqw6bqd" path="res://digging/ores/ore_scenes/ore_copper.tscn" id="1_fvlwj"]
+[ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://resource_spawn/resource_data/resource_spawn_data.gd" id="2_hgjxc"]
+
+[resource]
+script = ExtResource("2_hgjxc")
+scenes = Array[PackedScene]([ExtResource("1_fvlwj")])
+max_spawn = 100
+metadata/_custom_type_script = "uid://ij4fj4p8xqlg"

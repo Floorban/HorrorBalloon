@@ -17,13 +17,13 @@ General/banks_path="res://sound/banks/Desktop"
 config/name="HorrorBalloon"
 run/main_scene="uid://dh0l0p3wpfjkw"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
 FmodManager="*res://addons/fmod/FmodManager.gd"
 Audio="*res://sound/audiomanager/audio_manager.tscn"
-Global="*res://global.gd"
+Global="*res://utils/global.gd"
 ItemInventory="*res://inventory/item_inventory.tscn"
 
 [display]

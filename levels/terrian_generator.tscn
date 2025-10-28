@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://dedvathhyinbf"]
 
 [ext_resource type="Shader" uid="uid://bg0h7ejxnsrf3" path="res://levels/terrian_texture.gdshader" id="1_6nr1p"]
-[ext_resource type="Script" uid="uid://blxhulge3eagi" path="res://terrian_generator.gd" id="1_8w5kn"]
+[ext_resource type="Script" uid="uid://blxhulge3eagi" path="res://tests/terrian_generator.gd" id="1_8w5kn"]
 [ext_resource type="Texture2D" uid="uid://bh32hxfokrl57" path="res://assets/ground_grass.png" id="2_dsafs"]
 [ext_resource type="Texture2D" uid="uid://ctm4chl0f4av7" path="res://assets/stolen/Survival/Textures/Rock.jpg" id="3_kvbh1"]
 

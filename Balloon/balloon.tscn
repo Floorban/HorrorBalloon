@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_35dws"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="2_2rviv"]
 [ext_resource type="PackedScene" uid="uid://bn7oxoa3un034" path="res://balloon/basket_door.tscn" id="2_q3h3j"]
-[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/holddable/static_resource_1.tscn" id="2_snxhu"]
+[ext_resource type="PackedScene" uid="uid://tiuvx0k65ogd" path="res://interaction/interaction_types/holddable/static_resource_1.tscn" id="2_snxhu"]
 [ext_resource type="PackedScene" uid="uid://bt6tmy1fu5xa2" path="res://balloon/basket_sides.tscn" id="2_uro0l"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="3_rdoix"]
 [ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://details/flag/Scenes/rope_flag_1.tscn" id="4_5n8ep"]

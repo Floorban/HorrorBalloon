@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://lk0gfohjhapu"]
 
 [ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="1_crcnp"]
-[ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="2_2k03q"]
+[ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/interaction_types/wheel/wheel.tscn" id="2_2k03q"]
 [ext_resource type="Script" uid="uid://d05lgh5d8svv6" path="res://balloon/control_inputs/balloon_input_wheel.gd" id="2_dubh0"]
-[ext_resource type="Script" uid="uid://bd1dhdqfubwrg" path="res://interaction/interaction_ui_data.gd" id="4_bjewp"]
+[ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_bjewp"]
 [ext_resource type="Texture2D" uid="uid://qaxodjn4uuxn" path="res://assets/ui/mouse_left_button.png" id="5_5nwhd"]
 [ext_resource type="Texture2D" uid="uid://njfxo1p3bj2i" path="res://assets/ui/mouse_h_drag.png" id="6_3utg5"]
 

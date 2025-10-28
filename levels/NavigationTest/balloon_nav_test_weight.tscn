@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ck20vpmyq24vp" path="res://balloon/balloon_controller.gd" id="1_iw5rl"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="2_iw5rl"]
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="2_pplau"]
-[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_climb.gd" id="3_j4ttt"]
+[ext_resource type="Script" uid="uid://cteghkwxq47t7" path="res://interaction/interaction_types/interaction_climb.gd" id="3_j4ttt"]
 [ext_resource type="PackedScene" uid="uid://bon5tf7dv844l" path="res://balloon/control_inputs/balloon_input_component.tscn" id="3_wcgku"]
 [ext_resource type="Script" uid="uid://c3br5qbxn4wxm" path="res://balloon/control_inputs/balloon_input_weight.gd" id="4_hraa5"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_wcgku"]

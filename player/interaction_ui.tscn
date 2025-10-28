@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgy2ke6mlhmar"]
 
 [ext_resource type="Script" path="res://player/interaction_ui.gd" id="1_5hnom"]
-[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="2_6tr3g"]
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://assets/icon.svg" id="2_6tr3g"]
 
 [node name="InteractoinUI" type="HBoxContainer"]
 offset_left = 10.0

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResourceSpawnData" load_steps=2 format=3 uid="uid://b4m53elchbkk"]
+
+[ext_resource type="Script" uid="uid://ij4fj4p8xqlg" path="res://resource_spawn/resource_data/resource_spawn_data.gd" id="4_uy57p"]
+
+[resource]
+script = ExtResource("4_uy57p")
+max_spawn = 500
+metadata/_custom_type_script = "uid://ij4fj4p8xqlg"
