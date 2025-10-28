@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvvrror6xtuo1"]
+
+[ext_resource type="Script" uid="uid://b0ab362c46rav" path="res://cave_generation/voxel_terrian/FreeLookCamera.gd" id="1_ms6ou"]
+
+[node name="FlyingCamera" type="Camera3D"]
+script = ExtResource("1_ms6ou")
+sensitivity = null
+
+[node name="VoxelViewer" type="VoxelViewer" parent="."]
+
+[node name="DigCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu4l41uoyyif"]
 
-[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/Islands/Rock.png" id="1_eyx78"]
+[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/environment/islands/Rock.png" id="1_eyx78"]
 [ext_resource type="Texture2D" uid="uid://5hcihf20jfai" path="res://assets/stolen/cracks_tex.png" id="2_eyx78"]
 
 [node name="CrackedDecal" type="Decal"]

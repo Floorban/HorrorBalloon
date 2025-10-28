@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://8n8svovtgrsr"]
 
-[ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/kenney_protoype_textures/PNG/Dark/texture_13.png" id="1_whpuv"]
-[ext_resource type="Texture2D" uid="uid://dv8x0y75pmtma" path="res://assets/kenney_protoype_textures/PNG/Light/texture_13.png" id="2_85hcc"]
+[ext_resource type="Texture2D" uid="uid://o2n1nqo1yahd" path="res://assets/stolen/kenney_protoype_textures/PNG/Dark/texture_13.png" id="1_whpuv"]
+[ext_resource type="Texture2D" uid="uid://dv8x0y75pmtma" path="res://assets/stolen/kenney_protoype_textures/PNG/Light/texture_13.png" id="2_85hcc"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="3_85hcc"]
 [ext_resource type="PackedScene" uid="uid://dlyxujkbtsmnm" path="res://interaction/note/Run_Note.tscn" id="3_h3ryc"]
 [ext_resource type="PackedScene" uid="uid://bfxxin08cd2er" path="res://interaction/note/text_note.tscn" id="4_ubtly"]

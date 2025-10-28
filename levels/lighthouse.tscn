@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://0ymhl8o7lb8y"]
 
-[ext_resource type="ArrayMesh" uid="uid://c2730mhjd6bgt" path="res://assets/buildings/lighthouse.res" id="1_lcai8"]
+[ext_resource type="ArrayMesh" uid="uid://c2730mhjd6bgt" path="res://assets/environment/buildings/lighthouse.res" id="1_lcai8"]
 [ext_resource type="PackedScene" uid="uid://dudqqo5it1iuy" path="res://interaction/wheel/wheel.tscn" id="2_03bo1"]
 [ext_resource type="Script" uid="uid://cq0ysmsqcbbwp" path="res://interaction/light.gd" id="2_lfiru"]
 

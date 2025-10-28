@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgil2vtb0asbc"]
 
-[ext_resource type="ArrayMesh" uid="uid://pgpsym4egjas" path="res://assets/Islands/floating_island.res" id="1_xdtdb"]
-[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/Islands/Rock.png" id="2_ivhod"]
+[ext_resource type="ArrayMesh" uid="uid://pgpsym4egjas" path="res://assets/environment/islands/floating_island.res" id="1_xdtdb"]
+[ext_resource type="Texture2D" uid="uid://j7g757dkg3tc" path="res://assets/environment/islands/Rock.png" id="2_ivhod"]
 [ext_resource type="PackedScene" uid="uid://0ymhl8o7lb8y" path="res://levels/lighthouse.tscn" id="3_xx8mk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te0wa"]

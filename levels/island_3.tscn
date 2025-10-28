@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c8qvb4yhay683"]
 
 [ext_resource type="PackedScene" uid="uid://cgil2vtb0asbc" path="res://levels/island_base.tscn" id="1_adhss"]
-[ext_resource type="Texture2D" uid="uid://blo1ja3oxj50x" path="res://assets/Islands/grass.png" id="2_5bbdx"]
+[ext_resource type="Texture2D" uid="uid://blo1ja3oxj50x" path="res://assets/environment/islands/grass.png" id="2_5bbdx"]
 [ext_resource type="PackedScene" uid="uid://dl6jy8rehrgdk" path="res://interaction/draggable/log_1.tscn" id="3_7rbuo"]
 [ext_resource type="PackedScene" uid="uid://b7xlkcxxeb83b" path="res://interaction/draggable/log_2.tscn" id="4_7352d"]
 [ext_resource type="PackedScene" uid="uid://cjoaycqnn5tys" path="res://interaction/draggable/log_3.tscn" id="5_e3x70"]

@@ -76,19 +76,19 @@ ring_segments = 8
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_7g66e"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2618722183253
+metadata/creation_stamp = 2593673797861
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_w3mnl"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2618755737687
+metadata/creation_stamp = 2593707352295
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ytavt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2618789292121
+metadata/creation_stamp = 2593740906729
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_1pdmh"]
 resource_local_to_scene = true
-metadata/creation_stamp = 2618822846555
+metadata/creation_stamp = 2593774461163
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kouht"]
 height = 0.62841797
