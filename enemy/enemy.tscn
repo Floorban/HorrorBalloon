@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d5y5qpf5rhd8"]
 
-[ext_resource type="PackedScene" uid="uid://dc8aica257weg" path="res://enemy/Eye_Monster/scene.gltf" id="1_1wwld"]
+[ext_resource type="PackedScene" uid="uid://dc8aica257weg" path="res://enemy/eye_monster/scene.gltf" id="1_1wwld"]
 [ext_resource type="Script" uid="uid://rjjcaejd33x4" path="res://enemy/enemy.gd" id="1_5anih"]
 [ext_resource type="Script" uid="uid://dkc1man884b1s" path="res://enemy/state_machine/state_machine.gd" id="2_1h0du"]
 [ext_resource type="Script" uid="uid://bun1hc2m6hugd" path="res://enemy/states/state_roaming.gd" id="4_s81n7"]

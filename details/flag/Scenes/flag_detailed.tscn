@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxj8d6xlsbyea"]
+
+[ext_resource type="PackedScene" uid="uid://bjtqm74esq275" path="res://details/flag/Planes/DetailPlane.gltf" id="1_kfn6y"]
+[ext_resource type="Material" uid="uid://bjvvrd01bibb3" path="res://details/flag/Materials/Flag_Procedural.tres" id="2_kwjym"]
+
+[node name="FlagDetailed" instance=ExtResource("1_kfn6y")]
+
+[node name="Grid" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_kwjym")

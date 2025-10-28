@@ -14,10 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://depltd622skn8" path="res://balloon/rope_interaction.tscn" id="13_61h4x"]
 [ext_resource type="PackedScene" uid="uid://d4gnly1bihpph" path="res://balloon/balloon_rope.tscn" id="14_yeqnn"]
 [ext_resource type="Script" uid="uid://d2om3mp2vqrru" path="res://balloon/flags.gd" id="15_r7jcy"]
-[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://flag/Scenes/rope_flag_1.tscn" id="16_u5pod"]
-[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://flag/Scenes/rope_flag_2.tscn" id="17_qw4oq"]
-[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://flag/Scenes/rope_flag_3.tscn" id="18_33wkm"]
-[ext_resource type="PackedScene" uid="uid://c4i75r47vtvvi" path="res://spring_arm_pivot.tscn" id="19_7etpy"]
+[ext_resource type="PackedScene" uid="uid://beknwj1i31wg" path="res://details/flag/Scenes/rope_flag_1.tscn" id="16_u5pod"]
+[ext_resource type="PackedScene" uid="uid://yemhlobyko22" path="res://details/flag/Scenes/rope_flag_2.tscn" id="17_qw4oq"]
+[ext_resource type="PackedScene" uid="uid://daaefyig6mah3" path="res://details/flag/Scenes/rope_flag_3.tscn" id="18_33wkm"]
+[ext_resource type="PackedScene" path="res://spring_arm_pivot.tscn" id="19_7etpy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q3h3j"]
 size = Vector3(0.9675293, 0.07292175, 0.9849243)

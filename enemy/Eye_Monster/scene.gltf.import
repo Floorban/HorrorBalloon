@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dc8aica257weg"
-path="res://.godot/imported/scene.gltf-b45c942f6c170f9dff7b0a7943d264b5.scn"
+path="res://.godot/imported/scene.gltf-3b26fdb3f34080ab0686fc019132fa0d.scn"
 
 [deps]
 
-source_file="res://enemy/Eye_Monster/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-b45c942f6c170f9dff7b0a7943d264b5.scn"]
+source_file="res://enemy/eye_monster/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-3b26fdb3f34080ab0686fc019132fa0d.scn"]
 
 [params]
 
