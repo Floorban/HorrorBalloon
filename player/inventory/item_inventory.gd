@@ -8,12 +8,17 @@ var hotbar_size := 3
 var hotbar : Array[ItemData]
 var selecting_slot : int = 0
 
+var use_item_key := "primary"
+var drop_item_key := "secondary"
+
 func _init() -> void:
 	for i in hotbar_size:
 		hotbar.append(null)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("secondary"):
+	if event.is_action_pressed(use_item_key):
+		use_item(selecting_slot)
+	elif event.is_action_pressed(drop_item_key):
 		drop_item(selecting_slot)
 
 func add_item(item: ItemData) -> bool:
@@ -47,3 +52,8 @@ func drop_item(slot_index : int):
 
 func get_current_item() -> ItemData:
 	return hotbar[selecting_slot]
+
+func use_item(slot_index : int):
+	if hotbar[slot_index]:
+		var item_to_use = hotbar[slot_index]
+		item_to_use.use_item()

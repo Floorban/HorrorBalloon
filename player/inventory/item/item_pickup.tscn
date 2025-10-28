@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://clg1e46g7g1h2"]
+[gd_scene load_steps=6 format=3 uid="uid://clg1e46g7g1h2"]
 
 [ext_resource type="PackedScene" uid="uid://cigvl0v04l7cs" path="res://interaction/interaction_component.tscn" id="1_317x7"]
 [ext_resource type="Script" uid="uid://bdu2qbklbvv2u" path="res://player/inventory/item/interaction_pickup.gd" id="2_6vjnt"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="3_m7vk6"]
-[ext_resource type="Resource" uid="uid://dbxp417n85fxb" path="res://player/inventory/item/item_data/pickaxe_pickup.tres" id="3_ncc8b"]
 [ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://icon.svg" id="4_m7vk6"]
 
 [sub_resource type="Resource" id="Resource_tyupd"]
@@ -17,6 +16,7 @@ collision_layer = 3221225477
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("object_ref") instance=ExtResource("1_317x7")]
 script = ExtResource("2_6vjnt")
-item_data = ExtResource("3_ncc8b")
+item_data = null
+primary_button = "pickup"
 ui_set = Array[ExtResource("3_m7vk6")]([SubResource("Resource_tyupd")])
 object_ref = NodePath("..")

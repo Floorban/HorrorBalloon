@@ -8,16 +8,14 @@ func _ready() -> void:
 	object_ref.name = item_data.item_name
 	spawn_mesh_with_col(item_data.mesh_scene)
 
-func _input(event: InputEvent) -> void:
-	if not can_interact:
-		
-		return 
-	if event.is_action_pressed("pickup"):
-		_pickup_interact()
+func preInteract(_hand: Marker3D, _target: Node = null) -> void:
+	super.postInteract()
+	_pickup_interact()
 
 func _pickup_interact():
 	if ItemInventory.add_item(item_data):
 		object_ref.call_deferred("queue_free")
+		notify_nodes(0, true)
 	else:
 		print("inventory is fulll")
 

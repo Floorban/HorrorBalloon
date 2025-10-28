@@ -18,8 +18,10 @@ collision_layer = 3221225477
 script = ExtResource("2_xb5x1")
 tool_data = ExtResource("4_snd2y")
 
-[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref")]
+[node name="InteractionComponent" type="Node" parent="." node_paths=PackedStringArray("object_ref", "nodes_to_affect")]
 script = ExtResource("4_qsxir")
 item_data = ExtResource("4_i4yxw")
+primary_button = "pickup"
 ui_set = Array[ExtResource("4_o55h0")]([SubResource("Resource_o55h0")])
 object_ref = NodePath("..")
+nodes_to_affect = [NodePath("..")]

@@ -15,9 +15,8 @@ func tool_init() -> void:
 func _ready() -> void:
 	tool_init()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("primary"):
-		print("1")
+func execute(percentage: float, primary: bool) -> void:
+	pass
 
 func get_digging_sfx() -> String:
 	return ""

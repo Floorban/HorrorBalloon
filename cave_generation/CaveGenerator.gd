@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func setup():
 	current_walker = walkers[0]
-	current_walker.global_position = global_position
+	#current_walker.global_position = global_position
 	noise.seed = randi()
 	noise.frequency = 0.03
 	noise.fractal_octaves = 3
