@@ -10,4 +10,5 @@ item_name = "pickaxe"
 icon = ExtResource("1_od3bo")
 mesh_scene = ExtResource("3_8xx6q")
 scene_path = "uid://b00q3vj2efjl5"
+is_stackable = false
 metadata/_custom_type_script = "uid://b0j5d3v7hvtvt"

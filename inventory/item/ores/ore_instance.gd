@@ -9,7 +9,6 @@ var voxel_pos: Vector3
 var is_falling := false
 
 func _ready() -> void:
-	freeze = true
 	if voxel_terrain.has_signal("voxel_removed"):
 		voxel_terrain.connect("voxel_removed", Callable(self, "_on_voxel_removed"))
 

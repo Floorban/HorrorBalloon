@@ -45,6 +45,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ssk01")
 
 [node name="Ore_Copper" instance=ExtResource("1_oyr3n")]
+freeze = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(-8.146034e-08, -0.5, 0, 0.5, -8.146034e-08, 0, 0, 0, 0.5, 0, 0, 0)

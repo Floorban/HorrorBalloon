@@ -61,27 +61,27 @@ map_size = 25.0
 [node name="ResourceSpawnPoints" type="Node" parent="."]
 
 [node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.686611, -8.66956, 24.021196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.187334, -10.2896385, 7.823595)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
 [node name="ResrouceSpawnPoint_2" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.624421, -14.672894, 24.445923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.373545, -12.837206, 3.5046573)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
 [node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.546811, -6.938862, 24.468212)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.013439, -10.746987, 15.455967)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.976878, -10.354813, -4.334708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.082596, -5.4520807, 15.364658)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3204365, -11.379683, 24.630527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5787723, -7.205261, 3.516881)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("19_exgp7")
 
@@ -94,5 +94,36 @@ freeze = true
 
 [node name="Ore_Copper" parent="." instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7552395, 1.9892368, 10.226954)
+freeze = true
+
+[node name="Ore_Copper2" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8154283, 1.9892368, 10.226954)
+freeze = true
+
+[node name="Ore_Copper3" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9875374, 1.9892368, 10.226954)
+freeze = true
+
+[node name="Ore_Copper4" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8636665, 1.9892368, 10.226954)
+freeze = true
+
+[node name="Ore_Copper5" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8636665, 1.9892368, 11.325011)
+freeze = true
+
+[node name="Ore_Copper6" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.844261, 1.9892368, 11.325011)
+freeze = true
+
+[node name="Ore_Copper7" parent="." instance=ExtResource("12_djqcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.905171, 1.9892368, 11.325011)
+freeze = true
 
 [editable path="Ore_Copper"]
+[editable path="Ore_Copper2"]
+[editable path="Ore_Copper3"]
+[editable path="Ore_Copper4"]
+[editable path="Ore_Copper5"]
+[editable path="Ore_Copper6"]
+[editable path="Ore_Copper7"]

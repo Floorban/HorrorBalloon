@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b06dwes862w06" path="res://inventory/item/ores/ore_scenes/ore_copper.tscn" id="1_hg1q2"]
 
 [node name="Ore_Copper_Static" instance=ExtResource("1_hg1q2")]
+freeze = true
 
 [node name="InteractionComponent" parent="." index="2"]
 is_static = true

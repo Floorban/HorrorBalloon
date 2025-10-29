@@ -4,6 +4,7 @@ var current_item_instance : Node3D
 
 func _ready():
 	ItemInventory.slot_selected.connect(_update_held_item)
+	ItemInventory.inventory_changed.connect(_update_held_item_after_change)
  
 func clear_item():
 	if current_item_instance:
@@ -19,5 +20,9 @@ func show_item(item_data: ItemData):
 		add_child(current_item_instance)
  
 func _update_held_item(slot_index: int):
-	var item = ItemInventory.hotbar[slot_index]
-	show_item(item)
+	var slot: ItemSlot = ItemInventory.hotbar[slot_index]
+	show_item(slot.item if slot and not slot.is_empty() else null)
+
+func _update_held_item_after_change():
+	var slot_index = ItemInventory.selecting_slot
+	_update_held_item(slot_index)
