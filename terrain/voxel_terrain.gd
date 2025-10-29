@@ -4,7 +4,7 @@ class_name Voxel
 
 signal voxel_removed(removed_pos: Vector3)
 
-@export var player : PlayerController
+@onready var player : PlayerController = get_tree().get_first_node_in_group("player")
 
 @export var texture_rock : Texture2D
 @export var texture_grass : Texture2D

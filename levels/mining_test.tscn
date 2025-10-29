@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dspkvmg4oah8m" path="res://terrain/voxel_terrain.tscn" id="1_34bu4"]
 [ext_resource type="PackedScene" uid="uid://hik4wbxfsq2p" path="res://terrain/cave_generation/CaveGenerator.tscn" id="12_cfa6t"]
-[ext_resource type="PackedScene" uid="uid://b6hsvpuqw6bqd" path="res://inventory/item/ores/ore_scenes/ore_copper.tscn" id="12_djqcj"]
+[ext_resource type="PackedScene" uid="uid://b06dwes862w06" path="res://inventory/item/ores/ore_scenes/ore_copper.tscn" id="12_djqcj"]
 [ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://terrain/cave_generation/cave_walker.tscn" id="13_ifrba"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="14_j6ww6"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://resource_spawn/resource_spawner.tscn" id="15_1amda"]
@@ -56,12 +56,12 @@ cave_gen = NodePath("../CaveGenerator")
 [node name="ResourceSpawner" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("15_1amda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9231539, 9.702076)
 spawn_points = NodePath("../ResourceSpawnPoints")
-map_size = 30.0
+map_size = 25.0
 
 [node name="ResourceSpawnPoints" type="Node" parent="."]
 
 [node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.817571, -10.732127, 23.953697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.686611, -8.66956, 24.021196)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
@@ -71,17 +71,17 @@ gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
 [node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.746826, -9.109876, -4.3766537)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.546811, -6.938862, 24.468212)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.636478, -13.532709, -4.220688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.976878, -10.354813, -4.334708)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.240221, -11.253325, -4.90242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3204365, -11.379683, 24.630527)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("19_exgp7")
 

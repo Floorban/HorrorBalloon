@@ -2,7 +2,7 @@
 extends Node
 class_name CaveConstants
 
-const CAVE_MIN_WIDTH := 20.0
+const CAVE_MIN_WIDTH := 5.0
 const CAVE_MAX_WIDTH := 100.0
 const CAVE_TOP := -5.0
 const CAVE_BOTTOM := -100.0

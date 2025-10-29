@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_3rc6a")
-spawn_count = 3
-spawn_radius = 1.0
+spawn_count = 20
+spawn_radius = 50.0
 metadata/_custom_type_script = "uid://b6pybvw21txbb"

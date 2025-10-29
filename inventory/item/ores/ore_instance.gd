@@ -4,7 +4,7 @@ class_name OreInstance
 @onready var voxel_terrain : Voxel = get_tree().get_first_node_in_group("terrain")
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
-var mine_times : int = 3
+var mine_times : int = 2
 var voxel_pos: Vector3
 var is_falling := false
 
@@ -14,12 +14,12 @@ func _ready() -> void:
 		voxel_terrain.connect("voxel_removed", Callable(self, "_on_voxel_removed"))
 
 func _on_voxel_removed(removed_pos: Vector3) -> void:
+	print("g")
 	voxel_pos = CaveConstants.world_to_voxel(voxel_terrain, global_position)
 	if is_falling:
 		return
 	if voxel_pos.distance_to(removed_pos) > 1.0:
 		return
-
 	# var below_pos = voxel_pos + Vector3(0, -1, 0)
 	# if _is_supported(below_pos):
 	# 	print("s", voxel_pos.distance_to(removed_pos))
