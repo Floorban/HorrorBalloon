@@ -2,6 +2,7 @@ extends InteractionComponent
 class_name InteractionPickup
 
 @export var item_data : ItemData
+@export var is_static := false
 
 func _ready() -> void:
 	Global.game_start.connect(unfreeze_obj)
@@ -29,6 +30,11 @@ func find_mesh(node: Node) -> MeshInstance3D:
 	return null
 
 func spawn_mesh_with_col(scene) -> Node3D:
+	#for n in get_parent().get_children():
+		#if n is MeshInstance3D:
+			#return
+	if item_data.mesh_scene == null:
+		return
 	var inst = scene.instantiate()
 	var mesh_instance = find_mesh(inst)
 	if mesh_instance and mesh_instance.mesh:
@@ -40,6 +46,5 @@ func spawn_mesh_with_col(scene) -> Node3D:
 	return inst
 
 func unfreeze_obj():
-	pass
-	#if object_ref is RigidBody3D:
-		#object_ref.freeze = false
+	if not is_static and object_ref is RigidBody3D:
+		object_ref.freeze = false

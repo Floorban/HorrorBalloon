@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DiggingToolData" load_steps=5 format=3 uid="uid://dw5aycacpyvvh"]
 
 [ext_resource type="Script" uid="uid://vlwt5tnda4b4" path="res://sound/digging_sfxs/digging_sfx_data.gd" id="1_fgvcg"]
-[ext_resource type="Script" uid="uid://bsd8bquqvsjgq" path="res://inventory/item/item_data/digging_tool_data.gd" id="2_fstjy"]
+[ext_resource type="Script" uid="uid://bsd8bquqvsjgq" path="res://inventory/item/digging_tool/digging_tool_data.gd" id="2_fstjy"]
 
 [sub_resource type="Resource" id="Resource_h3a86"]
 script = ExtResource("1_fgvcg")

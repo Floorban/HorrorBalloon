@@ -1,16 +1,16 @@
 [gd_scene load_steps=21 format=4 uid="uid://dspkvmg4oah8m"]
 
-[ext_resource type="Shader" uid="uid://b8vetxs6xq7y7" path="res://digging/terrain/voxel_terrain_texture.gdshader" id="1_unl0m"]
-[ext_resource type="Script" uid="uid://c0cqduxgpc0dq" path="res://digging/terrain/voxel_terrain.gd" id="2_04trv"]
+[ext_resource type="Shader" uid="uid://b8vetxs6xq7y7" path="res://terrain/voxel_terrain_texture.gdshader" id="1_unl0m"]
+[ext_resource type="Script" uid="uid://c0cqduxgpc0dq" path="res://terrain/voxel_terrain.gd" id="2_04trv"]
 [ext_resource type="Texture2D" uid="uid://wub715ixr4gb" path="res://assets/stolen/Stone/Stone_05-128x128.png" id="3_jiukv"]
 [ext_resource type="Texture2D" uid="uid://dvkkph8af6vne" path="res://assets/stolen/Dirt/Dirt_19-128x128.png" id="4_fq6lv"]
 [ext_resource type="Texture2D" uid="uid://c388h2qkwv2fo" path="res://assets/stolen/Dirt/Dirt_10-128x128.png" id="5_7g8xp"]
 [ext_resource type="Texture2D" uid="uid://8kh4gbe73csg" path="res://assets/stolen/Stone/Stone_13-128x128.png" id="6_nk88k"]
-[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://digging/terrain/cave_voxel_data/cave_voxel_data.gd" id="7_yc5ou"]
-[ext_resource type="Resource" uid="uid://b1eitinpbqp23" path="res://digging/terrain/cave_voxel_data/voxel_rock.tres" id="8_cidbq"]
-[ext_resource type="Resource" uid="uid://4pdyy24cm4pr" path="res://digging/terrain/cave_voxel_data/voxel_grass.tres" id="9_53pyy"]
-[ext_resource type="Resource" uid="uid://bofa5msjgpm2w" path="res://digging/terrain/cave_voxel_data/voxel_dirt.tres" id="10_5qyog"]
-[ext_resource type="Resource" uid="uid://q35rdmm1nfhq" path="res://digging/terrain/cave_voxel_data/voxel_none.tres" id="11_alr15"]
+[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://terrain/cave_voxel_data/cave_voxel_data.gd" id="7_yc5ou"]
+[ext_resource type="Resource" uid="uid://b1eitinpbqp23" path="res://terrain/cave_voxel_data/voxel_rock.tres" id="8_cidbq"]
+[ext_resource type="Resource" uid="uid://4pdyy24cm4pr" path="res://terrain/cave_voxel_data/voxel_grass.tres" id="9_53pyy"]
+[ext_resource type="Resource" uid="uid://bofa5msjgpm2w" path="res://terrain/cave_voxel_data/voxel_dirt.tres" id="10_5qyog"]
+[ext_resource type="Resource" uid="uid://q35rdmm1nfhq" path="res://terrain/cave_voxel_data/voxel_none.tres" id="11_alr15"]
 
 [sub_resource type="Image" id="Image_ixpvx"]
 data = {

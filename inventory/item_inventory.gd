@@ -36,7 +36,12 @@ func select_slot(index : int):
 	slot_selected.emit(selecting_slot)
 
 func spawn_item_instance(item: ItemData):
-	var item_instance = item.instance_scene.instantiate()
+	if item.scene_path == "":
+		return
+	var pickup_scene = load(item.scene_path)
+	if not pickup_scene:
+		return
+	var item_instance = pickup_scene.instantiate()
 	item_instance.get_node_or_null("InteractionComponent").item_data = item
 	get_tree().current_scene.add_child(item_instance)
 	item_drop.emit(item_instance)

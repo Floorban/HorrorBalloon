@@ -17,15 +17,7 @@ var resource_spawn_points: Array[SpawnPoint] = []
 @export var jitter_amount := 0.3
 
 func _on_generate_preview_pressed():
-	if not spawn_points:
-		push_warning("Spawn point container not found.")
-		return
-	_get_spawn_points()
-	if resource_spawn_points.is_empty():
-		push_warning("No spawn points found.")
-		return
-	randomize()
-	distribute_spawn_points(resource_spawn_points, map_size, jitter_amount)
+	spawn_resources()
 
 func _ready() -> void:
 	spawn_resources()
@@ -74,7 +66,7 @@ func poisson_sample_points(area_size := 400.0, min_distance := 30.0, max_attempt
 			_spawn_points.remove_at(spawn_index)
 	return points
 
-var max__spawn_attempts := 50
+var max__spawn_attempts := 500
 
 func distribute_spawn_points(points: Array[SpawnPoint], _map_size := 400.0, _jitter := 0.3):
 	if points.is_empty(): return
@@ -92,7 +84,7 @@ func distribute_spawn_points(points: Array[SpawnPoint], _map_size := 400.0, _jit
 			var rand_z = randf_range(-half_map, half_map)
 			var candidate_pos = Vector3(rand_x, rand_y, rand_z) + center
 			# retry if fail spawn conditions:
-			var dist_to_center := candidate_pos.distance_to(center)
+			var dist_to_center := Vector2(candidate_pos.x,candidate_pos.z).distance_to(Vector2(center.x,center.z))
 			if candidate_pos.y < CaveConstants.CAVE_TOP and dist_to_center > CaveConstants.CAVE_MIN_WIDTH:
 				valid = true
 				sp.global_position = candidate_pos

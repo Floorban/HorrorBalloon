@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://dbxp417n85fxb" path="res://inventory/item/item_data/pickaxe_pickup.tres" id="4_i4yxw"]
 [ext_resource type="Script" path="res://interaction/interaction_ui_data.gd" id="4_o55h0"]
 [ext_resource type="Script" uid="uid://bdu2qbklbvv2u" path="res://inventory/item/interaction_pickup.gd" id="4_qsxir"]
-[ext_resource type="Resource" uid="uid://dw5aycacpyvvh" path="res://inventory/pickaxe_1.tres" id="4_snd2y"]
+[ext_resource type="Resource" uid="uid://dw5aycacpyvvh" path="res://inventory/item/digging_tool/pickaxe_1.tres" id="4_snd2y"]
 
 [sub_resource type="Resource" id="Resource_o55h0"]
 script = ExtResource("4_o55h0")

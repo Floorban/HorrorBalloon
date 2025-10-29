@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dqrg4o77but8t"]
+
+[ext_resource type="Texture2D" uid="uid://cgsxip30l0fhm" path="res://assets/icon.svg" id="1_c4kc0"]
+[ext_resource type="Script" uid="uid://b0j5d3v7hvtvt" path="res://inventory/item/item_data/item_data.gd" id="4_gdel5"]
+
+[resource]
+script = ExtResource("4_gdel5")
+item_name = "ore"
+icon = ExtResource("1_c4kc0")
+scene_path = "uid://b06dwes862w06"
+metadata/_custom_type_script = "uid://b0j5d3v7hvtvt"

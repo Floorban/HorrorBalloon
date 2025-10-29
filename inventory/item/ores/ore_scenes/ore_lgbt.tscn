@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://6arnq0gyybjy"]
 
-[ext_resource type="PackedScene" uid="uid://bsrhc7ej1f7yj" path="res://digging/ores/ore_instance.tscn" id="1_5xm8v"]
+[ext_resource type="PackedScene" uid="uid://bsrhc7ej1f7yj" path="res://inventory/item/ores/ore_instance.tscn" id="1_5xm8v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi3wo"]
 resource_name = "Showcase_Grey"

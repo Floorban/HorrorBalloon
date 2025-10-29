@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://hik4wbxfsq2p"]
 
-[ext_resource type="Script" uid="uid://cl0scwmhoy16j" path="res://digging/terrain/cave_generation/CaveGenerator.gd" id="1_byicc"]
-[ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://digging/terrain/cave_generation/cave_walker.tscn" id="2_pvqeu"]
+[ext_resource type="Script" uid="uid://cl0scwmhoy16j" path="res://terrain/cave_generation/CaveGenerator.gd" id="1_byicc"]
+[ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://terrain/cave_generation/cave_walker.tscn" id="2_pvqeu"]
 
 [node name="CaveGenerator" type="Node3D" node_paths=PackedStringArray("walkers")]
 script = ExtResource("1_byicc")

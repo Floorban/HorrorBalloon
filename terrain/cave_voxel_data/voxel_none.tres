@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CaveVoxelData" load_steps=3 format=3 uid="uid://q35rdmm1nfhq"]
 
-[ext_resource type="Script" uid="uid://hc1h77s4hr8" path="res://digging/ores/ore_data.gd" id="1_bd0mk"]
-[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://digging/terrain/cave_voxel_data/cave_voxel_data.gd" id="2_qv603"]
+[ext_resource type="Script" uid="uid://hc1h77s4hr8" path="res://inventory/item/ores/ore_data.gd" id="1_bd0mk"]
+[ext_resource type="Script" uid="uid://brerktk8lflgb" path="res://terrain/cave_voxel_data/cave_voxel_data.gd" id="2_qv603"]
 
 [resource]
 script = ExtResource("2_qv603")
