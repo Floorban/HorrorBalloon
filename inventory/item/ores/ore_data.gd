@@ -1,5 +1,5 @@
 extends Resource
-class_name OreData
+class_name OreDat
 
 @export var ore_scenes : Array[PackedScene] = []
 @export var ore_type : CaveConstants.ORE_TYPE

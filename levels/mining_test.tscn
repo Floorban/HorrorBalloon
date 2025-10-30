@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh0l0p3wpfjkw"]
+[gd_scene load_steps=17 format=3 uid="uid://dh0l0p3wpfjkw"]
 
 [ext_resource type="PackedScene" uid="uid://dspkvmg4oah8m" path="res://terrain/voxel_terrain.tscn" id="1_34bu4"]
 [ext_resource type="PackedScene" uid="uid://hik4wbxfsq2p" path="res://terrain/cave_generation/CaveGenerator.tscn" id="12_cfa6t"]
 [ext_resource type="PackedScene" uid="uid://b06dwes862w06" path="res://inventory/item/ores/ore_scenes/ore_copper.tscn" id="12_djqcj"]
 [ext_resource type="PackedScene" uid="uid://dbejoqpq6kkwd" path="res://terrain/cave_generation/cave_walker.tscn" id="13_ifrba"]
+[ext_resource type="PackedScene" uid="uid://cyb3tm2b8kqua" path="res://inventory/item/ores/ore_scenes/ore_iron.tscn" id="13_r3jpj"]
 [ext_resource type="PackedScene" uid="uid://luy7w0qfph84" path="res://player/player.tscn" id="14_j6ww6"]
 [ext_resource type="PackedScene" uid="uid://qhvj2quki6w6" path="res://resource_spawn/resource_spawner.tscn" id="15_1amda"]
 [ext_resource type="PackedScene" uid="uid://bo580gbwr80n2" path="res://resource_spawn/resource_spawn_point.tscn" id="16_ociyr"]
@@ -61,27 +62,27 @@ map_size = 25.0
 [node name="ResourceSpawnPoints" type="Node" parent="."]
 
 [node name="ResrouceSpawnPoint_1" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.187334, -10.2896385, 7.823595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.553787, -11.93391, -0.16126251)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
 [node name="ResrouceSpawnPoint_2" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.373545, -12.837206, 3.5046573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.478171, -7.069541, 6.6720443)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("17_beupn")
 
 [node name="ResrouceSpawnPoint_3" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.013439, -10.746987, 15.455967)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95672536, -7.8888507, -1.0764809)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_4" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.082596, -5.4520807, 15.364658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21268, -9.798883, 2.962246)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("18_be1x6")
 
 [node name="ResrouceSpawnPoint_5" parent="ResourceSpawnPoints" instance=ExtResource("16_ociyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5787723, -7.205261, 3.516881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6885147, -6.5637627, 18.732006)
 gizmo_extents = 5.0
 spawn_point_data = ExtResource("19_exgp7")
 
@@ -92,38 +93,64 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.25974512, 1.1322601, 8.119
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6918299, 10.698854)
 freeze = true
 
-[node name="Ore_Copper" parent="." instance=ExtResource("12_djqcj")]
+[node name="TestOres" type="Node3D" parent="."]
+
+[node name="Ore_Copper" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7552395, 1.9892368, 10.226954)
 freeze = true
 
-[node name="Ore_Copper2" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper2" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8154283, 1.9892368, 10.226954)
 freeze = true
 
-[node name="Ore_Copper3" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper3" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9875374, 1.9892368, 10.226954)
 freeze = true
 
-[node name="Ore_Copper4" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper4" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8636665, 1.9892368, 10.226954)
 freeze = true
 
-[node name="Ore_Copper5" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper5" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8636665, 1.9892368, 11.325011)
 freeze = true
 
-[node name="Ore_Copper6" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper6" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.844261, 1.9892368, 11.325011)
 freeze = true
 
-[node name="Ore_Copper7" parent="." instance=ExtResource("12_djqcj")]
+[node name="Ore_Copper7" parent="TestOres" instance=ExtResource("12_djqcj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.905171, 1.9892368, 11.325011)
 freeze = true
 
-[editable path="Ore_Copper"]
-[editable path="Ore_Copper2"]
-[editable path="Ore_Copper3"]
-[editable path="Ore_Copper4"]
-[editable path="Ore_Copper5"]
-[editable path="Ore_Copper6"]
-[editable path="Ore_Copper7"]
+[node name="Ore_Iron" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77516, 1.367547, 6.728365)
+freeze = true
+
+[node name="Ore_Iron2" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.385829, 1.367547, 6.728365)
+freeze = true
+
+[node name="Ore_Iron3" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.915187, 1.367547, 6.728365)
+freeze = true
+
+[node name="Ore_Iron4" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.915187, 1.367547, 8.297694)
+freeze = true
+
+[node name="Ore_Iron5" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.353223, 1.367547, 8.297694)
+freeze = true
+
+[node name="Ore_Iron6" parent="TestOres" instance=ExtResource("13_r3jpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.735841, 1.367547, 8.297694)
+freeze = true
+
+[editable path="TestOres/Ore_Copper"]
+[editable path="TestOres/Ore_Copper2"]
+[editable path="TestOres/Ore_Copper3"]
+[editable path="TestOres/Ore_Copper4"]
+[editable path="TestOres/Ore_Copper5"]
+[editable path="TestOres/Ore_Copper6"]
+[editable path="TestOres/Ore_Copper7"]

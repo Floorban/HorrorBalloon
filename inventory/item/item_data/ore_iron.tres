@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="OreData" load_steps=4 format=3 uid="uid://7rqfq3k1i21h"]
+
+[ext_resource type="Texture2D" uid="uid://crg47ueam8wtn" path="res://assets/ore_orepack.png" id="1_ad1a8"]
+[ext_resource type="Script" uid="uid://dk2pumojol2k8" path="res://inventory/item/item_data/ore_data.gd" id="1_tpbvp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqnb4"]
+atlas = ExtResource("1_ad1a8")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_tpbvp")
+ore_type = 6
+weight = 1.0
+value = 10
+hardness = 5
+item_name = "iron"
+icon = SubResource("AtlasTexture_lqnb4")
+scene_path = "res://inventory/item/ores/ore_scenes/ore_iron.tscn"
+metadata/_custom_type_script = "uid://dk2pumojol2k8"

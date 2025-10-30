@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqvd4sutha5tw"]
+
+[ext_resource type="PackedScene" uid="uid://bx0wlhsvsoay0" path="res://inventory/shop/shop_slot.tscn" id="1_0fk1y"]
+[ext_resource type="Script" uid="uid://c3o2m5svxh7qx" path="res://inventory/shop/shop.gd" id="1_qcntk"]
+[ext_resource type="Resource" uid="uid://brfsawrw7ycal" path="res://inventory/item/item_data/ore_copper.tres" id="3_7jwom"]
+[ext_resource type="Resource" uid="uid://7rqfq3k1i21h" path="res://inventory/item/item_data/ore_iron.tres" id="4_b0inq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwj3d"]
+
+[node name="Shop" type="Node"]
+script = ExtResource("1_qcntk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(700, 1000)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer"]
+modulate = Color(0.8474744, 0.84747446, 0.84747446, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pwj3d")
+
+[node name="MarginContainer_Slots" type="MarginContainer" parent="CanvasLayer/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 180
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots"]
+layout_mode = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 40
+columns = 4
+
+[node name="ShopSlot" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+item = ExtResource("3_7jwom")
+
+[node name="ShopSlot2" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+item = ExtResource("3_7jwom")
+
+[node name="ShopSlot3" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+item = ExtResource("4_b0inq")
+
+[node name="ShopSlot4" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot5" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot6" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot7" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot8" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot9" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot10" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot11" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot12" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot13" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot14" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot15" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot16" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot17" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot18" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot19" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot20" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot21" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot22" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot23" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="ShopSlot24" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Slots/GridContainer" instance=ExtResource("1_0fk1y")]
+layout_mode = 2
+
+[node name="MarginContainer_Labels" type="MarginContainer" parent="CanvasLayer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -135.0
+offset_bottom = 55.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/Panel/MarginContainer_Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Shop
+"

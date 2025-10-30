@@ -2,6 +2,7 @@ extends Node
 
 signal inventory_changed
 signal slot_selected(slot_index : int)
+signal slot_emptied()
 signal item_drop(item_instance)
 
 var hotbar_size := 3
@@ -81,6 +82,7 @@ func drop_item(slot_index: int):
 	slot.count -= 1
 	if slot.count <= 0:
 		slot.item = null
+		slot_emptied.emit()
 
 	inventory_changed.emit()
 	if slot_index == selecting_slot:
@@ -95,10 +97,29 @@ func drop_slot(slot_index : int):
 	for i in range(total_to_drop):
 		drop_item(slot_index)
 
+func get_current_slot() -> ItemSlot:
+	return hotbar[selecting_slot]
+
 func get_current_item() -> ItemData:
-	return hotbar[selecting_slot].item
+	return get_current_slot().item
 
 func use_item(slot_index : int):
 	if hotbar[slot_index]:
 		var item_to_use = hotbar[slot_index]
 		item_to_use.use_item()
+
+# --- trading ---
+signal currency_changed(amount: int)
+
+var coins: int = 0
+
+func add_coins(amount: int):
+	coins += amount
+	currency_changed.emit(coins)
+
+func remove_coins(amount: int) -> bool:
+	if coins >= amount:
+		coins -= amount
+		currency_changed.emit(coins)
+		return true
+	return false

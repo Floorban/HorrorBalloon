@@ -7,6 +7,8 @@ signal game_start
 var current_level := 1
 var attempts := 1
 
+const UI_DRAG_OFFSET := Vector2(-25, -25)
+
 func _ready() -> void:
 	if player: player.cave_gen.finish_gen.connect(set_game_state)
 
