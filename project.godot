@@ -30,11 +30,7 @@ ItemInventory="*res://inventory/item_inventory.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
-window/size/window_width_override=1280
-window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/scale=1.5
 window/vsync/vsync_mode=0
 
 [editor_plugins]
@@ -154,6 +150,7 @@ common/physics_interpolation=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/volumetric_fog/volume_size=128
 environment/volumetric_fog/volume_depth=128
 environment/volumetric_fog/use_filter=0

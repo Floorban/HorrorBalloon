@@ -20,7 +20,8 @@ func _init() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(use_item_key):
-		use_item(selecting_slot)
+		#use_item(selecting_slot)
+		pass
 	elif event.is_action_pressed(drop_item_key):
 		drop_item(selecting_slot)
 	elif event.is_action_pressed(drop_slot_key):

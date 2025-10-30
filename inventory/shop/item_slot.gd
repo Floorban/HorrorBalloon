@@ -1,7 +1,6 @@
 extends Slot
 class_name ItemSlot
 
-
 func is_empty() -> bool:
 	return item == null or count <= 0
 

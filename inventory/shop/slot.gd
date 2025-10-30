@@ -1,9 +1,11 @@
 extends Control
 class_name Slot
 
+signal slot_focused(item: ItemData)
+signal slot_unfocused()
+
 @export var item: ItemData
 var count: int = 0
-@onready var item_ui = $ItemUI
 @onready var icon: TextureRect = $Icon
 
 func _ready() -> void:
@@ -16,9 +18,9 @@ func update_ui():
 		icon.texture = null
 		icon.hide()
 		tooltip_text = ""
-		item_ui.visible = false
+		slot_unfocused.emit()
 		return
-	icon.texture = item.icon.texture
+	icon.texture = item.icon
 	icon.show()
 	tooltip_text = item.item_name
 
@@ -87,10 +89,9 @@ func _on_mouse_entered() -> void:
 	var tween = create_tween()
 	tween.tween_property(icon, "scale", Vector2(1.5, 1.5), 0.07).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(icon, "scale", Vector2(1.2, 1.2), 0.10).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	# tween.tween_callback(Callable(icon, "set_scale").bind(Vector2.ONE))
-	if item: item_ui.visible = true
+	if item: slot_focused.emit(item)
 
 func _on_mouse_exited() -> void:
 	var tween = create_tween()
 	tween.tween_property(icon, "scale", Vector2(1, 1), 0.07).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	if item: item_ui.visible = false
+	slot_unfocused.emit()
