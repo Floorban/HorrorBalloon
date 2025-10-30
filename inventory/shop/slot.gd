@@ -7,6 +7,13 @@ signal slot_unfocused()
 @export var item: ItemData
 var count: int = 0
 @onready var icon: TextureRect = $Icon
+@onready var count_label: Label = $CountLabel
+
+func is_empty() -> bool:
+	return item == null or count <= 0
+
+func can_stack(other: ItemData) -> bool:
+	return not is_empty() and item == other and item.is_stackable and count < item.max_stack
 
 func _ready() -> void:
 	self.connect("mouse_entered", Callable(self, "_on_mouse_entered"))
@@ -14,15 +21,17 @@ func _ready() -> void:
 	update_ui()
 
 func update_ui():
-	if not item:
+	if is_empty():
 		icon.texture = null
 		icon.hide()
 		tooltip_text = ""
+		count_label.text = ""
 		slot_unfocused.emit()
 		return
 	icon.texture = item.icon
 	icon.show()
 	tooltip_text = item.item_name
+	count_label.text = str(count)
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if not has_content():

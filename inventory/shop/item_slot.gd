@@ -1,12 +1,6 @@
 extends Slot
 class_name ItemSlot
 
-func is_empty() -> bool:
-	return item == null or count <= 0
-
-func can_stack(other: ItemData) -> bool:
-	return not is_empty() and item == other and item.is_stackable and count < item.max_stack
-
 func _ready():
 	super._ready()
 	update_ui()
@@ -16,13 +10,13 @@ func set_item(_item: ItemData) -> void:
 	update_ui()
 	_anim_punch_effect()
 
-func update_ui():
-	if not item:
-		icon.texture = null
-		icon.hide()
-		return
-	icon.texture = item.icon
-	icon.show()
+#func update_ui():
+	#if not item:
+		#icon.texture = null
+		#icon.hide()
+		#return
+	#icon.texture = item.icon
+	#icon.show()
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return data is ItemSlot

@@ -1,5 +1,4 @@
 extends Node
-class_name Shop
 
 func buy_item(item: ItemData) -> bool:
 	if not item:

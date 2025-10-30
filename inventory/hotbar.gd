@@ -13,20 +13,13 @@ func _ready() -> void:
 
 func get_slots():
 	slots = get_children()
-	for slot : TextureButton in slots:
-		slot.pressed.connect(ItemInventory.select_slot.bind(slot.get_index()))
+	#for slot : ItemSlot in slots:
+		#slot.pressed.connect(ItemInventory.select_slot.bind(slot.get_index()))
 
 func _update_hotbar():
 	for i in range(slots.size()):
-		var slot_btn: TextureButton = slots[i]
-		var slot_data: ItemSlot = ItemInventory.hotbar[i]
-
-		if slot_data.is_empty():
-			slot_btn.texture_normal = null
-			slot_btn.get_node("CountLabel").text = ""
-		else:
-			slot_btn.texture_normal = slot_data.item.icon
-			slot_btn.get_node("CountLabel").text = str(slot_data.count)
+		var slot: ItemSlot = ItemInventory.hotbar[i]
+		slot.update_ui()
 
 func _highlight_hotbar(slot_index : int):
 	for i in range(ItemInventory.hotbar_size):

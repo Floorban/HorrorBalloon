@@ -31,3 +31,8 @@ func swap_slot(target_slot: Slot) -> void:
 		target_slot.update_ui()
 		if target_slot.has_content():
 			target_slot._anim_punch_effect()
+	elif target_slot is ItemSlot:
+		Shop.buy_item(item)
+		target_slot.item = null
+		target_slot.update_ui()
+	_anim_punch_effect()

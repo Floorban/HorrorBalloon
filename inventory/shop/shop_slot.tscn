@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx0wlhsvsoay0"]
+[gd_scene load_steps=2 format=3 uid="uid://bx0wlhsvsoay0"]
 
 [ext_resource type="Script" uid="uid://dt14grpbhrk5t" path="res://inventory/shop/shop_slot.gd" id="1_04dy0"]
-[ext_resource type="PackedScene" uid="uid://bi81ddx31jb5d" path="res://inventory/shop/item_ui.tscn" id="2_o3aun"]
 
-[node name="ShopSlot" type="Panel"]
+[node name="ShopSlot" type="Panel" node_paths=PackedStringArray("icon", "count_label")]
 show_behind_parent = true
 custom_minimum_size = Vector2(100, 100)
 anchors_preset = 15
@@ -13,7 +12,10 @@ offset_right = -1820.0
 offset_bottom = -980.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(50, 50)
 script = ExtResource("1_04dy0")
+icon = NodePath("Icon")
+count_label = NodePath("CountLabel")
 
 [node name="Icon" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(100, 100)
@@ -45,10 +47,3 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ItemUI" parent="." instance=ExtResource("2_o3aun")]
-z_index = 1
-layout_mode = 1
-offset_left = 100.0
-offset_right = 100.0
-mouse_filter = 2
